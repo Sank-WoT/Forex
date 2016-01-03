@@ -1,0 +1,12 @@
+C:\Users\саша\Desktop\учеба\проги\Парсер\Парсер\bin\Debug\Парсер.exe.config
+C:\Users\саша\Desktop\учеба\проги\Парсер\Парсер\obj\Debug\Парсер.csprojResolveAssemblyReference.cache
+C:\Users\саша\Desktop\учеба\проги\Парсер\Парсер\obj\Debug\Парсер.Form1.resources
+C:\Users\саша\Desktop\учеба\проги\Парсер\Парсер\obj\Debug\Парсер.Properties.Resources.resources
+C:\Users\саша\Desktop\учеба\проги\Парсер\Парсер\obj\Debug\Парсер.csproj.GenerateResource.Cache
+C:\Users\саша\Desktop\учеба\проги\Парсер\Парсер\bin\Debug\Парсер.exe
+C:\Users\саша\Desktop\учеба\проги\Парсер\Парсер\bin\Debug\Парсер.pdb
+C:\Users\саша\Desktop\учеба\проги\Парсер\Парсер\obj\Debug\Парсер.exe
+C:\Users\саша\Desktop\учеба\проги\Парсер\Парсер\obj\Debug\Парсер.pdb
+E:\учеба\1\учеба\проги\Парсер\Парсер\bin\Debug\Парсер.exe.config
+E:\учеба\1\учеба\проги\Парсер\Парсер\obj\Debug\Парсер.exe
+E:\учеба\1\учеба\проги\Парсер\Парсер\obj\Debug\Парсер.pdb
