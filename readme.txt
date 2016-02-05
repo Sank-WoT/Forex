@@ -1,0 +1,2 @@
+Login - логин
+Password - пароль
