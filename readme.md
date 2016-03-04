@@ -25,3 +25,23 @@ Code     | Description
 1 		| argument **time** not int
 2	    | no one record has > **time**
 3	    | argument **limit** not int
+----------
+To set prediction use **upload_prediction.php**
+
+Input parameters:
+
+ 1. ***time*** - time prediction.
+ 2. ***value*** - value prediction.
+ 3. ***sign*** - currency name, for example **eurusd**.     *not implemented*.
+ 
+ Output format:
+ **string** OK; 
+ <br>
+exmple:	OK
+
+Error codes:
+
+Code     | Description
+-------- | ---
+1 		| argument **time** null or not int
+2	    | argument **value** null or not int
