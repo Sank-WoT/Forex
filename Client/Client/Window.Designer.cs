@@ -281,6 +281,7 @@
             this.Name = "Window";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Window";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
             this.Load += new System.EventHandler(this.Window_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

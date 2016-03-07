@@ -29,12 +29,10 @@ namespace Client
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-          
+        {   
             Window f = new Window();
-            f.ShowDialog(); 
+            f.Show();//модольное окно 
         }
-
         private void Settings_Click(object sender, EventArgs e)
         { 
            
