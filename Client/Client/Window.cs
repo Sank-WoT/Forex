@@ -19,7 +19,6 @@ namespace Client
 {
     public partial class Window : Form
     {//  
-        ChartArea area = new ChartArea();// Создание области
         System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
         int size = 30, Leaves = 0, Zoom = 0;
         double Zic = 0;
@@ -35,7 +34,6 @@ namespace Client
         double poslTime = 0;// последнее время
         string[] value = new string[1] { "eurusd" };
         int tic = 0;
-       
         public double Conect(string value, double poslTime, int limit)
         {
             string pathDirectory = "C:\\Forex";//Путь к директории
@@ -51,7 +49,7 @@ namespace Client
                 FileInfo writel = new FileInfo(pathFile);//получаем путь 
                 StreamWriter l = writel.CreateText();//создаем текст
                 l.Close();//закрыть запись
-                MessageBox.Show("Вас приветствует программа Project Mordor спасибо за то что вы с нами, желаю успешных торгов и хорошей прибыли");// сообщение о создании файла
+                MessageBox.Show(" Файл создан путь: " + pathFile);// сообщение о создании файла
             } //Развертывание сервера в заранее известном каталоге 
             StreamReader r = new StreamReader(pathFile);
             string text = r.ReadToEnd();// получение прочтенной записи
@@ -105,222 +103,55 @@ namespace Client
         }//Получить  данные  с собственного сайта
         //модифицировать для получения файлов
 
-        public void Activ(object sender)
-        {
-            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
-            if (menuItem.CheckState == CheckState.Checked)
-            {
-                menuItem.CheckState = CheckState.Unchecked;// Снять отметку
-            }
 
-            else if (menuItem.CheckState == CheckState.Unchecked)
-            {
-                menuItem.CheckState = CheckState.Checked;// поставить отметку
-            }
-        }
 
-        void CheckBox()
-        {
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                checkBox1.Text = "Levels suport and resistance";
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                checkBox1.Text = "Уровни сопротивления и поддержки";
-            }
-
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                checkBox2.Text = "SMA";
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                checkBox2.Text = "Скользящая кривая";
-            }
-
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                checkBox3.Text = "Line coordinates";
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                checkBox3.Text = "Координатные линии";
-            }      
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                 label1.Text = "Meтоды";
-            }
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                label1.Text = "Methods";
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                label2.Text = "Инструменты";
-            }
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                label2.Text = "Tools";
-            }     
-            
-        }// перевод методов и инструментов
-        
 
         public void tTip()
         {
-            string TText;           
             toolTip1.AutoPopDelay = 3000;//
             toolTip1.InitialDelay = 1000;//
             toolTip1.ReshowDelay = 1000;//время сколько показывается надпись
             toolTip1.ShowAlways = true;
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-           {
-               toolTip1.SetToolTip(this.checkBox1, "Click to activate the display of support and resistance levels.");
-           }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-           {
-                toolTip1.SetToolTip(this.checkBox1, "Нажмите чтобы активировать отображение уровней поддержки и сопротивления.");
-           }
-
+            toolTip1.SetToolTip(this.checkBox1, "Нажмите чтобы активировать отображение уровней поддержки и сопротивления.");
             toolTip2.AutoPopDelay = 3000;//
             toolTip2.InitialDelay = 1000;//
             toolTip2.ReshowDelay = 1000;//время сколько показывается надпись
             toolTip2.ShowAlways = true;
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                toolTip1.SetToolTip(this.checkBox2, "Click to activate the displaying of the moving line.");
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                toolTip1.SetToolTip(this.checkBox2, "Нажмите чтобы активировать отображение уровней скользящей прямой");
-            }
-
+            toolTip2.SetToolTip(this.checkBox2, "Нажмите чтобы активировать отображение уровней скользящей прямой.");
             toolTip3.AutoPopDelay = 3000;//
             toolTip3.InitialDelay = 1000;//
             toolTip3.ReshowDelay = 1000;//время сколько показывается надпись
             toolTip3.ShowAlways = true;
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                toolTip1.SetToolTip(this.checkBox3, "Press to activate the display lines value at the point.");
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                toolTip1.SetToolTip(this.checkBox3, "Нажмите чтобы активировать отображение линий значение в точке.");
-            }
-
-
-        }
-
-
-    void Button()
-        {
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button9.Text = "Buy";// текст клавиши покупки
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button9.Text = "Покупка";// текст клавиши покупки
-            }
-
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button10.Text = "Sell";// текст клавиши покупки
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button10.Text = "Продажа";// текст клавиши покупки
-            }
-
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button10.Text = "Sell";// текст клавиши покупки
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button10.Text = "Продажа";// текст клавиши покупки
-            }
-
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button1.Text = "Value Buy";// текст клавиши покупки
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button1.Text = "Значение покупки";// текст клавиши покупки
-            }
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button7.Text = "Value Sell";// текст клавиши покупки
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button7.Text = "Значение продажа";// текст клавиши покупки
-            }
+            toolTip3.SetToolTip(this.checkBox3, "Нажмите чтобы активировать отображение линий значение в точке.");
         }
 
         public Window()
         {
-       
-
             int y = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height; //высота экрана
             int x = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width; //ширина экрана  
-            int cX = 1058;
-            int cY = 684;
-            double  fX = 1366;
-            double fY = 757;
             double xS = (x / 1920.0);//настройка под все  экраны
             double yS = (y / 1080.0);//настройка под все  экраный
+           
             for (int m = 0; m < 1; m++)
             {
                 poslTime = Conect(value[0], poslTime, 30);// соединение 
             }
             InitializeComponent();
-            
-            chart1 = new Chart();// Создание чарта
-            chart1.Parent = this;
-          
-            area.Name = "myGraph";
-            area.AxisX.MajorGrid.Interval = shag;// доработать интервал по координате X 1= 1 день
-            chart1.Location = new Point(0,10);// размещение чарта
-            this.chart1.Size = new System.Drawing.Size(Convert.ToInt32(cX * xS * (WSrting.X / fX)), Convert.ToInt32(cY * yS * (WSrting.X / fX)));//размеры чарта
-            chart1.ChartAreas.Add(area);// передача 
-
-            button9.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X /fX )), Convert.ToInt32(15 * yS * ( WSrting.Y/fY )));// клавиша buy         
-            button8.Location = new Point(Convert.ToInt32(1158 * xS * (WSrting.X / fX)), Convert.ToInt32(15 * yS * (WSrting.Y / fY)));// клавиша price     
-            button10.Location = new Point(Convert.ToInt32(1274 * xS * (WSrting.X / fX)), Convert.ToInt32(15 * yS * (WSrting.Y / fY)));// клавиша sell   
-            button1.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X / fX)), Convert.ToInt32(60 * yS * (WSrting.Y / fY)));// клавиша value
-            button7.Location = new Point(Convert.ToInt32(1216 * xS * (WSrting.X / fX)), Convert.ToInt32(60 * yS * (WSrting.Y / fY)));// клавиша value
-
-            button9.Size = new Size(Convert.ToInt32(58 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
-            button8.Size = new Size(Convert.ToInt32(118 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
-            button10.Size = new Size(Convert.ToInt32(58 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
-            button1.Size = new Size(Convert.ToInt32(117 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
-            button7.Size = new Size(Convert.ToInt32(117 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
-
-            label1.Location = new Point(Convert.ToInt32(1098 * xS * (WSrting.X / fX)), Convert.ToInt32(118 * yS * (WSrting.Y / fY)));
-            label2.Location = new Point(Convert.ToInt32(1098 * xS * (WSrting.X / fX)), Convert.ToInt32(280 * yS * (WSrting.Y / fY)));
-
-            checkBox1.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(149 * yS * (WSrting.Y / fY)));
-            checkBox2.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(172 * yS * (WSrting.Y / fY)));
-            checkBox3.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(305 * yS * (WSrting.Y / fY)));
-
-            Button();
-
-            Console.WriteLine(WSrting.Y / fY);
-            Console.WriteLine(WSrting.X / fX); // дебаг
-
-            
-
+           button9.Location = new Point(1100, 12);// клавиша buy     
+           
         }
-  
 
         public void Graph()
         {
 
             double d = massYInetA.Count;
-           
+            chart1 = new Chart();// Создание чарта
+            chart1.Parent = this;
+            ChartArea area = new ChartArea();// Создание области
+            area.Name = "myGraph";
+            area.AxisX.MajorGrid.Interval = shag;// доработать интервал по координате X 1= 1 день
+            this.chart1.Size = new System.Drawing.Size(1058, 684);//размеры чарта
+            chart1.ChartAreas.Add(area);// передача 
 
             Series series1 = new Series();
             series1.ChartArea = "myGraph";
@@ -441,10 +272,9 @@ namespace Client
                 label_X.BackColor = Color.FromArgb(0, 0, 0);//цвет линии по X
                 label_Y.BackColor = Color.FromArgb(0, 0, 0);//цвет линии по Y
                 this.chart1.MouseMove += new MouseEventHandler(this.chart1_MouseMove);
-            }//додумать и настроить появление 
-            //
-            //
-            //
+            }//додумать и настроить появление
+
+
 
 
             if (checkBox3.Checked == false)
@@ -457,10 +287,7 @@ namespace Client
 
 
         private int Update(int tic, List<DateTime> Date)
-        { 
-            tTip();
-            CheckBox();// переводчик 
-            Button();// переводчик  кнопок
+        {
             chart1.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel);
             chart1.Focus();// необходим фокус
             List<List<double>> poin = new List<List<double>>();
@@ -647,7 +474,7 @@ namespace Client
         { 
             t.Start(); t.Interval = 1000;// время секунды
             t.Tick += new EventHandler(timer1_Tick);// прибавление времени 
-          
+            tTip();
           Graph();//функция построения 
         }
 
@@ -753,6 +580,48 @@ namespace Client
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Zoom = 432000;
+            ZoomT(Zoom, chart1.Series[0].Points[0].XValue);
+        }// дневной уровень
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            Zoom = 9000;
+            ZoomT(Zoom, chart1.Series[0].Points[0].XValue);
+        }// 30 минутный уровень
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Zoom = 108000;
+            ZoomT(Zoom, chart1.Series[0].Points[0].XValue);
+        }//часовой уровень
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Zoom = 1728000;
+            ZoomT(1728000, chart1.Series[0].Points[0].XValue);
+        }// недельный уровень
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Zoom = 8640000;
+            ZoomT(8640000, chart1.Series[0].Points[0].XValue);
+        }// месячный уровень
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Leaves = 1;
+            ZoomT(60, chart1.Series[0].Points[0].XValue);
+        }// секундный уровень
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Zoom = 300 * 6;
+            ZoomT(Zoom, chart1.Series[0].Points[0].XValue);
+        }// 5 минутный уровень 
+
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
             t.Tick -= new EventHandler(timer1_Tick);
@@ -763,128 +632,8 @@ namespace Client
 
         }
 
-        private void secondToolStripMenuItem_Click(object sender, EventArgs e)
+        private void button13_Click(object sender, EventArgs e)
         {
-            Leaves = 1;
-
-            area.AxisX.MajorGrid.Interval = 0.00001157407;
-
-            ZoomT(60, chart1.Series[0].Points[0].XValue);
-            Activ(sender);
-            minutesToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку минутный уровень
-            minutesToolStripMenuItem1.CheckState = CheckState.Unchecked;//убрать отметку 30 минутный уровень
-            hourToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку часовой уровень
-            weekToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку недельный уровень
-            dayToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку дневной уровень
-            monthToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку месячный уровень
-        }// секундный уровень
-
-        private void minutesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            area.AxisX.MajorGrid.Interval = 0.00001157407*60;
-            Zoom = 300 * 6;
-            ZoomT(Zoom, chart1.Series[0].Points[0].XValue);
-            Activ(sender);
-            secondToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку секундный уровень
-            minutesToolStripMenuItem1.CheckState = CheckState.Unchecked;//убрать отметку 30 минутный уровень
-            hourToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку часовой уровень
-            weekToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку недельный уровень
-            dayToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку дневной уровень
-            monthToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку месячный уровень
-
-        }// 5 минутный уровень 
-
-        private void minutesToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60*5;
-            Zoom = 9000;
-            ZoomT(Zoom, chart1.Series[0].Points[0].XValue);
-            Activ(sender);
-            minutesToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку минутный уровень
-            secondToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку секундный уровень
-            hourToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку часовой уровень
-            weekToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку недельный уровень
-            dayToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку дневной уровень
-            monthToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку месячный уровень
         }
-
-        private void hourToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60 * 10;
-            Zoom = 108000;
-            ZoomT(Zoom, chart1.Series[0].Points[0].XValue);
-            Activ(sender);
-            minutesToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку минутный уровень
-            minutesToolStripMenuItem1.CheckState = CheckState.Unchecked;//убрать отметку 30 минутный уровень
-            secondToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку секундный уровень
-            weekToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку недельный уровень
-            dayToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку дневной уровень
-            monthToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку месячный уровень
-        }//часовой уровень
-
-        private void weekToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60 * 70;
-            Zoom = 1728000;
-            ZoomT(1728000, chart1.Series[0].Points[0].XValue);
-            Activ(sender);
-            hourToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку часовой уровень
-            minutesToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку минутный уровень
-            minutesToolStripMenuItem1.CheckState = CheckState.Unchecked;//убрать отметку 30 минутный уровень
-            secondToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку секундный уровень
-            dayToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку дневной уровень
-            monthToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку месячный уровень
-        }// недельный уровень
-
-        private void dayToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            area.AxisX.MajorGrid.Interval = 1/24.0;
-            Zoom = 432000;
-            ZoomT(Zoom, chart1.Series[0].Points[0].XValue);
-            Activ(sender);
-            hourToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку часовой уровень
-            minutesToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку минутный уровень
-            minutesToolStripMenuItem1.CheckState = CheckState.Unchecked;//убрать отметку 30 минутный уровень
-            secondToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку секундный уровень
-            monthToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку месячный уровень
-            weekToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку недельный уровень
-        }// дневной уровень
-
-        private void monthToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            area.AxisX.MajorGrid.Interval = 1;
-            Zoom = 8640000;
-            ZoomT(8640000, chart1.Series[0].Points[0].XValue);
-            Activ(sender);
-            hourToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку часовой уровень
-            minutesToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку минутный уровень
-            minutesToolStripMenuItem1.CheckState = CheckState.Unchecked;//убрать отметку 30 минутный уровень
-            secondToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку секундный уровень
-            weekToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку недельный уровень
-            dayToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку дневной уровень
-        }// месячный уровень
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void engToolStripMenuItem_Click(object sender, EventArgs e)
-        {    
-            rusToolStripMenuItem.CheckState = CheckState.Unchecked;
-            Activ(sender);
-        }
-
-        private void rusToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-          engToolStripMenuItem.CheckState = CheckState.Unchecked;
-          Activ(sender);
-        }
-
     }
 }
