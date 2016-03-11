@@ -29,12 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Window));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
@@ -50,63 +46,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.timeLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.secondToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.weekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.monthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.langueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.engToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(80, 684);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "sec";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(404, 684);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Day";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(566, 684);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "month";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(485, 684);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Week";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(161, 684);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "5 minutes";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // checkBox1
             // 
@@ -232,34 +190,122 @@
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 18;
             this.label1.Text = "Methods";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // button11
+            // menuStrip1
             // 
-            this.button11.Location = new System.Drawing.Point(323, 684);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(75, 23);
-            this.button11.TabIndex = 19;
-            this.button11.Text = "Hour";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.timeLevelToolStripMenuItem,
+            this.langueToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1350, 24);
+            this.menuStrip1.TabIndex = 21;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // button12
+            // timeLevelToolStripMenuItem
             // 
-            this.button12.Location = new System.Drawing.Point(242, 684);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 20;
-            this.button12.Text = "30 minutes";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.timeLevelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.secondToolStripMenuItem,
+            this.minutesToolStripMenuItem,
+            this.minutesToolStripMenuItem1,
+            this.hourToolStripMenuItem,
+            this.dayToolStripMenuItem,
+            this.weekToolStripMenuItem,
+            this.monthToolStripMenuItem});
+            this.timeLevelToolStripMenuItem.Name = "timeLevelToolStripMenuItem";
+            this.timeLevelToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.timeLevelToolStripMenuItem.Text = "Time level";
+            // 
+            // secondToolStripMenuItem
+            // 
+            this.secondToolStripMenuItem.Name = "secondToolStripMenuItem";
+            this.secondToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.secondToolStripMenuItem.Text = "second";
+            this.secondToolStripMenuItem.Click += new System.EventHandler(this.secondToolStripMenuItem_Click);
+            // 
+            // minutesToolStripMenuItem
+            // 
+            this.minutesToolStripMenuItem.Name = "minutesToolStripMenuItem";
+            this.minutesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.minutesToolStripMenuItem.Text = "5 minutes";
+            this.minutesToolStripMenuItem.Click += new System.EventHandler(this.minutesToolStripMenuItem_Click);
+            // 
+            // minutesToolStripMenuItem1
+            // 
+            this.minutesToolStripMenuItem1.Name = "minutesToolStripMenuItem1";
+            this.minutesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.minutesToolStripMenuItem1.Text = "30 minutes";
+            this.minutesToolStripMenuItem1.Click += new System.EventHandler(this.minutesToolStripMenuItem1_Click);
+            // 
+            // hourToolStripMenuItem
+            // 
+            this.hourToolStripMenuItem.Name = "hourToolStripMenuItem";
+            this.hourToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hourToolStripMenuItem.Text = "Hour";
+            this.hourToolStripMenuItem.Click += new System.EventHandler(this.hourToolStripMenuItem_Click);
+            // 
+            // dayToolStripMenuItem
+            // 
+            this.dayToolStripMenuItem.Name = "dayToolStripMenuItem";
+            this.dayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dayToolStripMenuItem.Text = "Day";
+            this.dayToolStripMenuItem.Click += new System.EventHandler(this.dayToolStripMenuItem_Click);
+            // 
+            // weekToolStripMenuItem
+            // 
+            this.weekToolStripMenuItem.Name = "weekToolStripMenuItem";
+            this.weekToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.weekToolStripMenuItem.Text = "Week";
+            this.weekToolStripMenuItem.Click += new System.EventHandler(this.weekToolStripMenuItem_Click);
+            // 
+            // monthToolStripMenuItem
+            // 
+            this.monthToolStripMenuItem.Name = "monthToolStripMenuItem";
+            this.monthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.monthToolStripMenuItem.Text = "Month";
+            this.monthToolStripMenuItem.Click += new System.EventHandler(this.monthToolStripMenuItem_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(1098, 280);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Tools";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // langueToolStripMenuItem
+            // 
+            this.langueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.engToolStripMenuItem,
+            this.rusToolStripMenuItem});
+            this.langueToolStripMenuItem.Name = "langueToolStripMenuItem";
+            this.langueToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.langueToolStripMenuItem.Text = "Langue";
+            // 
+            // engToolStripMenuItem
+            // 
+            this.engToolStripMenuItem.Name = "engToolStripMenuItem";
+            this.engToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.engToolStripMenuItem.Text = "Eng";
+            this.engToolStripMenuItem.Click += new System.EventHandler(this.engToolStripMenuItem_Click);
+            // 
+            // rusToolStripMenuItem
+            // 
+            this.rusToolStripMenuItem.Name = "rusToolStripMenuItem";
+            this.rusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rusToolStripMenuItem.Text = "Rus";
+            this.rusToolStripMenuItem.Click += new System.EventHandler(this.rusToolStripMenuItem_Click);
             // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1350, 719);
-            this.Controls.Add(this.button12);
-            this.Controls.Add(this.button11);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.lab_Cur);
@@ -272,17 +318,17 @@
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.menuStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Window";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Text = "Window";
+            this.Text = "EUR/USD";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
             this.Load += new System.EventHandler(this.Window_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,12 +337,7 @@
         #endregion
 
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button button1;
@@ -312,7 +353,18 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.ToolTip toolTip3;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem timeLevelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem secondToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem hourToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem weekToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem monthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dayToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem langueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem engToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rusToolStripMenuItem;
     }
 }

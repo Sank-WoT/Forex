@@ -19,4 +19,9 @@ namespace Client
             Application.Run(new Form1());
         }
     }
+    static class WSrting
+    {
+        public static int X { get; set; }
+        public static int Y { get; set; }
+    }// передача данных между формами
 }
