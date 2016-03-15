@@ -23,5 +23,8 @@ namespace Client
     {
         public static int X { get; set; }
         public static int Y { get; set; }
+        public static bool RUS;
+        public static bool ENG;
+        
     }// передача данных между формами
 }

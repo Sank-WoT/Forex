@@ -108,11 +108,12 @@
             this.currencyPairsToolStripMenuItem.Name = "currencyPairsToolStripMenuItem";
             this.currencyPairsToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.currencyPairsToolStripMenuItem.Text = "Currency pairs";
+            this.currencyPairsToolStripMenuItem.Click += new System.EventHandler(this.currencyPairsToolStripMenuItem_Click);
             // 
             // eURUSDToolStripMenuItem
             // 
             this.eURUSDToolStripMenuItem.Name = "eURUSDToolStripMenuItem";
-            this.eURUSDToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.eURUSDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.eURUSDToolStripMenuItem.Text = "EUR/USD";
             this.eURUSDToolStripMenuItem.Click += new System.EventHandler(this.eURUSDToolStripMenuItem_Click);
             // 

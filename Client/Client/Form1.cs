@@ -84,6 +84,7 @@ namespace Client
             Window f1 = new Window();
             f1.Show();//модольное окно 
             f1.Size = new Size(X, Y);//Задаем значение размера формы Window 
+            f1.Location = new Point(0, 0);//размещение окна EURUSD
             }
         }// показать  график  EUR/USD
 
@@ -91,6 +92,7 @@ namespace Client
         {
             SWindow f2 = new SWindow();
             f2.Show();
+           
         }// показать форму настройки окна
 
         private void chartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -107,6 +109,11 @@ namespace Client
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void currencyPairsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

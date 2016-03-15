@@ -55,10 +55,13 @@
             this.dayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.monthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
             this.langueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.engToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -196,7 +199,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.timeLevelToolStripMenuItem,
-            this.langueToolStripMenuItem});
+            this.langueToolStripMenuItem,
+            this.reportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1350, 24);
@@ -214,57 +218,96 @@
             this.weekToolStripMenuItem,
             this.monthToolStripMenuItem});
             this.timeLevelToolStripMenuItem.Name = "timeLevelToolStripMenuItem";
-            this.timeLevelToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.timeLevelToolStripMenuItem.Text = "Time level";
+            this.timeLevelToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.timeLevelToolStripMenuItem.Text = "Time intervall";
+            this.timeLevelToolStripMenuItem.Click += new System.EventHandler(this.timeLevelToolStripMenuItem_Click);
             // 
             // secondToolStripMenuItem
             // 
             this.secondToolStripMenuItem.Name = "secondToolStripMenuItem";
-            this.secondToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.secondToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.secondToolStripMenuItem.Text = "second";
             this.secondToolStripMenuItem.Click += new System.EventHandler(this.secondToolStripMenuItem_Click);
             // 
             // minutesToolStripMenuItem
             // 
             this.minutesToolStripMenuItem.Name = "minutesToolStripMenuItem";
-            this.minutesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.minutesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.minutesToolStripMenuItem.Text = "5 minutes";
             this.minutesToolStripMenuItem.Click += new System.EventHandler(this.minutesToolStripMenuItem_Click);
             // 
             // minutesToolStripMenuItem1
             // 
             this.minutesToolStripMenuItem1.Name = "minutesToolStripMenuItem1";
-            this.minutesToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.minutesToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
             this.minutesToolStripMenuItem1.Text = "30 minutes";
             this.minutesToolStripMenuItem1.Click += new System.EventHandler(this.minutesToolStripMenuItem1_Click);
             // 
             // hourToolStripMenuItem
             // 
             this.hourToolStripMenuItem.Name = "hourToolStripMenuItem";
-            this.hourToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hourToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.hourToolStripMenuItem.Text = "Hour";
             this.hourToolStripMenuItem.Click += new System.EventHandler(this.hourToolStripMenuItem_Click);
             // 
             // dayToolStripMenuItem
             // 
             this.dayToolStripMenuItem.Name = "dayToolStripMenuItem";
-            this.dayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dayToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.dayToolStripMenuItem.Text = "Day";
             this.dayToolStripMenuItem.Click += new System.EventHandler(this.dayToolStripMenuItem_Click);
             // 
             // weekToolStripMenuItem
             // 
             this.weekToolStripMenuItem.Name = "weekToolStripMenuItem";
-            this.weekToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.weekToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.weekToolStripMenuItem.Text = "Week";
             this.weekToolStripMenuItem.Click += new System.EventHandler(this.weekToolStripMenuItem_Click);
             // 
             // monthToolStripMenuItem
             // 
             this.monthToolStripMenuItem.Name = "monthToolStripMenuItem";
-            this.monthToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.monthToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.monthToolStripMenuItem.Text = "Month";
             this.monthToolStripMenuItem.Click += new System.EventHandler(this.monthToolStripMenuItem_Click);
+            // 
+            // langueToolStripMenuItem
+            // 
+            this.langueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.engToolStripMenuItem,
+            this.rusToolStripMenuItem});
+            this.langueToolStripMenuItem.Name = "langueToolStripMenuItem";
+            this.langueToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.langueToolStripMenuItem.Text = "Langue";
+            this.langueToolStripMenuItem.Click += new System.EventHandler(this.langueToolStripMenuItem_Click);
+            // 
+            // engToolStripMenuItem
+            // 
+            this.engToolStripMenuItem.Name = "engToolStripMenuItem";
+            this.engToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.engToolStripMenuItem.Text = "Eng";
+            this.engToolStripMenuItem.Click += new System.EventHandler(this.engToolStripMenuItem_Click);
+            // 
+            // rusToolStripMenuItem
+            // 
+            this.rusToolStripMenuItem.Name = "rusToolStripMenuItem";
+            this.rusToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.rusToolStripMenuItem.Text = "Rus";
+            this.rusToolStripMenuItem.Click += new System.EventHandler(this.rusToolStripMenuItem_Click);
+            // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createReportToolStripMenuItem});
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.reportToolStripMenuItem.Text = "Report";
+            // 
+            // createReportToolStripMenuItem
+            // 
+            this.createReportToolStripMenuItem.Name = "createReportToolStripMenuItem";
+            this.createReportToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.createReportToolStripMenuItem.Text = "Create report";
             // 
             // label2
             // 
@@ -276,28 +319,16 @@
             this.label2.Text = "Tools";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // langueToolStripMenuItem
+            // checkBox4
             // 
-            this.langueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.engToolStripMenuItem,
-            this.rusToolStripMenuItem});
-            this.langueToolStripMenuItem.Name = "langueToolStripMenuItem";
-            this.langueToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.langueToolStripMenuItem.Text = "Langue";
-            // 
-            // engToolStripMenuItem
-            // 
-            this.engToolStripMenuItem.Name = "engToolStripMenuItem";
-            this.engToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.engToolStripMenuItem.Text = "Eng";
-            this.engToolStripMenuItem.Click += new System.EventHandler(this.engToolStripMenuItem_Click);
-            // 
-            // rusToolStripMenuItem
-            // 
-            this.rusToolStripMenuItem.Name = "rusToolStripMenuItem";
-            this.rusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rusToolStripMenuItem.Text = "Rus";
-            this.rusToolStripMenuItem.Click += new System.EventHandler(this.rusToolStripMenuItem_Click);
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(1100, 195);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(66, 17);
+            this.checkBox4.TabIndex = 23;
+            this.checkBox4.Text = "Min-Max";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // Window
             // 
@@ -305,6 +336,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1350, 719);
+            this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.checkBox3);
@@ -366,5 +398,8 @@
         private System.Windows.Forms.ToolStripMenuItem langueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem engToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createReportToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBox4;
     }
 }

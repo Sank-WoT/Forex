@@ -23,7 +23,7 @@ namespace Client
         System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
         int size = 30, Leaves = 0, Zoom = 0;
         double Zic = 0;
-        double shag = 1;//интервал для координаты X
+        double shag = 1, BUY = 0,SELL = 0;//интервал для координаты X
         int danoe = 0;
         int colvo = 0;
         List<double> massY = new List<double>();
@@ -35,7 +35,12 @@ namespace Client
         double poslTime = 0;// последнее время
         string[] value = new string[1] { "eurusd" };
         int tic = 0;
-       
+        int y = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height; //высота экрана
+        int x = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width; //ширина экрана 
+        double fX = 1366;//стандартный размер формы
+        double fY = 757;//стандартный размер формы
+        int cX = 1058;
+        int cY = 684;
         public double Conect(string value, double poslTime, int limit)
         {
             string pathDirectory = "C:\\Forex";//Путь к директории
@@ -95,11 +100,11 @@ namespace Client
 
                 response = m[colvo].Value;//Время
                 colvo++;//порядковый номер даты в списке
-                massYInetA.Add(Convert.ToDouble(response));
+                massYInetB.Add(Convert.ToDouble(response));
 
                 response = m[colvo].Value;//Время
                 colvo++;//порядковый номер даты в списке
-                massYInetB.Add(Convert.ToDouble(response));
+                massYInetA.Add(Convert.ToDouble(response));
             }
             return poslTime;
         }//Получить  данные  с собственного сайта
@@ -260,14 +265,71 @@ namespace Client
             }
         }
 
-        public Window()
+        public void Menu()
         {
-       
+            if (engToolStripMenuItem.CheckState == CheckState.Checked)
+            {
+               timeLevelToolStripMenuItem.Text = "Time intervall";  
+            }
+            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
+            {
+               timeLevelToolStripMenuItem.Text = "Временные интервалы";
+            }
+            if (engToolStripMenuItem.CheckState == CheckState.Checked)
+            {
+                langueToolStripMenuItem.Text = "Langue";
+            }
+            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
+            {
+                langueToolStripMenuItem.Text = "язык";
+            }        
+        }
 
-            int y = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height; //высота экрана
-            int x = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width; //ширина экрана  
-            int cX = 1058;
-            int cY = 684;
+
+
+        public void MAXMIN(List<List<double>> poin, List<DateTime> Date)
+        {
+            if (poin.Count > 1)
+            {
+                if(danoe == 1)
+                {
+                    if ((poin.Count-1)/2 == 1)
+                    {
+                        chart1.Series[3].XValueType = ChartValueType.Time;
+                        chart1.Series[3].Points.AddXY(Date[tic], poin[poin.Count-1][1]);// 1 точка // можно использовать для начала line1X
+                        chart1.Series[3].Color = Color.FromArgb(255, 144, 124);// задание цвета 
+                    }
+                    if ((poin.Count - 1) / 2 == 0)
+                    {
+                        chart1.Series[4].XValueType = ChartValueType.Time;
+                        chart1.Series[4].Points.AddXY(Date[tic], poin[poin.Count-1][1]);// 1 точка // можно использовать для начала line1X
+                        chart1.Series[4].Color = Color.FromArgb(255, 144, 124);// задание цвета 
+                    }   
+                }
+
+                if (danoe == -1)
+                {
+                    if ((poin.Count - 1) / 2 == 0)
+                    {
+                        chart1.Series[3].XValueType = ChartValueType.Time;
+                        chart1.Series[3].Points.AddXY(Date[tic], poin[poin.Count-1][1]);
+                        chart1.Series[3].Color = Color.FromArgb(255, 144, 124);// задание цвета 
+                    }
+                    if ((poin.Count - 1) / 2 == 1)
+                    {
+                        chart1.Series[4].XValueType = ChartValueType.Time;
+                        chart1.Series[4].Points.AddXY(Date[tic], poin[poin.Count-1][1]);
+                        chart1.Series[4].Color = Color.FromArgb(255, 144, 124);// задание цвета 
+                    }
+                }
+            }
+        }// додумать
+
+
+
+
+        public Window()
+        {    
             double  fX = 1366;
             double fY = 757;
             double xS = (x / 1920.0);//настройка под все  экраны
@@ -305,21 +367,16 @@ namespace Client
             checkBox1.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(149 * yS * (WSrting.Y / fY)));
             checkBox2.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(172 * yS * (WSrting.Y / fY)));
             checkBox3.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(305 * yS * (WSrting.Y / fY)));
+            checkBox4.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(195 * yS * (WSrting.Y / fY)));
 
             Button();
-
-            Console.WriteLine(WSrting.Y / fY);
-            Console.WriteLine(WSrting.X / fX); // дебаг
-
-            
-
         }
   
 
         public void Graph()
         {
 
-            double d = massYInetA.Count;
+            double d = massYInetB.Count;
            
 
             Series series1 = new Series();
@@ -327,35 +384,35 @@ namespace Client
             series1.XValueType = ChartValueType.DateTime;
             series1.ChartType = SeriesChartType.Line;
             series1.BorderWidth = 4;
-            chart1.Series.Add(series1);
+            chart1.Series.Add(series1);// параметры главной линии
 
             Series series2 = new Series();
             series2.ChartArea = "myGraph";
             series2.XValueType = ChartValueType.DateTime;
             series2.ChartType = SeriesChartType.Line;
             series2.BorderWidth = 2;
-            chart1.Series.Add(series2);
+            chart1.Series.Add(series2);// параметры  линии поддержки
 
             Series series3 = new Series();
             series3.ChartArea = "myGraph";
             series3.XValueType = ChartValueType.DateTime;
             series3.ChartType = SeriesChartType.Spline;
             series3.BorderWidth = 2;
-            chart1.Series.Add(series3);
+            chart1.Series.Add(series3);// параметры  линии сопротивления
 
             Series series4 = new Series();
             series4.ChartArea = "myGraph";
             series4.XValueType = ChartValueType.DateTime;
             series4.ChartType = SeriesChartType.Line;
             series4.BorderWidth = 2;
-            chart1.Series.Add(series4);
+            chart1.Series.Add(series4);// параметры  линии SMA
 
             Series series5 = new Series();
             series5.ChartArea = "myGraph";
             series5.XValueType = ChartValueType.DateTime;
             series5.ChartType = SeriesChartType.Line;
             series5.BorderWidth = 2;
-            chart1.Series.Add(series5);
+            chart1.Series.Add(series5);// параметры  линии МАX
 
 
             chart1.ChartAreas[0].BackColor = Color.FromArgb(255, 255, 255);//цвет внутренней области
@@ -368,8 +425,6 @@ namespace Client
             chart1.ChartAreas[0].AxisY.LineColor = Color.FromArgb(0, 0, 0);// цвет боковой  линии по Y
             chart1.ChartAreas[0].AxisY2.LineColor = Color.FromArgb(0, 0, 0);// цвет боковой  линии по Y
             chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.FromArgb(0, 0, 0);// цвет надписей координат по Y
-
-
 
 
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
@@ -399,12 +454,12 @@ namespace Client
 
             for (int i = 1; tic > i; i++)
             {
-                if (trend != 1 && (massYInetA[i - 1] - massYInetA[i]) > 0)
+                if (trend != 1 && (massYInetB[i - 1] - massYInetB[i]) > 0)
                 {
                     row = new List<double>();
                     trend = 1;//положительный тренд
                     row.Add(i - 1);//заполнение точек по икс    
-                    row.Add(massYInetA[i - 1]);//заполнение точек по игрик  
+                    row.Add(massYInetB[i - 1]);//заполнение точек по игрик  
                     if (Pervoe == 0)
                     {
                         danoe = -1;
@@ -412,7 +467,7 @@ namespace Client
                     }// узнаем первое значение минимум оно или максимум
                     poin.Add(row);
                 }
-                if (trend != -1 && (massYInetA[i - 1] - massYInetA[i]) < 0)
+                if (trend != -1 && (massYInetB[i - 1] - massYInetB[i]) < 0)
                 {
                     if (Pervoe == 0)
                     {
@@ -422,7 +477,7 @@ namespace Client
                     row = new List<double>();
                     trend = -1;//положительный тренд
                     row.Add(i);//заполнение точек по икс    
-                    row.Add(massYInetA[i]);//заполнение точек по игрик  
+                    row.Add(massYInetB[i]);//заполнение точек по игрик  
                     poin.Add(row);
                 }
             }
@@ -431,21 +486,19 @@ namespace Client
 
         public void setting()
         {
+            double xS = (x / 1920.0);//настройка под все  экраны
+            double yS = (y / 1080.0);//настройка под все  экраный
             if (checkBox3.Checked == true)
             {
                 label_X.Visible = true;
                 label_Y.Visible = true;
                 lab_Cur.Visible = true;
-                label_X.Size = new Size(958, 1);
-                label_Y.Size = new Size(1, 595);
+                label_X.Size = new Size(Convert.ToInt32(980 * xS * (WSrting.X / fX)), 1);
+                label_Y.Size = new Size(1, Convert.ToInt32(610* xS * (WSrting.Y / fY)));
                 label_X.BackColor = Color.FromArgb(0, 0, 0);//цвет линии по X
                 label_Y.BackColor = Color.FromArgb(0, 0, 0);//цвет линии по Y
                 this.chart1.MouseMove += new MouseEventHandler(this.chart1_MouseMove);
             }//додумать и настроить появление 
-            //
-            //
-            //
-
 
             if (checkBox3.Checked == false)
             {
@@ -461,7 +514,8 @@ namespace Client
             tTip();
             CheckBox();// переводчик 
             Button();// переводчик  кнопок
-            chart1.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel);
+            Menu();//переводчик меню
+            chart1.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel);//событие вращения колесика
             chart1.Focus();// необходим фокус
             List<List<double>> poin = new List<List<double>>();
             setting();
@@ -469,18 +523,22 @@ namespace Client
             {
                    chart1.Series[2].Points.Clear();
                    chart1.Series[1].Points.Clear();
-            }//не могу понять почему ссылается(хотя догадываюсь)
+            }
 
-
+           
 
             chart1.Series[0].XValueType = ChartValueType.Time;
-            chart1.Series[0].Points.AddXY(Date[tic], massYInetA[tic]);//точки для графика 
+            chart1.Series[0].Points.AddXY(Date[tic], massYInetB[tic]);//точки для графика 
 
             poin = Resistance(tic);//уровни
 
             if (checkBox1.Checked == true)
             {
                 Resis(poin, tic, 0.0001, Date);// рисуем уровни
+            } 
+            if (checkBox4.Checked == true)
+            {
+                MAXMIN(poin, Date);
             }
 
             chart1.Update();// обновление данных
@@ -489,6 +547,8 @@ namespace Client
             SMA(tic, Date, Z);
 
             button8.Text = Convert.ToString(massYInetA[tic]); // вывод значений на кнопку  
+            button1.Text = Convert.ToString(massYInetA[tic]); // вывод значений на кнопку  
+            button7.Text = Convert.ToString(massYInetB[tic]); // вывод значений на кнопку  
             chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[0].Points[0].XValue;// ограничение по X минимум 
             tic++;
 
@@ -510,7 +570,7 @@ namespace Client
             {
                 for (int i = 0; i <= Sglag - 1; i++)
                 {
-                    p += massYInetA[tic - i];// складываем кол - во точек
+                    p += massYInetB[tic - i];// складываем кол - во точек
                 }
                 sred.Add(p / Sglag);
             }
@@ -523,7 +583,7 @@ namespace Client
                 chart1.Series[3].Points.Clear();
             }
             return sred;
-        }//метод скользящей кривой //сделать код  идеальнee
+        }
 
 
 
@@ -597,7 +657,7 @@ namespace Client
                     chart1.Series[2].Color = Color.FromArgb(55, 0, 55);// задание цвета 
                 }
             }
-            if ((MINY > (massYInetA[tic] + pogr)))
+            if ((MINY > (massYInetB[tic] + pogr)))
             {
                 chart1.Series[2].Points.Clear();
             }
@@ -635,7 +695,7 @@ namespace Client
                     chart1.Series[1].Color = Color.FromArgb(255, 0, 0);// задание цвета 
                 }
             }
-            if ((MAXY < (massYInetA[tic] - pogr)))
+            if ((MAXY < (massYInetB[tic] - pogr)))
             {
                 chart1.Series[1].Points.Clear();
             }//если за рамками погрешности
@@ -692,12 +752,12 @@ namespace Client
 
         private void button9_Click(object sender, EventArgs e)
         {
-
+            BUY = massYInetA[tic];//Запомнить значение покупки
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-
+            SELL = massYInetB[tic];//Запомнить значение продажи
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -716,10 +776,11 @@ namespace Client
         }
 
         void chart1_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Y > 27 && e.Y < 629 && e.X > 98)
+        {          
+            double yS = (y / 1080.0);//настройка под все  экраный
+            if (e.Y > 27 && e.Y < Convert.ToInt32(629 * yS * (WSrting.Y / fY)) && e.X > 98)
             {
-                label_X.Location = new Point(100, (e.Y));//перемещение линии по y
+                label_X.Location = new Point(110, (e.Y));//перемещение линии по y
                 label_Y.Location = new Point((e.X), 30);//перемещение линии по X
                 lab_Cur.Location = new Point(1020, (e.Y));//привязка значения 
                 double YCur = chart1.ChartAreas[0].AxisY.PixelPositionToValue(e.Y);
@@ -729,6 +790,8 @@ namespace Client
             }
 
         }// вывод координат
+
+
 
 
         void chart1_MouseWheel(object sender, MouseEventArgs e)
@@ -749,6 +812,10 @@ namespace Client
                 }
             }// прокрутка вниз
         }
+
+
+
+
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
@@ -791,7 +858,6 @@ namespace Client
             weekToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку недельный уровень
             dayToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку дневной уровень
             monthToolStripMenuItem.CheckState = CheckState.Unchecked;//убрать отметку месячный уровень
-
         }// 5 минутный уровень 
 
         private void minutesToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -884,6 +950,20 @@ namespace Client
         {
           engToolStripMenuItem.CheckState = CheckState.Unchecked;
           Activ(sender);
+        }
+
+        private void timeLevelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void langueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
     }
