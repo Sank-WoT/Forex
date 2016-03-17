@@ -41,6 +41,7 @@ namespace Client
         double fY = 757;//стандартный размер формы
         int cX = 1058;
         int cY = 684;
+        List<int> PoinX = new List<int>();//данные точки
         public double Conect(string value, double poslTime, int limit)
         {
             string pathDirectory = "C:\\Forex";//Путь к директории
@@ -291,41 +292,88 @@ namespace Client
         {
             if (poin.Count > 1)
             {
+              
                 if(danoe == 1)
                 {
-                    if ((poin.Count-1)/2 == 1)
+                   
+                    for (int i = 1; i < poin.Count - 2; i++ )
                     {
-                        chart1.Series[3].XValueType = ChartValueType.Time;
-                        chart1.Series[3].Points.AddXY(Date[tic], poin[poin.Count-1][1]);// 1 точка // можно использовать для начала line1X
-                        chart1.Series[3].Color = Color.FromArgb(255, 144, 124);// задание цвета 
+                        if (((i) / 2 ) == 1)
+                        {
+                            chart1.Series[4].XValueType = ChartValueType.Time;
+                            chart1.Series[4].Points.AddXY(Date[PoinX[i]], poin[i][1]);// 1 точка // можно использовать для начала line1X
+                            chart1.Series[4].Color = Color.FromArgb(0, 0, 0);// задание цвета 
+                        }
+                        if (((i) / 2) == 0)
+                        {
+                            chart1.Series[5].XValueType = ChartValueType.Time;
+                            chart1.Series[5].Points.AddXY(Date[PoinX[i]], poin[i][1]);// 1 точка // можно использовать для начала line1X
+                            chart1.Series[5].Color = Color.FromArgb(0, 0, 0);// задание цвета 
+                        }  
                     }
-                    if ((poin.Count - 1) / 2 == 0)
-                    {
-                        chart1.Series[4].XValueType = ChartValueType.Time;
-                        chart1.Series[4].Points.AddXY(Date[tic], poin[poin.Count-1][1]);// 1 точка // можно использовать для начала line1X
-                        chart1.Series[4].Color = Color.FromArgb(255, 144, 124);// задание цвета 
-                    }   
+                        
                 }
 
                 if (danoe == -1)
                 {
-                    if ((poin.Count - 1) / 2 == 0)
+                    for (int i = 1; i < poin.Count - 2; i++)
                     {
-                        chart1.Series[3].XValueType = ChartValueType.Time;
-                        chart1.Series[3].Points.AddXY(Date[tic], poin[poin.Count-1][1]);
-                        chart1.Series[3].Color = Color.FromArgb(255, 144, 124);// задание цвета 
-                    }
-                    if ((poin.Count - 1) / 2 == 1)
-                    {
-                        chart1.Series[4].XValueType = ChartValueType.Time;
-                        chart1.Series[4].Points.AddXY(Date[tic], poin[poin.Count-1][1]);
-                        chart1.Series[4].Color = Color.FromArgb(255, 144, 124);// задание цвета 
+                        if (((i) / 2) == 0)
+                        { 
+                            chart1.Series[4].XValueType = ChartValueType.Time;
+                            chart1.Series[4].Points.AddXY(Date[PoinX[i]], poin[i][1]);// 1 точка // можно использовать для начала line1X
+                            chart1.Series[4].Color = Color.FromArgb(0, 0, 0);// задание цвета 
+                        }
+                        if (((i) / 2) == 1)
+                        {
+                            chart1.Series[5].XValueType = ChartValueType.Time;
+                            chart1.Series[5].Points.AddXY(Date[PoinX[i]], poin[i][1]);// 1 точка // можно использовать для начала line1X
+                            chart1.Series[5].Color = Color.FromArgb(0, 0, 0);// задание цвета 
+                        }
                     }
                 }
             }
         }// додумать
 
+        public List<List<double>> Resistance(int tic)
+        {
+            int Pervoe = 0;
+            int trend = 0;//переменная тренда
+            List<List<double>> poin = new List<List<double>>();//данные точки
+            List<double> row = new List<double>();
 
+            for (int i = 1; tic > i; i++)
+            {
+                if (trend != 1 && (massYInetB[i - 1] - massYInetB[i]) > 0)
+                {
+                    row = new List<double>();
+                    trend = 1;//положительный тренд
+                    row.Add(i - 1);//заполнение точек по икс    
+                    row.Add(massYInetB[i - 1]);//заполнение точек по игрик  
+                    if (Pervoe == 0)
+                    {
+                        danoe = -1;
+                        Pervoe++;
+                    }// узнаем первое значение минимум оно или максимум
+                    poin.Add(row);
+                }
+                if (trend != -1 && (massYInetB[i - 1] - massYInetB[i]) < 0)
+                {
+                    if (Pervoe == 0)
+                    {
+                        danoe = 1;
+                        Pervoe++;
+                    }// узнаем первое значение минимум оно или максимум
+                    row = new List<double>();
+                    trend = -1;//положительный тренд
+                    row.Add(i);//заполнение точек по икс    
+                    PoinX.Add(i);
+                    row.Add(massYInetB[i]);//заполнение точек по игрик  
+                    poin.Add(row);
+                }
+            }
+            return poin;
+        }
 
 
         public Window()
@@ -374,10 +422,7 @@ namespace Client
   
 
         public void Graph()
-        {
-
-            double d = massYInetB.Count;
-           
+        {  
 
             Series series1 = new Series();
             series1.ChartArea = "myGraph";
@@ -414,6 +459,13 @@ namespace Client
             series5.BorderWidth = 2;
             chart1.Series.Add(series5);// параметры  линии МАX
 
+            Series series6 = new Series();
+            series6.ChartArea = "myGraph";
+            series6.XValueType = ChartValueType.DateTime;
+            series6.ChartType = SeriesChartType.Line;
+            series6.BorderWidth = 2;
+            chart1.Series.Add(series6);// параметры  линии МIN
+
 
             chart1.ChartAreas[0].BackColor = Color.FromArgb(255, 255, 255);//цвет внутренней области
             chart1.BackColor = Color.FromArgb(255, 255, 255);//цвет внешней области
@@ -445,44 +497,7 @@ namespace Client
             chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = true;
         }
 
-        public List<List<double>> Resistance(int tic)
-        {
-            int Pervoe = 0;
-            int trend = 0;//переменная тренда
-            List<List<double>> poin = new List<List<double>>();//данные точки
-            List<double> row = new List<double>();
-
-            for (int i = 1; tic > i; i++)
-            {
-                if (trend != 1 && (massYInetB[i - 1] - massYInetB[i]) > 0)
-                {
-                    row = new List<double>();
-                    trend = 1;//положительный тренд
-                    row.Add(i - 1);//заполнение точек по икс    
-                    row.Add(massYInetB[i - 1]);//заполнение точек по игрик  
-                    if (Pervoe == 0)
-                    {
-                        danoe = -1;
-                        Pervoe++;
-                    }// узнаем первое значение минимум оно или максимум
-                    poin.Add(row);
-                }
-                if (trend != -1 && (massYInetB[i - 1] - massYInetB[i]) < 0)
-                {
-                    if (Pervoe == 0)
-                    {
-                        danoe = 1;
-                        Pervoe++;
-                    }// узнаем первое значение минимум оно или максимум
-                    row = new List<double>();
-                    trend = -1;//положительный тренд
-                    row.Add(i);//заполнение точек по икс    
-                    row.Add(massYInetB[i]);//заполнение точек по игрик  
-                    poin.Add(row);
-                }
-            }
-            return poin;
-        }
+       
 
         public void setting()
         {
@@ -531,15 +546,17 @@ namespace Client
             chart1.Series[0].Points.AddXY(Date[tic], massYInetB[tic]);//точки для графика 
 
             poin = Resistance(tic);//уровни
+            
+            if (checkBox4.Checked == true)
+            {
+            //    MAXMIN(poin, Date);
+            }
 
             if (checkBox1.Checked == true)
             {
                 Resis(poin, tic, 0.0001, Date);// рисуем уровни
             } 
-            if (checkBox4.Checked == true)
-            {
-                MAXMIN(poin, Date);
-            }
+            
 
             chart1.Update();// обновление данных
 
@@ -635,9 +652,7 @@ namespace Client
 
         public double Support(List<List<double>> poin, int tic, double pogr, List<DateTime> Date, int h, double MINY, double MINX, double MinH)
         {
-            int line1X;
             int line2X;
-            double line1Y;
             double line2Y;
 
 
@@ -646,9 +661,7 @@ namespace Client
                 if (((MINY - poin[g][1]) >= -pogr) && g != MinH)
                 {
                     chart1.Series[2].Points.Clear();
-                    line1Y = MINY;//1 точка по игрик
                     line2Y = poin[g][1];//2 точка по игрик
-                    line1X = Convert.ToInt32(MINX);//1 точка по икс 
                     line2X = Convert.ToInt32(poin[g][0]);//2 точка по икс
 
                     chart1.Series[2].XValueType = ChartValueType.Time;
@@ -668,9 +681,7 @@ namespace Client
 
         public double Resistance(List<List<double>> poin, int tic, double pogr, List<DateTime> Date, int h, double MAXY, double MAXX, double MaxH)
         {
-            int line1X;
             int line2X;
-            double line1Y;
             double line2Y;
             if (MAXY < poin[h][1])// cpoin[h][1] точка по игрик
             {
@@ -684,9 +695,7 @@ namespace Client
                 {
 
                     chart1.Series[1].Points.Clear();
-                    line1Y = MAXY;//1 точка по игрик
                     line2Y = poin[g][1];//2 точка по игрик
-                    line1X = Convert.ToInt32(MAXX);//1 точка по икс 
                     line2X = Convert.ToInt32(poin[g][0]);//2 точка по икс
 
                     chart1.Series[1].XValueType = ChartValueType.Time;
@@ -776,15 +785,17 @@ namespace Client
         }
 
         void chart1_MouseMove(object sender, MouseEventArgs e)
-        {          
+        {
+
+            double xS = (x / 1920.0);//настройка под все  экраны
             double yS = (y / 1080.0);//настройка под все  экраный
-            if (e.Y > 27 && e.Y < Convert.ToInt32(629 * yS * (WSrting.Y / fY)) && e.X > 98)
+            if (e.Y > Convert.ToInt32(27 * yS * (WSrting.Y / fY)) && e.Y < Convert.ToInt32(629 * yS * (WSrting.Y / fY)) && e.X > Convert.ToInt32(110 * xS * (WSrting.X / fX)))
             {
-                label_X.Location = new Point(110, (e.Y));//перемещение линии по y
-                label_Y.Location = new Point((e.X), 30);//перемещение линии по X
-                lab_Cur.Location = new Point(1020, (e.Y));//привязка значения 
+                label_X.Location = new Point(Convert.ToInt32(110 * xS * (WSrting.X / fX)), (e.Y));//перемещение линии по y
+                label_Y.Location = new Point((e.X), Convert.ToInt32(30 * yS * (WSrting.Y / fY)));//перемещение линии по X
+                lab_Cur.Location = new Point(Convert.ToInt32(1020 * xS * (WSrting.X / fX)), (e.Y));//привязка значения 
                 double YCur = chart1.ChartAreas[0].AxisY.PixelPositionToValue(e.Y);
-                double XCur = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.X) / 0.00001157407;// понять  как вывести дату
+                double XCur = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.X) / 0.00001157407;
                 DateTime Date1 = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(XCur);//время в формате UNIX
                 lab_Cur.Text = String.Concat(String.Concat(Math.Round(YCur, 5).ToString(), " , "), Date1.ToString("h:mm:ss.fff tt"));//перевод времени
             }
