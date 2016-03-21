@@ -41,7 +41,6 @@
             this.Text = "Help";
             this.Load += new System.EventHandler(this.Help_Load);
             this.ResumeLayout(false);
-
         }
 
         #endregion

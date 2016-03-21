@@ -14,6 +14,7 @@ using System.Net;
 using System.Globalization;
 using System.Threading;
 using System.Net.Sockets;
+using EnumDialogResult = System.Windows.Forms.DialogResult;
 
 namespace Client
 {
@@ -214,10 +215,10 @@ namespace Client
             {
                 toolTip1.SetToolTip(this.checkBox3, "Нажмите чтобы активировать отображение линий значение в точке.");
             }
-
-
         }
 
+
+    
 
     void Button()
         {
@@ -387,6 +388,8 @@ namespace Client
                 poslTime = Conect(value[0], poslTime, 30);// соединение 
             }
             InitializeComponent();
+
+            this.FormClosing += new FormClosingEventHandler(OnClos);
             
             chart1 = new Chart();// Создание чарта
             chart1.Parent = this;
@@ -974,8 +977,10 @@ namespace Client
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
-
         }
-
+    private void OnClos(object sender, FormClosingEventArgs e)
+        {
+            Form1.WindowClosing = true;
+        }// разобраться сделать на английском
     }
 }

@@ -15,11 +15,16 @@ namespace Client
         public SChartcs()
         {
             InitializeComponent();
+            this.FormClosing += new FormClosingEventHandler(OnClosing);
         }
 
         private void SChartcs_Load(object sender, EventArgs e)
         {
 
+        }
+        private void OnClosing(object sender, FormClosingEventArgs e)
+        {
+            Form1.SChartClosing = true;
         }
     }
 }

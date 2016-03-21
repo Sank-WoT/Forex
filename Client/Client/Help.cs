@@ -15,11 +15,17 @@ namespace Client
         public Help()
         {
             InitializeComponent();
+            this.FormClosing += new FormClosingEventHandler(OnClosing);
         }
 
         private void Help_Load(object sender, EventArgs e)
         {
 
         }
+        private void OnClosing(object sender, FormClosingEventArgs e)
+        {
+            Form1.HelpClosing = true;
+        }
+
     }
 }

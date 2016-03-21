@@ -27,4 +27,13 @@ namespace Client
         public static bool ENG;
         
     }// передача данных между формами
+
+  public   static class Activ
+    {
+        public static bool Form1;
+        public static bool Window;
+        public static bool SWindow;
+        public static bool Help;
+
+    }// передача данных между формами
 }

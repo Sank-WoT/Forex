@@ -14,24 +14,29 @@ using System.Net;
 using System.Globalization;
 using System.Threading;
 using System.Net.Sockets;
-
+using EnumDialogResult = System.Windows.Forms.DialogResult;
 
 namespace Client
 {
     public partial class SWindow : Form
     {
+        string lifeTimeInfo = "";   // Вспомогательное поле
         public SWindow()
         {
             InitializeComponent();
+
+            this.FormClosing += new FormClosingEventHandler(OnClosing);
+
             numericUpDown1.Text = "700"; // значение отображаемые в текст боксе X
             numericUpDown2.Text = "500"; // значение отображаемые в текст боксе Y
         }
+
+      
 
         private void SWindow_Load(object sender, EventArgs e)
         {
 
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
            int y = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height; //высота экрана
@@ -74,7 +79,6 @@ namespace Client
            w.Close();//закрыть запись 
         }
 
-
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
 
@@ -83,6 +87,10 @@ namespace Client
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+        private void OnClosing(object sender, FormClosingEventArgs e)
+        {
+            Form1.SWindowClosing = true;
         }
     }
 }
