@@ -38,6 +38,9 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currencyPairsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eURUSDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.langueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eURToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WSettings.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +49,8 @@
             this.WSettings.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
             this.оПрограммеToolStripMenuItem,
-            this.currencyPairsToolStripMenuItem});
+            this.currencyPairsToolStripMenuItem,
+            this.langueToolStripMenuItem});
             this.WSettings.Location = new System.Drawing.Point(0, 0);
             this.WSettings.Name = "WSettings";
             this.WSettings.Size = new System.Drawing.Size(1300, 24);
@@ -113,9 +117,33 @@
             // eURUSDToolStripMenuItem
             // 
             this.eURUSDToolStripMenuItem.Name = "eURUSDToolStripMenuItem";
-            this.eURUSDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eURUSDToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.eURUSDToolStripMenuItem.Text = "EUR/USD";
             this.eURUSDToolStripMenuItem.Click += new System.EventHandler(this.eURUSDToolStripMenuItem_Click);
+            // 
+            // langueToolStripMenuItem
+            // 
+            this.langueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eURToolStripMenuItem,
+            this.rusToolStripMenuItem});
+            this.langueToolStripMenuItem.Name = "langueToolStripMenuItem";
+            this.langueToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.langueToolStripMenuItem.Text = "Langue";
+            this.langueToolStripMenuItem.Click += new System.EventHandler(this.langueToolStripMenuItem_Click);
+            // 
+            // eURToolStripMenuItem
+            // 
+            this.eURToolStripMenuItem.Name = "eURToolStripMenuItem";
+            this.eURToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eURToolStripMenuItem.Text = "Eng";
+            this.eURToolStripMenuItem.Click += new System.EventHandler(this.eURToolStripMenuItem_Click);
+            // 
+            // rusToolStripMenuItem
+            // 
+            this.rusToolStripMenuItem.Name = "rusToolStripMenuItem";
+            this.rusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rusToolStripMenuItem.Text = "Rus";
+            this.rusToolStripMenuItem.Click += new System.EventHandler(this.rusToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -145,6 +173,9 @@
         private System.Windows.Forms.ToolStripMenuItem eURUSDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem langueToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eURToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rusToolStripMenuItem;
     }
 }
 

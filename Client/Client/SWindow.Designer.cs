@@ -47,6 +47,7 @@
             this.label1.Size = new System.Drawing.Size(123, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Size window  EUR/USD";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 

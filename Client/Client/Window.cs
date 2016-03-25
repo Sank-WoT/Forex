@@ -15,11 +15,16 @@ using System.Globalization;
 using System.Threading;
 using System.Net.Sockets;
 using EnumDialogResult = System.Windows.Forms.DialogResult;
+using System.Media;
 
 namespace Client
 {
+    public delegate void CountDelegeate(object sender, EventArgs e);// работа с делегатами
+   
+    
     public partial class Window : Form
     {//  
+        //Calsulations calculations = new Calsulations(); додумать
         ChartArea area = new ChartArea();// Создание области
         System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
         int size = 30, Leaves = 0, Zoom = 0;
@@ -43,9 +48,13 @@ namespace Client
         int cX = 1058;
         int cY = 684;
         List<int> PoinX = new List<int>();//данные точки
+
+        
+
         public double Conect(string value, double poslTime, int limit)
         {
-            string pathDirectory = "C:\\Forex";//Путь к директории
+            Console.WriteLine(WSrting.ENG);
+            string pathDirectory = Application.StartupPath;//Путь к директории
             if (!Directory.Exists(pathDirectory))//Проверка  на существование директории
             {
                 Directory.CreateDirectory(pathDirectory);// создание директории 
@@ -58,7 +67,6 @@ namespace Client
                 FileInfo writel = new FileInfo(pathFile);//получаем путь 
                 StreamWriter l = writel.CreateText();//создаем текст
                 l.Close();//закрыть запись
-                MessageBox.Show("Вас приветствует программа Project Mordor спасибо за то что вы с нами, желаю успешных торгов и хорошей прибыли");// сообщение о создании файла
             } //Развертывание сервера в заранее известном каталоге 
             StreamReader r = new StreamReader(pathFile);
             string text = r.ReadToEnd();// получение прочтенной записи
@@ -112,6 +120,10 @@ namespace Client
         }//Получить  данные  с собственного сайта
         //модифицировать для получения файлов
 
+
+
+
+
         public void Activ(object sender)
         {
             ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
@@ -126,51 +138,25 @@ namespace Client
             }
         }
 
-        void CheckBox()
+
+       public void CheckBox()
         {
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
+            if (WSrting.ENG == true)
             {
                 checkBox1.Text = "Levels suport and resistance";
+                checkBox2.Text = "SMA";
+                checkBox3.Text = "Line coordinates"; 
+                label1.Text = "Methods";
+                label2.Text = "Tools";
             }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
+            if (WSrting.RUS == true)
             {
                 checkBox1.Text = "Уровни сопротивления и поддержки";
-            }
-
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                checkBox2.Text = "SMA";
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
                 checkBox2.Text = "Скользящая кривая";
-            }
-
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                checkBox3.Text = "Line coordinates";
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
                 checkBox3.Text = "Координатные линии";
-            }      
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                 label1.Text = "Meтоды";
-            }
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                label1.Text = "Methods";
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
+                label1.Text = "Meтоды";
                 label2.Text = "Инструменты";
-            }
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                label2.Text = "Tools";
-            }     
-            
+            }          
         }// перевод методов и инструментов
         
 
@@ -181,110 +167,79 @@ namespace Client
             toolTip1.InitialDelay = 1000;//
             toolTip1.ReshowDelay = 1000;//время сколько показывается надпись
             toolTip1.ShowAlways = true;
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-           {
-               toolTip1.SetToolTip(this.checkBox1, "Click to activate the display of support and resistance levels.");
-           }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-           {
-                toolTip1.SetToolTip(this.checkBox1, "Нажмите чтобы активировать отображение уровней поддержки и сопротивления.");
-           }
 
             toolTip2.AutoPopDelay = 3000;//
             toolTip2.InitialDelay = 1000;//
             toolTip2.ReshowDelay = 1000;//время сколько показывается надпись
             toolTip2.ShowAlways = true;
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
+            if (WSrting.ENG == true)
             {
                 toolTip1.SetToolTip(this.checkBox2, "Click to activate the displaying of the moving line.");
+                toolTip1.SetToolTip(this.checkBox3, "Press to activate the display lines value at the point.");
+                toolTip1.SetToolTip(this.checkBox1, "Click to activate the display of support and resistance levels.");
             }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
+            if (WSrting.RUS == true)
             {
                 toolTip1.SetToolTip(this.checkBox2, "Нажмите чтобы активировать отображение уровней скользящей прямой");
+                toolTip1.SetToolTip(this.checkBox3, "Нажмите чтобы активировать отображение линий значение в точке.");
+                toolTip1.SetToolTip(this.checkBox1, "Нажмите чтобы активировать отображение уровней поддержки и сопротивления.");
             }
 
             toolTip3.AutoPopDelay = 3000;//
             toolTip3.InitialDelay = 1000;//
             toolTip3.ReshowDelay = 1000;//время сколько показывается надпись
             toolTip3.ShowAlways = true;
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                toolTip1.SetToolTip(this.checkBox3, "Press to activate the display lines value at the point.");
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                toolTip1.SetToolTip(this.checkBox3, "Нажмите чтобы активировать отображение линий значение в точке.");
-            }
         }
 
 
-    
-
-    void Button()
+   
+       public void Button()
         {
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
+            if (WSrting.ENG == true)
             {
+                button10.Text = "Sell";// текст клавиши покупки
                 button9.Text = "Buy";// текст клавиши покупки
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button9.Text = "Покупка";// текст клавиши покупки
-            }
-
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button10.Text = "Sell";// текст клавиши покупки
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button10.Text = "Продажа";// текст клавиши покупки
-            }
-
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button10.Text = "Sell";// текст клавиши покупки
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button10.Text = "Продажа";// текст клавиши покупки
-            }
-
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
                 button1.Text = "Value Buy";// текст клавиши покупки
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                button1.Text = "Значение покупки";// текст клавиши покупки
-            }
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
                 button7.Text = "Value Sell";// текст клавиши покупки
+               
             }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
+            if (WSrting.RUS == true)
             {
+                button9.Text = "Покупка";// текст клавиши покупки 
+                button10.Text = "Продажа";// текст клавиши покупки 
+                button1.Text = "Значение покупки";// текст клавиши покупки
                 button7.Text = "Значение продажа";// текст клавиши покупки
             }
         }
 
         public void Menu()
         {
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
+            if (WSrting.ENG == true)
             {
-               timeLevelToolStripMenuItem.Text = "Time intervall";  
+               timeLevelToolStripMenuItem.Text = "Time intervall";
+               reportToolStripMenuItem.Text = "Report";
+               createReportToolStripMenuItem.Text = "Creaty report";
+               secondToolStripMenuItem.Text = "Second";
+               minutesToolStripMenuItem.Text = "5 Minutes";
+               minutesToolStripMenuItem1.Text = "30 Minutes";
+               hourToolStripMenuItem.Text = "Hour";
+               dayToolStripMenuItem.Text = "Day";
+               weekToolStripMenuItem.Text = "Week";
+               monthToolStripMenuItem.Text = "Month";
             }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
+            if (WSrting.RUS == true)
             {
                timeLevelToolStripMenuItem.Text = "Временные интервалы";
+               reportToolStripMenuItem.Text = "Отчет";
+               createReportToolStripMenuItem.Text = "Создать отчет";
+               secondToolStripMenuItem.Text = "Секундный";
+               minutesToolStripMenuItem.Text = "5 Минут";
+               minutesToolStripMenuItem1.Text = "30 Минут";
+               hourToolStripMenuItem.Text = "Час";
+               dayToolStripMenuItem.Text = "День";
+               weekToolStripMenuItem.Text= "Неделя";
+               monthToolStripMenuItem.Text = "Месяц";
             }
-            if (engToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                langueToolStripMenuItem.Text = "Langue";
-            }
-            if (rusToolStripMenuItem.CheckState == CheckState.Checked)
-            {
-                langueToolStripMenuItem.Text = "язык";
-            }        
         }
 
 
@@ -336,6 +291,8 @@ namespace Client
             }
         }// додумать
 
+
+
         public List<List<double>> Resistance(int tic)
         {
             int Pervoe = 0;
@@ -377,7 +334,15 @@ namespace Client
         }
 
 
-        public Window()
+
+
+
+
+
+
+
+
+        public  Window()
         {    
             double  fX = 1366;
             double fY = 757;
@@ -527,7 +492,7 @@ namespace Client
         }
 
 
-        private int Update(int tic, List<DateTime> Date)
+        public int Update(int tic, List<DateTime> Date)
         { 
             tTip();
             CheckBox();// переводчик 
@@ -575,7 +540,7 @@ namespace Client
             return tic;
         }// метод обновления данных
 
-        void ZoomT(int ize, double Mine)
+      public  void ZoomT(int ize, double Mine)
         {
             chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[0].Points[0].XValue;// ограничение по X минимум 
             chart1.ChartAreas[0].AxisX.Maximum = chart1.Series[0].Points[0].XValue + ize * 0.00001157407;// ограничение по X максимум  под 60 секунд 0,00001157407
@@ -764,12 +729,20 @@ namespace Client
 
         private void button9_Click(object sender, EventArgs e)
         {
+            SoundPlayer player = new SoundPlayer();
+            player.SoundLocation = Application.StartupPath + "/Music/test.wav"; ;
+            player.Play();
             BUY = massYInetA[tic];//Запомнить значение покупки
+            MessageBox.Show("Cовершена покупка по цене =  " + BUY);        
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
+            SoundPlayer player = new SoundPlayer();
+            player.SoundLocation = Application.StartupPath + "/Music/test.wav"; ;
+            player.Play();
             SELL = massYInetB[tic];//Запомнить значение продажи
+            MessageBox.Show("Cовершена продажа по цене =  " + SELL);
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -844,7 +817,7 @@ namespace Client
 
         }
 
-        private void secondToolStripMenuItem_Click(object sender, EventArgs e)
+        public void secondToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Leaves = 1;
 
@@ -954,33 +927,27 @@ namespace Client
            
         }
 
-        private void engToolStripMenuItem_Click(object sender, EventArgs e)
-        {    
-            rusToolStripMenuItem.CheckState = CheckState.Unchecked;
-            Activ(sender);
-        }
-
-        private void rusToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-          engToolStripMenuItem.CheckState = CheckState.Unchecked;
-          Activ(sender);
-        }
 
         private void timeLevelToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void langueToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
         }
     private void OnClos(object sender, FormClosingEventArgs e)
         {
             Form1.WindowClosing = true;
-        }// разобраться сделать на английском
+        }
+
+    private void reportToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void createReportToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+
+    }// разобраться сделать на английском
     }
 }

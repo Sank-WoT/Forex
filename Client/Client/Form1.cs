@@ -21,15 +21,35 @@ namespace Client
       
     public partial class Form1 : Form
     {
-        string lifeTimeInfo = "";   // Вспомогательное поле для закрытия
         public static bool HelpClosing = true;
         public static bool SWindowClosing = true;
         public static bool WindowClosing = true;
         public static bool SChartClosing = true;
         public Form1()
         {
+            WSrting.ENG = true;
+            WSrting.RUS = false;//Стандартные настройки
 
             InitializeComponent();
+
+            
+            string pathDirectory = Application.StartupPath;//Путь к директории
+            if (!Directory.Exists(pathDirectory))//Проверка  на существование директории
+            {
+                Directory.CreateDirectory(pathDirectory);// создание директории 
+                MessageBox.Show("Директория создана путь : " + pathDirectory);// сообщение о создании директории
+            }
+            string pathFile = pathDirectory + "\\" + "eurusd" + ".txt";//Путь к файлу c котировками eurusd
+
+            if (!File.Exists(pathFile))//проверка на существование файла
+            {
+                MessageBox.Show("Вас приветствует программа Project Mordor, спасибо за то что вы с нами, желаем успешных торгов и хорошей прибыли");// сообщение о создании файла
+                FileInfo writel = new FileInfo(pathFile);//получаем путь 
+                StreamWriter l = writel.CreateText();//создаем текст
+                l.Close();//закрыть запись
+            } //Развертывание сервера в заранее известном каталоге 
+           
+
 
             this.FormClosing += new FormClosingEventHandler(OnClosing);
 
@@ -46,7 +66,6 @@ namespace Client
             {
                 helpToolStripMenuItem.CheckState = CheckState.Unchecked;
             }
-           
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -55,7 +74,7 @@ namespace Client
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+        
         }
 
         private void создателиToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,8 +88,8 @@ namespace Client
             int X = 0, Y = 0;
             if (WindowClosing == true)
             {
-                SWindowClosing = false;
-            string pathFile = "C:\\Users\\саша\\Documents\\GitHub\\Forex\\SettingWindow.txt";//Очень важно указать путь
+                WindowClosing = false;
+            string pathFile = Application.StartupPath + "\\SettingWindow.txt";//Очень важно указать путь
             if (!File.Exists(pathFile))//проверка на существование файла
             {
                 FileInfo writel = new FileInfo(pathFile);//получаем путь  для записи и создания
@@ -138,6 +157,38 @@ namespace Client
         }
 
 
+        public void MenuForm1()
+        {
+            if(WSrting.RUS == true)
+            {
+              settingsToolStripMenuItem.Text = "Стандартные настройки";
+              windowToolStripMenuItem.Text = "Окна";
+              chartToolStripMenuItem.Text = "Графика";
+              оПрограммеToolStripMenuItem.Text = "О программе";
+              создателиToolStripMenuItem.Text = "Создатели";
+              helpToolStripMenuItem.Text = "Помощь";
+              currencyPairsToolStripMenuItem.Text = "Валютные пары";
+              eURUSDToolStripMenuItem.Text = "Евро/Доллар";
+              langueToolStripMenuItem.Text = "Язык";
+              eURToolStripMenuItem.Text = "Английский";
+              rusToolStripMenuItem.Text = "Русский";
+            }
+            if (WSrting.ENG == true)
+            {
+              settingsToolStripMenuItem.Text = "Standart settings"; 
+              windowToolStripMenuItem.Text = "Window";
+              chartToolStripMenuItem.Text = "Chart"; 
+              оПрограммеToolStripMenuItem.Text = "About program";
+              создателиToolStripMenuItem.Text = "Creators";
+              helpToolStripMenuItem.Text = "Help";
+              currencyPairsToolStripMenuItem.Text = "Currency pairs";
+              eURUSDToolStripMenuItem.Text = "EUR/USD";
+              langueToolStripMenuItem.Text = "Langue";
+              eURToolStripMenuItem.Text = "Eng";
+              rusToolStripMenuItem.Text = "Rus";
+            }           
+        }
+
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -152,7 +203,16 @@ namespace Client
 
         private void OnClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Вы уже уходите?", "", MessageBoxButtons.YesNo) == DialogResult.No)
+            string mess = "Do you have to go?";
+            if(WSrting.RUS == true)
+            {
+                mess = "Вы уже уходите?";
+            }
+            if (WSrting.ENG == true)
+            {
+                mess = "Do you have to go?";
+            }
+            if (MessageBox.Show(mess, "", MessageBoxButtons.YesNo) == DialogResult.No)
             {
                 e.Cancel = true;
                 Activ.Form1 = false;
@@ -163,7 +223,26 @@ namespace Client
                 e.Cancel = false;// Продолжить закрытие
                 this.Hide();// Скрыть форму до закрытия
             }
-        }// разобраться сделать на английском
+        }
+
+        private void langueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void eURToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WSrting.RUS = false;
+            WSrting.ENG = true;
+            MenuForm1();
+        }
+
+        private void rusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WSrting.ENG = false;
+            WSrting.RUS = true;
+            MenuForm1();
+        }// разобраться как сделать на английском
     }
 }
 
