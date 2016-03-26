@@ -32,11 +32,20 @@ namespace Client
         double shag = 1, BUY = 0,SELL = 0;//интервал для координаты X
         int danoe = 0;
         int colvo = 0;
+
+
+        bool poluch = false;
+
         List<double> massY = new List<double>();
         List<double> massYInetA = new List<double>();
         List<double> Times = new List<double>();
         List<double> massYInetB = new List<double>();
+
+
         List<DateTime> D = new List<DateTime>();
+
+        List<DateTime> D1 = new List<DateTime>();
+
         List<double> sred = new List<double>();
         double poslTime = 0;// последнее время
         string[] value = new string[1] { "eurusd" };
@@ -48,11 +57,11 @@ namespace Client
         int cX = 1058;
         int cY = 684;
         List<int> PoinX = new List<int>();//данные точки
-
-        
-
+        double dTime = (DateTime.Now - new System.DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds;//Текущее время
+     
         public double Conect(string value, double poslTime, int limit)
-        {
+        { 
+            
             Console.WriteLine(WSrting.ENG);
             string pathDirectory = Application.StartupPath;//Путь к директории
             if (!Directory.Exists(pathDirectory))//Проверка  на существование директории
@@ -80,7 +89,6 @@ namespace Client
                 Console.WriteLine(poslTime);
             }//недопускает присвоение при значении прочтенного в файле меньше 1.
 
-
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");// преобразовение
             // WebProxy wp = new WebProxy("151.236.216.251", 10000); //задаем параметры прокси
 
@@ -89,6 +97,7 @@ namespace Client
             WebResponse webRes = webReq.GetResponse();//получение ответа
             Stream st = webRes.GetResponseStream();//поток по которому получаем инфу
             StreamReader sr = new StreamReader(st);//прочитать поток
+
 
             StreamReader r1 = new StreamReader(pathFile);
             string text1 = r1.ReadToEnd();// получение прочтенной записи
@@ -100,9 +109,18 @@ namespace Client
             w.WriteLine(text1);//добавляем текст 
             w.Close();//закрыть запись 
 
+            readFile(text1, response);
+
+            return poslTime;
+        }//Получить  данные  с собственного сайта
+        //модифицировать для получения файлов
+
+        void readFile(string text1, string response)
+        {
+
             Regex regex = new Regex(@"((\d{10,20})|(\d{1,20})\.(\d{1,4}))");//регулярное выражение 
             MatchCollection m = regex.Matches(text1);
-            for (int h = 0; h < limit; h++)
+            while (colvo < m.Count - 1)
             {
                 response = m[colvo].Value;//Время
                 colvo++;//порядковый номер даты в списке
@@ -110,17 +128,15 @@ namespace Client
 
                 response = m[colvo].Value;//Время
                 colvo++;//порядковый номер даты в списке
-                massYInetB.Add(Convert.ToDouble(response));
+                massYInetB.Add(Convert.ToDouble(response));//число продажа
 
                 response = m[colvo].Value;//Время
                 colvo++;//порядковый номер даты в списке
-                massYInetA.Add(Convert.ToDouble(response));
+                massYInetA.Add(Convert.ToDouble(response));//число покупка
             }
-            return poslTime;
-        }//Получить  данные  с собственного сайта
-        //модифицировать для получения файлов
-
-
+            Console.WriteLine(m.Count);
+            Console.WriteLine(colvo);
+        }// функция для прочтения файла
 
 
 
@@ -293,7 +309,7 @@ namespace Client
 
 
 
-        public List<List<double>> Resistance(int tic)
+        public List<List<double>> Resistance(int tic)//подавать интервал
         {
             int Pervoe = 0;
             int trend = 0;//переменная тренда
@@ -343,15 +359,18 @@ namespace Client
 
 
         public  Window()
-        {    
+        {
             double  fX = 1366;
             double fY = 757;
             double xS = (x / 1920.0);//настройка под все  экраны
             double yS = (y / 1080.0);//настройка под все  экраный
-            for (int m = 0; m < 1; m++)
-            {
-                poslTime = Conect(value[0], poslTime, 30);// соединение 
-            }
+
+
+
+            poslTime = Conect(value[0], poslTime, 1000000);// соединение 
+
+                
+          
             InitializeComponent();
 
             this.FormClosing += new FormClosingEventHandler(OnClos);
@@ -386,6 +405,8 @@ namespace Client
             checkBox4.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(195 * yS * (WSrting.Y / fY)));
 
             Button();
+          
+            
         }
   
 
@@ -481,7 +502,7 @@ namespace Client
                 label_X.BackColor = Color.FromArgb(0, 0, 0);//цвет линии по X
                 label_Y.BackColor = Color.FromArgb(0, 0, 0);//цвет линии по Y
                 this.chart1.MouseMove += new MouseEventHandler(this.chart1_MouseMove);
-            }//додумать и настроить появление 
+            }
 
             if (checkBox3.Checked == false)
             {
@@ -492,12 +513,33 @@ namespace Client
         }
 
 
-        public int Update(int tic, List<DateTime> Date)
-        { 
+        public int Update(int D,List<DateTime> Date)
+        {
+            
+            int NowTime = Convert.ToInt32(dTime);//текущее время
             tTip();
             CheckBox();// переводчик 
             Button();// переводчик  кнопок
-            Menu();//переводчик меню
+            Menu();//переводчик меню 
+            
+            
+         /*   DateTime Date1; 
+            if (poluch == false)
+            {
+                for (int g = 0; g < massYInetB.Count - 1; g++)
+                {
+                    Date1 = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(Times[g]);//время в формате UNIX  
+                    D1.Add(Date1);// добавление времени в лист
+
+                    chart1.Series[0].XValueType = ChartValueType.Time;
+                    chart1.Series[0].Points.AddXY(D1[g], massYInetB[g]);//точки для графика  переделать логику
+                    Console.WriteLine(Date1);
+                }
+                poluch = true;
+            }// додумать    
+  
+            */
+
             chart1.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel);//событие вращения колесика
             chart1.Focus();// необходим фокус
             List<List<double>> poin = new List<List<double>>();
@@ -507,11 +549,12 @@ namespace Client
                    chart1.Series[2].Points.Clear();
                    chart1.Series[1].Points.Clear();
             }
-
-           
+       
 
             chart1.Series[0].XValueType = ChartValueType.Time;
-            chart1.Series[0].Points.AddXY(Date[tic], massYInetB[tic]);//точки для графика 
+            chart1.Series[0].Points.AddXY(Date[tic], massYInetB[tic]);//точки для графика  переделать логику
+
+                
 
             poin = Resistance(tic);//уровни
             
@@ -531,10 +574,10 @@ namespace Client
             int Z = 10;// Кол-во  точек берущихся в расчет
             SMA(tic, Date, Z);
 
-            button8.Text = Convert.ToString(massYInetA[tic]); // вывод значений на кнопку  
-            button1.Text = Convert.ToString(massYInetA[tic]); // вывод значений на кнопку  
-            button7.Text = Convert.ToString(massYInetB[tic]); // вывод значений на кнопку  
-            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[0].Points[0].XValue;// ограничение по X минимум 
+            button8.Text = Convert.ToString(massYInetA[tic]); // вывод значений на кнопку  по времени
+            button1.Text = Convert.ToString(massYInetA[tic]); // вывод значений на кнопку  по времени
+            button7.Text = Convert.ToString(massYInetB[tic]); // вывод значений на кнопку  по времени
+            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[0].Points[0].XValue;// начало  Now time
             tic++;
 
             return tic;
@@ -542,7 +585,8 @@ namespace Client
 
       public  void ZoomT(int ize, double Mine)
         {
-            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[0].Points[0].XValue;// ограничение по X минимум 
+
+            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[0].Points[0].XValue;// ограничение по X минимум   NowTime
             chart1.ChartAreas[0].AxisX.Maximum = chart1.Series[0].Points[0].XValue + ize * 0.00001157407;// ограничение по X максимум  под 60 секунд 0,00001157407
             //  chart1.ChartAreas[0].AxisX.ScaleView.Zoom(chart1.Series[0].Points[0].XValue, chart1.Series[0].Points[0].XValue + ize * 0.00001157407);
         }// функция необходимая для уровней рассмотренного времени
@@ -690,22 +734,12 @@ namespace Client
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(Times[tic]);//время в формате UNIX
-            D.Add(Date);// добавление времени в лист
-            tic = Update(tic, D);// функция по секунде
-            if (((tic / 10) - Zic) == 1)
-            {
-                Zic++;
-                poslTime = Conect(value[0], poslTime, size);// соединение  
-            }
-            Console.WriteLine(Date.ToString("M/dd/yyyy h:mm:ss.fff tt"));// дебаг           
-        }
-
-
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+         //  Update(D);
+          DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(Times[tic]);//время в формате UNIX
+          D.Add(Date);// добавление времени в лист
+          tic = Update(tic, D);// функция по секунде
+          Console.WriteLine(Date.ToString("M/dd/yyyy h:mm:ss.fff tt"));// дебаг           
+        }// необходимо поменять
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {

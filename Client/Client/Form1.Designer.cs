@@ -46,6 +46,7 @@
             // 
             // WSettings
             // 
+            this.WSettings.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.WSettings.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
             this.оПрограммеToolStripMenuItem,
@@ -59,9 +60,11 @@
             // 
             // settingsToolStripMenuItem
             // 
+            this.settingsToolStripMenuItem.BackColor = System.Drawing.SystemColors.Menu;
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.windowToolStripMenuItem,
             this.chartToolStripMenuItem});
+            this.settingsToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
             this.settingsToolStripMenuItem.Text = "Standart Settings";
@@ -83,6 +86,7 @@
             // 
             // оПрограммеToolStripMenuItem
             // 
+            this.оПрограммеToolStripMenuItem.BackColor = System.Drawing.SystemColors.Menu;
             this.оПрограммеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.создателиToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -94,19 +98,20 @@
             // создателиToolStripMenuItem
             // 
             this.создателиToolStripMenuItem.Name = "создателиToolStripMenuItem";
-            this.создателиToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.создателиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.создателиToolStripMenuItem.Text = " Creators";
             this.создателиToolStripMenuItem.Click += new System.EventHandler(this.создателиToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
             // currencyPairsToolStripMenuItem
             // 
+            this.currencyPairsToolStripMenuItem.BackColor = System.Drawing.SystemColors.Menu;
             this.currencyPairsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eURUSDToolStripMenuItem});
             this.currencyPairsToolStripMenuItem.Name = "currencyPairsToolStripMenuItem";
@@ -117,15 +122,17 @@
             // eURUSDToolStripMenuItem
             // 
             this.eURUSDToolStripMenuItem.Name = "eURUSDToolStripMenuItem";
-            this.eURUSDToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.eURUSDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.eURUSDToolStripMenuItem.Text = "EUR/USD";
             this.eURUSDToolStripMenuItem.Click += new System.EventHandler(this.eURUSDToolStripMenuItem_Click);
             // 
             // langueToolStripMenuItem
             // 
+            this.langueToolStripMenuItem.BackColor = System.Drawing.SystemColors.Menu;
             this.langueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eURToolStripMenuItem,
             this.rusToolStripMenuItem});
+            this.langueToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White;
             this.langueToolStripMenuItem.Name = "langueToolStripMenuItem";
             this.langueToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.langueToolStripMenuItem.Text = "Langue";
@@ -151,6 +158,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 560);
             this.Controls.Add(this.WSettings);
+            this.ForeColor = System.Drawing.SystemColors.Control;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "PM";

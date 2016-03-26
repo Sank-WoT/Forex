@@ -27,8 +27,7 @@ namespace Client
         public static bool SChartClosing = true;
         public Form1()
         {
-            WSrting.ENG = true;
-            WSrting.RUS = false;//Стандартные настройки
+
 
             InitializeComponent();
 
@@ -48,7 +47,6 @@ namespace Client
                 StreamWriter l = writel.CreateText();//создаем текст
                 l.Close();//закрыть запись
             } //Развертывание сервера в заранее известном каталоге 
-           
 
 
             this.FormClosing += new FormClosingEventHandler(OnClosing);
@@ -162,8 +160,8 @@ namespace Client
             if(WSrting.RUS == true)
             {
               settingsToolStripMenuItem.Text = "Стандартные настройки";
-              windowToolStripMenuItem.Text = "Окна";
-              chartToolStripMenuItem.Text = "Графика";
+              windowToolStripMenuItem.Text = "Окно";
+              chartToolStripMenuItem.Text = "График";
               оПрограммеToolStripMenuItem.Text = "О программе";
               создателиToolStripMenuItem.Text = "Создатели";
               helpToolStripMenuItem.Text = "Помощь";

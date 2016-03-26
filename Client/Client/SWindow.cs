@@ -28,24 +28,23 @@ namespace Client
 
             numericUpDown1.Text = "700"; // значение отображаемые в текст боксе X
             numericUpDown2.Text = "500"; // значение отображаемые в текст боксе Y
-            if(WSrting.ENG == true)
-            {
-                label1.Text = "Size window  EUR/USD";
-                button1.Text = "Ask";
-
-            }
-            if (WSrting.RUS == true)
-            {
-                label1.Text = "Размер окна  Евро/Доллар";
-                button1.Text = "Задать";
-            }             
+         
         }
 
       
 
         private void SWindow_Load(object sender, EventArgs e)
         {
-
+            if(WSrting.ENG == true)
+            {
+                label1.Text = "Size window  EUR/USD";
+                button1.Text = "Ask";
+            }
+            if (WSrting.RUS == true)
+            {
+                label1.Text = "Размер окна  Евро/Доллар";
+                button1.Text = "Задать";
+            }             
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -74,7 +73,7 @@ namespace Client
            }// ограничение по максимальному размеру окна
 
            string text = "EURUSD   " + WSrting.X + "      " + WSrting.Y; 
-           string pathFile = "C:\\Users\\саша\\Documents\\GitHub\\Forex\\SettingWindow.txt";
+           string pathFile =Application.StartupPath + "\\SettingWindow.txt";
 
            if (!File.Exists(pathFile))//проверка на существование файла
            {
