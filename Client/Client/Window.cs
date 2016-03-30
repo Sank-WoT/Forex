@@ -33,14 +33,14 @@ namespace Client
         int danoe = 0;
         int colvo = 0;
 
-
+        double poslchislo;
         bool poluch = false;
 
         List<double> massY = new List<double>();
         List<double> massYInetA = new List<double>();
         List<double> Times = new List<double>();
         List<double> massYInetB = new List<double>();
-
+        List<double> Buffer = new List<double>();
 
         List<DateTime> D = new List<DateTime>();
 
@@ -57,26 +57,25 @@ namespace Client
         int cX = 1058;
         int cY = 684;
         List<int> PoinX = new List<int>();//данные точки
-        double dTime = (DateTime.Now - new System.DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds;//Текущее время
-     
-        public double Conect(string value, double poslTime, int limit)
-        { 
-            
-            Console.WriteLine(WSrting.ENG);
-            string pathDirectory = Application.StartupPath;//Путь к директории
-            if (!Directory.Exists(pathDirectory))//Проверка  на существование директории
-            {
-                Directory.CreateDirectory(pathDirectory);// создание директории 
-                MessageBox.Show("Директория создана путь : " + pathDirectory);// сообщение о создании директории
-            }
-            string pathFile = pathDirectory + "\\" + value + ".txt";//Путь к файлу c котировками eurusd
-
+        StreamReader q;
+      public  void CreateFile(string pathFile)
+        {
             if (!File.Exists(pathFile))//проверка на существование файла
             {
                 FileInfo writel = new FileInfo(pathFile);//получаем путь 
                 StreamWriter l = writel.CreateText();//создаем текст
                 l.Close();//закрыть запись
-            } //Развертывание сервера в заранее известном каталоге 
+            } //развертывание файла в дебаге
+        }
+
+        public double Conect(string value, double poslTime, int limit)
+        { 
+            
+            Console.WriteLine(WSrting.ENG);
+
+            string pathDirectory = Application.StartupPath;//Путь к директории
+            string pathFile = pathDirectory + "\\" + value + ".txt";//Путь к файлу c котировками eurusd
+            CreateFile(pathFile);// Созданеи не существующего файла
             StreamReader r = new StreamReader(pathFile);
             string text = r.ReadToEnd();// получение прочтенной записи
             r.Close();//закрыть чтение   
@@ -92,51 +91,54 @@ namespace Client
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");// преобразовение
             // WebProxy wp = new WebProxy("151.236.216.251", 10000); //задаем параметры прокси
 
-            WebRequest webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + poslTime + "&limit=" + limit + "&sign=" + value);//запрос на сайт 
-            //webReq.Proxy = wp;//меняем на прокси
-            WebResponse webRes = webReq.GetResponse();//получение ответа
-            Stream st = webRes.GetResponseStream();//поток по которому получаем инфу
-            StreamReader sr = new StreamReader(st);//прочитать поток
 
+
+            StreamReader sr;
+            sr = conection(limit, poslTime, value);
+            string response = sr.ReadToEnd(); // присвоение прочтенного к стринг 
 
             StreamReader r1 = new StreamReader(pathFile);
             string text1 = r1.ReadToEnd();// получение прочтенной записи
             r1.Close();//закрыть чтение 
-            string response = sr.ReadToEnd(); // присвоение прочтенного к стринг 
+
             text1 += response;// добавление в  файл новых значений
             FileInfo write = new FileInfo(pathFile);//получаем путь 
             StreamWriter w = write.CreateText();//создаем текст  
             w.WriteLine(text1);//добавляем текст 
             w.Close();//закрыть запись 
 
-            readFile(text1, response);
+            readFile(text1);
 
             return poslTime;
-        }//Получить  данные  с собственного сайта
-        //модифицировать для получения файлов
+        }//Получение данных
 
-        void readFile(string text1, string response)
+        StreamReader conection(int limit, double poslT, string value)
+        { 
+            var  webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + poslT + "&limit=" + limit + "&sign=" + value);//запрос на сайт 
+            WebResponse webRes = webReq.GetResponse();//получение ответа
+            Stream st = webRes.GetResponseStream();//поток по которому получаем инфу
+            StreamReader sr = new StreamReader(st);//прочитать поток
+            return sr; 
+        }
+    
+
+        void readFile(string text1)
         {
 
             Regex regex = new Regex(@"((\d{10,20})|(\d{1,20})\.(\d{1,4}))");//регулярное выражение 
             MatchCollection m = regex.Matches(text1);
             while (colvo < m.Count - 1)
-            {
-                response = m[colvo].Value;//Время
+            {      
+                Times.Add(Convert.ToDouble(m[colvo].Value));//Время в UNIX
                 colvo++;//порядковый номер даты в списке
-                Times.Add(Convert.ToDouble(response));//Время в UNIX
 
-                response = m[colvo].Value;//Время
-                colvo++;//порядковый номер даты в списке
-                massYInetB.Add(Convert.ToDouble(response));//число продажа
+                massYInetB.Add(Convert.ToDouble(m[colvo].Value));//значение  продажа
+                colvo++;//порядковый номер 
 
-                response = m[colvo].Value;//Время
-                colvo++;//порядковый номер даты в списке
-                massYInetA.Add(Convert.ToDouble(response));//число покупка
+                massYInetA.Add(Convert.ToDouble(m[colvo].Value));//число покупка
+                colvo++;//порядковый номер 
             }
-            Console.WriteLine(m.Count);
-            Console.WriteLine(colvo);
-        }// функция для прочтения файла
+        }// функция для прочтения файла и добавление щначеений в массив
 
 
 
@@ -152,7 +154,7 @@ namespace Client
             {
                 menuItem.CheckState = CheckState.Checked;// поставить отметку
             }
-        }
+        }//Отметки в меню
 
 
        public void CheckBox()
@@ -403,12 +405,35 @@ namespace Client
             checkBox2.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(172 * yS * (WSrting.Y / fY)));
             checkBox3.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(305 * yS * (WSrting.Y / fY)));
             checkBox4.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(195 * yS * (WSrting.Y / fY)));
-
-            Button();
-          
+           
             
+            tTip();
+            Graph();
+            CheckBox();// переводчик 
+            Button();// переводчик  кнопок
+            Menu();//переводчик меню       
         }
   
+
+        public void LoadGraph()
+        {
+           DateTime Date1; 
+         if (poluch == false)
+         {
+             for (int g = 0; g < massYInetB.Count - 1; g++)
+             {
+                 Date1 = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(Times[g]);//время в формате UNIX  
+                 D1.Add(Date1);// добавление времени в лист
+
+                 chart1.Series[0].XValueType = ChartValueType.Time;
+                 chart1.Series[0].Points.AddXY(D1[g], massYInetB[g]);//точки для графика  переделать логику
+                 Console.WriteLine(Date1);
+             }
+             poluch = true;
+         }// додумать загрузку 
+        }
+
+
 
         public void Graph()
         {  
@@ -476,15 +501,16 @@ namespace Client
             chart1.ChartAreas[0].AxisX.Interval = 0;
 
 
-            chart1.ChartAreas[0].AxisY.Maximum = 1.12;//диапазон значений
             chart1.ChartAreas[0].AxisY.Minimum = 1.11;//диапазон значений
+            GraphY EURUSD = new GraphY();
+            EURUSD.Y(chart1, massYInetB[massYInetB.Count - 1]);// доработать класс
 
 
             chart1.ChartAreas[0].CursorX.IsUserEnabled = true;
             chart1.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             chart1.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = true;
-        }
+        }// График динамического создание линий
 
        
 
@@ -513,32 +539,14 @@ namespace Client
         }
 
 
-        public int Update(int D,List<DateTime> Date)
-        {
-            
-            int NowTime = Convert.ToInt32(dTime);//текущее время
+        public int Update(int D, List<DateTime> Date)
+        {    
             tTip();
             CheckBox();// переводчик 
             Button();// переводчик  кнопок
             Menu();//переводчик меню 
             
-            
-         /*   DateTime Date1; 
-            if (poluch == false)
-            {
-                for (int g = 0; g < massYInetB.Count - 1; g++)
-                {
-                    Date1 = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(Times[g]);//время в формате UNIX  
-                    D1.Add(Date1);// добавление времени в лист
-
-                    chart1.Series[0].XValueType = ChartValueType.Time;
-                    chart1.Series[0].Points.AddXY(D1[g], massYInetB[g]);//точки для графика  переделать логику
-                    Console.WriteLine(Date1);
-                }
-                poluch = true;
-            }// додумать    
-  
-            */
+           
 
             chart1.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel);//событие вращения колесика
             chart1.Focus();// необходим фокус
@@ -552,9 +560,7 @@ namespace Client
        
 
             chart1.Series[0].XValueType = ChartValueType.Time;
-            chart1.Series[0].Points.AddXY(Date[tic], massYInetB[tic]);//точки для графика  переделать логику
-
-                
+            chart1.Series[0].Points.AddXY(Date[tic], Buffer[tic]);//точки для графика  переделать логику сделал для чтения с интернета
 
             poin = Resistance(tic);//уровни
             
@@ -723,7 +729,6 @@ namespace Client
             return MAXY;
         }
 
-
         public void Window_Load(object sender, EventArgs e)
         { 
             t.Start(); t.Interval = 1000;// время секунды
@@ -733,13 +738,45 @@ namespace Client
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        {
-         //  Update(D);
-          DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(Times[tic]);//время в формате UNIX
+        { 
+
+            double dTime = (DateTime.Now - new System.DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds - 5;//Текущее время
+            int NowTime; 
+            NowTime = Convert.ToInt32(dTime);//текущее время (работает)
+            string value;
+            value = "eurusd";
+          
+            var webReq1 = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + NowTime + "&limit=" + 1 + "&sign=" + value);//запрос на сайт 
+            WebResponse webRes1 = webReq1.GetResponse();//получение ответа
+            Stream st = webRes1.GetResponseStream();//поток по которому получаем инфу
+            StreamReader sr = new StreamReader(st);//прочитать поток
+            string texts = sr.ReadToEnd();// получение прочтенной записи
+            Regex regex = new Regex(@"((\d{10,20})|(\d{1,20})\.(\d{1,4}))");//регулярное выражение 
+            MatchCollection M = regex.Matches(texts);
+           // Console.WriteLine(NowTime);
+                if (tic == 0)
+                {
+                    poslchislo = massYInetB[massYInetB.Count - 1];
+                }
+            if(M.Count > 0)
+            {
+            Console.WriteLine(M[1].Value);
+            Buffer.Add(Convert.ToDouble(M[1].Value));//добавить в лист значения        
+            Console.WriteLine("Значение вошло"); 
+            poslchislo = Convert.ToDouble(M[1].Value);          
+            }
+            else 
+            {            
+                   
+                    Buffer.Add(poslchislo);
+                    Console.WriteLine(poslchislo);
+            }      
+ 
+          DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(NowTime);//время в формате UNIX
           D.Add(Date);// добавление времени в лист
           tic = Update(tic, D);// функция по секунде
-          Console.WriteLine(Date.ToString("M/dd/yyyy h:mm:ss.fff tt"));// дебаг           
-        }// необходимо поменять
+          Console.WriteLine(Date.ToString("M/dd/yyyy h:mm:ss.fff tt"));// дебаг  
+        }// работает
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
