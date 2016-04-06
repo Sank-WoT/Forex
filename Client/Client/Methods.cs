@@ -20,19 +20,16 @@ using System.Media;
 
 namespace Client
 {
-    class GraphY
+    public class Methods
     {
-        public void Y(Chart chart1, double Y)
+     public   List<DateTime> Convert(List<double> A, List<DateTime> DINET)
         {
-            chart1.ChartAreas[0].AxisY.Maximum = 1.5*Y;
-     
-        }   
-             public void X(Chart chart1, double X, double rang)
-        {
-            chart1.ChartAreas[0].AxisX.Maximum =  X + rang;
-            chart1.ChartAreas[0].AxisX.Minimum = X - rang;
-     
-        }   
-      
+            for (int i = 0; i < A.Count;i++ )
+            {
+                DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(A[i]);
+                DINET.Add(Date); 
+            }
+                return DINET;
+        }
     }
 }

@@ -59,8 +59,10 @@
     <Compile Include="Help.Designer.cs">
       <DependentUpon>Help.cs</DependentUpon>
     </Compile>
+    <Compile Include="Methods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="readFile.cs" />
     <Compile Include="SChartcs.cs">
       <SubType>Form</SubType>
     </Compile>
