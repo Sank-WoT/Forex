@@ -31,5 +31,21 @@ namespace Client
             }
                 return DINET;
         }
+        public List<double> ZoomNumver(int ZOOM, List<double> Buy, List<double> Time, double nowTime)
+     {
+            List<double> Number = new List<double>();;
+            int colvo = 0;
+            while(Time[Time.Count - 1 - colvo]>nowTime - ZOOM)
+            {
+                colvo++;
+            }
+            while(colvo > 0)
+            {
+                Number.Add(Time[Time.Count - 1 - colvo]);
+                colvo --;
+            }
+            return Number;
+     }// локализация уровней сопротивления и поддержки под временные уровни
+
     }
 }

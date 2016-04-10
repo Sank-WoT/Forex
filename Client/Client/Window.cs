@@ -34,19 +34,25 @@ namespace Client
         int colvo = 0;
 
         double poslchislo;
+        double poslchislo1;
         bool poluch = false;
 
         List<double> massY = new List<double>();
-        List<double> massYInetA = new List<double>();
+        List<double> massYInetA = new List<double>();// лист значений отношения валюты по продаже из файла
         List<double> Times = new List<double>();
-        List<double> massYInetB = new List<double>();
+        List<double> massYInetB = new List<double>();// лист значений отношения валюты по покупке из файла
         List<double> Buffer = new List<double>();
+        List<double> BufferS = new List<double>();
 
         List<DateTime> DTIME = new List<DateTime>();// буфферное время
 
         List<DateTime> DINET = new List<DateTime>();// время из файла
 
-        List<double> sred = new List<double>();
+
+        List<DateTime> MainT = new List<DateTime>();
+        List<double> MainV = new List<double>(); 
+
+        List<double> sred = new List<double>();// Точки по X SMAr
         double poslTime = 0;// последнее время
         string[] value = new string[1] { "eurusd" };
         int tic = 0;
@@ -228,8 +234,9 @@ namespace Client
             if (WSrting.ENG == true)
             {
                timeLevelToolStripMenuItem.Text = "Time intervall";
-               reportToolStripMenuItem.Text = "Report";
+               reportToolStripMenuItem.Text = "Report";              
                createReportToolStripMenuItem.Text = "Creaty report";
+               settingToolStripMenuItem.Text = "Settings";
                secondToolStripMenuItem.Text = "Second";
                minutesToolStripMenuItem.Text = "5 Minutes";
                minutesToolStripMenuItem1.Text = "30 Minutes";
@@ -238,11 +245,13 @@ namespace Client
                weekToolStripMenuItem.Text = "Week";
                monthToolStripMenuItem.Text = "Month";
             }
+
             if (WSrting.RUS == true)
             {
                timeLevelToolStripMenuItem.Text = "Временные интервалы";
                reportToolStripMenuItem.Text = "Отчет";
                createReportToolStripMenuItem.Text = "Создать отчет";
+               settingToolStripMenuItem.Text = "Настройки";
                secondToolStripMenuItem.Text = "Секундный";
                minutesToolStripMenuItem.Text = "5 Минут";
                minutesToolStripMenuItem1.Text = "30 Минут";
@@ -252,45 +261,7 @@ namespace Client
                monthToolStripMenuItem.Text = "Месяц";
             }
         }
-        public List<List<double>> Resistance(int tic)//подавать интервал
-        {
-            int Pervoe = 0;
-            int trend = 0;//переменная тренда
-            List<List<double>> poin = new List<List<double>>();//данные точки
-            List<double> row = new List<double>();
-
-            for (int i = 1; tic > i; i++)
-            {
-                if (trend != 1 && (massYInetB[i - 1] - massYInetB[i]) > 0)
-                {
-                    row = new List<double>();
-                    trend = 1;//положительный тренд
-                    row.Add(i - 1);//заполнение точек по икс    
-                    row.Add(massYInetB[i - 1]);//заполнение точек по игрик  
-                    if (Pervoe == 0)
-                    {
-                        danoe = -1;
-                        Pervoe++;
-                    }// узнаем первое значение минимум оно или максимум
-                    poin.Add(row);
-                }
-                if (trend != -1 && (massYInetB[i - 1] - massYInetB[i]) < 0)
-                {
-                    if (Pervoe == 0)
-                    {
-                        danoe = 1;
-                        Pervoe++;
-                    }// узнаем первое значение минимум оно или максимум
-                    row = new List<double>();
-                    trend = -1;//положительный тренд
-                    row.Add(i);//заполнение точек по икс    
-                    PoinX.Add(i);
-                    row.Add(massYInetB[i]);//заполнение точек по игрик  
-                    poin.Add(row);
-                }
-            }
-            return poin;
-        }
+      
 
 
 
@@ -322,11 +293,11 @@ namespace Client
             this.chart1.Size = new System.Drawing.Size(Convert.ToInt32(cX * xS * (WSrting.X / fX)), Convert.ToInt32(cY * yS * (WSrting.X / fX)));//размеры чарта
             chart1.ChartAreas.Add(area);// передача 
 
-            button9.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X /fX )), Convert.ToInt32(15 * yS * ( WSrting.Y/fY )));// клавиша buy         
-            button8.Location = new Point(Convert.ToInt32(1158 * xS * (WSrting.X / fX)), Convert.ToInt32(15 * yS * (WSrting.Y / fY)));// клавиша price     
-            button10.Location = new Point(Convert.ToInt32(1274 * xS * (WSrting.X / fX)), Convert.ToInt32(15 * yS * (WSrting.Y / fY)));// клавиша sell   
-            button1.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X / fX)), Convert.ToInt32(60 * yS * (WSrting.Y / fY)));// клавиша value
-            button7.Location = new Point(Convert.ToInt32(1216 * xS * (WSrting.X / fX)), Convert.ToInt32(60 * yS * (WSrting.Y / fY)));// клавиша value
+            button9.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X /fX )), Convert.ToInt32(27 * yS * ( WSrting.Y/fY )));// клавиша buy         
+            button8.Location = new Point(Convert.ToInt32(1157 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * (WSrting.Y / fY)));// клавиша price     
+            button10.Location = new Point(Convert.ToInt32(1274 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * (WSrting.Y / fY)));// клавиша sell   
+            button1.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X / fX)), Convert.ToInt32(72 * yS * (WSrting.Y / fY)));// клавиша value
+            button7.Location = new Point(Convert.ToInt32(1216 * xS * (WSrting.X / fX)), Convert.ToInt32(72 * yS * (WSrting.Y / fY)));// клавиша value
 
             button9.Size = new Size(Convert.ToInt32(58 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
             button8.Size = new Size(Convert.ToInt32(118 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
@@ -353,12 +324,11 @@ namespace Client
 
         public void Graph()
         {  
-
             Series series1 = new Series();
             series1.ChartArea = "myGraph";
             series1.XValueType = ChartValueType.DateTime;
             series1.ChartType = SeriesChartType.Line;
-            series1.BorderWidth = 4;
+            series1.BorderWidth = 2;
             chart1.Series.Add(series1);// параметры главной линии
 
             Series series2 = new Series();
@@ -387,14 +357,21 @@ namespace Client
             series5.XValueType = ChartValueType.DateTime;
             series5.ChartType = SeriesChartType.Line;
             series5.BorderWidth = 2;
-            chart1.Series.Add(series5);// параметры  линии МАX
+            chart1.Series.Add(series5);// параметры  линии 
 
             Series series6 = new Series();
             series6.ChartArea = "myGraph";
             series6.XValueType = ChartValueType.DateTime;
             series6.ChartType = SeriesChartType.Line;
             series6.BorderWidth = 2;
-            chart1.Series.Add(series6);// параметры  линии МIN
+            chart1.Series.Add(series6);// параметры  линии МAX
+
+            Series series7 = new Series();
+            series7.ChartArea = "myGraph";
+            series7.XValueType = ChartValueType.DateTime;
+            series7.ChartType = SeriesChartType.Line;
+            series7.BorderWidth = 2;
+            chart1.Series.Add(series7);// параметры  линии МAX
 
 
             chart1.ChartAreas[0].BackColor = Color.FromArgb(255, 255, 255);//цвет внутренней области
@@ -409,15 +386,21 @@ namespace Client
             chart1.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.FromArgb(0, 0, 0);// цвет надписей координат по Y
 
 
-            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "HH:mm:ss";
+            chart1.ChartAreas[0].AxisX.LabelStyle.Format = "dd//hh:mm:ss tt";// Установка отображения даты
             chart1.ChartAreas[0].AxisX.IsStartedFromZero = true;
+
+
+            chart1.ChartAreas[0].AxisX.Title = "Date, Time";
+            chart1.ChartAreas[0].AxisY.Title = "Attitude EUR/USD";
+
+           
+
             chart1.ChartAreas[0].AxisX.ScaleView.SizeType = DateTimeIntervalType.Seconds;
             chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.FixedCount;
             chart1.ChartAreas[0].CursorX.IntervalType = DateTimeIntervalType.Seconds;
             chart1.ChartAreas[0].AxisX.Interval = 0;
 
 
-            chart1.ChartAreas[0].AxisY.Minimum = 1.11;//диапазон значений
             GraphY EURUSD = new GraphY();
             EURUSD.Y(chart1, massYInetB[massYInetB.Count - 1]);// доработать класс
 
@@ -455,7 +438,7 @@ namespace Client
         }
 
 
-        public int Update(int D, List<DateTime> Date)
+        public int Update(int D, List<DateTime> DateT)
         {    
             tTip();
             CheckBox();// переводчик 
@@ -466,43 +449,47 @@ namespace Client
 
             chart1.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel);//событие вращения колесика
             chart1.Focus();// необходим фокус
-            List<List<double>> poin = new List<List<double>>();
+            List<List<double>> poin = new List<List<double>>();// Точки изменения тренда
             setting();
             if (checkBox1.Checked == false)
             {
                    chart1.Series[2].Points.Clear();
                    chart1.Series[1].Points.Clear();
             }
-       
-
-            chart1.Series[0].XValueType = ChartValueType.Time;
-
-            chart1.Series[0].Points.AddXY(DINET[Times.Count-1 -tic ], massYInetB [massYInetB.Count-1 - tic]);// загрузка данных
-
-            chart1.Series[0].Points.AddXY(Date[tic], Buffer[tic]);//точки для графика  переделать логику сделал для чтения с интернета
+           
+            chart1.Series[0].XValueType = ChartValueType.Time;// установление типа по икс время
 
 
 
-            poin = Resistance(tic);//уровни
-            
-            if (checkBox4.Checked == true)
+            Draw q = new Draw();
+            MainT = q.MainTime(DINET, DateT,tic);
+            MainV = q.MainValue(Buffer, massYInetB, tic);
+            chart1.Series[0].Points.Clear();
+            chart1.Series[4].Points.AddXY(DateT[0].ToOADate(), Buffer[0]);// создаем костыль для графика чарт
+
+            for (int hl = 0; MainT.Count -1 >= hl;hl++ )
             {
+                chart1.Series[0].Points.AddXY(MainT[hl].ToOADate(), MainV[hl]);
             }
+
+            poin = IntervalResistance(tic, Buffer);//Получение точек смены тренда  // данные из буфера
+            
 
             if (checkBox1.Checked == true)
             {
-                Resis(poin, tic, 0.0001, Date);// рисуем уровни
+                Resis(poin, tic, 0.0001, DateT);// рисуем уровни
             } 
             
 
             chart1.Update();// обновление данных
 
             int Z = 10;// Кол-во  точек берущихся в расчет
-            SMA(tic, Date, Z, Buffer);
 
-            button8.Text = Convert.ToString(massYInetA[tic]); // вывод значений на кнопку  по времени
-            button1.Text = Convert.ToString(massYInetA[tic]); // вывод значений на кнопку  по времени
-            button7.Text = Convert.ToString(massYInetB[tic]); // вывод значений на кнопку  по времени
+            SMA(MainT, Z, MainV);
+
+            button8.Text = Convert.ToString(Buffer[tic]); // вывод значений на кнопку  по времени
+            button1.Text = Convert.ToString(Buffer[tic]); // вывод значений на кнопку  по времени
+            button7.Text = Convert.ToString(BufferS[tic]); // вывод значений на кнопку  по времени
             ZoomT(Zoom);
            
             
@@ -513,49 +500,93 @@ namespace Client
 
       public  void ZoomT(int ize)
         {
-
-            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[0].Points[0].XValue - ize * 0.00001157407 + tic * 0.00001157407;// ограничение по X минимум   NowTime
-            chart1.ChartAreas[0].AxisX.Maximum = chart1.Series[0].Points[0].XValue + ize * 0.00001157407 + tic * 0.00001157407;// ограничение по X максимум  под 60 секунд 0,00001157407
+            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[4].Points[0].XValue - ize * 0.00001157407 + tic * 0.00001157407;// ограничение по X минимум   NowTime
+            chart1.ChartAreas[0].AxisX.Maximum = chart1.Series[4].Points[0].XValue + ize * 0.00001157407 + tic * 0.00001157407;// ограничение по X максимум  под 60 секунд 0,00001157407
         }// функция необходимая для уровней рассмотренного времени
 
 
-      public List<double> SMA(int tic, List<DateTime> Date, int Sglag, List<double> Buffer)
+      public List<double> SMA(List<DateTime> Dat, int Sglag, List<double> Buff)
         {
+            List<double> sreds = new List<double>();// Точки по X SMAr
             double p = 0;
-            if (tic >= Sglag)
+            if (Buff.Count >= Sglag)
             {
-                for (int i = 0; i <= Sglag - 1; i++)
+                for (int j = 0; j  <= (Buff.Count - Sglag) ;j++ )
                 {
-                    p += Buffer[tic - i];// складываем кол - во точек
-                }
-                sred.Add(p / Sglag);
+                    for (int i = 0; i <= Sglag-1 ; i++)
+                    {
+                        p += Buff[i + j];// складываем кол - во точек
+
+                    }
+                    sreds.Add(p / Sglag);
+                    p = 0;
+                }  
             }
             if (checkBox2.Checked == true)
             {
-                GraphSMA(tic, Date, Sglag);
+                if (Buff.Count >= Sglag)
+            {
+                chart1.Series[3].Points.Clear();
+                for (int h = 0; h <= sreds.Count - 1; h++)
+                {
+                    chart1.Series[3].XValueType = ChartValueType.Time;
+                    chart1.Series[3].Color = Color.FromArgb(255, 100, 100);// задание цвета
+                    chart1.Series[3].Points.AddXY(Dat[Sglag - 1 + h].ToOADate(), sreds[h]);
+                }
+            }//SANK
+
+
+
             }
             if (checkBox2.Checked == false)
             {
                 chart1.Series[3].Points.Clear();
             }
-            return sred;
+            return sreds;
         }// вычисление точки СМА исправлено под буфер
 
-        public void GraphSMA(int tic, List<DateTime> Date, int Sglag)
+
+
+
+  public List<List<double>> IntervalResistance(int tic, List<double> massYInetBuy)//подавать интервал
         {
-            if (tic >= Sglag)
+            int Pervoe = 0;
+            int trend = 0;//переменная тренда
+            List<List<double>> poin = new List<List<double>>();//данные точки
+            List<double> row = new List<double>();
+
+            for (int i = 1; tic > i; i++)
             {
-                chart1.Series[3].Points.Clear();
-                for (int h = 0; h < tic - Sglag; h++)
+                if (trend != 1 && (massYInetB[i - 1] - massYInetBuy[i]) > 0)
                 {
-                    chart1.Series[3].XValueType = ChartValueType.Time;
-                    chart1.Series[3].Color = Color.FromArgb(255, 100, 100);// задание цвета
-                    chart1.Series[3].Points.AddXY(Date[tic - h], sred[tic - Sglag - h]);
+                    row = new List<double>();
+                    trend = 1;//положительный тренд
+                    row.Add(i - 1);//заполнение точек по икс    
+                    row.Add(massYInetB[i - 1]);//заполнение точек по игрик  
+                    if (Pervoe == 0)
+                    {
+                        danoe = -1;
+                        Pervoe++;
+                    }// узнаем первое значение минимум оно или максимум
+                    poin.Add(row);
+                }
+                if (trend != -1 && (massYInetB[i - 1] - massYInetB[i]) < 0)
+                {
+                    if (Pervoe == 0)
+                    {
+                        danoe = 1;
+                        Pervoe++;
+                    }// узнаем первое значение минимум оно или максимум
+                    row = new List<double>();
+                    trend = -1;//положительный тренд
+                    row.Add(i);//заполнение точек по икс    
+                    PoinX.Add(i);
+                    row.Add(massYInetB[i]);//заполнение точек по игрик  
+                    poin.Add(row);
                 }
             }
-        }// рисует линию
-
-
+            return poin;
+        }
 
 
 
@@ -588,7 +619,7 @@ namespace Client
                 MAXY = Resistance(poin, tic, pogr, Date, h, MAXY, MAXX, MaxH);
                 MINY = Support(poin, tic, pogr, Date, h, MINY, MINX, MinH);
             }
-        }//Вызов 2х методов
+        }//Вызов 2х методов для рисования и получения значений MAXY, MINY по которым происходит построение линий
 
         public double Support(List<List<double>> poin, int tic, double pogr, List<DateTime> Date, int h, double MINY, double MINX, double MinH)
         {
@@ -605,12 +636,12 @@ namespace Client
                     line2X = Convert.ToInt32(poin[g][0]);//2 точка по икс
 
                     chart1.Series[2].XValueType = ChartValueType.Time;
-                    chart1.Series[2].Points.AddXY(Date[0], line2Y);// 1 точка // можно использовать для начала line1X
-                    chart1.Series[2].Points.AddXY(Date[tic], line2Y);// 2 точка
+                    chart1.Series[2].Points.AddXY(Date[0].ToOADate(), line2Y);// 1 точка // можно использовать для начала line1X
+                    chart1.Series[2].Points.AddXY(Date[tic].ToOADate(), line2Y);// 2 точка
                     chart1.Series[2].Color = Color.FromArgb(55, 0, 55);// задание цвета 
                 }
             }
-            if ((MINY > (massYInetB[tic] + pogr)))
+            if ((MINY > (massYInetB[tic] + pogr)))// сравненгие точки в пределах данной погрешности
             {
                 chart1.Series[2].Points.Clear();
             }
@@ -623,7 +654,7 @@ namespace Client
         {
             int line2X;
             double line2Y;
-            if (MAXY < poin[h][1])// cpoin[h][1] точка по игрик
+            if (MAXY < poin[h][1])// poin[h][1] точка по игрик
             {
                 MAXY = poin[h][1];
                 MAXX = poin[h][0];
@@ -639,8 +670,8 @@ namespace Client
                     line2X = Convert.ToInt32(poin[g][0]);//2 точка по икс
 
                     chart1.Series[1].XValueType = ChartValueType.Time;
-                    chart1.Series[1].Points.AddXY(Date[0], line2Y);// 1 точка // можно использовать для начала line1X
-                    chart1.Series[1].Points.AddXY(Date[tic], line2Y);// 2 точка
+                    chart1.Series[1].Points.AddXY(Date[0].ToOADate(), line2Y);// 1 точка // можно использовать для начала line1X
+                    chart1.Series[1].Points.AddXY(Date[tic].ToOADate(), line2Y);// 2 точка
                     chart1.Series[1].Color = Color.FromArgb(255, 0, 0);// задание цвета 
                 }
             }
@@ -663,7 +694,7 @@ namespace Client
         { 
 
             double dTime = (DateTime.Now - new System.DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds - 5;//Текущее время
-            int NowTime; 
+            int NowTime;
             NowTime = Convert.ToInt32(dTime);//текущее время (работает)
             string value;
             value = "eurusd";
@@ -678,21 +709,26 @@ namespace Client
            // Console.WriteLine(NowTime);
                 if (tic == 0)
                 {
-                    poslchislo = massYInetB[massYInetB.Count - 1];
+                    poslchislo = massYInetA[massYInetB.Count - 1];
+                }
+                if (tic == 0)
+                {
+                    poslchislo1 = massYInetB[massYInetA.Count - 1];
                 }
             if(M.Count > 0)
             {
-            Console.WriteLine(M[1].Value);
-            Buffer.Add(Convert.ToDouble(M[1].Value));//добавить в лист значения        
+            Buffer.Add(Convert.ToDouble(M[9].Value));//добавить в лист значения        
+            BufferS.Add(Convert.ToDouble(M[1].Value));//добавить в лист значения    
             Console.WriteLine("Значение вошло"); 
-            poslchislo = Convert.ToDouble(M[1].Value);          
+            poslchislo = Convert.ToDouble(M[0].Value);
+            poslchislo1 = Convert.ToDouble(M[1].Value);
             }
             else 
             {            
                    
                     Buffer.Add(poslchislo);
-                    Console.WriteLine(poslchislo);
-            }      
+                    BufferS.Add(poslchislo1);
+            }      //  додумать
  
           DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(NowTime);//время в формате UNIX
           DTIME.Add(Date);// добавление времени в лист
@@ -726,7 +762,7 @@ namespace Client
             SoundPlayer player = new SoundPlayer();
             player.SoundLocation = Application.StartupPath + "/Music/test.wav"; ;
             player.Play();
-            BUY = massYInetA[tic];//Запомнить значение покупки
+            BUY = Buffer[tic-1];//Запомнить значение покупки
             MessageBox.Show("Cовершена покупка по цене =  " + BUY);        
         }
 
@@ -735,7 +771,7 @@ namespace Client
             SoundPlayer player = new SoundPlayer();
             player.SoundLocation = Application.StartupPath + "/Music/test.wav"; ;
             player.Play();
-            SELL = massYInetB[tic];//Запомнить значение продажи
+            SELL = BufferS[tic-1];//Запомнить значение продажи
             MessageBox.Show("Cовершена продажа по цене =  " + SELL);
         }
 
@@ -930,11 +966,20 @@ namespace Client
     private void reportToolStripMenuItem_Click(object sender, EventArgs e)
     {
 
-    }
+    }// разобраться сделать на английском
 
     private void createReportToolStripMenuItem_Click(object sender, EventArgs e)
     {
+        Report rep = new Report();
+        rep.Size = new Size(470, 500);// задание размеров окна отчета
+        rep.Show();// Показать  окно отчета
+    }
 
-    }// разобраться сделать на английском
+    private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        EURUSD fset = new EURUSD();
+        fset.Show();
+        fset.Size = new Size(580, 580);// задание размера формы 
+    }
     }
 }

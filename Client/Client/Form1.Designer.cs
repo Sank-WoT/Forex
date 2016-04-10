@@ -60,10 +60,11 @@
             // 
             // settingsToolStripMenuItem
             // 
-            this.settingsToolStripMenuItem.BackColor = System.Drawing.SystemColors.Menu;
+            this.settingsToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.windowToolStripMenuItem,
             this.chartToolStripMenuItem});
+            this.settingsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.settingsToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
@@ -86,7 +87,7 @@
             // 
             // оПрограммеToolStripMenuItem
             // 
-            this.оПрограммеToolStripMenuItem.BackColor = System.Drawing.SystemColors.Menu;
+            this.оПрограммеToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.оПрограммеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.создателиToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -111,7 +112,7 @@
             // 
             // currencyPairsToolStripMenuItem
             // 
-            this.currencyPairsToolStripMenuItem.BackColor = System.Drawing.SystemColors.Menu;
+            this.currencyPairsToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.currencyPairsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eURUSDToolStripMenuItem});
             this.currencyPairsToolStripMenuItem.Name = "currencyPairsToolStripMenuItem";
@@ -128,7 +129,7 @@
             // 
             // langueToolStripMenuItem
             // 
-            this.langueToolStripMenuItem.BackColor = System.Drawing.SystemColors.Menu;
+            this.langueToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.langueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eURToolStripMenuItem,
             this.rusToolStripMenuItem});

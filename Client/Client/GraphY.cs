@@ -24,15 +24,8 @@ namespace Client
     {
         public void Y(Chart chart1, double Y)
         {
-            chart1.ChartAreas[0].AxisY.Maximum = 1.5*Y;
-     
-        }   
-             public void X(Chart chart1, double X, double rang)
-        {
-            chart1.ChartAreas[0].AxisX.Maximum =  X + rang;
-            chart1.ChartAreas[0].AxisX.Minimum = X - rang;
-     
-        }   
-      
+            chart1.ChartAreas[0].AxisY.Maximum = Y + 0.01;
+            chart1.ChartAreas[0].AxisY.Minimum = Y - 0.01;
+        }       
     }
 }

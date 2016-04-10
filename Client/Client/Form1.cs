@@ -24,7 +24,7 @@ namespace Client
         public static bool HelpClosing = true;
         public static bool SWindowClosing = true;
         public static bool WindowClosing = true;
-        public static bool SChartClosing = true;
+        public static bool SChartClosing = true;  
         public Form1()
         {
 
@@ -84,6 +84,7 @@ namespace Client
         {
             String readX, readY;
             int X = 0, Y = 0;
+
             if (WindowClosing == true)
             {
                 WindowClosing = false;
@@ -112,17 +113,20 @@ namespace Client
             WSrting.X = X;
             WSrting.Y = Y;
             Console.WriteLine(WSrting.X); 
+
+
             Window f1 = new Window();
             f1.Show();//модольное окно 
             f1.Size = new Size(X, Y);//Задаем значение размера формы Window 
             f1.Location = new Point(0, 0);//размещение окна EURUSD
+           
+
             }
         }// показать  график  EUR/USD
 
         public void windowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            if (SWindowClosing == true)
+                if (SWindowClosing == true)
             {
                 SWindow f2 = new SWindow();
                 SWindowClosing = false;
