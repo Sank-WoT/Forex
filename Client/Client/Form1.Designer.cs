@@ -69,21 +69,21 @@
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
             this.settingsToolStripMenuItem.Text = "Standart Settings";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
             // windowToolStripMenuItem
             // 
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
             this.windowToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.windowToolStripMenuItem.Text = "Window";
-            this.windowToolStripMenuItem.Click += new System.EventHandler(this.windowToolStripMenuItem_Click);
+            this.windowToolStripMenuItem.Click += new System.EventHandler(this.WindowToolStripMenuItem_Click);
             // 
             // chartToolStripMenuItem
             // 
             this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
             this.chartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chartToolStripMenuItem.Text = "Chart";
-            this.chartToolStripMenuItem.Click += new System.EventHandler(this.chartToolStripMenuItem_Click);
+            this.chartToolStripMenuItem.Click += new System.EventHandler(this.СhartToolStripMenuItem_Click);
             // 
             // оПрограммеToolStripMenuItem
             // 
@@ -94,21 +94,21 @@
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
             this.оПрограммеToolStripMenuItem.Text = "About program";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
+            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.AboutProgrammToolStripMenuItem_Click);
             // 
             // создателиToolStripMenuItem
             // 
             this.создателиToolStripMenuItem.Name = "создателиToolStripMenuItem";
             this.создателиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.создателиToolStripMenuItem.Text = " Creators";
-            this.создателиToolStripMenuItem.Click += new System.EventHandler(this.создателиToolStripMenuItem_Click);
+            this.создателиToolStripMenuItem.Click += new System.EventHandler(this.CreatoresToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.helpToolStripMenuItem.Text = "Help";
-            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
             // 
             // currencyPairsToolStripMenuItem
             // 
@@ -118,14 +118,14 @@
             this.currencyPairsToolStripMenuItem.Name = "currencyPairsToolStripMenuItem";
             this.currencyPairsToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.currencyPairsToolStripMenuItem.Text = "Currency pairs";
-            this.currencyPairsToolStripMenuItem.Click += new System.EventHandler(this.currencyPairsToolStripMenuItem_Click);
+            this.currencyPairsToolStripMenuItem.Click += new System.EventHandler(this.CurrencyPairsToolStripMenuItem_Click);
             // 
             // eURUSDToolStripMenuItem
             // 
             this.eURUSDToolStripMenuItem.Name = "eURUSDToolStripMenuItem";
             this.eURUSDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.eURUSDToolStripMenuItem.Text = "EUR/USD";
-            this.eURUSDToolStripMenuItem.Click += new System.EventHandler(this.eURUSDToolStripMenuItem_Click);
+            this.eURUSDToolStripMenuItem.Click += new System.EventHandler(this.EEURUSDToolStripMenuItem_Click);
             // 
             // langueToolStripMenuItem
             // 
@@ -137,21 +137,21 @@
             this.langueToolStripMenuItem.Name = "langueToolStripMenuItem";
             this.langueToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.langueToolStripMenuItem.Text = "Langue";
-            this.langueToolStripMenuItem.Click += new System.EventHandler(this.langueToolStripMenuItem_Click);
+            this.langueToolStripMenuItem.Click += new System.EventHandler(this.LangueToolStripMenuItem_Click);
             // 
             // eURToolStripMenuItem
             // 
             this.eURToolStripMenuItem.Name = "eURToolStripMenuItem";
             this.eURToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.eURToolStripMenuItem.Text = "Eng";
-            this.eURToolStripMenuItem.Click += new System.EventHandler(this.eURToolStripMenuItem_Click);
+            this.eURToolStripMenuItem.Click += new System.EventHandler(this.EEURUSDToolStripMenuItem);
             // 
             // rusToolStripMenuItem
             // 
             this.rusToolStripMenuItem.Name = "rusToolStripMenuItem";
             this.rusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rusToolStripMenuItem.Text = "Rus";
-            this.rusToolStripMenuItem.Click += new System.EventHandler(this.rusToolStripMenuItem_Click);
+            this.rusToolStripMenuItem.Click += new System.EventHandler(this.RusToolStripMenuItem_Click);
             // 
             // Form1
             // 

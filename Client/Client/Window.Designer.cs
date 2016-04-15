@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    partial class Window
+    partial class Windowd
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Window));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Windowd));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -226,14 +226,14 @@
             this.secondToolStripMenuItem.Name = "secondToolStripMenuItem";
             this.secondToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.secondToolStripMenuItem.Text = "second";
-            this.secondToolStripMenuItem.Click += new System.EventHandler(this.secondToolStripMenuItem_Click);
+            this.secondToolStripMenuItem.Click += new System.EventHandler(this.SecondToolStripMenuItem_Click);
             // 
             // minutesToolStripMenuItem
             // 
             this.minutesToolStripMenuItem.Name = "minutesToolStripMenuItem";
             this.minutesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.minutesToolStripMenuItem.Text = "5 minutes";
-            this.minutesToolStripMenuItem.Click += new System.EventHandler(this.minutesToolStripMenuItem_Click);
+            this.minutesToolStripMenuItem.Click += new System.EventHandler(this.MinutesToolStripMenuItem_Click);
             // 
             // minutesToolStripMenuItem1
             // 
@@ -247,28 +247,28 @@
             this.hourToolStripMenuItem.Name = "hourToolStripMenuItem";
             this.hourToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.hourToolStripMenuItem.Text = "Hour";
-            this.hourToolStripMenuItem.Click += new System.EventHandler(this.hourToolStripMenuItem_Click);
+            this.hourToolStripMenuItem.Click += new System.EventHandler(this.HourToolStripMenuItem_Click);
             // 
             // dayToolStripMenuItem
             // 
             this.dayToolStripMenuItem.Name = "dayToolStripMenuItem";
             this.dayToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.dayToolStripMenuItem.Text = "Day";
-            this.dayToolStripMenuItem.Click += new System.EventHandler(this.dayToolStripMenuItem_Click);
+            this.dayToolStripMenuItem.Click += new System.EventHandler(this.DayToolStripMenuItem_Click);
             // 
             // weekToolStripMenuItem
             // 
             this.weekToolStripMenuItem.Name = "weekToolStripMenuItem";
             this.weekToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.weekToolStripMenuItem.Text = "Week";
-            this.weekToolStripMenuItem.Click += new System.EventHandler(this.weekToolStripMenuItem_Click);
+            this.weekToolStripMenuItem.Click += new System.EventHandler(this.WeekToolStripMenuItem_Click);
             // 
             // monthToolStripMenuItem
             // 
             this.monthToolStripMenuItem.Name = "monthToolStripMenuItem";
             this.monthToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.monthToolStripMenuItem.Text = "Month";
-            this.monthToolStripMenuItem.Click += new System.EventHandler(this.monthToolStripMenuItem_Click);
+            this.monthToolStripMenuItem.Click += new System.EventHandler(this.MonthToolStripMenuItem_Click);
             // 
             // reportToolStripMenuItem
             // 
@@ -284,14 +284,14 @@
             this.createReportToolStripMenuItem.Name = "createReportToolStripMenuItem";
             this.createReportToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.createReportToolStripMenuItem.Text = "Create report";
-            this.createReportToolStripMenuItem.Click += new System.EventHandler(this.createReportToolStripMenuItem_Click);
+            this.createReportToolStripMenuItem.Click += new System.EventHandler(this.CreateReportToolStripMenuItem_Click);
             // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingToolStripMenuItem.Text = "Settings";
-            this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.SettingToolStripMenuItem_Click);
             // 
             // label2
             // 

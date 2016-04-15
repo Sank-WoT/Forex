@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="SWindow.cs">
       <SubType>Form</SubType>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="SWindow.Designer.cs">
       <DependentUpon>SWindow.cs</DependentUpon>
