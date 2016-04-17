@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="Window.cs">
       <SubType>Form</SubType>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Window.Designer.cs">
       <DependentUpon>Window.cs</DependentUpon>
