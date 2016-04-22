@@ -235,7 +235,7 @@
         }
 
         /// <summary>
-        /// Метод вывода окна о создателях
+        /// The output method window about the creators
         /// </summary>
         /// <param name="sender">object</param>
         /// <param name="e">EventArgs</param>

@@ -25,7 +25,7 @@ namespace Client
         public static int Y { get; set; }
         public static bool RUS;
         public static bool ENG;
-        
+
     }// передача данных между формами
 
   public   static class Activ
@@ -36,4 +36,13 @@ namespace Client
         public static bool Help;
 
     }// передача данных между формами
+
+  public static class ReportTransit
+  {
+      public static List<double> SELL;
+      public static List <double> BUY;
+      public static List<List<double>> data = new List<List<double>>();
+  }// передача данных между формами
+
+  public delegate void MyDelegate();
 }

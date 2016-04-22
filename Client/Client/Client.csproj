@@ -46,6 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calsulations.cs" />
+    <Compile Include="CloseDeal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CloseDeal.Designer.cs">
+      <DependentUpon>CloseDeal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Draw.cs" />
     <Compile Include="EURUSD.cs">
       <SubType>Form</SubType>
@@ -91,11 +97,14 @@
     </Compile>
     <Compile Include="Window.cs">
       <SubType>Form</SubType>
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Window.Designer.cs">
       <DependentUpon>Window.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CloseDeal.resx">
+      <DependentUpon>CloseDeal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EURUSD.resx">
       <DependentUpon>EURUSD.cs</DependentUpon>
     </EmbeddedResource>

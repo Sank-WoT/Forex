@@ -58,6 +58,7 @@
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toCloseTheDealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
@@ -116,7 +117,7 @@
             this.button9.TabIndex = 11;
             this.button9.Text = "Buy";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.button9.Click += new System.EventHandler(this.Button9_Click);
             // 
             // button10
             // 
@@ -126,7 +127,7 @@
             this.button10.TabIndex = 12;
             this.button10.Text = "Sell";
             this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.button10.Click += new System.EventHandler(this.Button10_Click);
             // 
             // checkBox2
             // 
@@ -199,7 +200,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.timeLevelToolStripMenuItem,
             this.reportToolStripMenuItem,
-            this.settingToolStripMenuItem});
+            this.settingToolStripMenuItem,
+            this.toCloseTheDealToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1350, 24);
@@ -240,7 +242,7 @@
             this.minutesToolStripMenuItem1.Name = "minutesToolStripMenuItem1";
             this.minutesToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
             this.minutesToolStripMenuItem1.Text = "30 minutes";
-            this.minutesToolStripMenuItem1.Click += new System.EventHandler(this.minutesToolStripMenuItem1_Click);
+            this.minutesToolStripMenuItem1.Click += new System.EventHandler(this.MinutesToolStripMenuItem1_Click);
             // 
             // hourToolStripMenuItem
             // 
@@ -293,6 +295,13 @@
             this.settingToolStripMenuItem.Text = "Settings";
             this.settingToolStripMenuItem.Click += new System.EventHandler(this.SettingToolStripMenuItem_Click);
             // 
+            // toCloseTheDealToolStripMenuItem
+            // 
+            this.toCloseTheDealToolStripMenuItem.Name = "toCloseTheDealToolStripMenuItem";
+            this.toCloseTheDealToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
+            this.toCloseTheDealToolStripMenuItem.Text = "To close the deal";
+            this.toCloseTheDealToolStripMenuItem.Click += new System.EventHandler(this.ToCloseTheDealToolStripMenuItem_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -314,11 +323,12 @@
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
-            // Window
+            // Windowd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1350, 719);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.label2);
@@ -338,7 +348,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Window";
+            this.Name = "Windowd";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "EUR/USD";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
@@ -383,5 +393,6 @@
         private System.Windows.Forms.ToolStripMenuItem createReportToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toCloseTheDealToolStripMenuItem;
     }
 }

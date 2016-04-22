@@ -23,11 +23,29 @@ namespace Client
     {
         public Report()
         {
+            int Size;
+            String Prognoz  = "1";
             InitializeComponent();
+            Size = ReportTransit.data.Count();
+            DateTime DateReport = new DateTime();
+            for(int i = 0; i < Size; i ++)
+            {
+                if(ReportTransit.data[i][4] == 0)
+                {
+                    Prognoz = "Повышение";  
+                }
+                if (ReportTransit.data[i][4] == 1)
+                {
+                    Prognoz = "Понижение";
+                }    
+                DateReport = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(ReportTransit.data[i][3]);
+                
+                dataGridView1.Rows.Add(ReportTransit.data[i][0], ReportTransit.data[i][1], ReportTransit.data[i][2],DateReport,Prognoz);
+            }          
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {          
         }
     }
 }

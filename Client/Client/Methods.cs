@@ -46,5 +46,26 @@
             }
             return Number;
      } // локализация уровней сопротивления и поддержки под временные уровни
+
+        public double TradeBuy(bool Buy, List<double> BufferS, int tic)
+        {
+            double Value;
+            string text;
+            SoundPlayer player = new SoundPlayer();
+            player.SoundLocation = Application.StartupPath + "/Music/test.wav"; // путь адреса музыки
+            player.Play(); // Проигрывание звука
+            if(Buy == true)
+            {
+                Value = BufferS[tic - 1]; // Запомнить значение продажи
+                text = "покупка";
+            }
+            else
+            {
+                Value = BufferS[tic - 1]; // Запомнить значение продажи
+                text = "продажа";
+            }
+            MessageBox.Show("Cовершена " + text + " по цене =" + Value);
+            return Value;          
+        }
     }
 }

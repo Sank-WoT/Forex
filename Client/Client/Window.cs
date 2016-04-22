@@ -20,27 +20,32 @@
     using EnumDialogResult = System.Windows.Forms.DialogResult;
 
     public delegate void CountDelegeate(object sender, EventArgs e); // работа с делегатами
-
-    public partial class Windowd : Form
+    /// <summary>
+    /// main class EURUSD.
+    /// </summary>
+    public   partial  class Windowd : Form
     {  
-        ////Calsulations calculations = new Calsulations(); додумать
+        //// Calsulations calculations = new Calsulations(); додумать
         ChartArea area = new ChartArea(); // Создание области
         System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
         int Leaves = 0, Zoom = 100;
-        double shag = 1, BUY = 0, SELL = 0; // интервал для координаты X
+        double shag = 1; // интервал для координаты X
         int danoe = 0;
         int colvo = 0;
 
         double poslchislo;
         double poslchislo1;
+        bool inet;
         bool poluch = false;
 
+        public List<double> BUY = new List<double>();
+        public List<double> SELL = new List<double>();
         List<double> massY = new List<double>();
         List<double> massYInetA = new List<double>(); // лист значений отношения валюты по продаже из файла
         List<double> Times = new List<double>();
         List<double> massYInetB = new List<double>(); // лист значений отношения валюты по покупке из файла
-        List<double> Buffer = new List<double>();
-        List<double> BufferS = new List<double>();
+        public List<double> Buffer = new List<double>();
+        public List<double> BufferS = new List<double>();
 
         List<DateTime> DTIME = new List<DateTime>(); // буфферное время
 
@@ -72,10 +77,12 @@
                 var webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + "0" + "&limit=" + "1" + "&sign=" + value); // запрос на сайт 
                 WebResponse webRes = webReq.GetResponse(); // получение ответа
                 webRes.Close();
+                inet = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Отсутсвие интернета или недоступен сайт ");
+                MessageBox.Show("Отсутсвие интернета или недоступен сайт переход в автономный режим");
+                inet = false;
             } // Временная мера по отсутвию интернета
         
             double fX = 1366;
@@ -99,7 +106,7 @@
             chart1.ChartAreas.Add(area); // передача 
 
             #region Задание параметров кнопкам button9, button8, button10, button1, button7
-            button9.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * ( WSrting.Y / fY ))); // клавиша buy         
+            button9.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * (WSrting.Y / fY))); // клавиша buy         
             button8.Location = new Point(Convert.ToInt32(1157 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * (WSrting.Y / fY))); // клавиша price     
             button10.Location = new Point(Convert.ToInt32(1274 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * (WSrting.Y / fY))); // клавиша sell   
             button1.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X / fX)), Convert.ToInt32(72 * yS * (WSrting.Y / fY))); // клавиша value
@@ -128,7 +135,10 @@
             Menu(); // переводчик меню       
             #endregion
         }
-
+        /// <summary>
+        /// Method create file 
+        /// </summary>
+        /// <param name="pathFile">String</param>
       public void CreateFile(string pathFile)
         {
             //// проверка на существование файла
@@ -140,7 +150,7 @@
             } // развертывание файла в дебаге
         }
 
-        public StreamReader conection(int limit, double poslT, string value)
+        public StreamReader Conection(int limit, double poslT, string value)
         { 
             var webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + poslT + "&limit=" + limit + "&sign=" + value); // запрос на сайт 
             WebResponse webRes = webReq.GetResponse(); // получение ответа
@@ -174,32 +184,34 @@
             } // недопускает присвоение при значении прочтенного в файле меньше 1.  
           
             //// WebProxy wp = new WebProxy("151.236.216.251", 10000); //задаем параметры прокси
-           
-            #region Получение данных при коннекте запись их  в text1
-            StreamReader sr;
-            sr = conection(limit, poslTime, value); // Получение данных при коннекте
-            string response = sr.ReadToEnd(); // присвоение прочтенного к стринг 
-            StreamReader r1 = new StreamReader(pathFile);
-            string text1 = r1.ReadToEnd(); // получение прочтенной записи
-            r1.Close(); // закрыть чтение 
-            #endregion
+       
+                #region Получение данных из файла запись их  в text1              
+                StreamReader r1 = new StreamReader(pathFile);
+                string text1 = r1.ReadToEnd(); // получение прочтенной записи
+                r1.Close(); // закрыть чтение 
+                #endregion
 
-            #region Добавление данных в файл из буфера 
-            text1 += response; // добавление в  файл новых значений
-            FileInfo write = new FileInfo(pathFile); // получаем путь 
-            StreamWriter w = write.CreateText(); // создаем текст  
-            w.WriteLine(text1); // добавляем текст 
-            w.Close(); // закрыть запись 
-            #endregion
+                if (this.inet == true)
+            {
+                #region Добавление данных в файл из буфера 
+                StreamReader sr;
+                sr = Conection(limit, poslTime, value); // Получение данных при коннекте
+                string response = sr.ReadToEnd(); // присвоение прочтенного к стринг 
+                text1 += response; // добавление в  файл новых значений
+                FileInfo write = new FileInfo(pathFile); // получаем путь 
+                StreamWriter w = write.CreateText(); // создаем текст  
+                w.WriteLine(text1); // добавляем текст 
+                w.Close(); // закрыть запись 
+                #endregion
+             }
 
             if (tic == 0)
             {
-            readFile rEURUSD = new readFile();
+            readFile rEURUSD = new readFile(); // вызов класса чтения из файла
             colvo = rEURUSD.read(text1, massYInetA, massYInetB, Times, colvo); // функция чтения из файла
             Console.WriteLine(massYInetB[(colvo / 3) - 1]); ////  Дебаг прочитанного
-
             Methods cEURUSD = new Methods(); // Метод конвертации времени в тип Date Time
-            DINET = cEURUSD.Convert(Times, DINET);
+            DINET = cEURUSD.Convert(Times, DINET); // Конвертируем время из  формата UNIX в DataTime
             }
 
             return poslTime;
@@ -284,8 +296,7 @@
                 button10.Text = "Sell"; // текст клавиши покупки
                 button9.Text = "Buy"; // текст клавиши покупки
                 button1.Text = "Value Buy"; // текст клавиши покупки
-                button7.Text = "Value Sell"; // текст клавиши покупки
-               
+                button7.Text = "Value Sell"; // текст клавиши покупки            
             }
 
             if (WSrting.RUS == true)
@@ -413,7 +424,7 @@
             chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = true;
         } // График динамического создание линий
 
-        public void setting()
+        public void Setting()
         {
             double xS = x / 1920.0; // настройка под все  экраны
             double yS = y / 1080.0; // настройка под все  экраный
@@ -449,12 +460,12 @@
             chart1.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel); // событие вращения колесика
             chart1.Focus(); // необходим фокус
             List<List<double>> poin = new List<List<double>>(); // Точки изменения тренда
-            setting();
+            Setting();
 
             if (checkBox1.Checked == false)
             {
                 chart1.Series[2].Points.Clear();
-                chart1.Series[1].Points.Clear();
+                chart1.Series[1].Points.Clear(); // Очистка точек линий
             }
            
             chart1.Series[0].XValueType = ChartValueType.Time; // установление типа по икс время
@@ -468,7 +479,7 @@
             chart1.Series[0].Points.Clear();
             chart1.Series[4].Points.AddXY(DateT[0].ToOADate(), Buffer[0]); // создаем костыль для графика чарт
 
-            for (int hl = 0; MainT.Count - 1 >= hl; hl++ )
+            for (int hl = 0; MainT.Count - 1 >= hl; hl++)
             {
                 chart1.Series[0].Points.AddXY(MainT[hl].ToOADate(), MainV[hl]);
             }
@@ -495,8 +506,8 @@
 
       public void ZoomT(int ize)
         {
-            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[4].Points[0].XValue - ize * 0.00001157407 + tic * 0.00001157407; // ограничение по X минимум   NowTime
-            chart1.ChartAreas[0].AxisX.Maximum = chart1.Series[4].Points[0].XValue + ize * 0.00001157407 + tic * 0.00001157407; // ограничение по X максимум  под 60 секунд 0,00001157407
+            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[4].Points[0].XValue - (ize * 0.00001157407) + (tic * 0.00001157407); // ограничение по X минимум   NowTime
+            chart1.ChartAreas[0].AxisX.Maximum = chart1.Series[4].Points[0].XValue + (ize * 0.00001157407) + (tic * 0.00001157407); // ограничение по X максимум  под 60 секунд 0,00001157407
         } // функция необходимая для уровней рассмотренного времени
 
       public List<double> SMA(List<DateTime> Dat, int Sglag, List<double> Buff)
@@ -506,7 +517,7 @@
 
             if (Buff.Count >= Sglag)
             {
-                for (int j = 0; j  <= (Buff.Count - Sglag); j++ )
+                for (int j = 0; j  <= (Buff.Count - Sglag); j++)
                 {
                     for (int i = 0; i <= Sglag - 1; i++)
                     {
@@ -546,37 +557,37 @@
             int Pervoe = 0;
             int trend = 0; // переменная тренда
             List<List<double>> poin = new List<List<double>>(); // данные точки
-            List<double> row = new List<double>();
+            List<double> koordPoint = new List<double>();
 
             for (int i = 1; tic > i; i++)
             {
                 if (trend != 1 && (massYInetB[i - 1] - massYInetBuy[i]) > 0)
                 {
-                    row = new List<double>();
+                    koordPoint = new List<double>(); // Координата точки
                     trend = 1; // положительный тренд
-                    row.Add(i - 1); // заполнение точек по икс    
-                    row.Add(massYInetB[i - 1]); // заполнение точек по игрик  
+                    koordPoint.Add(i - 1); // заполнение точек по икс    
+                    koordPoint.Add(massYInetB[i - 1]); // заполнение точек по игрик  
                     if (Pervoe == 0)
                     {
                         danoe = -1;
                         Pervoe++;
                     } // узнаем первое значение минимум оно или максимум
-                    poin.Add(row);
+                    poin.Add(koordPoint); // добавление координаты точки
                 }
 
                 if (trend != -1 && (massYInetB[i - 1] - massYInetB[i]) < 0)
-                {
+                { 
+                    koordPoint = new List<double>();  // Координата точки
+                    trend = -1; // положительный тренд
+                    koordPoint.Add(i-1); // заполнение точек по икс    
+                    PoinX.Add(i-1);
+                    koordPoint.Add(massYInetB[i]-1); // заполнение точек по игрик  
                     if (Pervoe == 0)
                     {
                         danoe = 1;
                         Pervoe++;
                     } // узнаем первое значение минимум оно или максимум
-                    row = new List<double>();
-                    trend = -1; // положительный тренд
-                    row.Add(i); // заполнение точек по икс    
-                    PoinX.Add(i);
-                    row.Add(massYInetB[i]); // заполнение точек по игрик  
-                    poin.Add(row);
+                    poin.Add(koordPoint); // добавление координаты точки
                 }
             }
 
@@ -594,7 +605,7 @@
 
             for (int h = 1; h < poin.Count; h++)
             {
-                //// cpoin[h][1] точка по игрик
+                //// poin[h][1] точка по игрик
                 if (MAXY < poin[h][1]) 
                 {
                     MAXY = poin[h][1];
@@ -621,13 +632,13 @@
 
             for (int g = 0; g < poin.Count; g++)
             {
+                //// g != MinH Не просматривать точку, которая уже входит в уровень поддержки
                 if (((MINY - poin[g][1]) >= -pogr) && g != MinH)
                 {
-                    chart1.Series[2].Points.Clear();
+                    chart1.Series[2].Points.Clear(); // Очистка линии
                     line2Y = poin[g][1]; // 2 точка по игрик
-                    line2X = Convert.ToInt32(poin[g][0]); // 2 точка по икс
-
-                    chart1.Series[2].XValueType = ChartValueType.Time;
+                    line2X = Convert.ToInt32(poin[g][0]); // 2 точка по икс                    
+                    chart1.Series[2].XValueType = ChartValueType.Time; // Указывание типа координат по X
                     chart1.Series[2].Points.AddXY(Date[0].ToOADate(), line2Y); // 1 точка // можно использовать для начала line1X
                     chart1.Series[2].Points.AddXY(Date[tic].ToOADate(), line2Y); // 2 точка
                     chart1.Series[2].Color = Color.FromArgb(55, 0, 55); // задание цвета 
@@ -646,7 +657,6 @@
         {
             int line2X;
             double line2Y;
-            //// poin[h][1] точка по игрик
             if (MAXY < poin[h][1]) 
             {
                 MAXY = poin[h][1];
@@ -658,11 +668,11 @@
             {
                 if (((MAXY - poin[g][1]) <= pogr) && g != MaxH)
                 {
-                    chart1.Series[1].Points.Clear();
+                    chart1.Series[1].Points.Clear(); // Очистка линии
                     line2Y = poin[g][1]; // 2 точка по игрик
                     line2X = Convert.ToInt32(poin[g][0]); // 2 точка по икс
 
-                    chart1.Series[1].XValueType = ChartValueType.Time;
+                    chart1.Series[1].XValueType = ChartValueType.Time; // Указывание типа координат по X
                     chart1.Series[1].Points.AddXY(Date[0].ToOADate(), line2Y); // 1 точка // можно использовать для начала line1X
                     chart1.Series[1].Points.AddXY(Date[tic].ToOADate(), line2Y); // 2 точка
                     chart1.Series[1].Color = Color.FromArgb(255, 0, 0); // задание цвета 
@@ -680,8 +690,7 @@
         { 
           t.Start(); 
           t.Interval = 1000; // время секунды
-          t.Tick += new EventHandler(timer1_Tick); // прибавление времени       
-          Graph(); // метод построения 
+          t.Tick +=  new EventHandler(timer1_Tick); // прибавление времени       
         }
 
         public void chart1_MouseMove(object sender, MouseEventArgs e)
@@ -711,7 +720,7 @@
                     if (Zoom > 60) 
                     { 
                         ZoomT(Zoom); 
-                    };
+                    }
                         break;
                 }
             }
@@ -734,7 +743,9 @@
             NowTime = Convert.ToInt32(dTime); // текущее время (работает)
             string value;
             value = "eurusd";
-          
+
+          if (inet == true)
+          {
             var webReq1 = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + NowTime + "&limit=" + 1 + "&sign=" + value); // запрос на сайт 
             WebResponse webRes1 = webReq1.GetResponse(); // получение ответа
             Stream st = webRes1.GetResponseStream(); // поток по которому получаем инфу
@@ -742,32 +753,37 @@
             string texts = sr.ReadToEnd(); // получение прочтенной записи
             Regex regex = new Regex(@"((\d{10,20})|(\d{1,20})\.(\d{1,4}))"); // регулярное выражение 
             MatchCollection M = regex.Matches(texts);
-            //// Console.WriteLine(NowTime);
-
-                if (tic == 0)
+               
+              if (tic == 0)
                 {
-                    poslchislo = massYInetA[massYInetB.Count - 1];
+                    poslchislo = massYInetA[massYInetB.Count - 1]; // Присвоение к последнему числу в записи
                 }
 
                 if (tic == 0)
                 {
-                    poslchislo1 = massYInetB[massYInetA.Count - 1];
+                    poslchislo1 = massYInetB[massYInetA.Count - 1]; // Присвоение к последнему числу в записи
                 }
 
             if (M.Count > 0)
             {
               Buffer.Add(Convert.ToDouble(M[9].Value)); // добавить в лист значения        
               BufferS.Add(Convert.ToDouble(M[1].Value)); // добавить в лист значения    
-              Console.WriteLine("Значение вошло"); 
               poslchislo = Convert.ToDouble(M[0].Value);
               poslchislo1 = Convert.ToDouble(M[1].Value);
             }
             else 
             {                              
-                Buffer.Add(poslchislo);
-                BufferS.Add(poslchislo1);
-            }      //// додумать
- 
+                Buffer.Add(poslchislo); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
+                BufferS.Add(poslchislo1); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
+            } 
+
+             }
+           else
+          {
+              Buffer.Add(massYInetA[massYInetA.Count - 1]); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
+              BufferS.Add(massYInetB[massYInetB.Count - 1]); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
+          }
+
           DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(NowTime); // время в формате UNIX
           DTIME.Add(Date); // добавление времени в лист
 
@@ -790,22 +806,16 @@
         {
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void Button9_Click(object sender, EventArgs e)
         {
-            SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = Application.StartupPath + "/Music/test.wav"; // путь адреса музыки
-            player.Play(); // Проигрывание звука 
-            BUY = Buffer[tic - 1]; // Запомнить значение покупки
-            MessageBox.Show("Cовершена покупка по цене =  " + BUY);        
+            Methods se = new Methods();
+            BUY.Add(se.TradeBuy(true, Buffer, tic));  // Запомнить значение продажи          
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void Button10_Click(object sender, EventArgs e)
         {
-            SoundPlayer player = new SoundPlayer();
-            player.SoundLocation = Application.StartupPath + "/Music/test.wav"; // путь адреса музыки
-            player.Play(); // Проигрывание звука
-            SELL = BufferS[tic - 1]; // Запомнить значение продажи
-            MessageBox.Show("Cовершена продажа по цене =  " + SELL);
+            Methods se = new Methods();
+            SELL.Add(se.TradeBuy(false, BufferS, tic));  // Запомнить значение продажи           
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -835,7 +845,7 @@
 
 
         #region параметры уровней времени
-        public void SecondToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SecondToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Leaves = 1;
             area.AxisX.MajorGrid.Interval = 0.00001157407;
@@ -862,7 +872,7 @@
             monthToolStripMenuItem.CheckState = CheckState.Unchecked; // убрать отметку месячный уровень
         } // 5 минутный уровень 
 
-        private void minutesToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void MinutesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             area.AxisX.MajorGrid.Interval = 0.00001157407 * 60 * 5;
             Zoom = 9000;
@@ -966,5 +976,13 @@
         fset.Show();
         fset.Size = new Size(580, 580); // задание размера формы 
     }
+
+    private void ToCloseTheDealToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        CloseDeal f = new CloseDeal();
+        f.Owner = this;
+        f.Show(); // Показать форму
+    }
+
     }
 }
