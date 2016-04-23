@@ -19,7 +19,10 @@
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
     public partial class CloseDeal : Form
-    { 
+    {      
+            Windowd main; 
+            List<double> BUY = new List<double>();
+            List<double> SELL = new List<double>();
             List<double> Buffer = new List<double>();
             List<double> BufferS = new List<double>();
             List<List<double>> data = new List<List<double>>();
@@ -31,11 +34,7 @@
 
             public void CloseDeal_Load(object sender, EventArgs e)
         {   
-            Windowd main = this.Owner as Windowd;
-            List<double> BUY = new List<double>();
-            List<double> SELL = new List<double>();
-           
-
+            main = this.Owner as Windowd;     
             if (main != null)
             {
                 BUY = main.BUY; // Получение данных из родительской формы BUY (класса)
@@ -44,14 +43,14 @@
                 BufferS = main.BufferS;
             }
 
-            for (int i = 0; i < BUY.Count; i++ )
+            for (int i = 0; i < main.BUY.Count; i++)
             {
-               ListD.Items.Add(Convert.ToString(BUY[i]) + "  покупка" );
+                ListD.Items.Add(Convert.ToString(main.BUY[i]) + "  покупка");
             }
 
-            for (int i = 0; i < SELL.Count; i++)
+            for (int i = 0; i < main.SELL.Count; i++)
             {
-               ListD.Items.Add(Convert.ToString(SELL[i]) + "  продано");
+                ListD.Items.Add(Convert.ToString(main.SELL[i]) + "  продано");
             }
        
         }
@@ -96,7 +95,16 @@
                 iterData.Add(1.0);
                 ReportTransit.data.Add(iterData); // хранит в  себе цену покупку цену закрытия сделки, прибыль и время закрытия
             }
-            ListD.Items.RemoveAt(ListD.SelectedIndex); // Удалить выбранную запись  // осталось додумать  как отослать все это для отчета        
+
+            if (main.BUY.Count >= ListD.SelectedIndex +1)
+            {
+                main.BUY.RemoveAt(ListD.SelectedIndex); // Удаление данных Покупки из списка  по уже закрытой сделке 
+            }
+            else
+            {
+                main.SELL.RemoveAt(ListD.SelectedIndex - main.BUY.Count); // Удаление данных Покупки из списка  по уже закрытой сделке 
+            }
+            ListD.Items.RemoveAt(ListD.SelectedIndex); // Удалить выбранную запись  // осталось додумать  как отослать все это для отчета
         }
     }
 }

@@ -18,9 +18,17 @@ namespace Client
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
+    using Microsoft.Office.Interop.Excel;
+    using System.Runtime.InteropServices;
+    using Excel = Microsoft.Office.Interop.Excel;
 
     public partial class Report : Form
     {
+        Exel EReport = new Exel();
+        private Excel.Application ObjExcel;
+        private Excel.Workbook ObjWorkBook;
+        private Excel.Worksheet ObjWorkSheet;
+        private string fileName;
         public Report()
         {
             int Size;
@@ -47,5 +55,21 @@ namespace Client
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {          
         }
+
+        private void DownloadHistoricalMarketDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fileName = System.Windows.Forms.Application.StartupPath + "\\" + "FirstExel" + ".xls"; // Путь Exporta файла          
+            EReport.ESave(dataGridView1); // Использование метода загрузки данных
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EReport.ELoad(dataGridView1); // Использование метода сохранения данных
+        }
+
+        }
     }
-}

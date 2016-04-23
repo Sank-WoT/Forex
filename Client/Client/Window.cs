@@ -258,12 +258,12 @@
         
         public void tTip()
        {
-            toolTip1.AutoPopDelay = 3000; // время сколько показывается надпись
+            toolTip1.AutoPopDelay = 1000; // время сколько показывается надпись
             toolTip1.InitialDelay = 1000; // время сколько показывается надпись
             toolTip1.ReshowDelay = 1000; // время сколько показывается надпись
             toolTip1.ShowAlways = true;
 
-            toolTip2.AutoPopDelay = 3000; // время сколько показывается надпись
+            toolTip2.AutoPopDelay = 1000; // время сколько показывается надпись
             toolTip2.InitialDelay = 1000; // время сколько показывается надпись
             toolTip2.ReshowDelay = 1000; // время сколько показывается надпись
             toolTip2.ShowAlways = true;
@@ -282,7 +282,7 @@
                 toolTip1.SetToolTip(this.checkBox1, "Нажмите чтобы активировать отображение уровней поддержки и сопротивления.");
             }
 
-            toolTip3.AutoPopDelay = 3000; // время сколько показывается надпись
+            toolTip3.AutoPopDelay = 1000; // время сколько показывается надпись
             toolTip3.InitialDelay = 1000; // время сколько показывается надпись
             toolTip3.ReshowDelay = 1000; // время сколько показывается надпись
             toolTip3.ShowAlways = true;
@@ -324,6 +324,7 @@
                dayToolStripMenuItem.Text = "Day";
                weekToolStripMenuItem.Text = "Week";
                monthToolStripMenuItem.Text = "Month";
+               toCloseTheDealToolStripMenuItem.Text = "To close the deal"; 
             }
 
             if (WSrting.RUS == true)
@@ -339,6 +340,7 @@
                dayToolStripMenuItem.Text = "День";
                weekToolStripMenuItem.Text = "Неделя";
                monthToolStripMenuItem.Text = "Месяц";
+               toCloseTheDealToolStripMenuItem.Text = "Закрыть сделку"; 
             }
         }
     
@@ -966,7 +968,7 @@
     private void CreateReportToolStripMenuItem_Click(object sender, EventArgs e)
     {
         Report rep = new Report();
-        rep.Size = new Size(470, 500); // задание размеров окна отчета
+        rep.Size = new Size(650, 455); // задание размеров окна отчета
         rep.Show(); // Показать  окно отчета
     }
 

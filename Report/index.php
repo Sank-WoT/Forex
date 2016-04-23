@@ -9,11 +9,13 @@
             <link rel="stylesheet" href="style.css">
     </head>
         <body>
-            <h1>Документация на методы курсового проекта</h1>
-            <br>
+            <nav>
             <a href ="#Resistance">Метод уровня сопротивления</a>
             <a href ="#Support">Метод уровня поддержки</a>
             <a href ="#SMA">Метод SMA</a>
+            </nav>
+            <h1>Документация на методы курсового проекта</h1>
+            <br>
             <?php 
             $host = "localhost";
             $Base = "c913670j_report";
@@ -26,9 +28,10 @@
              $buy = $_GET["buy"];
              $sell = $_GET["sell"];
              $data = $_GET["data"];
-             $Login = $_GET["Login"];//создать различные исключения  по id и выборку
+             $Login = $_GET["Login"]; // создать различные исключения  по id и выборку
              $result = mysql_query("INSERT INTO `EURUSD` (`id`, `buy`, `sell`, `data`, `Login`) VALUES ('$id', '$buy', '$sell', '$data', '$Login');");
              $myrow =  mysql_fetch_array($result);
+
             for($i = 0; $i<3;$i++ )
             {
                 switch($i)
