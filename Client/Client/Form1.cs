@@ -124,7 +124,6 @@
             Y = Convert.ToInt32(readY);
             WSrting.X = X; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
             WSrting.Y = Y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
-            Console.WriteLine(WSrting.X); // Дебаг
             #endregion
             #region  Window f1 = new Window(); Создание модального окна
             Windowd f1 = new Windowd();
@@ -134,7 +133,51 @@
             #endregion
             }
         } //// показать  график  EUR/USD
+        public void eURJPYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string readX, readY;
+            int X = 0, Y = 0;
 
+            if (WindowClosing == true)
+            {
+                WindowClosing = false;
+                string pathFile = Application.StartupPath + "\\SettingWindow.txt"; // Очень важно указать путь
+                                                                                   //// проверка на существование файла
+                if (!File.Exists(pathFile))
+                {
+                    FileInfo writel = new FileInfo(pathFile); // получаем путь  для записи и создания
+                    StreamWriter l = writel.CreateText(); // создаем текст
+                    string text = "EURUSD   " + 1366 + "      " + 757;
+                    l.WriteLine(text);
+                    l.Close(); // закрыть запись
+                } ////Создаем файл настроек окон первые две записи // необходимо придумать тег
+
+                #region Чтение из файла  FileInfo write = new FileInfo(pathFile);
+                FileInfo write = new FileInfo(pathFile); // получаем путь 
+                StreamReader r1 = new StreamReader(pathFile);
+                string text1 = r1.ReadToEnd(); // получение прочтенной записи
+                r1.Close(); // закрыть чтение 
+                Regex regex = new Regex(@"(EURUSD\s\s\s\d{1,20}\s\s\s\s\s\s\d{1,20})"); // регулярное выражение для поиска размеров окна
+                Regex regex1 = new Regex(@"(\d{1,20})"); // регулярное выражение для поиска размеров окна
+                MatchCollection m = regex.Matches(text1);
+                string response = m[0].ToString();
+                MatchCollection m1 = regex1.Matches(response);
+                readX = m1[0].Value;
+                readY = m1[1].Value;
+                #endregion
+                #region Присвоение прочтенного из файла к WSrting.X WSrting.Y
+                X = Convert.ToInt32(readX);
+                Y = Convert.ToInt32(readY);
+                WSrting.X = X; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
+                WSrting.Y = Y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
+                #endregion
+
+                Form f2 = new Windowd();
+                f2.Show(); // модольное окно 
+                f2.Size = new Size(X, Y); // Задаем значение размера формы Window 
+                f2.Location = new Point(0, 0); // размещение окна EURUSD
+            }
+        }
         /// <summary>
         /// Создание окна SWindow
         /// </summary>
@@ -310,5 +353,7 @@
             WSrting.RUS = true; // Выбор языка русский
             MenuForm1();
         }
+
+       
     }
 }

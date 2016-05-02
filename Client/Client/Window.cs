@@ -740,7 +740,7 @@
 
         private void timer1_Tick(object sender, EventArgs e)
         { 
-            double dTime = (DateTime.Now - new System.DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds - 5; // Текущее время
+            double dTime = (DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds -5; // Текущее время
             int NowTime;
             NowTime = Convert.ToInt32(dTime); // текущее время (работает)
             string value;
@@ -768,10 +768,10 @@
 
             if (M.Count > 0)
             {
-              Buffer.Add(Convert.ToDouble(M[9].Value)); // добавить в лист значения        
-              BufferS.Add(Convert.ToDouble(M[1].Value)); // добавить в лист значения    
-              poslchislo = Convert.ToDouble(M[0].Value);
-              poslchislo1 = Convert.ToDouble(M[1].Value);
+              Buffer.Add(Convert.ToDouble(M[1].Value)); // добавить в лист значения        
+              BufferS.Add(Convert.ToDouble(M[2].Value)); // добавить в лист значения    
+              poslchislo = Convert.ToDouble(M[1].Value);
+              poslchislo1 = Convert.ToDouble(M[2].Value);
             }
             else 
             {                              

@@ -41,6 +41,7 @@
             this.langueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eURToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eURJPYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WSettings.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,14 +75,14 @@
             // windowToolStripMenuItem
             // 
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
-            this.windowToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.windowToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.windowToolStripMenuItem.Text = "Window";
             this.windowToolStripMenuItem.Click += new System.EventHandler(this.WindowToolStripMenuItem_Click);
             // 
             // chartToolStripMenuItem
             // 
             this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
-            this.chartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chartToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.chartToolStripMenuItem.Text = "Chart";
             this.chartToolStripMenuItem.Click += new System.EventHandler(this.СhartToolStripMenuItem_Click);
             // 
@@ -99,14 +100,14 @@
             // создателиToolStripMenuItem
             // 
             this.создателиToolStripMenuItem.Name = "создателиToolStripMenuItem";
-            this.создателиToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.создателиToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.создателиToolStripMenuItem.Text = " Creators";
             this.создателиToolStripMenuItem.Click += new System.EventHandler(this.CreatoresToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
             // 
@@ -114,7 +115,8 @@
             // 
             this.currencyPairsToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.currencyPairsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eURUSDToolStripMenuItem});
+            this.eURUSDToolStripMenuItem,
+            this.eURJPYToolStripMenuItem});
             this.currencyPairsToolStripMenuItem.Name = "currencyPairsToolStripMenuItem";
             this.currencyPairsToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.currencyPairsToolStripMenuItem.Text = "Currency pairs";
@@ -142,16 +144,23 @@
             // eURToolStripMenuItem
             // 
             this.eURToolStripMenuItem.Name = "eURToolStripMenuItem";
-            this.eURToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eURToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.eURToolStripMenuItem.Text = "Eng";
             this.eURToolStripMenuItem.Click += new System.EventHandler(this.EEURUSDToolStripMenuItem);
             // 
             // rusToolStripMenuItem
             // 
             this.rusToolStripMenuItem.Name = "rusToolStripMenuItem";
-            this.rusToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rusToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.rusToolStripMenuItem.Text = "Rus";
             this.rusToolStripMenuItem.Click += new System.EventHandler(this.RusToolStripMenuItem_Click);
+            // 
+            // eURJPYToolStripMenuItem
+            // 
+            this.eURJPYToolStripMenuItem.Name = "eURJPYToolStripMenuItem";
+            this.eURJPYToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eURJPYToolStripMenuItem.Text = "EUR/JPY";
+            this.eURJPYToolStripMenuItem.Click += new System.EventHandler(this.eURJPYToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -185,6 +194,7 @@
         private System.Windows.Forms.ToolStripMenuItem langueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eURToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eURJPYToolStripMenuItem;
     }
 }
 
