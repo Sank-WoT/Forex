@@ -11,7 +11,7 @@ Input parameters:
 
  1. ***time*** - if specified, then displays the exchange rate after this time. Default = 0.
  2. ***limit*** - if specified, then limit output count. Default = 100.
- 3. ***sign*** - currency name, for example **eurusd**.     *not implemented*.
+ 3. ***sign*** - currency name, for example **eurusd**. .
  
  Output format:
  **int** time from 1.1.1970,**float** bid,**float** ask; 
@@ -25,6 +25,7 @@ Code     | Description
 1 		| argument **time** not int
 2	    | no one record has > **time**
 3	    | argument **limit** not int
+4	    | value pair **sign** not exist
 ----------
 To set prediction use **upload_prediction.php**
 
