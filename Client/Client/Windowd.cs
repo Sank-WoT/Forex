@@ -26,17 +26,18 @@
     public   partial  class Windowd : Form
     {  
         //// Calsulations calculations = new Calsulations(); додумать
-        ChartArea area = new ChartArea(); // Создание области
+       public ChartArea area = new ChartArea(); // Создание области
         System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
-        int Leaves = 0, Zoom = 100;
-        double shag = 1; // интервал для координаты X
-        int danoe = 0;
-        int colvo = 0;
+        public int Leaves = 0, Zoom = 100;
+        public double shag = 1; // интервал для координаты X
+        public int danoe = 0;
+        public int colvo = 0;
+        public string value = "eurusd";
 
-        double poslchislo;
-        double poslchislo1;
-        bool inet;
-        bool poluch = false;
+        public double poslchislo;
+        public double poslchislo1;
+        public  bool inet;
+        public bool poluch = false;
 
         public List<double> BUY = new List<double>();
         public List<double> SELL = new List<double>();
@@ -47,17 +48,16 @@
         public List<double> Buffer = new List<double>();
         public List<double> BufferS = new List<double>();
 
-        List<DateTime> DTIME = new List<DateTime>(); // буфферное время
+        public List<DateTime> DTIME = new List<DateTime>(); // буфферное время
 
-        List<DateTime> DINET = new List<DateTime>(); // время из файла
+        public List<DateTime> DINET = new List<DateTime>(); // время из файла
 
-        List<DateTime> MainT = new List<DateTime>();
-        List<double> MainV = new List<double>(); 
+        public List<DateTime> MainT = new List<DateTime>();
+        public List<double> MainV = new List<double>();
 
-        List<double> sred = new List<double>(); // Точки по X SMAr
-        double poslTime = 0; // последнее время
-        string[] value = new string[1] { "eurusd" };  // Переменная для отправки в адрес URL и файлу
-        int tic = 0; // Переменная отслеживающая кол-во прошедших секунд с запуска формы
+        public List<double> sred = new List<double>(); // Точки по X SMAr
+        public double poslTime = 0; // последнее время
+        public int tic = 0; // Переменная отслеживающая кол-во прошедших секунд с запуска формы
 
         #region Параметры текущей формы
         int y = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height; // высота экрана
@@ -70,28 +70,19 @@
 
         List<int> PoinX = new List<int>(); // данные точки
         StreamReader q;
-   public Windowd()
+       public Windowd()
         {
-            try
-            {
-                var webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + "0" + "&limit=" + "1" + "&sign=" + value); // запрос на сайт 
-                WebResponse webRes = webReq.GetResponse(); // получение ответа
-                webRes.Close();
-                inet = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Отсутсвие интернета или недоступен сайт переход в автономный режим");
-                inet = false;
-            } // Временная мера по отсутвию интернета
-        
+            inet = TryCon(inet);
+
+
             double fX = 1366;
             double fY = 757;
             double xS = x / 1920.0; // настройка под все  экраны
             double yS = y / 1080.0; // настройка под все  экраны
 
-            poslTime = Conect(value[0], poslTime, 1000000); // соединение для получения посоеднего времени
-                    
+            poslTime = Conect(value, poslTime, 1000000, inet); // соединение для получения посоеднего времени
+
+
             this.InitializeComponent();
 
             this.FormClosing += new FormClosingEventHandler(OnClos);
@@ -124,8 +115,10 @@
             checkBox1.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(149 * yS * (WSrting.Y / fY)));
             checkBox2.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(172 * yS * (WSrting.Y / fY)));
             checkBox3.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(305 * yS * (WSrting.Y / fY)));
-            checkBox4.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(195 * yS * (WSrting.Y / fY)));            
-            
+            checkBox4.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(195 * yS * (WSrting.Y / fY)));
+
+                Methods Time = new Methods();
+                Time.TradeStop(DateTime.Now);
             Graph(); // Вызов метода объявления линий
 
             #region вызов Методов локализации формы
@@ -135,11 +128,31 @@
             Menu(); // переводчик меню       
             #endregion
         }
-        /// <summary>
-        /// Method create file 
-        /// </summary>
-        /// <param name="pathFile">String</param>
-      public void CreateFile(string pathFile)
+
+        public bool TryCon(bool inet)
+        {
+             try
+            {
+                var webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + "0" + "&limit=" + "1" + "&sign=" + value); // запрос на сайт 
+        WebResponse webRes = webReq.GetResponse(); // получение ответа
+        webRes.Close();
+                inet = true;
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show("Отсутсвие интернета или недоступен сайт переход в автономный режим");
+                inet = false;
+            } // Временная мера по отсутвию интернета
+            return inet;
+        }
+
+
+/// <summary>
+/// Method create file 
+/// </summary>
+/// <param name="pathFile">String</param>
+public void CreateFile(string pathFile)
         {
             //// проверка на существование файла
             if (!File.Exists(pathFile)) 
@@ -151,15 +164,17 @@
         }
 
         public StreamReader Conection(int limit, double poslT, string value)
-        { 
+        {
+
             var webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + poslT + "&limit=" + limit + "&sign=" + value); // запрос на сайт 
             WebResponse webRes = webReq.GetResponse(); // получение ответа
             Stream st = webRes.GetResponseStream(); // поток по которому получаем инфу
             StreamReader sr = new StreamReader(st); // прочитать поток
+            Console.WriteLine("http://currency-dred95.rhcloud.com/get_currency.php?time=" + poslT + "&limit=" + limit + "&sign=" + value);
             return sr; 
         }
 
-        public double Conect(string value, double poslTime, int limit)
+        public double Conect(string value, double poslTime, int limit, bool inet)
         { 
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US"); // преобразовение типа доубле к американскому стандарту
             Console.WriteLine(WSrting.ENG); // Дебаг выбjра языка
@@ -179,8 +194,6 @@
             if (m1.Count != 0)
             {
                 poslTime = Convert.ToDouble(m1[m1.Count - 1].Value);
-                Console.WriteLine("poslTime");
-                Console.WriteLine(poslTime); // Дебаг
             } // недопускает присвоение при значении прочтенного в файле меньше 1.  
           
             //// WebProxy wp = new WebProxy("151.236.216.251", 10000); //задаем параметры прокси
@@ -191,7 +204,7 @@
                 r1.Close(); // закрыть чтение 
                 #endregion
 
-                if (this.inet == true)
+                if (inet == true)
             {
                 #region Добавление данных в файл из буфера 
                 StreamReader sr;
@@ -410,7 +423,7 @@
             chart1.ChartAreas[0].AxisX.IsStartedFromZero = true;
 
             chart1.ChartAreas[0].AxisX.Title = "Date, Time";
-            chart1.ChartAreas[0].AxisY.Title = "Attitude EUR/USD";
+            chart1.ChartAreas[0].AxisY.Title = "Attitude " + value ;
 
             chart1.ChartAreas[0].AxisX.ScaleView.SizeType = DateTimeIntervalType.Seconds;
             chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.FixedCount;

@@ -38,10 +38,10 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currencyPairsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eURUSDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eURJPYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.langueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eURToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eURJPYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WSettings.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,6 +129,13 @@
             this.eURUSDToolStripMenuItem.Text = "EUR/USD";
             this.eURUSDToolStripMenuItem.Click += new System.EventHandler(this.EEURUSDToolStripMenuItem_Click);
             // 
+            // eURJPYToolStripMenuItem
+            // 
+            this.eURJPYToolStripMenuItem.Name = "eURJPYToolStripMenuItem";
+            this.eURJPYToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.eURJPYToolStripMenuItem.Text = "USD/JPY";
+            this.eURJPYToolStripMenuItem.Click += new System.EventHandler(this.EURJPYToolStripMenuItem_Click);
+            // 
             // langueToolStripMenuItem
             // 
             this.langueToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -154,13 +161,6 @@
             this.rusToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.rusToolStripMenuItem.Text = "Rus";
             this.rusToolStripMenuItem.Click += new System.EventHandler(this.RusToolStripMenuItem_Click);
-            // 
-            // eURJPYToolStripMenuItem
-            // 
-            this.eURJPYToolStripMenuItem.Name = "eURJPYToolStripMenuItem";
-            this.eURJPYToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.eURJPYToolStripMenuItem.Text = "EUR/JPY";
-            this.eURJPYToolStripMenuItem.Click += new System.EventHandler(this.eURJPYToolStripMenuItem_Click);
             // 
             // Form1
             // 

@@ -69,12 +69,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
     <Compile Include="GraphY.cs" />
     <Compile Include="Help.cs">
       <SubType>Form</SubType>
@@ -105,12 +99,18 @@
     <Compile Include="SWindow.Designer.cs">
       <DependentUpon>SWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Window.cs">
+    <Compile Include="Val2cs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Val2cs.Designer.cs">
+      <DependentUpon>Val2cs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windowd.cs">
       <SubType>Form</SubType>
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Window.Designer.cs">
-      <DependentUpon>Window.cs</DependentUpon>
+    <Compile Include="Windowd.Designer.cs">
+      <DependentUpon>Windowd.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CloseDeal.resx">
       <DependentUpon>CloseDeal.cs</DependentUpon>
@@ -120,9 +120,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Help.resx">
       <DependentUpon>Help.cs</DependentUpon>
@@ -145,8 +142,11 @@
     <EmbeddedResource Include="SWindow.resx">
       <DependentUpon>SWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Window.resx">
-      <DependentUpon>Window.cs</DependentUpon>
+    <EmbeddedResource Include="Val2cs.resx">
+      <DependentUpon>Val2cs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windowd.resx">
+      <DependentUpon>Windowd.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

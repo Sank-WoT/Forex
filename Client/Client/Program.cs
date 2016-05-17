@@ -25,6 +25,7 @@ namespace Client
         public static int Y { get; set; }
         public static bool RUS;
         public static bool ENG;
+        public static string VALUE;
 
     }// передача данных между формами
 

@@ -67,5 +67,22 @@
             MessageBox.Show("Cовершена " + text + " по цене =" + Value);
             return Value;          
         }
+
+        public void TradeStop(DateTime NowDate)
+        {
+            string Time;
+            Time = NowDate.ToString("U");
+            Regex regex1 = new Regex(@"[a-zA-Z]+"); // регулярное выражение для поиска последнего времени в файле
+            MatchCollection m1 = regex1.Matches(Time);
+            string DayOffTheWeek = m1[0].Value;
+            Regex regex2 = new Regex(@"[0-3]+:[0-9]+:[0-9]+"); // регулярное выражение для поиска последнего времени в файле
+            MatchCollection m2 = regex2.Matches(Time);
+            string Time1 = m2[0].Value;
+            switch (DayOffTheWeek)
+            {
+                case "Saturday" : MessageBox.Show("Forex day off"); break;
+                case "Sunday": MessageBox.Show("Forex day off"); break;
+            }
+        }
     }
 }

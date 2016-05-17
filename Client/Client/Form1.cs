@@ -1,22 +1,11 @@
 ﻿namespace Client
 {
     using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Data;
     using System.Drawing;
-    using System.Globalization;
     using System.IO; // для класса 
-    using System.Linq;
-    using System.Net;
-    using System.Net.Sockets;
-    using System.Text;
     using System.Text.RegularExpressions;
-    using System.Threading;
-    using System.Threading.Tasks;
     using System.Windows.Forms;
-    using System.Windows.Forms.DataVisualization.Charting;
-    using EnumDialogResult = System.Windows.Forms.DialogResult;
+
 
     /// <summary>
     /// Начальное окно
@@ -124,16 +113,16 @@
             Y = Convert.ToInt32(readY);
             WSrting.X = X; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
             WSrting.Y = Y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
-            #endregion
-            #region  Window f1 = new Window(); Создание модального окна
-            Windowd f1 = new Windowd();
+                #endregion
+                #region  Window f1 = new Window(); Создание модального окна
+                Windowd f1 = new Windowd();
             f1.Show(); // модольное окно 
             f1.Size = new Size(X, Y); // Задаем значение размера формы Window 
             f1.Location = new Point(0, 0); // размещение окна EURUSD
             #endregion
             }
         } //// показать  график  EUR/USD
-        public void eURJPYToolStripMenuItem_Click(object sender, EventArgs e)
+        public void EURJPYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string readX, readY;
             int X = 0, Y = 0;
@@ -171,11 +160,10 @@
                 WSrting.X = X; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
                 WSrting.Y = Y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
                 #endregion
-
-                Form f2 = new Windowd();
+                Val2cs f2 = new Val2cs();
                 f2.Show(); // модольное окно 
                 f2.Size = new Size(X, Y); // Задаем значение размера формы Window 
-                f2.Location = new Point(0, 0); // размещение окна EURUSD
+                f2.Location = new Point(0, 0); // размещение окна USDJPY
             }
         }
         /// <summary>
