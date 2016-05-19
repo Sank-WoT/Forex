@@ -24,6 +24,13 @@
         /// </summary>
         public Form1()
         {
+            Methods Time = new Methods();
+            
+            switch (Time.TradeStop(DateTime.Now))
+            {
+                case "Sat": MessageBox.Show("Forex day off"); break;
+                case "Sun": MessageBox.Show("Forex day off"); break;
+            }
             this.InitializeComponent();   
             string pathDirectory = Application.StartupPath; // Путь к директории
 
@@ -79,7 +86,7 @@
         public void EEURUSDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string readX, readY;
-            int X = 0, Y = 0;
+            int x = 0, y = 0;
 
             if (WindowClosing == true)
             {
@@ -109,15 +116,16 @@
             readY = m1[1].Value;
             #endregion
             #region Присвоение прочтенного из файла к WSrting.X WSrting.Y
-            X = Convert.ToInt32(readX);
-            Y = Convert.ToInt32(readY);
-            WSrting.X = X; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
-            WSrting.Y = Y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
+            x = Convert.ToInt32(readX);
+            y = Convert.ToInt32(readY);
+            WSrting.X = x; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
+            WSrting.Y = y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
                 #endregion
                 #region  Window f1 = new Window(); Создание модального окна
+               WSrting.VALUE = "eurusd";
                 Windowd f1 = new Windowd();
             f1.Show(); // модольное окно 
-            f1.Size = new Size(X, Y); // Задаем значение размера формы Window 
+            f1.Size = new Size(x, y); // Задаем значение размера формы Window 
             f1.Location = new Point(0, 0); // размещение окна EURUSD
             #endregion
             }
@@ -160,7 +168,8 @@
                 WSrting.X = X; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
                 WSrting.Y = Y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
                 #endregion
-                Val2cs f2 = new Val2cs();
+                WSrting.VALUE = "usdjpy";
+                Windowd f2 = new Windowd();
                 f2.Show(); // модольное окно 
                 f2.Size = new Size(X, Y); // Задаем значение размера формы Window 
                 f2.Location = new Point(0, 0); // размещение окна USDJPY
@@ -233,9 +242,11 @@
               helpToolStripMenuItem.Text = "Помощь";
               currencyPairsToolStripMenuItem.Text = "Валютные пары";
               eURUSDToolStripMenuItem.Text = "Евро/Доллар";
+              eURJPYToolStripMenuItem.Text = "Доллар/Йена";
               langueToolStripMenuItem.Text = "Язык";
               eURToolStripMenuItem.Text = "Английский";
               rusToolStripMenuItem.Text = "Русский";
+
               #endregion
             }
 
@@ -250,6 +261,7 @@
               helpToolStripMenuItem.Text = "Help";
               currencyPairsToolStripMenuItem.Text = "Currency pairs";
               eURUSDToolStripMenuItem.Text = "EUR/USD";
+              eURJPYToolStripMenuItem.Text = "USD/JPY";
               langueToolStripMenuItem.Text = "Langue";
               eURToolStripMenuItem.Text = "Eng";
               rusToolStripMenuItem.Text = "Rus";

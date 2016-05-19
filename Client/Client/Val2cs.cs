@@ -1,12 +1,11 @@
 ﻿namespace Client
 {
     using System;
-
     public partial class Val2cs : Windowd
     {
         
         public Val2cs()
-        {          
+        {
             InitializeComponent();
         }
 

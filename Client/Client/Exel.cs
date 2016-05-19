@@ -20,11 +20,13 @@
     using Microsoft.Office.Interop.Excel;
     using System.Runtime.InteropServices;
     using Excel = Microsoft.Office.Interop.Excel;
+
    public class Exel
     {
         private Excel.Application ObjExcel;
         private Excel.Workbook ObjWorkBook;
         private Excel.Worksheet ObjWorkSheet;
+
         public void ESave(DataGridView dataGridView1)
    {
              try
@@ -33,19 +35,20 @@
                 save.Filter = "Файл Excel|*.xls"; 
                 save.ShowDialog(); // Показать диалог сохранения
                 string fileName = save.FileName;
-                ObjExcel = new Excel.Application(); // Книга.
-                ObjWorkBook = ObjExcel.Workbooks.Add(System.Reflection.Missing.Value); // Таблица.
-                ObjWorkSheet = (Excel.Worksheet)ObjWorkBook.Sheets[1]; // цикл cтрока
+                this.ObjExcel = new Excel.Application(); // Книга.
+                this.ObjWorkBook = this.ObjExcel.Workbooks.Add(System.Reflection.Missing.Value); // Таблица.
+                this.ObjWorkSheet = (Excel.Worksheet)this.ObjWorkBook.Sheets[1]; // цикл cтрока
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
                     DataGridViewRow row = dataGridView1.Rows[i]; // создаем строку
                     // цикл стоблец
                     for (int j = 0; j < row.Cells.Count; j++) 
                     {
-                        ObjExcel.Cells[i + 1, j + 1] = row.Cells[j].Value;  // Поле
+                        this.ObjExcel.Cells[i + 1, j + 1] = row.Cells[j].Value;  // Поле
                     }
                 }
-                ObjWorkBook.SaveAs(fileName); // Заносим в файл
+
+                this.ObjWorkBook.SaveAs(fileName); // Заносим в файл
                 dataGridView1.Rows.Clear(); // Стираем значения
             }
             catch (Exception ex) 
@@ -55,11 +58,11 @@
             finally 
             {
                 {
-                    ObjWorkBook.Close(); // Закрытие приложения Excel.
-                    ObjExcel.Quit(); 
-                    ObjWorkBook = null;
-                    ObjWorkSheet = null;
-                    ObjExcel = null;
+                    this.ObjWorkBook.Close(); // Закрытие приложения Excel.
+                    this.ObjExcel.Quit();
+                    this.ObjWorkBook = null;
+                    this.ObjWorkSheet = null;
+                    this.ObjExcel = null;
                     GC.Collect();
                 }
             }
@@ -73,18 +76,18 @@
 
             try
             {
-                ObjExcel = new Microsoft.Office.Interop.Excel.Application(); // Книга.
-                ObjWorkBook = ObjExcel.Workbooks.Open(openDialog.FileName); // Таблица.
-                ObjWorkSheet = ObjExcel.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
+                this.ObjExcel = new Microsoft.Office.Interop.Excel.Application(); // Книга.
+                this.ObjWorkBook = this.ObjExcel.Workbooks.Open(openDialog.FileName); // Таблица.
+                this.ObjWorkSheet = this.ObjExcel.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
                 Microsoft.Office.Interop.Excel.Range rg = null;
 
                 Int32 row = 1;
                 dataGridView1.Rows.Clear();
                 List<String> arr = new List<string>();
-                while (ObjWorkSheet.get_Range("a" + row, "a" + row).Value != null)
+                while (this.ObjWorkSheet.get_Range("a" + row, "a" + row).Value != null)
                 {
                     // Читаем данные из ячейки
-                    rg = ObjWorkSheet.get_Range("a" + row, "e" + row);
+                    rg = this.ObjWorkSheet.get_Range("a" + row, "e" + row);
                     foreach (Microsoft.Office.Interop.Excel.Range item in rg)
                     {
                         try
@@ -96,6 +99,7 @@
                             arr.Add(""); 
                         }
                     }
+
                     dataGridView1.Rows.Add(arr[0], arr[1], arr[2], arr[3], arr[4]);
                     arr.Clear();
                     row++;
@@ -103,15 +107,18 @@
 
                 MessageBox.Show("Файл успешно считан!", "Считывания excel файла", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex) { MessageBox.Show("Ошибка: " + ex.Message, "Ошибка при считывании excel файла", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show("Ошибка: " + ex.Message, "Ошибка при считывании excel файла", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+            }
             finally
             {
-                ObjWorkBook.Close(false, "", null);
-                // Закрытие приложения Excel.
-                ObjExcel.Quit();
-                ObjWorkBook = null;
-                ObjWorkSheet = null;
-                ObjExcel = null;
+                this.ObjWorkBook.Close(false, "", null);
+                //// Закрытие приложения Excel.
+                this.ObjExcel.Quit();
+                this.ObjWorkBook = null;
+                this.ObjWorkSheet = null;
+                this.ObjExcel = null;
                 GC.Collect();
             }
 
@@ -125,29 +132,29 @@
             List<List<string>> Cool = new List<List<string>>();
             try
             {
-                ObjExcel = new Microsoft.Office.Interop.Excel.Application(); // Книга.
-                ObjWorkBook = ObjExcel.Workbooks.Open(openDialog.FileName);  // Таблица.
-                ObjWorkSheet = ObjExcel.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
+                this.ObjExcel = new Microsoft.Office.Interop.Excel.Application(); // Книга.
+                this.ObjWorkBook = this.ObjExcel.Workbooks.Open(openDialog.FileName);  // Таблица.
+                this.ObjWorkSheet = this.ObjExcel.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
                 Microsoft.Office.Interop.Excel.Range rg = null;
 
                 Int32 row = 1;
                 List<string> arr = new List<string>();
-                while (ObjWorkSheet.get_Range("a" + row, "a" + row).Value != null)
+                while (this.ObjWorkSheet.get_Range("a" + row, "a" + row).Value != null)
                 {
-                    
-                    rg = ObjWorkSheet.get_Range("a" + row, "e" + row); // Читаем данные из ячейки
+
+                    rg = this.ObjWorkSheet.get_Range("a" + row, "e" + row); // Читаем данные из ячейки
                     foreach (Microsoft.Office.Interop.Excel.Range item in rg)
                     {
                         try
                         {
-                            arr.Add(item.Value.ToString().Trim());
-                           
+                            arr.Add(item.Value.ToString().Trim());                    
                         }
                         catch
                         {
                             arr.Add("");
                         }
                     }
+
                     Cool.Add(arr);
                     arr.Clear();
                     row++;
@@ -162,25 +169,25 @@
                                 {
                                     a.Add(row1.Cells[j].Value.ToString());
                                 }
+
                                 Cool.Add(a);
                             }
-                           
-
             }
-            catch (Exception ex) { MessageBox.Show("Ошибка: " + ex.Message, "Ошибка при считывании excel файла", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch (Exception ex) 
+            { 
+                MessageBox.Show("Ошибка: " + ex.Message, "Ошибка при считывании excel файла", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+            }
             finally
             {
-                ObjWorkBook.Close(false, "", null); // Закрытие приложения Excel.
-                ObjExcel.Quit();
-                ObjWorkBook = null;
-                ObjWorkSheet = null;
-                ObjExcel = null;
+                this.ObjWorkBook.Close(false, "", null); // Закрытие приложения Excel.
+                this.ObjExcel.Quit();
+                this.ObjWorkBook = null;
+                this.ObjWorkSheet = null;
+                this.ObjExcel = null;
                 GC.Collect();
             }
 
-
             return Cool;
         }    
-    }
-   
+    }  
 }

@@ -32,7 +32,7 @@
         public double shag = 1; // интервал для координаты X
         public int danoe = 0;
         public int colvo = 0;
-        public string value = "eurusd";
+        public string value = WSrting.VALUE;
 
         public double poslchislo;
         public double poslchislo1;
@@ -69,7 +69,7 @@
         #endregion
 
         List<int> PoinX = new List<int>(); // данные точки
-        StreamReader q;
+
        public Windowd()
         {
             inet = TryCon(inet);
@@ -116,10 +116,7 @@
             checkBox2.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(172 * yS * (WSrting.Y / fY)));
             checkBox3.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(305 * yS * (WSrting.Y / fY)));
             checkBox4.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(195 * yS * (WSrting.Y / fY)));
-
-                Methods Time = new Methods();
-                Time.TradeStop(DateTime.Now);
-            Graph(); // Вызов метода объявления линий
+                Graph(); // Вызов метода объявления линий
 
             #region вызов Методов локализации формы
             tTip(); // локализация всплывающих подсказок
@@ -140,8 +137,14 @@
             }
             catch (Exception ex)
             {
-                
-                MessageBox.Show("Отсутсвие интернета или недоступен сайт переход в автономный режим");
+                if(WSrting.RUS == true)
+                {
+                 MessageBox.Show("Отсутсвие интернета или недоступен сайт переход в автономный режим");
+                }
+                if (WSrting.ENG == true)
+                {
+                    MessageBox.Show("Lack of or inaccessible Internet site go offline");
+                }
                 inet = false;
             } // Временная мера по отсутвию интернета
             return inet;
@@ -152,15 +155,19 @@
 /// Method create file 
 /// </summary>
 /// <param name="pathFile">String</param>
-public void CreateFile(string pathFile)
+        public bool CreateFile(string pathFile)
         {
+            bool a = true;
             //// проверка на существование файла
             if (!File.Exists(pathFile)) 
             {
                 FileInfo writel = new FileInfo(pathFile); // получаем путь 
                 StreamWriter l = writel.CreateText(); // создаем текст
                 l.Close(); // закрыть запись
+                a = false;
             } // развертывание файла в дебаге
+            
+            return a;
         }
 
         public StreamReader Conection(int limit, double poslT, string value)
@@ -177,7 +184,7 @@ public void CreateFile(string pathFile)
         public double Conect(string value, double poslTime, int limit, bool inet)
         { 
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US"); // преобразовение типа доубле к американскому стандарту
-            Console.WriteLine(WSrting.ENG); // Дебаг выбjра языка
+            Console.WriteLine(WSrting.ENG); // Дебаг выбора языка
 
             #region Получение данных по котировкам из файла "eurusd.txt"  запись их в переменную text
             string pathDirectory = Application.StartupPath; // Путь к директории
@@ -463,7 +470,7 @@ public void CreateFile(string pathFile)
             }
         }
 
-        public int Update(int D, List<DateTime> DateT)
+        public int Update(int tic, List<DateTime> DateT)
         {
             #region вызов Методов локализации формы
             tTip(); // локализация всплывающих подсказок
@@ -514,12 +521,12 @@ public void CreateFile(string pathFile)
             button8.Text = Convert.ToString(Buffer[tic]); // вывод значений на кнопку  по времени
             button1.Text = Convert.ToString(Buffer[tic]); // вывод значений на кнопку  по времени
             button7.Text = Convert.ToString(BufferS[tic]); // вывод значений на кнопку  по времени
-            ZoomT(Zoom); // Вызов метода  регуирования уровней времени
+            ZoomT(Zoom, tic); // Вызов метода  регуирования уровней времени
             tic++; // Подсчет тикового времени
             return tic;
         } // метод обновления данных
 
-      public void ZoomT(int ize)
+      public void ZoomT(int ize, int tic)
         {
             chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[4].Points[0].XValue - (ize * 0.00001157407) + (tic * 0.00001157407); // ограничение по X минимум   NowTime
             chart1.ChartAreas[0].AxisX.Maximum = chart1.Series[4].Points[0].XValue + (ize * 0.00001157407) + (tic * 0.00001157407); // ограничение по X максимум  под 60 секунд 0,00001157407
@@ -734,7 +741,7 @@ public void CreateFile(string pathFile)
                     case 1: Zoom -= 5;
                     if (Zoom > 60) 
                     { 
-                        ZoomT(Zoom); 
+                        ZoomT(Zoom, tic); 
                     }
                         break;
                 }
@@ -745,7 +752,7 @@ public void CreateFile(string pathFile)
                 switch (Leaves)
                 {
                     case 1: Zoom += 5; 
-                    ZoomT(Zoom); 
+                    ZoomT(Zoom, tic); 
                     break;
                 }
             } // прокрутка вниз
@@ -756,8 +763,6 @@ public void CreateFile(string pathFile)
             double dTime = (DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds -5; // Текущее время
             int NowTime;
             NowTime = Convert.ToInt32(dTime); // текущее время (работает)
-            string value;
-            value = "eurusd";
 
           if (inet == true)
           {

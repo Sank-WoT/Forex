@@ -21,10 +21,10 @@
 
     class GraphY
     {
-        public void Y(Chart chart1, double Y)
+        public void Y(Chart chart1, double r)
         {
-            chart1.ChartAreas[0].AxisY.Maximum = Y + 0.01;
-            chart1.ChartAreas[0].AxisY.Minimum = Y - 0.01;
+            chart1.ChartAreas[0].AxisY.Maximum = r + 0.01;
+            chart1.ChartAreas[0].AxisY.Minimum = r - 0.01;
         }       
     }
 }
