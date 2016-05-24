@@ -19,12 +19,14 @@
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
 
+
     public delegate void CountDelegeate(object sender, EventArgs e); // работа с делегатами
     /// <summary>
     /// main class EURUSD.
     /// </summary>
     public   partial  class Windowd : Form
     {  
+
         //// Calsulations calculations = new Calsulations(); додумать
        public ChartArea area = new ChartArea(); // Создание области
         System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
@@ -73,7 +75,7 @@
        public Windowd()
         {
             inet = TryCon(inet);
-
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
             double fX = 1366;
             double fY = 757;
@@ -116,6 +118,8 @@
             checkBox2.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(172 * yS * (WSrting.Y / fY)));
             checkBox3.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(305 * yS * (WSrting.Y / fY)));
             checkBox4.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(195 * yS * (WSrting.Y / fY)));
+            checkBox5.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(343 * yS * (WSrting.Y / fY)));
+            checkBox5.Checked = true; // Чекбокс отвечающий за привязку графика к середине включен
                 Graph(); // Вызов метода объявления линий
 
             #region вызов Методов локализации формы
@@ -183,7 +187,7 @@
 
         public double Conect(string value, double poslTime, int limit, bool inet)
         { 
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US"); // преобразовение типа доубле к американскому стандарту
+             // преобразовение типа доубле к американскому стандарту
             Console.WriteLine(WSrting.ENG); // Дебаг выбора языка
 
             #region Получение данных по котировкам из файла "eurusd.txt"  запись их в переменную text
@@ -229,7 +233,7 @@
             {
             readFile rEURUSD = new readFile(); // вызов класса чтения из файла
             colvo = rEURUSD.read(text1, massYInetA, massYInetB, Times, colvo); // функция чтения из файла
-            Console.WriteLine(massYInetB[(colvo / 3) - 1]); ////  Дебаг прочитанного
+            Console.WriteLine(massYInetA[0]); ////  Дебаг прочитанного
             Methods cEURUSD = new Methods(); // Метод конвертации времени в тип Date Time
             DINET = cEURUSD.Convert(Times, DINET); // Конвертируем время из  формата UNIX в DataTime
             }
@@ -258,7 +262,8 @@
             {
                 checkBox1.Text = "Levels suport and resistance";
                 checkBox2.Text = "SMA";
-                checkBox3.Text = "Line coordinates"; 
+                checkBox3.Text = "Line coordinates";
+                checkBox5.Text = "Binding graphics"; 
                 label1.Text = "Methods";
                 label2.Text = "Tools";
             }
@@ -270,6 +275,7 @@
                 checkBox1.Text = "Уровни сопротивления и поддержки";
                 checkBox2.Text = "Скользящая кривая";
                 checkBox3.Text = "Координатные линии";
+                checkBox5.Text = "Привязка графика"; 
                 label1.Text = "Meтоды";
                 label2.Text = "Инструменты";
             }
@@ -499,11 +505,14 @@
             #endregion
 
             chart1.Series[0].Points.Clear();
-            chart1.Series[4].Points.AddXY(DateT[0].ToOADate(), Buffer[0]); // создаем костыль для графика чарт
 
+            
+              chart1.Series[4].Points.AddXY(DateT[0].ToOADate(), Buffer[0]); // создаем костыль для графика чарт
+            
             for (int hl = 0; MainT.Count - 1 >= hl; hl++)
             {
                 chart1.Series[0].Points.AddXY(MainT[hl].ToOADate(), MainV[hl]);
+                
             }
 
             poin = IntervalResistance(tic, Buffer); // Получение точек смены тренда  // данные из буфера // доработать
@@ -528,8 +537,11 @@
 
       public void ZoomT(int ize, int tic)
         {
+          if (checkBox5.Checked == true)
+            {
             chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[4].Points[0].XValue - (ize * 0.00001157407) + (tic * 0.00001157407); // ограничение по X минимум   NowTime
             chart1.ChartAreas[0].AxisX.Maximum = chart1.Series[4].Points[0].XValue + (ize * 0.00001157407) + (tic * 0.00001157407); // ограничение по X максимум  под 60 секунд 0,00001157407
+            }       
         } // функция необходимая для уровней рассмотренного времени
 
       public List<double> SMA(List<DateTime> Dat, int Sglag, List<double> Buff)
@@ -726,11 +738,11 @@
                 label_Y.Location = new Point(e.X, Convert.ToInt32(30 * yS * (WSrting.Y / fY))); // перемещение линии по X
                 lab_Cur.Location = new Point(Convert.ToInt32(1020 * xS * (WSrting.X / fX)), e.Y); // привязка значения 
                 double YCur = chart1.ChartAreas[0].AxisY.PixelPositionToValue(e.Y);
-                double XCur = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.X) / 0.00001157407;
+                double XCur = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.X) / 0.000011574074074074;
                 DateTime Date1 = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(XCur); // время в формате UNIX
                 lab_Cur.Text = string.Concat(string.Concat(Math.Round(YCur, 5).ToString(), " , "), Date1.ToString("h:mm:ss.fff tt")); // перевод времени
             }
-        } // вывод координат
+        } // вывод координат подправить
 
         public void chart1_MouseWheel(object sender, MouseEventArgs e) //// метод недоработан
         {
@@ -760,7 +772,7 @@
 
         private void timer1_Tick(object sender, EventArgs e)
         { 
-            double dTime = (DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds -5; // Текущее время
+            double dTime = (DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds -10; // Текущее время
             int NowTime;
             NowTime = Convert.ToInt32(dTime); // текущее время (работает)
 
@@ -973,6 +985,9 @@
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
         }
+        private void checkBox5_CheckedChanged(object sender, EventArgs e)
+        {
+        }
 
         private void OnClos(object sender, FormClosingEventArgs e)
         {
@@ -1003,6 +1018,8 @@
         f.Owner = this;
         f.Show(); // Показать форму
     }
+
+
 
     }
 }
