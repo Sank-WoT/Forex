@@ -26,6 +26,7 @@
         public EURUSD()
         {
             this.InitializeComponent();
+            numericUpDown3.Value = 5;
         }
 
 /// <summary>
@@ -44,7 +45,8 @@
             {
                 label1.Text = "Размер окна отчет  Евро/Доллар";
                 button1.Text = "Задать";
-            }            
+            }
+            SpeedDraw.Speed = (int)numericUpDown3.Value;         
         }
 
         private void Label1_Click(object sender, EventArgs e)
@@ -99,6 +101,16 @@
             StreamWriter w = write.CreateText(); // создаем текст  
             w.WriteLine(text); // добавляем текст 
             w.Close(); // закрыть запись 
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

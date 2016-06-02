@@ -62,7 +62,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -112,21 +114,21 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(1101, 27);
+            this.button9.Location = new System.Drawing.Point(1275, 27);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(58, 46);
             this.button9.TabIndex = 11;
-            this.button9.Text = "Buy";
+            this.button9.Text = "Sell";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.Button9_Click);
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(1275, 27);
+            this.button10.Location = new System.Drawing.Point(1101, 27);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(58, 46);
             this.button10.TabIndex = 12;
-            this.button10.Text = "Sell";
+            this.button10.Text = "Buy";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.Button10_Click);
             // 
@@ -335,6 +337,14 @@
             this.checkBox5.UseVisualStyleBackColor = true;
             this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(1186, 184);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 25;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
             // Windowd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,6 +352,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1350, 719);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.label2);
@@ -368,6 +379,7 @@
             this.Load += new System.EventHandler(this.Window_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -408,5 +420,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toCloseTheDealToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

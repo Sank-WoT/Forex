@@ -29,12 +29,10 @@ namespace Client
             {
                 
                 Times.Add(Convert.ToDouble(m[colvo].Value));//Время в UNIX
-                colvo++;//порядковый номер даты в списке
-               
-                massYInetB.Add(Convert.ToDouble(m[colvo].Value)); //значение  продажа
-                colvo++;//порядковый номер               
-               
+                colvo++;//порядковый номер даты в списке                                        
                 massYInetA.Add(Convert.ToDouble(m[colvo].Value));//число покупка
+                colvo++;//порядковый номер  
+                massYInetB.Add(Convert.ToDouble(m[colvo].Value)); //значение  продажа
                 colvo++;//порядковый номер  
 
             }

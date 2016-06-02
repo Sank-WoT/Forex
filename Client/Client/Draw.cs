@@ -29,16 +29,18 @@
         /// <param name="File">double значения 2 листа.</param>
         /// <param name="tic">int время которое прошло с запуска формы.</param>
        /// <returns>Объединенный лист</returns>
-       public List<double> MainValue(List<double> Buffer, List<double> File, int tic)
+       public List<double> MainValue(List<double> Buffer, List<double> File, int tic, int ChisloZagruz)
        {
            List<double> Value = new List<double>();
-
-           for(int h = 0 ; tic >= h; h++)
+            int atic;
+            atic = tic;
+            tic *= ChisloZagruz;
+            for (int h = 0 ; tic >= h; h++)
            {
                Value.Add(File[File.Count - 1 - tic + h]);
            }
 
-           for (int h = 0; tic >= h; h++)
+           for (int h = 0; atic >= h; h++)
            {
                Value.Add(Buffer[h]);
            }
@@ -52,15 +54,18 @@
        /// <param name="ITime">DateTime значения 2 листа.</param>
        /// <param name="tic">int время которое прошло с запуска формы.</param>
        /// <returns>Объединенный лист</returns>
-       public List<DateTime> MainTime(List<DateTime> Ftime, List<DateTime> ITime, int tic)
+       public List<DateTime> MainTime(List<DateTime> Ftime, List<DateTime> ITime, int tic, int ChisloZagruz)
        {
            List<DateTime> Value = new List<DateTime>();
-           for (int h = 0; tic >= h; h++)
+            int atic;
+            atic = tic;
+            tic *= ChisloZagruz;
+            for (int h = 0; tic >= h; h++)
            {
                Value.Add(Ftime[Ftime.Count - 1 - tic + h]);
            }
 
-           for (int h = 0; tic >= h; h++)
+           for (int h = 0; atic >= h; h++)
            {
                Value.Add(ITime[h]);
            }

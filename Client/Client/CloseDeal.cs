@@ -70,10 +70,10 @@
 
             if (Value.Contains("  покупка") == true)
             {               
-                MessageBox.Show("Закрыта сделка по цене  = " + BufferS[BufferS.Count - 1]);
+                MessageBox.Show("Closed the order   = " + BufferS[BufferS.Count - 1]);
                 chislo = Convert.ToDouble(Value.Remove(Value.Length - 9, 9)); // Выбранное число при закрытии сделки
-                profit = Math.Round((BufferS[BufferS.Count - 1] - chislo), 4); // Прибыль за сделку
-                MessageBox.Show("Profit = " + profit + " Время сделки " + Date); // Сообщение о совершенной сделке  
+                profit = Math.Round((BufferS[BufferS.Count - 1] - chislo), 4) - 0.0003; // Прибыль за сделку
+                MessageBox.Show("Profit = " + profit + " Time order " + Date); // Сообщение о совершенной сделке  
                 iterData.Add(chislo);
                 iterData.Add(BufferS[BufferS.Count - 1]);
                 iterData.Add(profit);
@@ -86,10 +86,10 @@
             {
                 MessageBox.Show("Закрыта сделка по цене  = " + Buffer[BufferS.Count - 1]);
                 chislo = Convert.ToDouble(Value.Remove(Value.Length - 9, 9)); // Выбранное число при закрытии сделки
-                profit = Math.Round((chislo - Buffer[BufferS.Count - 1]), 4); // Прибыль за сделку
-                MessageBox.Show("Profit = " + profit + " Время сделки " + Date); // Сообщение о совершенной сделке    
-                iterData.Add(Buffer[BufferS.Count - 1]);
+                profit = Math.Round((chislo - Buffer[BufferS.Count - 1]), 4) - 0.0003; // Прибыль за сделку
+                MessageBox.Show("Profit = " + profit + " Time order " + Date); // Сообщение о совершенной сделке    
                 iterData.Add(chislo);
+                iterData.Add(Buffer[BufferS.Count - 1]);
                 iterData.Add(profit);
                 iterData.Add(dTime);
                 iterData.Add(1.0);

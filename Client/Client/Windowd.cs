@@ -25,8 +25,7 @@
     /// main class EURUSD.
     /// </summary>
     public   partial  class Windowd : Form
-    {  
-
+    {
         //// Calsulations calculations = new Calsulations(); додумать
        public ChartArea area = new ChartArea(); // Создание области
         System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
@@ -74,6 +73,7 @@
 
        public Windowd()
         {
+            SpeedDraw.Speed = 1;
             inet = TryCon(inet);
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
@@ -89,7 +89,7 @@
 
             this.FormClosing += new FormClosingEventHandler(OnClos);
             
-            chart1 = new Chart(); // Создание чарта
+            chart1 = new Chart();
             chart1.Parent = this;
           
             area.Name = "myGraph";
@@ -99,9 +99,9 @@
             chart1.ChartAreas.Add(area); // передача 
 
             #region Задание параметров кнопкам button9, button8, button10, button1, button7
-            button9.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * (WSrting.Y / fY))); // клавиша buy         
+            button9.Location = new Point(Convert.ToInt32(1274 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * (WSrting.Y / fY)));  // клавиша  sell        
             button8.Location = new Point(Convert.ToInt32(1157 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * (WSrting.Y / fY))); // клавиша price     
-            button10.Location = new Point(Convert.ToInt32(1274 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * (WSrting.Y / fY))); // клавиша sell   
+            button10.Location =  new Point(Convert.ToInt32(1100 * xS * (WSrting.X / fX)), Convert.ToInt32(27 * yS * (WSrting.Y / fY))); // клавиша buy
             button1.Location = new Point(Convert.ToInt32(1100 * xS * (WSrting.X / fX)), Convert.ToInt32(72 * yS * (WSrting.Y / fY))); // клавиша value
             button7.Location = new Point(Convert.ToInt32(1216 * xS * (WSrting.X / fX)), Convert.ToInt32(72 * yS * (WSrting.Y / fY))); // клавиша value
             button9.Size = new Size(Convert.ToInt32(58 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
@@ -109,8 +109,9 @@
             button10.Size = new Size(Convert.ToInt32(58 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
             button1.Size = new Size(Convert.ToInt32(117 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
             button7.Size = new Size(Convert.ToInt32(117 * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
+            numericUpDown1.Size = new Size(Convert.ToInt32(117 * xS * (WSrting.X / fX)), Convert.ToInt32(20 * yS * (WSrting.Y / fY)));
             #endregion
-          
+
             label1.Location = new Point(Convert.ToInt32(1098 * xS * (WSrting.X / fX)), Convert.ToInt32(118 * yS * (WSrting.Y / fY)));
             label2.Location = new Point(Convert.ToInt32(1098 * xS * (WSrting.X / fX)), Convert.ToInt32(280 * yS * (WSrting.Y / fY)));
 
@@ -119,6 +120,8 @@
             checkBox3.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(305 * yS * (WSrting.Y / fY)));
             checkBox4.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(195 * yS * (WSrting.Y / fY)));
             checkBox5.Location = new Point(Convert.ToInt32(1101 * xS * (WSrting.X / fX)), Convert.ToInt32(343 * yS * (WSrting.Y / fY)));
+            numericUpDown1.Location = new Point(Convert.ToInt32(1200 * xS * (WSrting.X / fX)), Convert.ToInt32(172 * yS * (WSrting.Y / fY)));
+            numericUpDown1.Value = 10;
             checkBox5.Checked = true; // Чекбокс отвечающий за привязку графика к середине включен
                 Graph(); // Вызов метода объявления линий
 
@@ -319,18 +322,18 @@
             #region Локализация button10 button9 button1 button7
             if (WSrting.ENG == true)
             {
-                button10.Text = "Sell"; // текст клавиши покупки
-                button9.Text = "Buy"; // текст клавиши покупки
-                button1.Text = "Value Buy"; // текст клавиши покупки
-                button7.Text = "Value Sell"; // текст клавиши покупки            
+                button10.Text = "Buy"; // текст клавиши покупки
+                button9.Text = "Sell"; // текст клавиши покупки
+                button1.Text = "Value Sell"; // текст клавиши покупки
+                button7.Text = "Value Buy"; // текст клавиши покупки            
             }
 
             if (WSrting.RUS == true)
             {
-                button9.Text = "Покупка"; // текст клавиши покупки 
-                button10.Text = "Продажа"; // текст клавиши покупки 
-                button1.Text = "Значение покупки"; // текст клавиши покупки
-                button7.Text = "Значение продажа"; // текст клавиши покупки
+                button9.Text = "Продажа" ; // текст клавиши покупки 
+                button10.Text =  "Покупка"; // текст клавиши покупки 
+                button1.Text ="Значение продажа "; // текст клавиши покупки
+                button7.Text = "Значение покупки"; // текст клавиши покупки
             }
             #endregion
         }
@@ -419,7 +422,7 @@
             series7.XValueType = ChartValueType.DateTime;
             series7.ChartType = SeriesChartType.Line;
             series7.BorderWidth = 2;
-            chart1.Series.Add(series7); // параметры  линии МAX
+            chart1.Series.Add(series7); // параметры  линии МIN
 
             chart1.ChartAreas[0].BackColor = Color.FromArgb(255, 255, 255); // цвет внутренней области
             chart1.BackColor = Color.FromArgb(255, 255, 255); // цвет внешней области
@@ -476,7 +479,7 @@
             }
         }
 
-        public int Update(int tic, List<DateTime> DateT)
+        public int Update(int tic, List<DateTime> DateT, double NowTime)
         {
             #region вызов Методов локализации формы
             tTip(); // локализация всплывающих подсказок
@@ -487,7 +490,7 @@
 
             chart1.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel); // событие вращения колесика
             chart1.Focus(); // необходим фокус
-            List<List<double>> poin = new List<List<double>>(); // Точки изменения тренда
+            List<List<double>> poinl = new List<List<double>>(); // Точки изменения тренда
             Setting();
 
             if (checkBox1.Checked == false)
@@ -500,8 +503,8 @@
 
             #region Склейка даннях из файла с буфером
             Draw q = new Draw();
-            MainT = q.MainTime(DINET, DateT, tic);
-            MainV = q.MainValue(Buffer, massYInetB, tic);
+            MainT = q.MainTime(DINET, DateT, tic, SpeedDraw.Speed); // Загрузка времени из файла
+            MainV = q.MainValue(Buffer, massYInetB, tic, SpeedDraw.Speed); // Загрузка значения из файла ###Сделать загрузку данных изменяемой tic
             #endregion
 
             chart1.Series[0].Points.Clear();
@@ -511,25 +514,26 @@
             
             for (int hl = 0; MainT.Count - 1 >= hl; hl++)
             {
-                chart1.Series[0].Points.AddXY(MainT[hl].ToOADate(), MainV[hl]);
+                chart1.Series[0].Points.AddXY(MainT[hl].ToOADate(), MainV[hl]); //  Построение главного графика
                 
             }
 
-            poin = IntervalResistance(tic, Buffer); // Получение точек смены тренда  // данные из буфера // доработать
-            
+            poinl = IntervalResistance(tic, Buffer, NowTime); // Получение точек смены тренда  // данные из буфера // доработать
+            MinMax(MainV, MainT);
+
+
             if (checkBox1.Checked == true)
             {
-                Resis(poin, tic, 0.0001, DateT); // рисуем уровни
+                Resis(poinl, tic, 0.0001, DateT); // рисуем уровни
             } 
             
             chart1.Update(); // обновление данных
 
-            int Z = 10; // Кол-во  точек берущихся в расчет в построении графика SMA
-            SMA(MainT, Z, MainV); // Вызов метода для построения SMA
+            SMA(MainT, (int)numericUpDown1.Value, MainV); // Вызов метода для построения SMA
 
-            button8.Text = Convert.ToString(Buffer[tic]); // вывод значений на кнопку  по времени
-            button1.Text = Convert.ToString(Buffer[tic]); // вывод значений на кнопку  по времени
-            button7.Text = Convert.ToString(BufferS[tic]); // вывод значений на кнопку  по времени
+            button8.Text = Convert.ToString(BufferS[tic]); // вывод значений на кнопку  по времени
+            button1.Text = Convert.ToString(BufferS[tic]); // вывод значений на кнопку  по времени
+            button7.Text = Convert.ToString(Buffer[tic]); // вывод значений на кнопку  по времени
             ZoomT(Zoom, tic); // Вызов метода  регуирования уровней времени
             tic++; // Подсчет тикового времени
             return tic;
@@ -586,7 +590,7 @@
             return sreds;
         } ////  вычисление точки СМА исправлено под буфер и чтения с файла
 
-      public List<List<double>> IntervalResistance(int tic, List<double> massYInetBuy) //// подавать интервал
+      public List<List<double>> IntervalResistance(int tic, List<double> Buffer, double NowTime) //// подавать интервал
         {
             int Pervoe = 0;
             int trend = 0; // переменная тренда
@@ -595,12 +599,13 @@
 
             for (int i = 1; tic > i; i++)
             {
-                if (trend != 1 && (massYInetB[i - 1] - massYInetBuy[i]) > 0)
+                if (trend != 1 && (Buffer[i - 1] - Buffer[i]) > 0)
                 {
                     koordPoint = new List<double>(); // Координата точки
                     trend = 1; // положительный тренд
                     koordPoint.Add(i - 1); // заполнение точек по икс    
-                    koordPoint.Add(massYInetB[i - 1]); // заполнение точек по игрик  
+                    koordPoint.Add(Buffer[i - 1]); // заполнение точек по игрик  
+                  
                     if (Pervoe == 0)
                     {
                         danoe = -1;
@@ -609,13 +614,54 @@
                     poin.Add(koordPoint); // добавление координаты точки
                 }
 
-                if (trend != -1 && (massYInetB[i - 1] - massYInetB[i]) < 0)
+                if (trend != -1 && (Buffer[i - 1] - Buffer[i]) < 0)
                 { 
                     koordPoint = new List<double>();  // Координата точки
                     trend = -1; // положительный тренд
                     koordPoint.Add(i-1); // заполнение точек по икс    
                     PoinX.Add(i-1);
-                    koordPoint.Add(massYInetB[i]-1); // заполнение точек по игрик  
+                    koordPoint.Add(Buffer[i]-1); // заполнение точек по игрик  
+                    if (Pervoe == 0)
+                    {
+                        danoe = 1;
+                        Pervoe++;
+                    } // узнаем первое значение минимум оно или максимум
+                    poin.Add(koordPoint); // добавление координаты точки
+                }
+            }          
+            return poin;
+        }
+        public void MinMax( List<double> MainV, List<DateTime>  MainT)
+        {
+            int Pervoe = 0;
+            int trend = 0; // переменная тренда
+            List<List<double>> poin = new List<List<double>>(); // данные точки
+            List<double> koordPoint = new List<double>();
+
+            for (int i = 1; MainV.Count - 1 > i; i++)
+            {
+                if (trend != 1 && (MainV[i - 1] - MainV[i]) > 0)
+                {
+                    koordPoint = new List<double>(); // Координата точки
+                    trend = 1; // положительный тренд
+                    koordPoint.Add(i - 1); // заполнение точек по икс    
+                    koordPoint.Add(MainV[i - 1]); // заполнение точек по игрик  
+
+                    if (Pervoe == 0)
+                    {
+                        danoe = -1;
+                        Pervoe++;
+                    } // узнаем первое значение минимум оно или максимум
+                    poin.Add(koordPoint); // добавление координаты точки
+                }
+
+                if (trend != -1 && (MainV[i - 1] - MainV[i]) < 0)
+                {
+                    koordPoint = new List<double>();  // Координата точки
+                    trend = -1; // положительный тренд
+                    koordPoint.Add(i - 1); // заполнение точек по икс    
+                    PoinX.Add(i - 1);
+                    koordPoint.Add(MainV[i - 1]); // заполнение точек по игрик  
                     if (Pervoe == 0)
                     {
                         danoe = 1;
@@ -624,8 +670,31 @@
                     poin.Add(koordPoint); // добавление координаты точки
                 }
             }
+            if (checkBox4.Checked == true)
+            {
+                chart1.Series[5].Color = Color.FromArgb(255, 100, 100); // задание цвета
+                chart1.Series[5].Points.Clear();
+                chart1.Series[6].Color = Color.FromArgb(255, 100, 100); // задание цвета
+                chart1.Series[6].Points.Clear();
+                for (int i = 0; poin.Count - 1 > i; i++)
+                {
+                    if ((i % 2) == 0)
+                    {
+                     chart1.Series[5].Points.AddXY(MainT[(int)poin[i][0]], poin[i][1]); // добавление точек в линию
+                    }
+                    if ((i % 2) == 1)
+                    {
+                        chart1.Series[6].Points.AddXY(MainT[(int)poin[i][0]], poin[i][1]); // добавление точек в линию
+                    }
 
-            return poin;
+                }
+               
+            }
+            if (checkBox4.Checked == false)
+            {
+                chart1.Series[5].Points.Clear();
+                chart1.Series[6].Points.Clear();           
+            }
         }
 
       public void Resis(List<List<double>> poin, int tic, double pogr, List<DateTime> Date)
@@ -653,7 +722,6 @@
                     MINX = poin[h][0];
                     MinH = h;
                 }
-
                 MAXY = Resistance(poin, tic, pogr, Date, h, MAXY, MAXX, MaxH); // Нахождение точки максимума удовлетворяющему условию разброса и повторения более 2 раз
                 MINY = Support(poin, tic, pogr, Date, h, MINY, MINX, MinH); // Нахождение точки минимума удовлетворяющему условию разброса и повторения более 2 раз
             }
@@ -819,7 +887,7 @@
           DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(NowTime); // время в формате UNIX
           DTIME.Add(Date); // добавление времени в лист
 
-          tic = Update(tic, DTIME); // функция по секунде
+          tic = Update(tic, DTIME, NowTime); // функция по секунде
         } // работает
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -841,13 +909,13 @@
         private void Button9_Click(object sender, EventArgs e)
         {
             Methods se = new Methods();
-            BUY.Add(se.TradeBuy(true, Buffer, tic));  // Запомнить значение продажи          
+            SELL.Add(se.TradeBuy(true, Buffer, tic));  // Запомнить значение продажи          
         }
 
         private void Button10_Click(object sender, EventArgs e)
         {
             Methods se = new Methods();
-            SELL.Add(se.TradeBuy(false, BufferS, tic));  // Запомнить значение продажи           
+            BUY.Add(se.TradeBuy(false, BufferS, tic));  // Запомнить значение продажи           
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -880,7 +948,7 @@
         private void SecondToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Leaves = 1;
-            area.AxisX.MajorGrid.Interval = 0.00001157407;
+            area.AxisX.MajorGrid.Interval = 0.00001157407 * 5;
             Zoom = 60;
             Activ(sender);
             minutesToolStripMenuItem.CheckState = CheckState.Unchecked; // убрать отметку минутный уровень
@@ -893,7 +961,7 @@
 
         private void MinutesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60;
+            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60 * 5;
             Zoom = 1800;
             Activ(sender);
             secondToolStripMenuItem.CheckState = CheckState.Unchecked; // убрать отметку секундный уровень
@@ -906,7 +974,7 @@
 
         private void MinutesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60 * 5;
+            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60 * 5 * 5;
             Zoom = 9000;
             Activ(sender);
             minutesToolStripMenuItem.CheckState = CheckState.Unchecked; // убрать отметку минутный уровень
@@ -919,7 +987,7 @@
 
         private void HourToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60 * 10;
+            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60 * 10 * 5;
             Zoom = 108000;
             Activ(sender);
             minutesToolStripMenuItem.CheckState = CheckState.Unchecked; // убрать отметку минутный уровень
@@ -932,7 +1000,7 @@
 
         private void WeekToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60 * 70;
+            area.AxisX.MajorGrid.Interval = 0.00001157407 * 60 * 70 * 5;
             Zoom = 1728000;
             Activ(sender);
             hourToolStripMenuItem.CheckState = CheckState.Unchecked; // убрать отметку часовой уровень
@@ -945,7 +1013,7 @@
 
         private void DayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            area.AxisX.MajorGrid.Interval = 1 / 24.0;
+            area.AxisX.MajorGrid.Interval = 1 / 24.0 * 5;
             Zoom = 432000;
             Activ(sender);
             hourToolStripMenuItem.CheckState = CheckState.Unchecked; // убрать отметку часовой уровень
@@ -958,7 +1026,7 @@
 
         private void MonthToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            area.AxisX.MajorGrid.Interval = 1;
+            area.AxisX.MajorGrid.Interval = 1 * 5;
             Zoom = 8640000;
             Activ(sender);
             hourToolStripMenuItem.CheckState = CheckState.Unchecked; // убрать отметку часовой уровень
@@ -1012,7 +1080,12 @@
         fset.Size = new Size(580, 580); // задание размера формы 
     }
 
-    private void ToCloseTheDealToolStripMenuItem_Click(object sender, EventArgs e)
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ToCloseTheDealToolStripMenuItem_Click(object sender, EventArgs e)
     {
         CloseDeal f = new CloseDeal();
         f.Owner = this;

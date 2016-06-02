@@ -45,5 +45,10 @@ namespace Client
       public static List<List<double>> data = new List<List<double>>();
   }// передача данных между формами
 
-  public delegate void MyDelegate();
+    public static class SpeedDraw
+    {
+        public static int Speed;
+    }// передача данных между формами
+
+    public delegate void MyDelegate();
 }
