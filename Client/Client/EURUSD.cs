@@ -36,12 +36,12 @@
 /// <param name="e"></param>
         private void EURUSD_Load(object sender, EventArgs e)
         {
-            if (WSrting.ENG == true)
+            if (WString.ENG == true)
             {
                 label1.Text = "Size window Report EURUSD";
                 button1.Text = "Ask";
             }
-            if (WSrting.RUS == true)
+            if (WString.RUS == true)
             {
                 label1.Text = "Размер окна отчет  Евро/Доллар";
                 button1.Text = "Задать";
@@ -64,31 +64,31 @@
             int x = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width; // ширина экрана  
             string X = numericUpDown1.Text; // задание размера окна по x
             string Y = numericUpDown2.Text; // задание размера окна по y
-            WSrting.X = Convert.ToInt32(X); // присвоение введенных данных в текст бокс
-            WSrting.Y = Convert.ToInt32(Y); // присвоение введенных данных в текст бокс
+            WString.X = Convert.ToInt32(X); // присвоение введенных данных в текст бокс
+            WString.Y = Convert.ToInt32(Y); // присвоение введенных данных в текст бокс
             #region Ограничения размера окна по X и Y
 
-            if (WSrting.X < 700)
+            if (WString.X < 700)
             {
-                WSrting.X = 700; // ограничение по минимальному размеру окна
+                WString.X = 700; // ограничение по минимальному размеру окна
             }
 
-            if (WSrting.Y < 500)
+            if (WString.Y < 500)
             {
-                WSrting.Y = 500; // ограничение по минимальному размеру окна
+                WString.Y = 500; // ограничение по минимальному размеру окна
             }
 
-            if (WSrting.X > x)
+            if (WString.X > x)
             {
-                WSrting.X = x; // ограничение по максимальному размеру окна
+                WString.X = x; // ограничение по максимальному размеру окна
             }
 
-            if (WSrting.Y > y)
+            if (WString.Y > y)
             {
-                WSrting.Y = y; // ограничение по максимальному размеру окна
+                WString.Y = y; // ограничение по максимальному размеру окна
             }
             #endregion
-            string text = "EURUSD   " + WSrting.X + "      " + WSrting.Y;
+            string text = "EURUSD   " + WString.X + "      " + WString.Y;
             string pathFile = Application.StartupPath + "\\Setting\\WindowReportEURUSD.txt";
             //// проверка на существование файла
             if (!File.Exists(pathFile)) 

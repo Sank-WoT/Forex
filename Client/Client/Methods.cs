@@ -91,12 +91,12 @@
                 text = "продажа";
             }
 
-            if (WSrting.RUS == true)
+            if (WString.RUS == true)
             {
             MessageBox.Show("Cовершена " + text + " по цене =" + valueT);
             }
 
-            if (WSrting.ENG == true)
+            if (WString.ENG == true)
             {
                 if(text == "продажа")
                 {

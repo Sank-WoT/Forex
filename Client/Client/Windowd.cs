@@ -33,7 +33,7 @@
         public double shag = 1; // интервал для координаты X
         public int danoe = 0;
         public int colvo = 0;
-        public string value = WSrting.VALUE;
+        public string value = WString.VALUE;
 
         public double poslchislo;
         public double poslchislo1;
@@ -57,8 +57,11 @@
         public List<double> MainV = new List<double>();
 
         public List<double> sred = new List<double>(); // Точки по X SMAr
-        public double poslTime = 0; // последнее время
+        public double lastUpdate = 0; // последнее время
         public int tic = 0; // Переменная отслеживающая кол-во прошедших секунд с запуска формы
+        private object sync = new object();
+        private bool internetActionFinished = false;
+        private bool internetInitialized = false;
 
         #region Параметры текущей формы
         int y = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height; // высота экрана
@@ -76,18 +79,15 @@
             int ButtLocX = 1150;
             int ButtLocY = 35;
             int ButtonSize = 59;
-            int sdvig = 12;
+            int shift = 12;
             SpeedDraw.Speed = 1;
-            inet = TryCon(inet);
+           
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
             double fX = 1366;
             double fY = 757;
             double xS = x / 1920.0; // настройка под все  экраны
             double yS = y / 1080.0; // настройка под все  экраны
-
-            poslTime = Conect(value, poslTime, 1000000, inet); // соединение для получения посоеднего времени
-
 
             this.InitializeComponent();
 
@@ -99,33 +99,33 @@
             area.Name = "myGraph";
             area.AxisX.MajorGrid.Interval = shag; // доработать интервал по координате X 1= 1 день
             chart1.Location = new Point(0, 10); // размещение чарта
-            this.chart1.Size = new System.Drawing.Size(Convert.ToInt32(cX * xS * (WSrting.X / fX)), Convert.ToInt32(cY * yS * (WSrting.X / fX))); // размеры чарта
+            this.chart1.Size = new System.Drawing.Size(Convert.ToInt32(cX * xS * (WString.X / fX)), Convert.ToInt32(cY * yS * (WString.X / fX))); // размеры чарта
             chart1.ChartAreas.Add(area); // передача 
 
             #region Задание параметров кнопкам button9, button8, button10, button1, button7  
-            button10.Location =  new Point(Convert.ToInt32((ButtLocX - 174 + sdvig) * xS * (WSrting.X / fX)), Convert.ToInt32(ButtLocY * yS * (WSrting.Y / fY))); // клавиша buy
-            button1.Location = new Point(Convert.ToInt32((ButtLocX - 174 + sdvig) * xS * (WSrting.X / fX)), Convert.ToInt32((ButtLocY + 45) * yS * (WSrting.Y / fY))); // клавиша value
-            button9.Location = new Point(Convert.ToInt32((ButtLocX + sdvig *2 / 3.0 + 20) * xS * (WSrting.X / fX)), Convert.ToInt32(ButtLocY * yS * (WSrting.Y / fY)));  // клавиша  sell        
-            button8.Location = new Point(Convert.ToInt32((ButtLocX - 105 + sdvig * 2 / 3.0) * xS * (WSrting.X / fX)), Convert.ToInt32(ButtLocY * yS * (WSrting.Y / fY))); // клавиша price               
-            button7.Location = new Point(Convert.ToInt32((ButtLocX - 40 + sdvig * 2 / 3.0) * xS * (WSrting.X / fX)), Convert.ToInt32((ButtLocY + 45) * yS * (WSrting.Y / fY))); // клавиша value
+            button10.Location =  new Point(Convert.ToInt32((ButtLocX - 174 + shift) * xS * (WString.X / fX)), Convert.ToInt32(ButtLocY * yS * (WString.Y / fY))); // клавиша buy
+            button1.Location = new Point(Convert.ToInt32((ButtLocX - 174 + shift) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 45) * yS * (WString.Y / fY))); // клавиша value
+            button9.Location = new Point(Convert.ToInt32((ButtLocX + shift *2 / 3.0 + 20) * xS * (WString.X / fX)), Convert.ToInt32(ButtLocY * yS * (WString.Y / fY)));  // клавиша  sell        
+            button8.Location = new Point(Convert.ToInt32((ButtLocX - 105 + shift * 2 / 3.0) * xS * (WString.X / fX)), Convert.ToInt32(ButtLocY * yS * (WString.Y / fY))); // клавиша price               
+            button7.Location = new Point(Convert.ToInt32((ButtLocX - 40 + shift * 2 / 3.0) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 45) * yS * (WString.Y / fY))); // клавиша value
 
-            button9.Size = new Size(Convert.ToInt32((ButtonSize + sdvig * 2 / 3.0) * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
-            button8.Size = new Size(Convert.ToInt32((ButtonSize + 60 + sdvig * 2 / 3.0) * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
-            button10.Size = new Size(Convert.ToInt32((ButtonSize + sdvig ) * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
-            button1.Size = new Size(Convert.ToInt32((ButtonSize + 60 + sdvig) * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
-            button7.Size = new Size(Convert.ToInt32((ButtonSize + 60 + sdvig * 2 / 3.0) * xS * (WSrting.X / fX)), Convert.ToInt32(46 * yS * (WSrting.Y / fY)));
-            numericUpDown1.Size = new Size(Convert.ToInt32(117 * xS * (WSrting.X / fX)), Convert.ToInt32(20 * yS * (WSrting.Y / fY)));
+            button9.Size = new Size(Convert.ToInt32((ButtonSize + shift * 2 / 3.0) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
+            button8.Size = new Size(Convert.ToInt32((ButtonSize + 60 + shift * 2 / 3.0) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
+            button10.Size = new Size(Convert.ToInt32((ButtonSize + shift ) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
+            button1.Size = new Size(Convert.ToInt32((ButtonSize + 60 + shift) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
+            button7.Size = new Size(Convert.ToInt32((ButtonSize + 60 + shift * 2 / 3.0) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
+            numericUpDown1.Size = new Size(Convert.ToInt32(117 * xS * (WString.X / fX)), Convert.ToInt32(20 * yS * (WString.Y / fY)));
             #endregion
 
-            label1.Location = new Point(Convert.ToInt32((ButtLocX - 176) * xS * (WSrting.X / fX)), Convert.ToInt32((ButtLocY + 100) * yS * (WSrting.Y / fY)));
-            label2.Location = new Point(Convert.ToInt32((ButtLocX - 176) * xS * (WSrting.X / fX)), Convert.ToInt32((ButtLocY + 253) * yS * (WSrting.Y / fY)));
+            label1.Location = new Point(Convert.ToInt32((ButtLocX - 176) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 100) * yS * (WString.Y / fY)));
+            label2.Location = new Point(Convert.ToInt32((ButtLocX - 176) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 253) * yS * (WString.Y / fY)));
 
-            checkBox1.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WSrting.X / fX)), Convert.ToInt32((ButtLocY + 122) * yS * (WSrting.Y / fY)));
-            checkBox2.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WSrting.X / fX)), Convert.ToInt32((ButtLocY + 145) * yS * (WSrting.Y / fY)));
-            checkBox3.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WSrting.X / fX)), Convert.ToInt32((ButtLocY + 278) * yS * (WSrting.Y / fY)));
-            checkBox4.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WSrting.X / fX)), Convert.ToInt32((ButtLocY + 168) * yS * (WSrting.Y / fY)));
-            checkBox5.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WSrting.X / fX)), Convert.ToInt32((ButtLocY + 316) * yS * (WSrting.Y / fY)));
-            numericUpDown1.Location = new Point(Convert.ToInt32((ButtLocX - 74) * xS * (WSrting.X / fX)), Convert.ToInt32((ButtLocY + 145) * yS * (WSrting.Y / fY)));
+            checkBox1.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 122) * yS * (WString.Y / fY)));
+            checkBox2.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 145) * yS * (WString.Y / fY)));
+            checkBox3.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 278) * yS * (WString.Y / fY)));
+            checkBox4.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 168) * yS * (WString.Y / fY)));
+            checkBox5.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 316) * yS * (WString.Y / fY)));
+            numericUpDown1.Location = new Point(Convert.ToInt32((ButtLocX - 74) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 145) * yS * (WString.Y / fY)));
             numericUpDown1.Value = 10;
             checkBox5.Checked = true; // Чекбокс отвечающий за привязку графика к середине включен
                 Graph(); // Вызов метода объявления линий
@@ -135,6 +135,7 @@
             CheckBox(); // переводчик 
             Button(); // переводчик  кнопок
             Menu(); // переводчик меню       
+
             #endregion
         }
 
@@ -149,16 +150,20 @@
             }
             catch (Exception ex)
             {
-                if(WSrting.RUS == true)
+                if(WString.RUS == true)
                 {
                  MessageBox.Show("Отсутсвие интернета или недоступен сайт переход в автономный режим");
                 }
-                if (WSrting.ENG == true)
+                if (WString.ENG == true)
                 {
                     MessageBox.Show("Lack of or inaccessible internet site go offline");
                 }
                 inet = false;
             } // Временная мера по отсутвию интернета
+            lock (sync)
+            {
+                internetActionFinished = true;
+            }
             return inet;
         }
 
@@ -244,7 +249,7 @@
             Methods cEURUSD = new Methods(); // Метод конвертации времени в тип Date Time
             DINET = cEURUSD.Convert(Times, DINET); // Конвертируем время из  формата UNIX в DataTime
             }
-
+            
             return poslTime;
         } //// Получение данных Необходимо создать вторую ветку с помощью try catch которая будет работать при отсутствии интеренета.
 
@@ -265,7 +270,7 @@
        public void CheckBox()
         {
             #region checkBox1, checkBox2, checkBox3, label1, label2 Присвоение английского языка
-            if (WSrting.ENG == true)
+            if (WString.ENG == true)
             {
                 checkBox1.Text = "Levels support and resistance";
                 checkBox2.Text = "SMA";
@@ -277,7 +282,7 @@
             #endregion
 
             #region checkBox1, checkBox2, checkBox3, label1, label2 Присвоение русского языка
-            if (WSrting.RUS == true)
+            if (WString.RUS == true)
             {     
                 checkBox1.Text = "Уровни сопротивления и поддержки";
                 checkBox2.Text = "Скользящая кривая";
@@ -291,14 +296,14 @@
         
         public void tTip()
        {
-            if (WSrting.ENG == true)
+            if (WString.ENG == true)
             {
                 toolTip1.SetToolTip(checkBox1, "Click to activate the display of support and resistance levels.");
                 toolTip2.SetToolTip(checkBox2, "Click to activate the displaying of the moving line.");
                 toolTip3.SetToolTip(checkBox3, "Press to activate the display lines value at the point.");               
             }
 
-            if (WSrting.RUS == true)
+            if (WString.RUS == true)
             {
                 toolTip1.SetToolTip(checkBox1, "Нажмите чтобы активировать отображение уровней поддержки и сопротивления.");
                 toolTip2.SetToolTip(checkBox2, "Нажмите чтобы активировать отображение уровней скользящей прямой");
@@ -311,7 +316,7 @@
         public void Button()
         {
             #region Локализация button10 button9 button1 button7
-            if (WSrting.ENG == true)
+            if (WString.ENG == true)
             {
                 button10.Text = "Buy"; // текст клавиши покупки
                 button9.Text = "Sell"; // текст клавиши покупки
@@ -319,7 +324,7 @@
                 button7.Text = "Value Buy"; // текст клавиши покупки            
             }
 
-            if (WSrting.RUS == true)
+            if (WString.RUS == true)
             {
                 button9.Text = "Продажа" ; // текст клавиши покупки 
                 button10.Text =  "Покупка"; // текст клавиши покупки 
@@ -331,11 +336,11 @@
 
         public void Menu()
         {
-            if (WSrting.ENG == true)
+            if (WString.ENG == true)
             {
-               timeLevelToolStripMenuItem.Text = "Time intervall";
+               timeLevelToolStripMenuItem.Text = "Time intervals";
                reportToolStripMenuItem.Text = "Report";              
-               createReportToolStripMenuItem.Text = "Creaty report";
+               createReportToolStripMenuItem.Text = "Create a report";
                settingToolStripMenuItem.Text = "Settings";
                secondToolStripMenuItem.Text = "Second";
                minutesToolStripMenuItem.Text = "5 Minutes";
@@ -344,10 +349,10 @@
                dayToolStripMenuItem.Text = "Day";
                weekToolStripMenuItem.Text = "Week";
                monthToolStripMenuItem.Text = "Month";
-               toCloseTheDealToolStripMenuItem.Text = "To close the deal"; 
+               toCloseTheDealToolStripMenuItem.Text = "Close a deal"; 
             }
 
-            if (WSrting.RUS == true)
+            if (WString.RUS == true)
             {
                timeLevelToolStripMenuItem.Text = "Временные интервалы";
                reportToolStripMenuItem.Text = "Отчет";
@@ -437,9 +442,7 @@
             chart1.ChartAreas[0].CursorX.IntervalType = DateTimeIntervalType.Seconds;
             chart1.ChartAreas[0].AxisX.Interval = 0;
 
-            GraphY EURUSD = new GraphY();
-            EURUSD.Y(chart1, massYInetB[massYInetB.Count - 1]); // доработать класс
-
+           
             chart1.ChartAreas[0].CursorX.IsUserEnabled = true;
             chart1.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             chart1.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
@@ -455,8 +458,8 @@
                 label_X.Visible = true;
                 label_Y.Visible = true;
                 lab_Cur.Visible = true;
-                label_X.Size = new Size(Convert.ToInt32(860 * xS * (WSrting.X / fX)), 1);
-                label_Y.Size = new Size(1, Convert.ToInt32(550 * xS * (WSrting.Y / fY)));
+                label_X.Size = new Size(Convert.ToInt32(860 * xS * (WString.X / fX)), 1);
+                label_Y.Size = new Size(1, Convert.ToInt32(550 * xS * (WString.Y / fY)));
                 label_X.BackColor = Color.FromArgb(0, 0, 0); // цвет линии по X
                 label_Y.BackColor = Color.FromArgb(0, 0, 0); // цвет линии по Y
                 this.chart1.MouseMove += new MouseEventHandler(this.chart1_MouseMove);
@@ -784,10 +787,19 @@
         }
 
         public void Window_Load(object sender, EventArgs e)
-        { 
-          t.Start(); 
-          t.Interval = 1000; // время секунды
-          t.Tick +=  new EventHandler(timer1_Tick); // прибавление времени       
+        {
+            Cursor = Cursors.WaitCursor;
+            Action internetConnectAction = () =>
+            {                
+                inet = TryCon(inet);
+            };
+
+            new Thread(new ThreadStart(internetConnectAction)).Start();
+
+            t.Start();
+            t.Interval = 1000; // время секунды
+            t.Tick += new EventHandler(timer1_Tick); // прибавление времени       
+
         }
 
         public void chart1_MouseMove(object sender, MouseEventArgs e)
@@ -795,11 +807,11 @@
             double xS = x / 1920.0; // настройка под все  экраны
             double yS = y / 1080.0; // настройка под все  экраный
 
-            if (e.Y > Convert.ToInt32(27 * yS * (WSrting.Y / fY)) && e.Y < Convert.ToInt32(629 * yS * (WSrting.Y / fY)) && e.X > Convert.ToInt32(110 * xS * (WSrting.X / fX)))
+            if (e.Y > Convert.ToInt32(27 * yS * (WString.Y / fY)) && e.Y < Convert.ToInt32(629 * yS * (WString.Y / fY)) && e.X > Convert.ToInt32(110 * xS * (WString.X / fX)))
             {
-                label_X.Location = new Point(Convert.ToInt32(110 * xS * (WSrting.X / fX)), e.Y); // перемещение линии по y
-                label_Y.Location = new Point(e.X, Convert.ToInt32(30 * yS * (WSrting.Y / fY))); // перемещение линии по X
-                lab_Cur.Location = new Point(Convert.ToInt32(700 * xS * (WSrting.X / fX)), e.Y); // привязка значения 
+                label_X.Location = new Point(Convert.ToInt32(110 * xS * (WString.X / fX)), e.Y); // перемещение линии по y
+                label_Y.Location = new Point(e.X, Convert.ToInt32(30 * yS * (WString.Y / fY))); // перемещение линии по X
+                lab_Cur.Location = new Point(Convert.ToInt32(700 * xS * (WString.X / fX)), e.Y); // привязка значения 
                 double YCur = chart1.ChartAreas[0].AxisY.PixelPositionToValue(e.Y);
                 double XCur = chart1.ChartAreas[0].AxisX.PixelPositionToValue(e.X) / 0.000011574074074074;
                 DateTime Date1 = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(XCur); // время в формате UNIX
@@ -834,7 +846,25 @@
         }
 
         private void timer1_Tick(object sender, EventArgs e)
-        { 
+        {
+            lock (sync)
+            {
+                if (!internetActionFinished)
+                {
+                    return;
+                }
+            }
+
+            if (!internetInitialized)
+            {
+                internetInitialized = true;
+                lastUpdate = Conect(value, lastUpdate, 1000000, inet); // соединение для получения посоеднего времени
+
+                GraphY EURUSD = new GraphY();
+                EURUSD.Y(chart1, massYInetB[massYInetB.Count - 1]); // доработать класс
+                Cursor = Cursors.Default;
+            }
+
             double dTime = (DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds -15; // Текущее время
             int NowTime;
             NowTime = Convert.ToInt32(dTime); // текущее время (работает)

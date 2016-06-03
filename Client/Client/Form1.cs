@@ -27,7 +27,8 @@
         /// </summary>
         public Form1()
         {
-            WSrting.ENG = true; // Задание базового языка
+            WString.ENG = true; // Задание базового языка
+            WString.RUS = false;
             Methods Time = new Methods();
             
             switch (Time.TradeStop(DateTime.Now))
@@ -51,7 +52,7 @@
 
             #region Проверка существования файла по pathDirectory
             //// Проверка на существование файла
-            if (!File.Exists(pathFile) && WSrting.RUS == true) 
+            if (!File.Exists(pathFile) && WString.RUS == true) 
             {
                 MessageBox.Show("Вас приветствует программа Project Mordor, спасибо за то что вы с нами, желаем успешных торгов и хорошей прибыли"); // сообщение о создании файла
                 FileInfo writel = new FileInfo(pathFile); // получаем путь 
@@ -73,9 +74,8 @@
             chartToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.C; // командная комбинация клавиш для откытия настроек графика
             eURUSDToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.U; // командная комбинация клавиш для откытия графика USDEUR
             helpToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H; // командная комбинация клавиш для откытия помощи
-            eURJPYToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Y; // командная комбинация клавиш для откытия графика EURYPJ
+            USDJPYToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Y; // командная комбинация клавиш для откытия графика EURYPJ
             #endregion
-
 
             if (HelpClosing == true)
             {
@@ -88,8 +88,10 @@
         /// </summary>
         /// <param name="sender">object</param>
         /// <param name="e">EventArgs</param>
-        public void EEURUSDToolStripMenuItem_Click(object sender, EventArgs e)
+        public void EURUSDToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             string readX, readY;
             int x = 0, y = 0;
 
@@ -123,11 +125,11 @@
             #region Присвоение прочтенного из файла к WSrting.X WSrting.Y
             x = Convert.ToInt32(readX);
             y = Convert.ToInt32(readY);
-            WSrting.X = x; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
-            WSrting.Y = y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
+            WString.X = x; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
+            WString.Y = y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
                 #endregion
                 #region  Window f1 = new Window(); Создание модального окна
-               WSrting.VALUE = "eurusd";
+               WString.VALUE = "eurusd";
                 Windowd f1 = new Windowd();
             f1.Show(); // модольное окно 
             f1.Size = new Size(x, y); // Задаем значение размера формы Window 
@@ -135,8 +137,10 @@
             #endregion
             }
         } //// показать  график  EUR/USD
-        public void EURJPYToolStripMenuItem_Click(object sender, EventArgs e)
+        public void USDJPYToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             string readX, readY;
             int X = 0, Y = 0;
 
@@ -170,10 +174,10 @@
                 #region Присвоение прочтенного из файла к WSrting.X WSrting.Y
                 X = Convert.ToInt32(readX);
                 Y = Convert.ToInt32(readY);
-                WSrting.X = X; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
-                WSrting.Y = Y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
+                WString.X = X; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
+                WString.Y = Y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
                 #endregion
-                WSrting.VALUE = "usdjpy";
+                WString.VALUE = "usdjpy";
                 Windowd f2 = new Windowd();
                 f2.Show(); // модольное окно 
                 f2.Size = new Size(X/ (int)xS, Y/ (int)xS); // Задаем значение размера формы Window 
@@ -234,48 +238,47 @@
         /// <summary>
         /// Функция смены языка
         /// </summary>
-        public void MenuForm1()
+        public void ChangeTextLanguage()
         {
-            if (WSrting.RUS == true)
+            if (WString.RUS == true)
             {
-             #region перевод на русский язык меню текущей формы
-              settingsToolStripMenuItem.Text = "Стандартные настройки";
-              windowToolStripMenuItem.Text = "Окно";
-              chartToolStripMenuItem.Text = "График";
-              оПрограммеToolStripMenuItem.Text = "О программе";
-              создателиToolStripMenuItem.Text = "Создатели";
-              helpToolStripMenuItem.Text = "Помощь";
-              currencyPairsToolStripMenuItem.Text = "Валютные пары";
-              eURUSDToolStripMenuItem.Text = "Евро/Доллар";
-              eURJPYToolStripMenuItem.Text = "Доллар/Йена";
-              langueToolStripMenuItem.Text = "Язык";
-              eURToolStripMenuItem.Text = "Английский";
-              rusToolStripMenuItem.Text = "Русский";
+                #region перевод на русский язык меню текущей формы
+                settingsToolStripMenuItem.Text = "Стандартные настройки";
+                windowToolStripMenuItem.Text = "Окно";
+                chartToolStripMenuItem.Text = "График";
+                AboutToolStripMenuItem.Text = "О программе";
+                создателиToolStripMenuItem.Text = "Создатели";
+                helpToolStripMenuItem.Text = "Справка";
+                currencyPairsToolStripMenuItem.Text = "Валютные пары";
+                eURUSDToolStripMenuItem.Text = "Евро/Доллар";
+                USDJPYToolStripMenuItem.Text = "Доллар/Йена";
+                langToolStripMenuItem.Text = "English";
+                labelSelectPair.Text = "Выберите валютную пару для начала торгов";
 
-              #endregion
+                #endregion
             }
 
-            if (WSrting.ENG == true)
+            if (WString.ENG == true)
             {
-             #region перевод на английский язык меню текущей формы
-              settingsToolStripMenuItem.Text = "Standart settings"; 
-              windowToolStripMenuItem.Text = "Window";
-              chartToolStripMenuItem.Text = "Chart"; 
-              оПрограммеToolStripMenuItem.Text = "About program";
-              создателиToolStripMenuItem.Text = "Creators";
-              helpToolStripMenuItem.Text = "Help";
-              currencyPairsToolStripMenuItem.Text = "Currency pairs";
-              eURUSDToolStripMenuItem.Text = "EUR/USD";
-              eURJPYToolStripMenuItem.Text = "USD/JPY";
-              langueToolStripMenuItem.Text = "Langue";
-              eURToolStripMenuItem.Text = "Eng";
-              rusToolStripMenuItem.Text = "Rus";
-              #endregion
-            }           
+                #region перевод на английский язык меню текущей формы
+                settingsToolStripMenuItem.Text = "Settings";
+                windowToolStripMenuItem.Text = "Window";
+                chartToolStripMenuItem.Text = "Chart";
+                AboutToolStripMenuItem.Text = "About";
+                создателиToolStripMenuItem.Text = "Autors";
+                helpToolStripMenuItem.Text = "Help";
+                currencyPairsToolStripMenuItem.Text = "Currency pairs";
+                eURUSDToolStripMenuItem.Text = "EUR/USD";
+                USDJPYToolStripMenuItem.Text = "USD/JPY";
+                langToolStripMenuItem.Text = "Русский";
+                labelSelectPair.Text = "Select a currency pair to start trading";
+                #endregion
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ChangeTextLanguage();
         }
 
         private void AboutProgrammToolStripMenuItem_Click(object sender, EventArgs e)
@@ -307,16 +310,16 @@
         /// <param name="e"></param>
         private void OnClosing(object sender, FormClosingEventArgs e)
         {
-            string mess = "Do you have to go?"; // стартовое значение
+            string mess = "";
 
-            if (WSrting.RUS == true)
+            if (WString.RUS == true)
             {
-                mess = "Вы уже уходите?";
+                mess = "Вы уверены?";
             }
 
-            if (WSrting.ENG == true)
+            if (WString.ENG == true)
             {
-                mess = "Do you have to go?";
+                mess = "Are You Sure?";
             }
 
             if (MessageBox.Show(mess, "", MessageBoxButtons.YesNo) == DialogResult.No)
@@ -331,34 +334,20 @@
             }
         }
 
-        private void LangueToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ChangeLanguage(object sender, EventArgs e)
         {
+            if (WString.RUS)
+            {
+                WString.RUS = false;
+                WString.ENG = true; // Выбор языка английский
+            }
+            else
+            {
+                WString.ENG = false;
+                WString.RUS = true; // Выбор языка русский
+            }
+            ChangeTextLanguage();
         }
-
-        /// <summary>
-        /// Обработчик выбора в меню пункта
-        /// </summary>
-        /// <param name="sender">object</param>
-        /// <param name="e">EventArgs</param>
-        private void EEURUSDToolStripMenuItem(object sender, EventArgs e)
-        {
-            WSrting.RUS = false; 
-            WSrting.ENG = true; // Выбор языка английский
-            MenuForm1();
-        }
-
-        /// <summary>
-        /// Обработчик выбора в меню пункта
-        /// </summary>
-        /// <param name="sender">object</param>
-        /// <param name="e">EventArgs</param>
-        private void RusToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            WSrting.ENG = false;
-            WSrting.RUS = true; // Выбор языка русский
-            MenuForm1();
-        }
-
-       
+               
     }
 }

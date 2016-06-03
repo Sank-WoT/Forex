@@ -62,11 +62,11 @@
         private void CloseOrder_Click(object sender, EventArgs e)
         {
             List <double> iterData = new List <double>();
-            if  (WSrting.RUS == true)
+            if  (WString.RUS == true)
             {
                 MessageBox.Show("Орден закрыт" + ListD.Items[ListD.SelectedIndex].ToString());
             }
-            if (WSrting.ENG == true)
+            if (WString.ENG == true)
             {
                 MessageBox.Show("The order is closed" + ListD.Items[ListD.SelectedIndex].ToString());
             }
@@ -77,21 +77,21 @@
 
             if (Value.Contains("  покупка") == true)
             {
-                if (WSrting.ENG == true)
+                if (WString.ENG == true)
                 {
                  MessageBox.Show("The order is closed   = " + BufferS[BufferS.Count - 1]);
                 }
-                if (WSrting.RUS == true)
+                if (WString.RUS == true)
                 {
                     MessageBox.Show("Орден закрыт   = " + BufferS[BufferS.Count - 1]);
                 }
                 chislo = Convert.ToDouble(Value.Remove(Value.Length - 9, 9)); // Выбранное число при закрытии сделки
                 profit = Math.Round((BufferS[BufferS.Count - 1] - chislo), 4) - 0.0003; // Прибыль за сделку
-                if (WSrting.ENG == true)
+                if (WString.ENG == true)
                 {
                    MessageBox.Show("Profit = " + profit + " Time order " + Date); // Сообщение о совершенной сделке  
                 }
-                if (WSrting.RUS == true)
+                if (WString.RUS == true)
                 {
                     MessageBox.Show("Прибыль = " + profit + " Время ордена " + Date); // Сообщение о совершенной сделке 
                 }                
@@ -105,21 +105,21 @@
 
             if (Value.Contains("  продано") == true)
             {
-                if (WSrting.ENG == true)
+                if (WString.ENG == true)
                 {
                     MessageBox.Show("The order is closed   = " + BufferS[BufferS.Count - 1]);
                 }
-                if (WSrting.RUS == true)
+                if (WString.RUS == true)
                 {
                     MessageBox.Show("Орден закрыт   = " + BufferS[BufferS.Count - 1]);
                 }
                 chislo = Convert.ToDouble(Value.Remove(Value.Length - 9, 9)); // Выбранное число при закрытии сделки
                 profit = Math.Round((chislo - Buffer[BufferS.Count - 1]), 4) - 0.0003; // Прибыль за сделку
-                if(WSrting.ENG == true)
+                if(WString.ENG == true)
                 {
                     MessageBox.Show("Profit = " + profit + " Time order " + Date); // Сообщение о совершенной сделке  
                 }
-                if (WSrting.RUS == true)
+                if (WString.RUS == true)
                 {
                     MessageBox.Show("Орден закрыт   = " + BufferS[BufferS.Count - 1]);
                 }
