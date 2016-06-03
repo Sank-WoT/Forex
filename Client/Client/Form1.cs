@@ -12,6 +12,9 @@
     /// </summary>
     public partial class Form1 : Form
     {
+        double xS;
+        double yS;
+       
         #region Переменные закрытия окон
         public static bool HelpClosing = true; // Переменная отвечающая за закрытое окной HelpClosing
         public static bool SWindowClosing = true; // Переменная отвечающая за закрытое окной SWindowClosing
@@ -24,6 +27,7 @@
         /// </summary>
         public Form1()
         {
+            WSrting.ENG = true; // Задание базового языка
             Methods Time = new Methods();
             
             switch (Time.TradeStop(DateTime.Now))
@@ -47,7 +51,7 @@
 
             #region Проверка существования файла по pathDirectory
             //// Проверка на существование файла
-            if (!File.Exists(pathFile)) 
+            if (!File.Exists(pathFile) && WSrting.RUS == true) 
             {
                 MessageBox.Show("Вас приветствует программа Project Mordor, спасибо за то что вы с нами, желаем успешных торгов и хорошей прибыли"); // сообщение о создании файла
                 FileInfo writel = new FileInfo(pathFile); // получаем путь 
@@ -58,19 +62,20 @@
 
             this.FormClosing += new FormClosingEventHandler(OnClosing);
 
-            int y = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height; // высота экрана
-            int x = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width; // ширина экрана  
-
-            double xS = x / 1920.0; // настройка под все  экраны
-            double yS = y / 1080.0; // настройка под все  экраны
+            int y = SystemInformation.PrimaryMonitorSize.Height; // высота экрана
+            int x = SystemInformation.PrimaryMonitorSize.Width; // ширина экрана  
+            xS = x / 1920.0; // настройка под все  экраны
+            yS = y / 1080.0; // настройка под все  экраны
             this.Size = new Size(x, y); // задание размеров экрана
-
+           
             #region Переменные командной комбинации к Меню текущей форме
             windowToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.W; // командная комбинация клавиш для откытия настроек окна
             chartToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.C; // командная комбинация клавиш для откытия настроек графика
-            eURUSDToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.E; // командная комбинация клавиш для откытия настроек графика
+            eURUSDToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.U; // командная комбинация клавиш для откытия графика USDEUR
             helpToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H; // командная комбинация клавиш для откытия помощи
+            eURJPYToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Y; // командная комбинация клавиш для откытия графика EURYPJ
             #endregion
+
 
             if (HelpClosing == true)
             {
@@ -171,7 +176,7 @@
                 WSrting.VALUE = "usdjpy";
                 Windowd f2 = new Windowd();
                 f2.Show(); // модольное окно 
-                f2.Size = new Size(X, Y); // Задаем значение размера формы Window 
+                f2.Size = new Size(X/ (int)xS, Y/ (int)xS); // Задаем значение размера формы Window 
                 f2.Location = new Point(0, 0); // размещение окна USDJPY
             }
         }

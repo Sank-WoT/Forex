@@ -23,8 +23,8 @@
     {
         public void Y(Chart chart1, double r)
         {
-            chart1.ChartAreas[0].AxisY.Maximum = r + Math.Round(r * 0.01, 3);
-            chart1.ChartAreas[0].AxisY.Minimum = r - Math.Round(r * 0.01, 3);
+            chart1.ChartAreas[0].AxisY.Maximum = r + Math.Round(r * 0.001, 3);
+            chart1.ChartAreas[0].AxisY.Minimum = r - Math.Round(r * 0.001, 3);
         }       
     }
 }

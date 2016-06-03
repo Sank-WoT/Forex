@@ -63,6 +63,7 @@
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -287,7 +288,7 @@
             // createReportToolStripMenuItem
             // 
             this.createReportToolStripMenuItem.Name = "createReportToolStripMenuItem";
-            this.createReportToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.createReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.createReportToolStripMenuItem.Text = "Create report";
             this.createReportToolStripMenuItem.Click += new System.EventHandler(this.CreateReportToolStripMenuItem_Click);
             // 
@@ -318,7 +319,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(1101, 210);
+            this.checkBox4.Location = new System.Drawing.Point(1101, 212);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(66, 17);
             this.checkBox4.TabIndex = 23;
@@ -339,11 +340,17 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(1186, 184);
+            this.numericUpDown1.Location = new System.Drawing.Point(1158, 186);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 25;
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Pm.ico");
             // 
             // Windowd
             // 
@@ -421,5 +428,6 @@
         private System.Windows.Forms.ToolStripMenuItem toCloseTheDealToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

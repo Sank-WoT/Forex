@@ -73,14 +73,14 @@
             SoundPlayer player = new SoundPlayer();
             try
             {
-            player.SoundLocation = Application.StartupPath + "/Music/test.wav"; // путь адреса музыки
-            player.Play(); // Проигрывание звука
+                player.SoundLocation = Application.StartupPath + "/Music/test.wav"; // путь адреса музыки
+                player.Play(); // Проигрывание звука
             }
             catch
             {
-            }     
-      
-            if (buy == true)
+            }
+
+            if (buy == false)
             {
                 valueT = bufferS[tic - 1]; // Запомнить значение продажи
                 text = "покупка";
@@ -91,8 +91,22 @@
                 text = "продажа";
             }
 
+            if (WSrting.RUS == true)
+            {
             MessageBox.Show("Cовершена " + text + " по цене =" + valueT);
+            }
 
+            if (WSrting.ENG == true)
+            {
+                if(text == "продажа")
+                {
+                 MessageBox.Show("committed " + "selling" + " for the price =" + valueT);
+                }
+                if (text == "покупка")
+                {
+                    MessageBox.Show("done " + "buing" + " for the price =" + valueT);
+                }
+            }
             return valueT;          
         }
 
