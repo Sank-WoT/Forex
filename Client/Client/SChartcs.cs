@@ -24,7 +24,7 @@ namespace Client
         }
         private void OnClosing(object sender, FormClosingEventArgs e)
         {
-            Form1.SChartClosing = true;
+            MainForm.SChartClosing = true;
         }
     }
 }

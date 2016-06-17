@@ -5,39 +5,52 @@
     using System.IO; // для класса 
     using System.Text.RegularExpressions;
     using System.Windows.Forms;
-
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Начальное окно
     /// </summary>
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
+        bool inet = false;
         double xS;
         double yS;
-       
+        private object sync = new object();
+        private bool internetActionFinished = false;
+        Task tConnect, tEurusd, tUsdjpy;
         #region Переменные закрытия окон
         public static bool HelpClosing = true; // Переменная отвечающая за закрытое окной HelpClosing
         public static bool SWindowClosing = true; // Переменная отвечающая за закрытое окной SWindowClosing
-        public static bool WindowClosing = true; // Переменная отвечающая за закрытое окной WindowClosing
-        public static bool SChartClosing = true; // Переменная отвечающая за закрытое окной SChartClosing
+        public static bool WindowClosingEURUSD = true; // Переменная отвечающая за закрытое окной WindowClosing
+        public static bool WindowClosingUSDJPY = true;
+        public static bool SChartClosing = true; // Переменная отвечающая за закрытое окной SChartClosing 
+        public List<string> valueP = new List<string>();
         #endregion
-        
+
         /// <summary>
         /// Функция стартового состояния окна
         /// </summary>
-        public Form1()
+        public MainForm()
         {
+            string pathDirectory = Application.StartupPath; // Путь к директории
+            string pathFile = pathDirectory + "\\" + "eurusd" + ".txt"; // Путь к файлу c котировками eurusd
             WString.ENG = true; // Задание базового языка
             WString.RUS = false;
             Methods Time = new Methods();
-            
+            tConnect = Task.Run(() =>
+            {
+                Internet inCon = new Internet();
+                InetConnect.Inet = inCon.TryCon(inet, "eurusd", sync, internetActionFinished);
+            });
+
             switch (Time.TradeStop(DateTime.Now))
             {
                 case "Sat": MessageBox.Show("Forex day off"); break;
                 case "Sun": MessageBox.Show("Forex day off"); break;
             }
             this.InitializeComponent();   
-            string pathDirectory = Application.StartupPath; // Путь к директории
 
             #region Проверка существования директрории по pathDirectory
             //// Проверка  на существование директории
@@ -47,7 +60,6 @@
                 MessageBox.Show("Директория создана путь : " + pathDirectory); // сообщение о создании директории
             }
 
-            string pathFile = pathDirectory + "\\" + "eurusd" + ".txt"; // Путь к файлу c котировками eurusd
             #endregion 
 
             #region Проверка существования файла по pathDirectory
@@ -64,7 +76,10 @@
             this.FormClosing += new FormClosingEventHandler(OnClosing);
 
             int y = SystemInformation.PrimaryMonitorSize.Height; // высота экрана
-            int x = SystemInformation.PrimaryMonitorSize.Width; // ширина экрана  
+            int x = SystemInformation.PrimaryMonitorSize.Width; // ширина экрана 
+            buttonEurUsd.Location = new Point( x / 2 - 400, y / 2 - 100); // Первая кнопка EurUsd
+            labelSelectPair.Location = new Point(x / 2 - 100, y / 2 - 200); // Вторая кнопка UsdJpy
+            buttonUsdJpy.Location = new Point(x / 2  + 200, y / 2 - 100); // Вторая кнопка UsdJpy
             xS = x / 1920.0; // настройка под все  экраны
             yS = y / 1080.0; // настройка под все  экраны
             this.Size = new Size(x, y); // задание размеров экрана
@@ -81,6 +96,22 @@
             {
                 helpToolStripMenuItem.CheckState = CheckState.Unchecked;
             }
+
+            Internet IPair = new Internet();
+            Cursor.Current = Cursors.WaitCursor;
+            tConnect.Wait();
+            Cursor.Current = Cursors.Default;
+            tEurusd = Task.Run(() =>
+            {
+                string pathFile1 = Application.StartupPath + "\\" + "eurusd" + ".txt"; // Путь к файлу c котировками eurusd
+                IPair.FirstConnect("eurusd", pathFile1); // первое подключении
+            }); // поток подключения eurusd
+
+            tUsdjpy = Task.Run(() =>
+            {
+                string pathFile2 = Application.StartupPath + "\\" + "usdjpy" + ".txt"; // Путь к файлу c котировками eurusd
+                IPair.FirstConnect("usdjpy", pathFile2); // первое подключении
+            }); // поток подключения usdjpy
         }
 
         /// <summary>
@@ -91,13 +122,14 @@
         public void EURUSDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-
+            tConnect.Wait();
+            tEurusd.Wait();
             string readX, readY;
             int x = 0, y = 0;
 
-            if (WindowClosing == true)
+            if (WindowClosingEURUSD == true)
             {
-                WindowClosing = false;
+                WindowClosingEURUSD = false;
             string pathFile = Application.StartupPath + "\\SettingWindow.txt"; // Очень важно указать путь
             //// проверка на существование файла
             if (!File.Exists(pathFile)) 
@@ -140,13 +172,14 @@
         public void USDJPYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-
+            tConnect.Wait();
+            tUsdjpy.Wait();
             string readX, readY;
             int X = 0, Y = 0;
 
-            if (WindowClosing == true)
+            if (WindowClosingUSDJPY == true)
             {
-                WindowClosing = false;
+                WindowClosingUSDJPY = false;
                 string pathFile = Application.StartupPath + "\\SettingWindow.txt"; // Очень важно указать путь
                                                                                    //// проверка на существование файла
                 if (!File.Exists(pathFile))
@@ -180,7 +213,7 @@
                 WString.VALUE = "usdjpy";
                 Windowd f2 = new Windowd();
                 f2.Show(); // модольное окно 
-                f2.Size = new Size(X/ (int)xS, Y/ (int)xS); // Задаем значение размера формы Window 
+                f2.Size = new Size(X, Y); // Задаем значение размера формы Window 
                 f2.Location = new Point(0, 0); // размещение окна USDJPY
             }
         }

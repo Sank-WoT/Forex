@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calsulations.cs" />
     <Compile Include="CloseDeal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,11 +62,11 @@
       <DependentUpon>EURUSD.cs</DependentUpon>
     </Compile>
     <Compile Include="Exel.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GraphY.cs" />
     <Compile Include="Help.cs">
@@ -76,12 +75,13 @@
     <Compile Include="Help.Designer.cs">
       <DependentUpon>Help.cs</DependentUpon>
     </Compile>
+    <Compile Include="Internet.cs" />
     <Compile Include="Methods.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="readFile.cs" />
+    <Compile Include="WorkFile.cs" />
     <Compile Include="Report.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,8 +120,8 @@
     <EmbeddedResource Include="EURUSD.resx">
       <DependentUpon>EURUSD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Help.resx">
       <DependentUpon>Help.cs</DependentUpon>

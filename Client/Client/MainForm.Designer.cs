@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Требуется переменная конструктора.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,7 +150,7 @@
             this.labelSelectPair.AutoSize = true;
             this.labelSelectPair.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelSelectPair.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelSelectPair.Location = new System.Drawing.Point(157, 39);
+            this.labelSelectPair.Location = new System.Drawing.Point(169, 70);
             this.labelSelectPair.Margin = new System.Windows.Forms.Padding(30, 30, 30, 0);
             this.labelSelectPair.Name = "labelSelectPair";
             this.labelSelectPair.Size = new System.Drawing.Size(254, 15);
@@ -161,9 +161,9 @@
             // buttonEurUsd
             // 
             this.buttonEurUsd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonEurUsd.Location = new System.Drawing.Point(160, 90);
+            this.buttonEurUsd.Location = new System.Drawing.Point(69, 121);
             this.buttonEurUsd.Name = "buttonEurUsd";
-            this.buttonEurUsd.Size = new System.Drawing.Size(98, 38);
+            this.buttonEurUsd.Size = new System.Drawing.Size(200, 100);
             this.buttonEurUsd.TabIndex = 4;
             this.buttonEurUsd.Text = "EUR / USD";
             this.buttonEurUsd.UseVisualStyleBackColor = true;
@@ -172,9 +172,9 @@
             // buttonUsdJpy
             // 
             this.buttonUsdJpy.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonUsdJpy.Location = new System.Drawing.Point(313, 90);
+            this.buttonUsdJpy.Location = new System.Drawing.Point(311, 121);
             this.buttonUsdJpy.Name = "buttonUsdJpy";
-            this.buttonUsdJpy.Size = new System.Drawing.Size(98, 38);
+            this.buttonUsdJpy.Size = new System.Drawing.Size(200, 100);
             this.buttonUsdJpy.TabIndex = 5;
             this.buttonUsdJpy.Text = "USD / JPY";
             this.buttonUsdJpy.UseVisualStyleBackColor = true;

@@ -27,7 +27,7 @@
             List<double> Num = new List<double>();
             Num.Add(0);
             Methods a = new Methods();
-            DINET = a.Convert(Num, DINET);
+            DINET = a.Convert(Num);
             string zna;
             zna = DINET[0].ToString("F");
             Console.WriteLine(zna);
@@ -49,23 +49,6 @@
             Assert.AreEqual(4, Value);
         } // Ткст  на правильность работы точек изменения тренда
 
-        [TestMethod]
-        public void TestMethod4()
-        {
-            bool inet = true;
-            Windowd c = new Windowd();
-            Assert.AreEqual(true, c.TryCon(inet));
-        } // Тест на проверку интернета
-
-        [TestMethod]
-        public void TestMethod5()
-        {
-            string patchFile = "eurusd.txt";
-            Windowd c = new Windowd();
-             Assert.AreEqual(true, c.CreateFile(patchFile));
-        } // Тест на наличие файла
-
-        [TestMethod]
         public void TestMethod6()
         {
             DateTime Date = new DateTime();

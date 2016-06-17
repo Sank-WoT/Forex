@@ -45,12 +45,27 @@
 
             for (int i = 0; i < main.BUY.Count; i++)
             {
-                ListD.Items.Add(Convert.ToString(main.BUY[i]) + "  покупка");
+                if(WString.RUS == true)
+                {
+                  ListD.Items.Add(Convert.ToString(main.BUY[i]) + "  покупка");
+                }
+                if (WString.ENG == true)
+                {
+                    ListD.Items.Add(Convert.ToString(main.BUY[i]) + "       buy");
+                }
             }
 
             for (int i = 0; i < main.SELL.Count; i++)
             {
-                ListD.Items.Add(Convert.ToString(main.SELL[i]) + "  продано");
+                if(WString.RUS == true)
+                {
+                 ListD.Items.Add(Convert.ToString(main.SELL[i]) + "  продано");
+                }
+               
+                if (WString.ENG == true)
+                {
+                  ListD.Items.Add(Convert.ToString(main.SELL[i]) + "      sell");
+                }
             }
        
         }
@@ -61,6 +76,8 @@
 
         private void CloseOrder_Click(object sender, EventArgs e)
         {
+            try
+            {
             List <double> iterData = new List <double>();
             if  (WString.RUS == true)
             {
@@ -75,18 +92,19 @@
             int dTime = Convert.ToInt32((DateTime.Now - new System.DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds - 5);
             DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(dTime); 
 
-            if (Value.Contains("  покупка") == true)
+            if (Value.Contains("  покупка") == true || Value.Contains("       buy") == true)
             {
                 if (WString.ENG == true)
                 {
-                 MessageBox.Show("The order is closed   = " + BufferS[BufferS.Count - 1]);
+                 MessageBox.Show("The order is closed   = " + Buffer[Buffer.Count - 1]);
                 }
                 if (WString.RUS == true)
                 {
-                    MessageBox.Show("Орден закрыт   = " + BufferS[BufferS.Count - 1]);
+                    MessageBox.Show("Орден закрыт   = " + Buffer[Buffer.Count - 1]);
                 }
                 chislo = Convert.ToDouble(Value.Remove(Value.Length - 9, 9)); // Выбранное число при закрытии сделки
-                profit = Math.Round((BufferS[BufferS.Count - 1] - chislo), 4) - 0.0003; // Прибыль за сделку
+                Console.WriteLine(Value.Remove(Value.Length - 9, 8) + "   Проверка");
+                profit = Math.Round((chislo - Buffer[Buffer.Count - 1]), 4); // Прибыль за сделку
                 if (WString.ENG == true)
                 {
                    MessageBox.Show("Profit = " + profit + " Time order " + Date); // Сообщение о совершенной сделке  
@@ -103,7 +121,7 @@
                 ReportTransit.data.Add(iterData); // хранит в  себе цену покупку цену закрытия сделки, прибыль и время закрытия
             }
 
-            if (Value.Contains("  продано") == true)
+            if (Value.Contains("  продано") == true || Value.Contains("      sell"))
             {
                 if (WString.ENG == true)
                 {
@@ -114,7 +132,8 @@
                     MessageBox.Show("Орден закрыт   = " + BufferS[BufferS.Count - 1]);
                 }
                 chislo = Convert.ToDouble(Value.Remove(Value.Length - 9, 9)); // Выбранное число при закрытии сделки
-                profit = Math.Round((chislo - Buffer[BufferS.Count - 1]), 4) - 0.0003; // Прибыль за сделку
+                Console.WriteLine(chislo + " Продажа");
+                profit = Math.Round((chislo - BufferS[BufferS.Count - 1]), 4); // Прибыль за сделку
                 if(WString.ENG == true)
                 {
                     MessageBox.Show("Profit = " + profit + " Time order " + Date); // Сообщение о совершенной сделке  
@@ -140,6 +159,19 @@
                 main.SELL.RemoveAt(ListD.SelectedIndex - main.BUY.Count); // Удаление данных Покупки из списка  по уже закрытой сделке 
             }
             ListD.Items.RemoveAt(ListD.SelectedIndex); // Удалить выбранную запись  // осталось додумать  как отослать все это для отчета
+            }
+            catch
+            {
+                if(WString.RUS == true)
+                {
+                  MessageBox.Show("Не выбран орден для закрытия");
+                }
+                if (WString.ENG == true)
+                {
+                  MessageBox.Show("Order");
+                }
+
+            }
         }
     }
 }

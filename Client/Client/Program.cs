@@ -16,7 +16,7 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
     static class WString
@@ -44,6 +44,11 @@ namespace Client
       public static List <double> BUY;
       public static List<List<double>> data = new List<List<double>>();
   }// передача данных между формами
+
+    public static class InetConnect
+    {
+        public static bool Inet;     
+    }// передача данных между формами
 
     public static class SpeedDraw
     {

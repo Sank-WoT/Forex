@@ -24,10 +24,10 @@
     /// <summary>
     /// main class EURUSD.
     /// </summary>
-    public   partial  class Windowd : Form
+    public partial class Windowd : Form
     {
-        //// Calsulations calculations = new Calsulations(); додумать
-       public ChartArea area = new ChartArea(); // Создание области
+        Task tSMA, tMinMax, tInterval;
+        public ChartArea area = new ChartArea(); // Создание области
         System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
         public int Leaves = 0, Zoom = 100;
         public double shag = 1; // интервал для координаты X
@@ -37,7 +37,7 @@
 
         public double poslchislo;
         public double poslchislo1;
-        public  bool inet;
+        public bool inet;
         public bool poluch = false;
 
         public List<double> BUY = new List<double>();
@@ -56,32 +56,33 @@
         public List<DateTime> MainT = new List<DateTime>();
         public List<double> MainV = new List<double>();
 
-        public List<double> sred = new List<double>(); // Точки по X SMAr
-        public double lastUpdate = 0; // последнее время
+        public List<double> sred = new List<double>(); // Точки по X SMA
         public int tic = 0; // Переменная отслеживающая кол-во прошедших секунд с запуска формы
         private object sync = new object();
         private bool internetActionFinished = false;
         private bool internetInitialized = false;
+        Internet IPair = new Internet();
 
         #region Параметры текущей формы
         int y = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height; // высота экрана
         int x = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width; // ширина экрана 
         double fX = 1366; // стандартный размер формы
         double fY = 757; // стандартный размер формы
-        int cX = 1000; // Размер чарта
-        int cY = 800; // Размер чарта
+        int cX = 1058;
+        int cY = 684;
+        WorkFile rEURUSD = new WorkFile(); // вызов класса Обработки текста
         #endregion
 
         List<int> PoinX = new List<int>(); // данные точки
 
-       public Windowd()
+        public Windowd()
         {
-            int ButtLocX = 1150;
+            int ButtLocX = 1101;
             int ButtLocY = 35;
             int ButtonSize = 59;
             int shift = 12;
             SpeedDraw.Speed = 1;
-           
+
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
             double fX = 1366;
@@ -92,10 +93,11 @@
             this.InitializeComponent();
 
             this.FormClosing += new FormClosingEventHandler(OnClos);
-            
+
             chart1 = new Chart();
             chart1.Parent = this;
-          
+            this.Text = value;
+
             area.Name = "myGraph";
             area.AxisX.MajorGrid.Interval = shag; // доработать интервал по координате X 1= 1 день
             chart1.Location = new Point(0, 10); // размещение чарта
@@ -103,155 +105,46 @@
             chart1.ChartAreas.Add(area); // передача 
 
             #region Задание параметров кнопкам button9, button8, button10, button1, button7  
-            button10.Location =  new Point(Convert.ToInt32((ButtLocX - 174 + shift) * xS * (WString.X / fX)), Convert.ToInt32(ButtLocY * yS * (WString.Y / fY))); // клавиша buy
-            button1.Location = new Point(Convert.ToInt32((ButtLocX - 174 + shift) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 45) * yS * (WString.Y / fY))); // клавиша value
-            button9.Location = new Point(Convert.ToInt32((ButtLocX + shift *2 / 3.0 + 20) * xS * (WString.X / fX)), Convert.ToInt32(ButtLocY * yS * (WString.Y / fY)));  // клавиша  sell        
-            button8.Location = new Point(Convert.ToInt32((ButtLocX - 105 + shift * 2 / 3.0) * xS * (WString.X / fX)), Convert.ToInt32(ButtLocY * yS * (WString.Y / fY))); // клавиша price               
-            button7.Location = new Point(Convert.ToInt32((ButtLocX - 40 + shift * 2 / 3.0) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 45) * yS * (WString.Y / fY))); // клавиша value
+            button10.Location = new Point(Convert.ToInt32(1100 * xS * (WString.X / fX)), Convert.ToInt32(27 * yS * (WString.Y / fY))); // клавиша buy
+            button1.Location = new Point(Convert.ToInt32(1157 * xS * (WString.X / fX)), Convert.ToInt32(27 * yS * (WString.Y / fY))); // клавиша value
+            button9.Location = new Point(Convert.ToInt32(1274 * xS * (WString.X / fX)), Convert.ToInt32(27 * yS * (WString.Y / fY)));  // клавиша  sell        
+            button8.Location = new Point(Convert.ToInt32(1100 * xS * (WString.X / fX)), Convert.ToInt32(72 * yS * (WString.Y / fY))); // клавиша price               
+            button7.Location = new Point(Convert.ToInt32(1216 * xS * (WString.X / fX)), Convert.ToInt32(72 * yS * (WString.Y / fY))); // клавиша value
 
             button9.Size = new Size(Convert.ToInt32((ButtonSize + shift * 2 / 3.0) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
             button8.Size = new Size(Convert.ToInt32((ButtonSize + 60 + shift * 2 / 3.0) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
-            button10.Size = new Size(Convert.ToInt32((ButtonSize + shift ) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
+            button10.Size = new Size(Convert.ToInt32((ButtonSize + shift) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
             button1.Size = new Size(Convert.ToInt32((ButtonSize + 60 + shift) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
             button7.Size = new Size(Convert.ToInt32((ButtonSize + 60 + shift * 2 / 3.0) * xS * (WString.X / fX)), Convert.ToInt32(46 * yS * (WString.Y / fY)));
             numericUpDown1.Size = new Size(Convert.ToInt32(117 * xS * (WString.X / fX)), Convert.ToInt32(20 * yS * (WString.Y / fY)));
             #endregion
 
-            label1.Location = new Point(Convert.ToInt32((ButtLocX - 176) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 100) * yS * (WString.Y / fY)));
-            label2.Location = new Point(Convert.ToInt32((ButtLocX - 176) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 253) * yS * (WString.Y / fY)));
+            label1.Location = new Point(Convert.ToInt32((ButtLocX) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 100) * yS * (WString.Y / fY)));
+            label2.Location = new Point(Convert.ToInt32((ButtLocX) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 253) * yS * (WString.Y / fY)));
 
-            checkBox1.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 122) * yS * (WString.Y / fY)));
-            checkBox2.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 145) * yS * (WString.Y / fY)));
-            checkBox3.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 278) * yS * (WString.Y / fY)));
-            checkBox4.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 168) * yS * (WString.Y / fY)));
-            checkBox5.Location = new Point(Convert.ToInt32((ButtLocX - 174) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 316) * yS * (WString.Y / fY)));
-            numericUpDown1.Location = new Point(Convert.ToInt32((ButtLocX - 74) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 145) * yS * (WString.Y / fY)));
+            checkBox1.Location = new Point(Convert.ToInt32((ButtLocX) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 122) * yS * (WString.Y / fY)));
+            checkBox2.Location = new Point(Convert.ToInt32((ButtLocX) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 145) * yS * (WString.Y / fY)));
+            checkBox3.Location = new Point(Convert.ToInt32((ButtLocX) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 278) * yS * (WString.Y / fY)));
+            checkBox4.Location = new Point(Convert.ToInt32((ButtLocX) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 168) * yS * (WString.Y / fY)));
+            checkBox5.Location = new Point(Convert.ToInt32((ButtLocX) * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 316) * yS * (WString.Y / fY)));
+            numericUpDown1.Location = new Point(Convert.ToInt32(1200 * xS * (WString.X / fX)), Convert.ToInt32((ButtLocY + 145) * yS * (WString.Y / fY)));
             numericUpDown1.Value = 10;
             checkBox5.Checked = true; // Чекбокс отвечающий за привязку графика к середине включен
-                Graph(); // Вызов метода объявления линий
+            Graph(); // Вызов метода объявления линий
 
             #region вызов Методов локализации формы
             tTip(); // локализация всплывающих подсказок
             CheckBox(); // переводчик 
             Button(); // переводчик  кнопок
             Menu(); // переводчик меню       
-
             #endregion
         }
 
-        public bool TryCon(bool inet)
-        {
-             try
-            {
-                var webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + "0" + "&limit=" + "1" + "&sign=" + value); // запрос на сайт 
-        WebResponse webRes = webReq.GetResponse(); // получение ответа
-        webRes.Close();
-                inet = true;
-            }
-            catch (Exception ex)
-            {
-                if(WString.RUS == true)
-                {
-                 MessageBox.Show("Отсутсвие интернета или недоступен сайт переход в автономный режим");
-                }
-                if (WString.ENG == true)
-                {
-                    MessageBox.Show("Lack of or inaccessible internet site go offline");
-                }
-                inet = false;
-            } // Временная мера по отсутвию интернета
-            lock (sync)
-            {
-                internetActionFinished = true;
-            }
-            return inet;
-        }
 
-
-/// <summary>
-/// Method create file 
-/// </summary>
-/// <param name="pathFile">String</param>
-        public bool CreateFile(string pathFile)
-        {
-            bool a = true;
-            //// проверка на существование файла
-            if (!File.Exists(pathFile)) 
-            {
-                FileInfo writel = new FileInfo(pathFile); // получаем путь 
-                StreamWriter l = writel.CreateText(); // создаем текст
-                l.Close(); // закрыть запись
-                a = false;
-            } // развертывание файла в дебаге
-            
-            return a;
-        }
-
-        public StreamReader Conection(int limit, double poslT, string value)
-        {
-
-            var webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + poslT + "&limit=" + limit + "&sign=" + value); // запрос на сайт 
-            WebResponse webRes = webReq.GetResponse(); // получение ответа
-            Stream st = webRes.GetResponseStream(); // поток по которому получаем инфу
-            StreamReader sr = new StreamReader(st); // прочитать поток
-            Console.WriteLine("http://currency-dred95.rhcloud.com/get_currency.php?time=" + poslT + "&limit=" + limit + "&sign=" + value);
-            return sr; 
-        }
-
-        public double Conect(string value, double poslTime, int limit, bool inet)
-        { 
-             // преобразовение типа доубле к американскому стандарту
-
-            #region Получение данных по котировкам из файла "eurusd.txt"  запись их в переменную text
-            string pathDirectory = Application.StartupPath; // Путь к директории
-            string pathFile = pathDirectory + "\\" + value + ".txt"; // Путь к файлу c котировками eurusd
-            CreateFile(pathFile); // Создание не существующего файла
-            StreamReader r = new StreamReader(pathFile);
-            string text = r.ReadToEnd(); // получение прочтенной записи
-            r.Close(); // закрыть чтение   
-            #endregion
-
-            Regex regex1 = new Regex(@"(\d{10,20})"); // регулярное выражение для поиска последнего времени в файле
-            MatchCollection m1 = regex1.Matches(text);
-
-            if (m1.Count != 0)
-            {
-                poslTime = Convert.ToDouble(m1[m1.Count - 1].Value);
-            } // недопускает присвоение при значении прочтенного в файле меньше 1.  
-          
-            //// WebProxy wp = new WebProxy("151.236.216.251", 10000); //задаем параметры прокси
-       
-                #region Получение данных из файла запись их  в text1              
-                StreamReader r1 = new StreamReader(pathFile);
-                string text1 = r1.ReadToEnd(); // получение прочтенной записи
-                r1.Close(); // закрыть чтение 
-                #endregion
-
-                if (inet == true)
-            {
-                #region Добавление данных в файл из буфера 
-                StreamReader sr;
-                sr = Conection(limit, poslTime, value); // Получение данных при коннекте
-                string response = sr.ReadToEnd(); // присвоение прочтенного к стринг 
-                text1 += response; // добавление в  файл новых значений
-                FileInfo write = new FileInfo(pathFile); // получаем путь 
-                StreamWriter w = write.CreateText(); // создаем текст  
-                w.WriteLine(text1); // добавляем текст 
-                w.Close(); // закрыть запись 
-                #endregion
-             }
-
-            if (tic == 0)
-            {
-            readFile rEURUSD = new readFile(); // вызов класса чтения из файла
-            colvo = rEURUSD.read(text1, massYInetA, massYInetB, Times, colvo); // функция чтения из файла
-            Console.WriteLine(massYInetA[0]); ////  Дебаг прочитанного
-            Methods cEURUSD = new Methods(); // Метод конвертации времени в тип Date Time
-            DINET = cEURUSD.Convert(Times, DINET); // Конвертируем время из  формата UNIX в DataTime
-            }
-            
-            return poslTime;
-        } //// Получение данных Необходимо создать вторую ветку с помощью try catch которая будет работать при отсутствии интеренета.
+        /// <summary>
+        /// Method create file 
+        /// </summary>
+        /// <param name="pathFile">String</param>   
 
         //// Отображение галочек  в меню
         public void Activ(object sender)
@@ -436,17 +329,26 @@
 
             chart1.ChartAreas[0].AxisX.Title = "Date, Time";
             chart1.ChartAreas[0].AxisY.Title = "Attitude " + value ;
-
+     
             chart1.ChartAreas[0].AxisX.ScaleView.SizeType = DateTimeIntervalType.Seconds;
             chart1.ChartAreas[0].AxisX.IntervalAutoMode = IntervalAutoMode.FixedCount;
             chart1.ChartAreas[0].CursorX.IntervalType = DateTimeIntervalType.Seconds;
             chart1.ChartAreas[0].AxisX.Interval = 0;
 
-           
             chart1.ChartAreas[0].CursorX.IsUserEnabled = true;
             chart1.ChartAreas[0].CursorX.IsUserSelectionEnabled = true;
             chart1.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
             chart1.ChartAreas[0].AxisX.ScrollBar.IsPositionedInside = true;
+
+           // chart1.ChartAreas[0].AxisY.ScaleView.SizeType = DateTimeIntervalType.Seconds;
+           // chart1.ChartAreas[0].AxisY.IntervalAutoMode = IntervalAutoMode.FixedCount;
+           // chart1.ChartAreas[0].CursorY.IntervalType = DateTimeIntervalType.Seconds;
+           // chart1.ChartAreas[0].AxisY.Interval = 0;
+
+           // chart1.ChartAreas[0].CursorY.IsUserEnabled = true;
+           // chart1.ChartAreas[0].CursorY.IsUserSelectionEnabled = true;
+           // chart1.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
+           // chart1.ChartAreas[0].AxisY.ScrollBar.IsPositionedInside = true;
         } // График динамического создание линий
 
         public void Setting()
@@ -473,7 +375,7 @@
             }
         }
 
-        public int Update(int tic, List<DateTime> DateT, double NowTime)
+        public int Update(int tic, List<DateTime> DateT, double NowTime, List<DateTime> DINET)
         {
             #region вызов Методов локализации формы
             tTip(); // локализация всплывающих подсказок
@@ -483,7 +385,6 @@
             #endregion
 
             chart1.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel); // событие вращения колесика
-            chart1.Focus(); // необходим фокус
             List<List<double>> poinl = new List<List<double>>(); // Точки изменения тренда
             Setting();
 
@@ -497,8 +398,17 @@
 
             #region Склейка даннях из файла с буфером
             Draw q = new Draw();
-            MainT = q.MainTime(DINET, DateT, tic, SpeedDraw.Speed); // Загрузка времени из файла
-            MainV = q.MainValue(Buffer, massYInetB, tic, SpeedDraw.Speed); // Загрузка значения из файла ###Сделать загрузку данных изменяемой tic
+            MainT = q.MainTime(DINET, DateT, tic, 100); // Загрузка времени из файла
+            MainV = q.MainValue(Buffer, massYInetA, tic, 100); // Загрузка значения из файла ###Сделать загрузку данных изменяемой tic
+
+            /*
+            Dictionary<double, double> Pair = new Dictionary<double, double>();
+            for (int i = 0; i < MainT.Count - 1; i++)
+            {
+               Pair.Add(MainT[i], MainV[i]);
+            } 
+            */
+
             #endregion
 
             chart1.Series[0].Points.Clear();       
@@ -506,44 +416,50 @@
             
             for (int hl = 0; MainT.Count - 1 >= hl; hl++)
             {
-                chart1.Series[0].Points.AddXY(MainT[hl].ToOADate(), MainV[hl]); //  Построение главного графика
-                
-            }
+                chart1.Series[0].Points.AddXY(MainT[hl].ToOADate(), MainV[hl]); //  Построение главного графика             
+            }           
+           
+            chart1.Update(); // обновление данных 
 
-            poinl = IntervalResistance(tic, Buffer, NowTime); // Получение точек смены тренда  // данные из буфера // доработать
+            tInterval = Task.Run(() =>
+            {
+                poinl = IntervalResistance(tic, Buffer, NowTime); // Получение точек смены тренда  // данные из буфера // доработать
+            });  
+
+            List<double> sreds = new List<double>();
+            sreds = SMA(MainT, (int)numericUpDown1.Value, MainV); // Вызов метода для построения SMA 
+
+            List<List<double>> listMinMax = new List<List<double>>(); // Точки миниму и максимума
+
+            tMinMax = Task.Run(() =>
+            {
+                listMinMax = MinMax(MainV, MainT); // Минимумы и максимумы
+            });
+
+            Task.WaitAll(tMinMax, tInterval); // Ожидаем завершение
+            DrawSMA(MainT, (int)numericUpDown1.Value, MainV, sreds); // рисовать скользящую кривую
+            DrawMinMax(listMinMax); // рисовать минимум максимум
 
             if (checkBox1.Checked == true)
             {
                 Resis(poinl, tic, 0.0001, DateT); // рисуем уровни
             } 
-            
-            chart1.Update(); // обновление данных
-
-            SMA(MainT, (int)numericUpDown1.Value, MainV); // Вызов метода для построения SMA 
-            MinMax(MainV, MainT); // Минимумы и максимумы
 
             button8.Text = Convert.ToString(BufferS[tic]); // вывод значений на кнопку  по времени
             button1.Text = Convert.ToString(BufferS[tic]); // вывод значений на кнопку  по времени
             button7.Text = Convert.ToString(Buffer[tic]); // вывод значений на кнопку  по времени
-            ZoomT(Zoom, tic); // Вызов метода  регуирования уровней времени
+            ZoomT(Zoom, tic); // Вызов метода  регулирования уровней времени
             tic++; // Подсчет тикового времени
             return tic;
         } // метод обновления данных
 
-        public void Strelka(List<double> MainV)
-        {
-            if (MainV[MainV.Count - 1] > MainV[MainV.Count - 2])
-            {
-                imageList1.Images.Add(Image.FromFile(Application.StartupPath + "/Image/Red.png"));
-            }
-        }
-
-      public void ZoomT(int ize, int tic)
+       
+      public void ZoomT(int zoomChart, int tic)
         {
           if (checkBox5.Checked == true)
             {
-            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[4].Points[0].XValue - (ize * 0.00001157407) + (tic * 0.00001157407); // ограничение по X минимум   NowTime
-            chart1.ChartAreas[0].AxisX.Maximum = chart1.Series[4].Points[0].XValue + (ize * 0.00001157407) + (tic * 0.00001157407); // ограничение по X максимум  под 60 секунд 0,00001157407
+            chart1.ChartAreas[0].AxisX.Minimum = chart1.Series[4].Points[0].XValue - (zoomChart * 0.00001157407) + (tic * 0.00001157407); // ограничение по X минимум   NowTime
+            chart1.ChartAreas[0].AxisX.Maximum = chart1.Series[4].Points[0].XValue + (zoomChart * 0.00001157407) + (tic * 0.00001157407); // ограничение по X максимум  под 60 секунд 0,00001157407
             }       
         } // функция необходимая для уровней рассмотренного времени
 
@@ -565,29 +481,31 @@
                     p = 0;
                 }  
             }
+            return sreds;
+        } ////  вычисление точки СМА исправлено под буфер и чтения с файла
 
+        public void DrawSMA(List<DateTime> Dat, int Sglag, List<double> Buff, List<double> sreds)
+        {
             if (checkBox2.Checked == true)
             {
                 if (Buff.Count >= Sglag)
-            {
-                chart1.Series[3].Points.Clear();
-
-                for (int h = 0; h <= sreds.Count - 1; h++)
                 {
-                    chart1.Series[3].XValueType = ChartValueType.Time;
-                    chart1.Series[3].Color = Color.FromArgb(255, 100, 100); // задание цвета
-                    chart1.Series[3].Points.AddXY(Dat[Sglag - 1 + h].ToOADate(), sreds[h]); // добавление точек в линию
+                    chart1.Series[3].Points.Clear();
+
+                    for (int h = 0; h <= sreds.Count - 1; h++)
+                    {
+                        chart1.Series[3].XValueType = ChartValueType.Time;
+                        chart1.Series[3].Color = Color.FromArgb(255, 100, 100); // задание цвета
+                        chart1.Series[3].Points.AddXY(Dat[Sglag - 1 + h].ToOADate(), sreds[h]); // добавление точек в линию
+                    }
                 }
-            }
             }
 
             if (checkBox2.Checked == false)
             {
                 chart1.Series[3].Points.Clear();
             }
-
-            return sreds;
-        } ////  вычисление точки СМА исправлено под буфер и чтения с файла
+        }
 
       public List<List<double>> IntervalResistance(int tic, List<double> Buffer, double NowTime) //// подавать интервал
         {
@@ -630,7 +548,8 @@
             }          
             return poin;
         }
-        public void MinMax( List<double> MainV, List<DateTime>  MainT)
+
+        public List<List<double>> MinMax( List<double> MainV, List<DateTime>  MainT)
         {
             int Pervoe = 0;
             int trend = 0; // переменная тренда
@@ -668,6 +587,11 @@
                     poin.Add(koordPoint); // добавление координаты точки
                 }
             }
+            return poin;
+        }
+
+        public void DrawMinMax(List<List<double>> poin)
+        {
             if (checkBox4.Checked == true)
             {
                 chart1.Series[5].Color = Color.FromArgb(255, 100, 100); // задание цвета
@@ -678,7 +602,7 @@
                 {
                     if ((i % 2) == 0)
                     {
-                     chart1.Series[5].Points.AddXY(MainT[(int)poin[i][0]], poin[i][1]); // добавление точек в линию
+                        chart1.Series[5].Points.AddXY(MainT[(int)poin[i][0]], poin[i][1]); // добавление точек в линию
                     }
                     if ((i % 2) == 1)
                     {
@@ -686,12 +610,12 @@
                     }
 
                 }
-               
+
             }
             if (checkBox4.Checked == false)
             {
                 chart1.Series[5].Points.Clear();
-                chart1.Series[6].Points.Clear();           
+                chart1.Series[6].Points.Clear();
             }
         }
 
@@ -790,16 +714,17 @@
         {
             Cursor = Cursors.WaitCursor;
             Action internetConnectAction = () =>
-            {                
-                inet = TryCon(inet);
+            {
+                lock (sync)
+                {
+                    internetActionFinished = true;
+                }
             };
 
             new Thread(new ThreadStart(internetConnectAction)).Start();
-
             t.Start();
             t.Interval = 1000; // время секунды
             t.Tick += new EventHandler(timer1_Tick); // прибавление времени       
-
         }
 
         public void chart1_MouseMove(object sender, MouseEventArgs e)
@@ -845,6 +770,16 @@
             } // прокрутка вниз
         }
 
+        /*
+          public void Strelka(List<double> MainV)
+        {
+            if (MainV[MainV.Count - 1] > MainV[MainV.Count - 2])
+            {
+                imageList1.Images.Add(Image.FromFile(Application.StartupPath + "/Image/Red.png"));
+            }
+        }
+        */
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             lock (sync)
@@ -854,32 +789,50 @@
                     return;
                 }
             }
+            double NowTime = SecondCon(); // метод по секундного обновления    
+            GraphY EURUSD = new GraphY();
+            EURUSD.Y(chart1, Buffer[Buffer.Count - 1]);
+            Cursor = Cursors.Default;
 
+            DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(NowTime); // время в формате UNIX
+            DTIME.Add(Date); // добавление времени в лист          
+            tic = Update(tic, DTIME, NowTime, DINET); // функция по секунде
+        }
+
+        public double SecondCon()
+        {
             if (!internetInitialized)
             {
                 internetInitialized = true;
-                lastUpdate = Conect(value, lastUpdate, 1000000, inet); // соединение для получения посоеднего времени
-
-                GraphY EURUSD = new GraphY();
-                EURUSD.Y(chart1, massYInetB[massYInetB.Count - 1]); // доработать класс
-                Cursor = Cursors.Default;
+                string pathDirectory = Application.StartupPath; // Путь к директории
+                string pathFile = pathDirectory + "\\" + value + ".txt"; // Путь к файлу c котировками eurusd
+                // IPair.FirstConnect(value, pathFile);
+                if (tic == 0)
+                {
+                    StreamReader r2 = new StreamReader(pathFile);
+                    string text2 = r2.ReadToEnd(); // получение прочтенной записи
+                    r2.Close(); // закрыть чтение  
+                    rEURUSD.read(text2, massYInetA, massYInetB, Times); // функция обработки текста присвоение глобальным переменным
+                    Methods cEURUSD = new Methods(); // Метод конвертации времени в тип Date Time
+                    DINET = cEURUSD.Convert(Times); // Конвертируем время из  формата UNIX в DataTime
+                } // Необходимо решить
             }
 
-            double dTime = (DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds -15; // Текущее время
+            double dTime = (DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds - 15; // Текущее время
             int NowTime;
-            NowTime = Convert.ToInt32(dTime); // текущее время (работает)
+            NowTime = Convert.ToInt32(dTime); // текущее время 
 
-          if (inet == true)
-          {
-            var webReq1 = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + NowTime + "&limit=" + 1 + "&sign=" + value); // запрос на сайт 
-            WebResponse webRes1 = webReq1.GetResponse(); // получение ответа
-            Stream st = webRes1.GetResponseStream(); // поток по которому получаем инфу
-            StreamReader sr = new StreamReader(st); // прочитать поток
-            string texts = sr.ReadToEnd(); // получение прочтенной записи
-            Regex regex = new Regex(@"((\d{10,20})|(\d{1,20})\.(\d{1,4}))"); // регулярное выражение 
-            MatchCollection M = regex.Matches(texts);
-               
-              if (tic == 0)
+            if (InetConnect.Inet == true)
+            {
+                var webReq1 = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + NowTime + "&limit=" + 1 + "&sign=" + value); // запрос на сайт 
+                WebResponse webRes1 = webReq1.GetResponse(); // получение ответа
+                Stream st = webRes1.GetResponseStream(); // поток по которому получаем инфу
+                StreamReader sr = new StreamReader(st); // прочитать поток
+                string texts = sr.ReadToEnd(); // получение прочтенной записи
+                Regex regex = new Regex(@"((\d{10,20})|(\d{1,20})\.(\d{1,4}))"); // регулярное выражение 
+                MatchCollection M = regex.Matches(texts);
+
+                if (tic == 0)
                 {
                     poslchislo = massYInetA[massYInetB.Count - 1]; // Присвоение к последнему числу в записи
                 }
@@ -889,31 +842,27 @@
                     poslchislo1 = massYInetB[massYInetA.Count - 1]; // Присвоение к последнему числу в записи
                 }
 
-            if (M.Count > 0)
+                if (M.Count > 0)
+                {
+                    Buffer.Add(Convert.ToDouble(M[1].Value)); // добавить в лист значения покупки     
+                    BufferS.Add(Convert.ToDouble(M[2].Value)); // добавить в лист значения продажи   
+                    poslchislo = Convert.ToDouble(M[1].Value); // последнее число в покупке 
+                    poslchislo1 = Convert.ToDouble(M[2].Value); // последнее число в продаже
+                }
+                else
+                {
+                    Buffer.Add(poslchislo); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
+                    BufferS.Add(poslchislo1); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
+                }
+
+            } // Конект посекундно
+            else
             {
-              Buffer.Add(Convert.ToDouble(M[1].Value)); // добавить в лист значения        
-              BufferS.Add(Convert.ToDouble(M[2].Value)); // добавить в лист значения    
-              poslchislo = Convert.ToDouble(M[1].Value);
-              poslchislo1 = Convert.ToDouble(M[2].Value);
+                Buffer.Add(massYInetA[massYInetA.Count - 1]); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
+                BufferS.Add(massYInetB[massYInetB.Count - 1]); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
             }
-            else 
-            {                              
-                Buffer.Add(poslchislo); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
-                BufferS.Add(poslchislo1); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
-            } 
-
-             }
-           else
-          {
-              Buffer.Add(massYInetA[massYInetA.Count - 1]); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
-              BufferS.Add(massYInetB[massYInetB.Count - 1]); // Добавление в массив последнего числа из файла (Так как на сервере новых записей не найдено)
-          }
-
-          DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(NowTime); // время в формате UNIX
-          DTIME.Add(Date); // добавление времени в лист
-
-          tic = Update(tic, DTIME, NowTime); // функция по секунде
-        } // работает
+            return NowTime;
+        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -1084,7 +1033,7 @@
 
         private void OnClos(object sender, FormClosingEventArgs e)
         {
-            Form1.WindowClosing = true;
+            MainForm.WindowClosingEURUSD = true;
         }
 
        private void reportToolStripMenuItem_Click(object sender, EventArgs e)

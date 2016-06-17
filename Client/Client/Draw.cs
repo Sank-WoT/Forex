@@ -47,6 +47,15 @@
 
            return Value;
        }
+
+        public List<double> MainValue(List<double> Buffer, List<double> File)
+        {
+            List<double> Value = new List<double>();
+            Value = File;
+            Value.Add(Buffer[Buffer.Count - 1]);
+            return Value;
+        }
+
        /// <summary>
        ///  Метод склейки буферных данных и файловых 
        /// </summary>
@@ -54,7 +63,7 @@
        /// <param name="ITime">DateTime значения 2 листа.</param>
        /// <param name="tic">int время которое прошло с запуска формы.</param>
        /// <returns>Объединенный лист</returns>
-       public List<DateTime> MainTime(List<DateTime> Ftime, List<DateTime> ITime, int tic, int ChisloZagruz)
+        public List<DateTime> MainTime(List<DateTime> Ftime, List<DateTime> ITime, int tic, int ChisloZagruz)
        {
            List<DateTime> Value = new List<DateTime>();
             int atic;
@@ -72,5 +81,13 @@
 
            return Value;
        }
+        public List<DateTime> MainTime(List<DateTime> Ftime, List<DateTime> ITime)
+        {
+            List<DateTime> Value = new List<DateTime>();
+            Value = Ftime;
+            Value.Add(ITime[ITime.Count - 1]);
+            return Value;
+        }
+
     }
 } // Додумать по поводу выхода индекса за пределы листа

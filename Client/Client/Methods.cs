@@ -30,8 +30,9 @@
         /// <param name="a">List seconds</param>
         /// <param name="dinet">List date</param>
         /// <returns>new dinet </returns>
-     public List<DateTime> Convert(List<double> a, List<DateTime> dinet)
-        {
+     public List<DateTime> Convert(List<double> a)
+       {
+            List<DateTime> dinet = new List<DateTime>();
             for (int i = 0; i < a.Count; i++)
             {
                 DateTime date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(a[i]);
@@ -41,10 +42,38 @@
                 return dinet;
         }
 
+        public bool TryCon(bool inet, string value, bool internetActionFinished, object sync)
+        {
+            try
+            {
+                var webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + "0" + "&limit=" + "1" + "&sign=" + value); // запрос на сайт 
+                WebResponse webRes = webReq.GetResponse(); // получение ответа
+                webRes.Close();
+                inet = true;
+            }
+            catch (Exception ex)
+            {
+                if (WString.RUS == true)
+                {
+                    MessageBox.Show("Отсутсвие интернета или недоступен сайт переход в автономный режим");
+                }
+                if (WString.ENG == true)
+                {
+                    MessageBox.Show("Lack of or inaccessible internet site go offline");
+                }
+                inet = false;
+            } // Временная мера по отсутвию интернета
+            lock (sync)
+            {
+                internetActionFinished = true;
+            }
+            return inet;
+        }
+
         /// <summary>
         /// different Zoom
         /// </summary>
-     /// <param name="zoom">Needed increase</param>
+        /// <param name="zoom">Needed increase</param>
         /// <param name="time">begin time</param>
         /// <param name="nowTime">now time</param>
         /// <returns>Zoom</returns>
@@ -83,12 +112,34 @@
             if (buy == false)
             {
                 valueT = bufferS[tic - 1]; // Запомнить значение продажи
-                text = "покупка";
+                if(WString.RUS == true)
+                {
+                 text = "покупка";
+                }
+                if (WString.ENG == true)
+                {
+                 text = "buy";
+                }
+                else
+                {
+                    text = "buy";
+                }
             }
             else
             {
                 valueT = bufferS[tic - 1]; // Запомнить значение продажи
-                text = "продажа";
+                if (WString.RUS == true)
+                {
+                    text = "продажа";
+                }
+                if (WString.ENG == true)
+                {
+                    text = "sell";
+                }
+                else
+                {
+                    text = "sell";
+                }
             }
 
             if (WString.RUS == true)
@@ -98,11 +149,11 @@
 
             if (WString.ENG == true)
             {
-                if(text == "продажа")
+                if(text == "продажа" || text == "sell")
                 {
                  MessageBox.Show("committed " + "selling" + " for the price =" + valueT);
                 }
-                if (text == "покупка")
+                if (text == "покупка" || text == "buy")
                 {
                     MessageBox.Show("done " + "buing" + " for the price =" + valueT);
                 }
@@ -123,9 +174,6 @@
             Regex regex1 = new Regex(@"[a-zA-Z]+"); // регулярное выражение для поиска последнего времени в файле
             MatchCollection m1 = regex1.Matches(time);
             string dayOffTheWeek = m1[0].Value;
-            //// Regex regex2 = new Regex(@"[0-2]+:[0-9]+:[0-9]+"); // регулярное выражение для поиска последнего времени в файле
-            //// MatchCollection m2 = regex2.Matches(Time);
-            //// string Time1 = m2[0].Value;
             return dayOffTheWeek;
         }
     }

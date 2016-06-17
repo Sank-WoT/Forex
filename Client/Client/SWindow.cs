@@ -122,7 +122,7 @@ using EnumDialogResult = System.Windows.Forms.DialogResult;
         /// <param name="e"> FormClosingEventArgs </param>
         private void OnClosing(object sender, FormClosingEventArgs e)
         {
-            Form1.SWindowClosing = true;
+            MainForm.SWindowClosing = true;
         }
 
         private void Label1_Click(object sender, EventArgs e)
