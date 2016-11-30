@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CloseDeal));
             this.ListD = new System.Windows.Forms.ListBox();
             this.CloseOrder = new System.Windows.Forms.Button();
+            this.extendLabel1 = new Client.ExtendLabel();
             this.SuspendLayout();
             // 
             // ListD
@@ -52,19 +53,30 @@
             this.CloseOrder.UseVisualStyleBackColor = true;
             this.CloseOrder.Click += new System.EventHandler(this.CloseOrder_Click);
             // 
+            // extendLabel1
+            // 
+            this.extendLabel1.AutoSize = true;
+            this.extendLabel1.Location = new System.Drawing.Point(162, 9);
+            this.extendLabel1.Name = "extendLabel1";
+            this.extendLabel1.Size = new System.Drawing.Size(53, 13);
+            this.extendLabel1.TabIndex = 2;
+            this.extendLabel1.Text = "Прибыль";
+            // 
             // CloseDeal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(290, 155);
-            this.Controls.Add(this.CloseOrder);
             this.Controls.Add(this.ListD);
+            this.Controls.Add(this.extendLabel1);
+            this.Controls.Add(this.CloseOrder);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CloseDeal";
             this.Text = "CloseDeal";
             this.Load += new System.EventHandler(this.CloseDeal_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -72,5 +84,6 @@
 
         private System.Windows.Forms.ListBox ListD;
         private System.Windows.Forms.Button CloseOrder;
+        private ExtendLabel extendLabel1;
     }
 }

@@ -21,18 +21,34 @@
     public partial class CloseDeal : Form
     {      
             Windowd main; 
-            List<double> BUY = new List<double>();
-            List<double> SELL = new List<double>();
+            List<Deal> BUY = new List<Deal>();
+            List<Deal> SELL = new List<Deal>();
             List<double> Buffer = new List<double>();
             List<double> BufferS = new List<double>();
             List<List<double>> data = new List<List<double>>();
 
         public CloseDeal()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
 
-            public void CloseDeal_Load(object sender, EventArgs e)
+     /*   public Add()
+        {
+            for (int i = 0; i < main.BUY.Count; i++)
+            {
+                if (WString.RUS == true)
+                {
+                    ListD.Items.Add(Convert.ToString(main.BUY[i].Value()) + "  покупка");
+                }
+                if (WString.ENG == true)
+                {
+                    ListD.Items.Add(Convert.ToString(main.BUY[i].Value()) + "       buy");
+                }
+            }
+        }
+        */
+
+        public void CloseDeal_Load(object sender, EventArgs e)
         {   
             main = this.Owner as Windowd;     
             if (main != null)
@@ -43,28 +59,28 @@
                 BufferS = main.BufferS;
             }
 
-            for (int i = 0; i < main.BUY.Count; i++)
+            for (int i = 0; i < BUY.Count; i++)
             {
                 if(WString.RUS == true)
                 {
-                  ListD.Items.Add(Convert.ToString(main.BUY[i]) + "  покупка");
+                  ListD.Items.Add(Convert.ToString(BUY[i].Value()) + "  покупка");
                 }
                 if (WString.ENG == true)
                 {
-                    ListD.Items.Add(Convert.ToString(main.BUY[i]) + "       buy");
+                    ListD.Items.Add(Convert.ToString(BUY[i].Value()) + "       buy");
                 }
             }
 
-            for (int i = 0; i < main.SELL.Count; i++)
+            for (int i = 0; i < SELL.Count; i++)
             {
                 if(WString.RUS == true)
                 {
-                 ListD.Items.Add(Convert.ToString(main.SELL[i]) + "  продано");
+                 ListD.Items.Add(Convert.ToString(SELL[i].Value()) + "  продано");
                 }
                
                 if (WString.ENG == true)
                 {
-                  ListD.Items.Add(Convert.ToString(main.SELL[i]) + "      sell");
+                  ListD.Items.Add(Convert.ToString(SELL[i].Value()) + "      sell");
                 }
             }
        

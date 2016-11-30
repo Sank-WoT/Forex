@@ -31,19 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Windowd));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.lab_Cur = new System.Windows.Forms.Label();
             this.label_X = new System.Windows.Forms.Label();
             this.label_Y = new System.Windows.Forms.Label();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -59,144 +50,51 @@
             this.createReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toCloseTheDealToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBoxLevelSupandResis = new Client.ExtendCheckbox();
+            this.checkBoxSMA = new Client.ExtendCheckbox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBoxLineCoord = new Client.ExtendCheckbox();
+            this.checkBoxBinding = new Client.ExtendCheckbox();
+            this.buttonBuy = new Client.ExtendButton();
+            this.button9 = new Client.ExtendButton();
+            this.price = new Client.ExtendButton();
+            this.buttonPriceBuy = new Client.ExtendButton();
+            this.buttonPriceSell = new Client.ExtendButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.tabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(1102, 164);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(161, 17);
-            this.checkBox1.TabIndex = 7;
-            this.checkBox1.Text = "Levels suport and resistance";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(1102, 72);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(117, 46);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Value";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(1217, 72);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(116, 46);
-            this.button7.TabIndex = 9;
-            this.button7.Text = "Value";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(1158, 27);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(118, 46);
-            this.button8.TabIndex = 10;
-            this.button8.Text = "price";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(1275, 27);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(58, 46);
-            this.button9.TabIndex = 11;
-            this.button9.Text = "Sell";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.Button9_Click);
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(1101, 27);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(58, 46);
-            this.button10.TabIndex = 12;
-            this.button10.Text = "Buy";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.Button10_Click);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(1102, 187);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(49, 17);
-            this.checkBox2.TabIndex = 13;
-            this.checkBox2.Text = "SMA";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
-            // 
             // lab_Cur
             // 
-            this.lab_Cur.AutoSize = true;
-            this.lab_Cur.Location = new System.Drawing.Point(1065, 253);
+            resources.ApplyResources(this.lab_Cur, "lab_Cur");
             this.lab_Cur.Name = "lab_Cur";
-            this.lab_Cur.Size = new System.Drawing.Size(43, 13);
-            this.lab_Cur.TabIndex = 16;
-            this.lab_Cur.Text = "lab_Cur";
-            this.lab_Cur.Visible = false;
             this.lab_Cur.Click += new System.EventHandler(this.lab_Cur_Click);
             // 
             // label_X
             // 
             this.label_X.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_X.Location = new System.Drawing.Point(5, 250);
+            resources.ApplyResources(this.label_X, "label_X");
             this.label_X.Name = "label_X";
-            this.label_X.Size = new System.Drawing.Size(1058, 1);
-            this.label_X.TabIndex = 14;
-            this.label_X.Text = "label_X";
-            this.label_X.Visible = false;
             this.label_X.Click += new System.EventHandler(this.label_X_Click);
             // 
             // label_Y
             // 
             this.label_Y.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label_Y.Location = new System.Drawing.Point(37, 0);
+            resources.ApplyResources(this.label_Y, "label_Y");
             this.label_Y.Name = "label_Y";
-            this.label_Y.Size = new System.Drawing.Size(1, 684);
-            this.label_Y.TabIndex = 15;
-            this.label_Y.Text = "label_Y";
-            this.label_Y.Visible = false;
             this.label_Y.Click += new System.EventHandler(this.label_Y_Click);
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(1102, 320);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(104, 17);
-            this.checkBox3.TabIndex = 17;
-            this.checkBox3.Text = "Line coordinates";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1099, 133);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Methods";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // menuStrip1
             // 
@@ -206,11 +104,8 @@
             this.reportToolStripMenuItem,
             this.settingToolStripMenuItem,
             this.toCloseTheDealToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1350, 24);
-            this.menuStrip1.TabIndex = 21;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // timeLevelToolStripMenuItem
             // 
@@ -222,129 +117,88 @@
             this.dayToolStripMenuItem,
             this.weekToolStripMenuItem,
             this.monthToolStripMenuItem});
+            this.timeLevelToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.timeLevelToolStripMenuItem.Name = "timeLevelToolStripMenuItem";
-            this.timeLevelToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
-            this.timeLevelToolStripMenuItem.Text = "Time intervall";
+            resources.ApplyResources(this.timeLevelToolStripMenuItem, "timeLevelToolStripMenuItem");
             this.timeLevelToolStripMenuItem.Click += new System.EventHandler(this.timeLevelToolStripMenuItem_Click);
             // 
             // secondToolStripMenuItem
             // 
+            this.secondToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.secondToolStripMenuItem.Name = "secondToolStripMenuItem";
-            this.secondToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.secondToolStripMenuItem.Text = "second";
+            resources.ApplyResources(this.secondToolStripMenuItem, "secondToolStripMenuItem");
             this.secondToolStripMenuItem.Click += new System.EventHandler(this.SecondToolStripMenuItem_Click);
             // 
             // minutesToolStripMenuItem
             // 
             this.minutesToolStripMenuItem.Name = "minutesToolStripMenuItem";
-            this.minutesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.minutesToolStripMenuItem.Text = "5 minutes";
+            resources.ApplyResources(this.minutesToolStripMenuItem, "minutesToolStripMenuItem");
             this.minutesToolStripMenuItem.Click += new System.EventHandler(this.MinutesToolStripMenuItem_Click);
             // 
             // minutesToolStripMenuItem1
             // 
+            this.minutesToolStripMenuItem1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.minutesToolStripMenuItem1.Name = "minutesToolStripMenuItem1";
-            this.minutesToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
-            this.minutesToolStripMenuItem1.Text = "30 minutes";
+            resources.ApplyResources(this.minutesToolStripMenuItem1, "minutesToolStripMenuItem1");
             this.minutesToolStripMenuItem1.Click += new System.EventHandler(this.MinutesToolStripMenuItem1_Click);
             // 
             // hourToolStripMenuItem
             // 
+            this.hourToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.hourToolStripMenuItem.Name = "hourToolStripMenuItem";
-            this.hourToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.hourToolStripMenuItem.Text = "Hour";
+            resources.ApplyResources(this.hourToolStripMenuItem, "hourToolStripMenuItem");
             this.hourToolStripMenuItem.Click += new System.EventHandler(this.HourToolStripMenuItem_Click);
             // 
             // dayToolStripMenuItem
             // 
+            this.dayToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.dayToolStripMenuItem.Name = "dayToolStripMenuItem";
-            this.dayToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.dayToolStripMenuItem.Text = "Day";
+            resources.ApplyResources(this.dayToolStripMenuItem, "dayToolStripMenuItem");
             this.dayToolStripMenuItem.Click += new System.EventHandler(this.DayToolStripMenuItem_Click);
             // 
             // weekToolStripMenuItem
             // 
+            this.weekToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.weekToolStripMenuItem.Name = "weekToolStripMenuItem";
-            this.weekToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.weekToolStripMenuItem.Text = "Week";
+            resources.ApplyResources(this.weekToolStripMenuItem, "weekToolStripMenuItem");
             this.weekToolStripMenuItem.Click += new System.EventHandler(this.WeekToolStripMenuItem_Click);
             // 
             // monthToolStripMenuItem
             // 
+            this.monthToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.monthToolStripMenuItem.Name = "monthToolStripMenuItem";
-            this.monthToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.monthToolStripMenuItem.Text = "Month";
+            resources.ApplyResources(this.monthToolStripMenuItem, "monthToolStripMenuItem");
             this.monthToolStripMenuItem.Click += new System.EventHandler(this.MonthToolStripMenuItem_Click);
             // 
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createReportToolStripMenuItem});
+            this.reportToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.reportToolStripMenuItem.Text = "Report";
+            resources.ApplyResources(this.reportToolStripMenuItem, "reportToolStripMenuItem");
             this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
             // 
             // createReportToolStripMenuItem
             // 
+            this.createReportToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.createReportToolStripMenuItem.Name = "createReportToolStripMenuItem";
-            this.createReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.createReportToolStripMenuItem.Text = "Create report";
+            resources.ApplyResources(this.createReportToolStripMenuItem, "createReportToolStripMenuItem");
             this.createReportToolStripMenuItem.Click += new System.EventHandler(this.CreateReportToolStripMenuItem_Click);
             // 
             // settingToolStripMenuItem
             // 
+            this.settingToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.settingToolStripMenuItem.Text = "Settings";
+            resources.ApplyResources(this.settingToolStripMenuItem, "settingToolStripMenuItem");
             this.settingToolStripMenuItem.Click += new System.EventHandler(this.SettingToolStripMenuItem_Click);
             // 
             // toCloseTheDealToolStripMenuItem
             // 
+            this.toCloseTheDealToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.toCloseTheDealToolStripMenuItem.Name = "toCloseTheDealToolStripMenuItem";
-            this.toCloseTheDealToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
-            this.toCloseTheDealToolStripMenuItem.Text = "To close the deal";
+            resources.ApplyResources(this.toCloseTheDealToolStripMenuItem, "toCloseTheDealToolStripMenuItem");
             this.toCloseTheDealToolStripMenuItem.Click += new System.EventHandler(this.ToCloseTheDealToolStripMenuItem_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1099, 295);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "Tools";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(1101, 212);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(66, 17);
-            this.checkBox4.TabIndex = 23;
-            this.checkBox4.Text = "Min-Max";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(1101, 343);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(104, 17);
-            this.checkBox5.TabIndex = 24;
-            this.checkBox5.Text = "Binding graphics";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            this.checkBox5.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(1158, 186);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 25;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // imageList1
             // 
@@ -352,41 +206,147 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Pm.ico");
             // 
+            // checkBox4
+            // 
+            resources.ApplyResources(this.checkBox4, "checkBox4");
+            this.checkBox4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            // 
+            // numericUpDown1
+            // 
+            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tabPage1);
+            this.tabControl.Controls.Add(this.tabPage2);
+            resources.ApplyResources(this.tabControl, "tabControl");
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.checkBoxLevelSupandResis);
+            this.tabPage1.Controls.Add(this.numericUpDown1);
+            this.tabPage1.Controls.Add(this.checkBoxSMA);
+            this.tabPage1.Controls.Add(this.checkBox4);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxLevelSupandResis
+            // 
+            resources.ApplyResources(this.checkBoxLevelSupandResis, "checkBoxLevelSupandResis");
+            this.checkBoxLevelSupandResis.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBoxLevelSupandResis.Name = "checkBoxLevelSupandResis";
+            this.checkBoxLevelSupandResis.UseVisualStyleBackColor = true;
+            this.checkBoxLevelSupandResis.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // checkBoxSMA
+            // 
+            resources.ApplyResources(this.checkBoxSMA, "checkBoxSMA");
+            this.checkBoxSMA.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxSMA.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBoxSMA.Name = "checkBoxSMA";
+            this.checkBoxSMA.UseVisualStyleBackColor = false;
+            this.checkBoxSMA.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.checkBoxLineCoord);
+            this.tabPage2.Controls.Add(this.checkBoxBinding);
+            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxLineCoord
+            // 
+            resources.ApplyResources(this.checkBoxLineCoord, "checkBoxLineCoord");
+            this.checkBoxLineCoord.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.checkBoxLineCoord.Name = "checkBoxLineCoord";
+            this.checkBoxLineCoord.UseVisualStyleBackColor = true;
+            this.checkBoxLineCoord.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            // 
+            // checkBoxBinding
+            // 
+            resources.ApplyResources(this.checkBoxBinding, "checkBoxBinding");
+            this.checkBoxBinding.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBoxBinding.Name = "checkBoxBinding";
+            this.checkBoxBinding.UseVisualStyleBackColor = true;
+            this.checkBoxBinding.CheckedChanged += new System.EventHandler(this.checkBox5_CheckedChanged);
+            // 
+            // buttonBuy
+            // 
+            this.buttonBuy.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.buttonBuy, "buttonBuy");
+            this.buttonBuy.Name = "buttonBuy";
+            this.buttonBuy.UseVisualStyleBackColor = true;
+            this.buttonBuy.Click += new System.EventHandler(this.Button10_Click);
+            // 
+            // button9
+            // 
+            this.button9.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.button9, "button9");
+            this.button9.Name = "button9";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.Button9_Click);
+            // 
+            // price
+            // 
+            this.price.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.price, "price");
+            this.price.Name = "price";
+            this.price.UseVisualStyleBackColor = true;
+            this.price.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // buttonPriceBuy
+            // 
+            this.buttonPriceBuy.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.buttonPriceBuy, "buttonPriceBuy");
+            this.buttonPriceBuy.Name = "buttonPriceBuy";
+            this.buttonPriceBuy.UseVisualStyleBackColor = true;
+            this.buttonPriceBuy.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // buttonPriceSell
+            // 
+            this.buttonPriceSell.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.buttonPriceSell, "buttonPriceSell");
+            this.buttonPriceSell.Name = "buttonPriceSell";
+            this.buttonPriceSell.UseVisualStyleBackColor = true;
+            this.buttonPriceSell.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Windowd
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1350, 719);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.lab_Cur);
             this.Controls.Add(this.label_Y);
             this.Controls.Add(this.label_X);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.button10);
+            this.Controls.Add(this.buttonBuy);
             this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.price);
+            this.Controls.Add(this.buttonPriceBuy);
+            this.Controls.Add(this.buttonPriceSell);
             this.Controls.Add(this.menuStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Windowd";
-            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Text = "EUR/USD";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Window_FormClosing);
             this.Load += new System.EventHandler(this.Window_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.tabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,20 +355,11 @@
         #endregion
 
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graphic;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label lab_Cur;
         private System.Windows.Forms.Label label_X;
         private System.Windows.Forms.Label label_Y;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.ToolTip toolTip3;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -420,14 +371,24 @@
         private System.Windows.Forms.ToolStripMenuItem weekToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem monthToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dayToolStripMenuItem;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createReportToolStripMenuItem;
-        private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.ToolStripMenuItem settingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toCloseTheDealToolStripMenuItem;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private ExtendButton buttonPriceBuy;
+        private ExtendButton buttonPriceSell;
+        private ExtendCheckbox checkBoxSMA;
+        private ExtendCheckbox checkBoxBinding;
+        private ExtendCheckbox checkBoxLineCoord;
+        private ExtendButton price;
+        private ExtendCheckbox checkBoxLevelSupandResis;
+        private ExtendButton button9;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private ExtendButton buttonBuy;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }

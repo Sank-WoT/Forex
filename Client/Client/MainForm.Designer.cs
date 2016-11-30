@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.buttonEurUsd = new System.Windows.Forms.Button();
+            this.buttonUsdJpy = new System.Windows.Forms.Button();
+            this.labelSelectPair = new System.Windows.Forms.Label();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,160 +44,157 @@
             this.eURUSDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.USDJPYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WSettings = new System.Windows.Forms.MenuStrip();
-            this.labelSelectPair = new System.Windows.Forms.Label();
-            this.buttonEurUsd = new System.Windows.Forms.Button();
-            this.buttonUsdJpy = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.WSettings.SuspendLayout();
             this.SuspendLayout();
             // 
+            // splitContainer1
+            // 
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            resources.ApplyResources(this.splitContainer1.Panel1, "splitContainer1.Panel1");
+            // 
+            // splitContainer1.Panel2
+            // 
+            resources.ApplyResources(this.splitContainer1.Panel2, "splitContainer1.Panel2");
+            this.splitContainer1.Panel2.Controls.Add(this.buttonEurUsd);
+            this.splitContainer1.Panel2.Controls.Add(this.buttonUsdJpy);
+            this.splitContainer1.Panel2.Controls.Add(this.labelSelectPair);
+            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint_1);
+            // 
+            // buttonEurUsd
+            // 
+            resources.ApplyResources(this.buttonEurUsd, "buttonEurUsd");
+            this.buttonEurUsd.Cursor = System.Windows.Forms.Cursors.Default;
+            this.buttonEurUsd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonEurUsd.Name = "buttonEurUsd";
+            this.buttonEurUsd.UseVisualStyleBackColor = true;
+            this.buttonEurUsd.Click += new System.EventHandler(this.EURUSDToolStripMenuItem_Click);
+            // 
+            // buttonUsdJpy
+            // 
+            resources.ApplyResources(this.buttonUsdJpy, "buttonUsdJpy");
+            this.buttonUsdJpy.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.buttonUsdJpy.Name = "buttonUsdJpy";
+            this.buttonUsdJpy.UseVisualStyleBackColor = true;
+            this.buttonUsdJpy.Click += new System.EventHandler(this.USDJPYToolStripMenuItem_Click);
+            // 
+            // labelSelectPair
+            // 
+            resources.ApplyResources(this.labelSelectPair, "labelSelectPair");
+            this.labelSelectPair.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.labelSelectPair.Name = "labelSelectPair";
+            // 
             // settingsToolStripMenuItem
             // 
+            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             this.settingsToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.windowToolStripMenuItem,
             this.chartToolStripMenuItem,
             this.langToolStripMenuItem});
             this.settingsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.settingsToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.White;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
             // windowToolStripMenuItem
             // 
+            resources.ApplyResources(this.windowToolStripMenuItem, "windowToolStripMenuItem");
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
-            this.windowToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.windowToolStripMenuItem.Text = "Window";
             this.windowToolStripMenuItem.Click += new System.EventHandler(this.WindowToolStripMenuItem_Click);
             // 
             // chartToolStripMenuItem
             // 
+            resources.ApplyResources(this.chartToolStripMenuItem, "chartToolStripMenuItem");
             this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
-            this.chartToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.chartToolStripMenuItem.Text = "Chart";
             this.chartToolStripMenuItem.Click += new System.EventHandler(this.СhartToolStripMenuItem_Click);
             // 
             // langToolStripMenuItem
             // 
+            resources.ApplyResources(this.langToolStripMenuItem, "langToolStripMenuItem");
             this.langToolStripMenuItem.Name = "langToolStripMenuItem";
-            this.langToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.langToolStripMenuItem.Text = "Русский";
             this.langToolStripMenuItem.Click += new System.EventHandler(this.ChangeLanguage);
             // 
             // AboutToolStripMenuItem
             // 
+            resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
             this.AboutToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.AboutToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.AboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.создателиToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.AboutToolStripMenuItem.Text = "About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutProgrammToolStripMenuItem_Click);
             // 
             // создателиToolStripMenuItem
             // 
+            resources.ApplyResources(this.создателиToolStripMenuItem, "создателиToolStripMenuItem");
             this.создателиToolStripMenuItem.Name = "создателиToolStripMenuItem";
-            this.создателиToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
-            this.создателиToolStripMenuItem.Text = " Creators";
             this.создателиToolStripMenuItem.Click += new System.EventHandler(this.CreatoresToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
-            this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
             // 
             // currencyPairsToolStripMenuItem
             // 
+            resources.ApplyResources(this.currencyPairsToolStripMenuItem, "currencyPairsToolStripMenuItem");
             this.currencyPairsToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.currencyPairsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.eURUSDToolStripMenuItem,
             this.USDJPYToolStripMenuItem});
             this.currencyPairsToolStripMenuItem.Name = "currencyPairsToolStripMenuItem";
-            this.currencyPairsToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
-            this.currencyPairsToolStripMenuItem.Text = "Currency pairs";
             this.currencyPairsToolStripMenuItem.Click += new System.EventHandler(this.CurrencyPairsToolStripMenuItem_Click);
             // 
             // eURUSDToolStripMenuItem
             // 
+            resources.ApplyResources(this.eURUSDToolStripMenuItem, "eURUSDToolStripMenuItem");
             this.eURUSDToolStripMenuItem.Name = "eURUSDToolStripMenuItem";
-            this.eURUSDToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.eURUSDToolStripMenuItem.Text = "EUR/USD";
             this.eURUSDToolStripMenuItem.Click += new System.EventHandler(this.EURUSDToolStripMenuItem_Click);
             // 
             // USDJPYToolStripMenuItem
             // 
+            resources.ApplyResources(this.USDJPYToolStripMenuItem, "USDJPYToolStripMenuItem");
             this.USDJPYToolStripMenuItem.Name = "USDJPYToolStripMenuItem";
-            this.USDJPYToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.USDJPYToolStripMenuItem.Text = "USD/JPY";
             this.USDJPYToolStripMenuItem.Click += new System.EventHandler(this.USDJPYToolStripMenuItem_Click);
             // 
             // WSettings
             // 
+            resources.ApplyResources(this.WSettings, "WSettings");
             this.WSettings.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.WSettings.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.WSettings.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
             this.AboutToolStripMenuItem,
             this.currencyPairsToolStripMenuItem});
-            this.WSettings.Location = new System.Drawing.Point(0, 0);
             this.WSettings.Name = "WSettings";
-            this.WSettings.Size = new System.Drawing.Size(1300, 24);
-            this.WSettings.TabIndex = 2;
-            this.WSettings.Text = "menuStrip1";
             // 
-            // labelSelectPair
+            // MainForm
             // 
-            this.labelSelectPair.AutoSize = true;
-            this.labelSelectPair.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.labelSelectPair.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelSelectPair.Location = new System.Drawing.Point(169, 70);
-            this.labelSelectPair.Margin = new System.Windows.Forms.Padding(30, 30, 30, 0);
-            this.labelSelectPair.Name = "labelSelectPair";
-            this.labelSelectPair.Size = new System.Drawing.Size(254, 15);
-            this.labelSelectPair.TabIndex = 3;
-            this.labelSelectPair.Text = "Выберите валютную пару для начала торгов";
-            this.labelSelectPair.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // buttonEurUsd
-            // 
-            this.buttonEurUsd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonEurUsd.Location = new System.Drawing.Point(69, 121);
-            this.buttonEurUsd.Name = "buttonEurUsd";
-            this.buttonEurUsd.Size = new System.Drawing.Size(200, 100);
-            this.buttonEurUsd.TabIndex = 4;
-            this.buttonEurUsd.Text = "EUR / USD";
-            this.buttonEurUsd.UseVisualStyleBackColor = true;
-            this.buttonEurUsd.Click += new System.EventHandler(this.EURUSDToolStripMenuItem_Click);
-            // 
-            // buttonUsdJpy
-            // 
-            this.buttonUsdJpy.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonUsdJpy.Location = new System.Drawing.Point(311, 121);
-            this.buttonUsdJpy.Name = "buttonUsdJpy";
-            this.buttonUsdJpy.Size = new System.Drawing.Size(200, 100);
-            this.buttonUsdJpy.TabIndex = 5;
-            this.buttonUsdJpy.Text = "USD / JPY";
-            this.buttonUsdJpy.UseVisualStyleBackColor = true;
-            this.buttonUsdJpy.Click += new System.EventHandler(this.USDJPYToolStripMenuItem_Click);
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1300, 560);
-            this.Controls.Add(this.buttonUsdJpy);
-            this.Controls.Add(this.buttonEurUsd);
-            this.Controls.Add(this.labelSelectPair);
+            this.BackColor = System.Drawing.Color.Azure;
             this.Controls.Add(this.WSettings);
+            this.Controls.Add(this.splitContainer1);
             this.ForeColor = System.Drawing.SystemColors.Control;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
-            this.Text = "PM";
+            this.IsMdiContainer = true;
+            this.MainMenuStrip = this.WSettings;
+            this.Name = "MainForm";
+            this.TransparencyKey = System.Drawing.Color.White;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.WSettings.ResumeLayout(false);
             this.WSettings.PerformLayout();
             this.ResumeLayout(false);
@@ -217,6 +218,7 @@
         private System.Windows.Forms.Label labelSelectPair;
         private System.Windows.Forms.Button buttonEurUsd;
         private System.Windows.Forms.Button buttonUsdJpy;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

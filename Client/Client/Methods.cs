@@ -5,19 +5,19 @@
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
-    using System.Globalization;
-    using System.IO; // для класса 
     using System.Linq;
-    using System.Media;
-    using System.Net;
-    using System.Net.Sockets;
     using System.Text;
-    using System.Text.RegularExpressions;
-    using System.Threading;
     using System.Threading.Tasks;
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
+    using System.IO; //для класса 
+    using System.Text.RegularExpressions;
+    using System.Net;
+    using System.Globalization;
+    using System.Threading;
+    using System.Net.Sockets;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
+    using System.Media;
 
     /// <summary>
     /// Class Methods
@@ -30,7 +30,7 @@
         /// <param name="a">List seconds</param>
         /// <param name="dinet">List date</param>
         /// <returns>new dinet </returns>
-     public List<DateTime> Convert(List<double> a)
+        public List<DateTime> ConvertD(List<int> a)
        {
             List<DateTime> dinet = new List<DateTime>();
             for (int i = 0; i < a.Count; i++)
@@ -41,7 +41,13 @@
 
                 return dinet;
         }
-
+        /// <summary>
+        /// Проверка соединения с интернетом и уведомление пользователя
+        /// </summary>
+        /// <param name="value">List seconds</param>
+        /// <param name="inet">List date</param>
+        /// <param name="internetActionFinished">List date</param>
+        /// <param name="sync">List date</param>
         public bool TryCon(bool inet, string value, bool internetActionFinished, object sync)
         {
             try
@@ -62,7 +68,7 @@
                     MessageBox.Show("Lack of or inaccessible internet site go offline");
                 }
                 inet = false;
-            } // Временная мера по отсутвию интернета
+            }
             lock (sync)
             {
                 internetActionFinished = true;
@@ -95,71 +101,7 @@
             return number;
      } // локализация уровней сопротивления и поддержки под временные уровни
 
-        public double TradeBuy(bool buy, List<double> bufferS, int tic)
-        {
-            double valueT;
-            string text;
-            SoundPlayer player = new SoundPlayer();
-            try
-            {
-                player.SoundLocation = Application.StartupPath + "/Music/test.wav"; // путь адреса музыки
-                player.Play(); // Проигрывание звука
-            }
-            catch
-            {
-            }
-
-            if (buy == false)
-            {
-                valueT = bufferS[tic - 1]; // Запомнить значение продажи
-                if(WString.RUS == true)
-                {
-                 text = "покупка";
-                }
-                if (WString.ENG == true)
-                {
-                 text = "buy";
-                }
-                else
-                {
-                    text = "buy";
-                }
-            }
-            else
-            {
-                valueT = bufferS[tic - 1]; // Запомнить значение продажи
-                if (WString.RUS == true)
-                {
-                    text = "продажа";
-                }
-                if (WString.ENG == true)
-                {
-                    text = "sell";
-                }
-                else
-                {
-                    text = "sell";
-                }
-            }
-
-            if (WString.RUS == true)
-            {
-            MessageBox.Show("Cовершена " + text + " по цене =" + valueT);
-            }
-
-            if (WString.ENG == true)
-            {
-                if(text == "продажа" || text == "sell")
-                {
-                 MessageBox.Show("committed " + "selling" + " for the price =" + valueT);
-                }
-                if (text == "покупка" || text == "buy")
-                {
-                    MessageBox.Show("done " + "buing" + " for the price =" + valueT);
-                }
-            }
-            return valueT;          
-        }
+       
 
         /// <summary>
         /// Method the selection day of the week
