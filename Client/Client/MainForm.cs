@@ -8,7 +8,6 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using System.Globalization;
 
     /// <summary>
     /// Начальное окно
@@ -31,18 +30,15 @@
         #endregion
 
         /// <summary>
-        /// Метод стартового состояния окна
+        /// Функция стартового состояния окна
         /// </summary>
-        /// <param name="x">размер по оси x</param>
-        /// <param name="y">размер по оси y</param>
-
-        public MainForm(int x, int y)
+        public MainForm()
         {
             string pathDirectory = Application.StartupPath; // Путь к директории
             string pathFile = pathDirectory + "\\" + "eurusd" + ".txt"; // Путь к файлу c котировками eurusd
-
+            WString.ENG = true; // Задание базового языка
+            WString.RUS = false;
             Methods Time = new Methods();
-             // проверка интерент соединения ассинхронно
             tConnect = Task.Run(() =>
             {
                 Internet inCon = new Internet();
@@ -54,36 +50,36 @@
                 case "Sat": MessageBox.Show("Forex day off"); break;
                 case "Sun": MessageBox.Show("Forex day off"); break;
             }
+            this.InitializeComponent();   
 
-            this.InitializeComponent();
-
-            splitContainer1.Size = new Size(x, y);
-            splitContainer1.Location = new Point(0, 0);
-           
-            // Массив кнопок интерфейса
-            Button[] LButton = {buttonEurUsd, buttonUsdJpy}; 
-
-            foreach (Button index in LButton)
+            #region Проверка существования директрории по pathDirectory
+            //// Проверка  на существование директории
+            if (!Directory.Exists(pathDirectory)) 
             {
-                splitContainer1.Panel2.Controls.Add(index);
+                Directory.CreateDirectory(pathDirectory); // создание директории 
+                MessageBox.Show("Директория создана путь : " + pathDirectory); // сообщение о создании директории
             }
 
-            // Массив меток интерфейса
-            Label[] LLabel = { labelSelectPair };
+            #endregion 
 
-            foreach (Label index in LLabel)
+            #region Проверка существования файла по pathDirectory
+            //// Проверка на существование файла
+            if (!File.Exists(pathFile) && WString.RUS == true) 
             {
-                splitContainer1.Panel2.Controls.Add(index);
-            }
-
-            DirectoryInsspection.Set(pathDirectory); // проверка существования директории
-
-            FileInspection.Set(pathFile); // проверка существования файла
+                MessageBox.Show("Вас приветствует программа Project Mordor, спасибо за то что вы с нами, желаем успешных торгов и хорошей прибыли"); // сообщение о создании файла
+                FileInfo writel = new FileInfo(pathFile); // получаем путь 
+                StreamWriter l = writel.CreateText(); // создаем текст
+                l.Close(); // закрыть запись
+            } // Развертывание сервера в заранее известном каталоге 
+            #endregion
 
             this.FormClosing += new FormClosingEventHandler(OnClosing);
-            LButton[0].Location = new Point( x / 2 - 400, y / 2 - 100); // Первая кнопка EurUsd
-            LLabel[0].Location = new Point(x / 2 - 100, y / 2 - 200); //  Метка
-            LButton[1].Location = new Point(x / 2  + 200, y / 2 - 100); // Вторая кнопка UsdJpy
+
+            int y = SystemInformation.PrimaryMonitorSize.Height; // высота экрана
+            int x = SystemInformation.PrimaryMonitorSize.Width; // ширина экрана 
+            buttonEurUsd.Location = new Point( x / 2 - 400, y / 2 - 100); // Первая кнопка EurUsd
+            labelSelectPair.Location = new Point(x / 2 - 100, y / 2 - 200); // Вторая кнопка UsdJpy
+            buttonUsdJpy.Location = new Point(x / 2  + 200, y / 2 - 100); // Вторая кнопка UsdJpy
             xS = x / 1920.0; // настройка под все  экраны
             yS = y / 1080.0; // настройка под все  экраны
             this.Size = new Size(x, y); // задание размеров экрана
@@ -102,25 +98,24 @@
             }
 
             Internet IPair = new Internet();
-            Cursor.Current = Cursors.WaitCursor; // Грузящий курсор
-            tConnect.Wait(); 
-            Cursor.Current = Cursors.Default; // Возвращение к нормальному состоянию
-            LoadData(IPair); // загрузка данных 2х потоков с данными №1
-        }
-
-        /// <summary>
-        /// Метод загрузки данных
-        /// </summary>
-        /// <param name="IPair">Объект интернет</param>
-        public void LoadData(Internet IPair)
-        {
+            Cursor.Current = Cursors.WaitCursor;
+            tConnect.Wait();
+            Cursor.Current = Cursors.Default;
             tEurusd = Task.Run(() =>
             {
                 string pathFile1 = Application.StartupPath + "\\" + "eurusd" + ".txt"; // Путь к файлу c котировками eurusd
                 IPair.FirstConnect("eurusd", pathFile1); // первое подключении
             }); // поток подключения eurusd
 
+            tUsdjpy = Task.Run(() =>
+            {
+<<<<<<< HEAD
+                string pathFile2 = Application.StartupPath + "\\" + "usdjpy" + ".txt"; // Путь к файлу c котировками usdjpy
+                IPair.FirstConnect("usdjpy", pathFile2); // первое подключении
+            }); // поток подключения usdjpy
+
             string pathFile = Application.StartupPath + "\\" + "eurusd" + ".txt";
+            /*
             string patch = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='|DataDirectory|\\Forex.mdf'; Integrated Security = True; Connect Timeout = 30";// данные конфигурации
             BdReqest reqestBdEURUSD = new BdReqest(patch); // Создание объекта БД 
             string bdValue = "eurusd";
@@ -133,30 +128,34 @@
             BdParser.BDREqest(ref BListTBuf, ref BListBBuf, ref BListSBuf);
             // Важный запрос добавления осталось это проверить
             reqestBdEURUSD.CommandInsert (bdValue, BListTBuf, BListBBuf, BListSBuf); 
+            */
 
-            tUsdjpy = Task.Run(() =>
-            {
-                string pathFile2 = Application.StartupPath + "\\" + "usdjpy" + ".txt"; // Путь к файлу c котировками usdjpy
+=======
+                string pathFile2 = Application.StartupPath + "\\" + "usdjpy" + ".txt"; // Путь к файлу c котировками eurusd
                 IPair.FirstConnect("usdjpy", pathFile2); // первое подключении
             }); // поток подключения usdjpy
+>>>>>>> parent of bcab9ee... Forex2.0 Переписать код под более строгую архитектуру ООП, создать БД.
         }
 
-
-
-        ///////////////////////////////////////////////////////////////////////////////////////
         /// <summary>
-        /// Cоздание размеров окна
+        /// Cоздание модального окна
         /// </summary>
-        /// <param name="x">размер по кординате x</param>
-        /// <param name="y">размер по кординате y</param>
-        public void WindowQuotes(ref int x, ref int y, ref bool WindowClosing)
+        /// <param name="sender">object</param>
+        /// <param name="e">EventArgs</param>
+        public void EURUSDToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            tConnect.Wait();
+            tEurusd.Wait();
             string readX, readY;
-            // Задание размеров окна
-            WindowClosing = false;
-            string pathFile = Application.StartupPath + "\\SettingWindow.txt"; // путь
+            int x = 0, y = 0;
+
+            if (WindowClosingEURUSD == true)
+            {
+                WindowClosingEURUSD = false;
+            string pathFile = Application.StartupPath + "\\SettingWindow.txt"; // Очень важно указать путь
             //// проверка на существование файла
-            if (!File.Exists(pathFile))
+            if (!File.Exists(pathFile)) 
             {
                 FileInfo writel = new FileInfo(pathFile); // получаем путь  для записи и создания
                 StreamWriter l = writel.CreateText(); // создаем текст
@@ -164,6 +163,7 @@
                 l.WriteLine(text);
                 l.Close(); // закрыть запись
             } ////Создаем файл настроек окон первые две записи // необходимо придумать тег
+
             #region Чтение из файла  FileInfo write = new FileInfo(pathFile);
             FileInfo write = new FileInfo(pathFile); // получаем путь 
             StreamReader r1 = new StreamReader(pathFile);
@@ -176,74 +176,70 @@
             MatchCollection m1 = regex1.Matches(response);
             readX = m1[0].Value;
             readY = m1[1].Value;
-            x = Convert.ToInt32(readX);
-            y = Convert.ToInt32(readY);
             #endregion
             #region Присвоение прочтенного из файла к WSrting.X WSrting.Y
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////////////
-        /// <summary>
-        /// Cоздание  окна
-        /// </summary>
-        /// <param name="sender">object</param>
-        /// <param name="e">EventArgs</param>
-        public void EURUSDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            tConnect.Wait();
-            tEurusd.Wait();
-          
-            if (WindowClosingEURUSD == true)
-            {
-                int x = 0, y = 0;
-                WindowQuotes(ref x, ref y,ref WindowClosingEURUSD);
-                #region Присвоение прочтенного из файла к WSrting.X WSrting.Y
-                WString.X = x; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
-                WString.Y = y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
+            x = Convert.ToInt32(readX);
+            y = Convert.ToInt32(readY);
+            WString.X = x; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
+            WString.Y = y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
                 #endregion
                 #region  Window f1 = new Window(); Создание модального окна
-
-                Windowd f1 = new Windowd("eurusd");
-                // Set the Parent Form of the Child window.
-                f1.MdiParent = this;
-                // окно 
-                splitContainer1.Visible = false;
-                f1.Show();
-                f1.Size = new Size(x, y); // Задаем значение размера формы Window 
-                f1.Location = new Point(0, 0); // размещение окна EURUSD
-                #endregion
-            }
+               WString.VALUE = "eurusd";
+                Windowd f1 = new Windowd();
+            f1.Show(); // модольное окно 
+            f1.Size = new Size(x, y); // Задаем значение размера формы Window 
+            f1.Location = new Point(0, 0); // размещение окна EURUSD
             #endregion
+            }
         } //// показать  график  EUR/USD
-
         public void USDJPYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
             tConnect.Wait();
             tUsdjpy.Wait();
+            string readX, readY;
             int X = 0, Y = 0;
 
             if (WindowClosingUSDJPY == true)
             {
-                WindowQuotes(ref X, ref Y,ref WindowClosingUSDJPY);
-                // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
-                WString.X = X;
-                // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
-                WString.Y = Y;
-                Windowd f2 = new Windowd("usdjpy");
-                // Set the Parent Form of the Child window.
-                f2.MdiParent = this;
-                // окно 
-                splitContainer1.Visible = false;
-                f2.Show();
-                f2.Size = new Size(X, Y); // Задаем значение размера формы Window 
-                f2.Location = new Point(0, 0); // размещение окна EURUSD
-            }
-        } 
-        
-        // убрать данные переполнения
+                WindowClosingUSDJPY = false;
+                string pathFile = Application.StartupPath + "\\SettingWindow.txt"; // Очень важно указать путь
+                                                                                   //// проверка на существование файла
+                if (!File.Exists(pathFile))
+                {
+                    FileInfo writel = new FileInfo(pathFile); // получаем путь  для записи и создания
+                    StreamWriter l = writel.CreateText(); // создаем текст
+                    string text = "EURUSD   " + 1366 + "      " + 757;
+                    l.WriteLine(text);
+                    l.Close(); // закрыть запись
+                } ////Создаем файл настроек окон первые две записи // необходимо придумать тег
 
+                #region Чтение из файла  FileInfo write = new FileInfo(pathFile);
+                FileInfo write = new FileInfo(pathFile); // получаем путь 
+                StreamReader r1 = new StreamReader(pathFile);
+                string text1 = r1.ReadToEnd(); // получение прочтенной записи
+                r1.Close(); // закрыть чтение 
+                Regex regex = new Regex(@"(EURUSD\s\s\s\d{1,20}\s\s\s\s\s\s\d{1,20})"); // регулярное выражение для поиска размеров окна
+                Regex regex1 = new Regex(@"(\d{1,20})"); // регулярное выражение для поиска размеров окна
+                MatchCollection m = regex.Matches(text1);
+                string response = m[0].ToString();
+                MatchCollection m1 = regex1.Matches(response);
+                readX = m1[0].Value;
+                readY = m1[1].Value;
+                #endregion
+                #region Присвоение прочтенного из файла к WSrting.X WSrting.Y
+                X = Convert.ToInt32(readX);
+                Y = Convert.ToInt32(readY);
+                WString.X = X; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по X)
+                WString.Y = Y; // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
+                #endregion
+                WString.VALUE = "usdjpy";
+                Windowd f2 = new Windowd();
+                f2.Show(); // модольное окно 
+                f2.Size = new Size(X, Y); // Задаем значение размера формы Window 
+                f2.Location = new Point(0, 0); // размещение окна USDJPY
+            }
+        }
         /// <summary>
         /// Создание окна SWindow
         /// </summary>
@@ -277,8 +273,6 @@
                 #endregion
             }
         } //// показать форму настройки графика
-
-       
        
         /// <summary>
         /// Создание окна SChart
@@ -305,55 +299,42 @@
             if (WString.RUS == true)
             {
                 #region перевод на русский язык меню текущей формы
-                EditInterface("Стандартные настройки", "Окно", "График", "О программе", "Создатели", "Справка", "Валютные пары", "Евро/Доллар", "Доллар/Йена", "English", "Выберите валютную пару для начала торгов");
+                settingsToolStripMenuItem.Text = "Стандартные настройки";
+                windowToolStripMenuItem.Text = "Окно";
+                chartToolStripMenuItem.Text = "График";
+                AboutToolStripMenuItem.Text = "О программе";
+                создателиToolStripMenuItem.Text = "Создатели";
+                helpToolStripMenuItem.Text = "Справка";
+                currencyPairsToolStripMenuItem.Text = "Валютные пары";
+                eURUSDToolStripMenuItem.Text = "Евро/Доллар";
+                USDJPYToolStripMenuItem.Text = "Доллар/Йена";
+                langToolStripMenuItem.Text = "English";
+                labelSelectPair.Text = "Выберите валютную пару для начала торгов";
+
                 #endregion
             }
 
             if (WString.ENG == true)
             {
                 #region перевод на английский язык меню текущей формы
-                EditInterface("Settings", "Window", "Chart", "About", "Autors", "Help", "Currency pairs", "EUR / USD", "USD/JPY", "Русский", "Select a currency pair to start trading");
+                settingsToolStripMenuItem.Text = "Settings";
+                windowToolStripMenuItem.Text = "Window";
+                chartToolStripMenuItem.Text = "Chart";
+                AboutToolStripMenuItem.Text = "About";
+                создателиToolStripMenuItem.Text = "Autors";
+                helpToolStripMenuItem.Text = "Help";
+                currencyPairsToolStripMenuItem.Text = "Currency pairs";
+                eURUSDToolStripMenuItem.Text = "EUR/USD";
+                USDJPYToolStripMenuItem.Text = "USD/JPY";
+                langToolStripMenuItem.Text = "Русский";
+                labelSelectPair.Text = "Select a currency pair to start trading";
                 #endregion
             }
         }
 
-        public void EditInterface(string settingsToolStripMenu, string windowToolStripMenu, string chartToolStripMenu, string AboutToolStripMenu, string ToolStripMenu, string helpToolStripMenu, string currencyPairsToolStripMenu, string eURUSDToolStripMenu, string USDJPYToolStripMenu, string langToolStripMenu, string labelSelect)
-        {
-            settingsToolStripMenuItem.Text = settingsToolStripMenu;
-            windowToolStripMenuItem.Text = windowToolStripMenu;
-            chartToolStripMenuItem.Text = chartToolStripMenu;
-            AboutToolStripMenuItem.Text = AboutToolStripMenu;
-            создателиToolStripMenuItem.Text =ToolStripMenu;
-            helpToolStripMenuItem.Text = helpToolStripMenu;
-            currencyPairsToolStripMenuItem.Text = currencyPairsToolStripMenu;
-            eURUSDToolStripMenuItem.Text = eURUSDToolStripMenu;
-            USDJPYToolStripMenuItem.Text = USDJPYToolStripMenu;
-            langToolStripMenuItem.Text = langToolStripMenu;
-            labelSelectPair.Text = labelSelect;
-        } // Создание изменение интерфейса
-
         private void Form1_Load(object sender, EventArgs e)
         {
             ChangeTextLanguage();
-            // Присвоение MDI контейнеру цвета background Form
-            MdiClient ctlMDI;
-            // Loop through all of the form's controls looking
-            // for the control of type MdiClient.
-            foreach (Control ctl in this.Controls)
-            {
-                try
-                {
-                    // Attempt to cast the control to type MdiClient.
-                    ctlMDI = (MdiClient)ctl;
-
-                    // Set the BackColor of the MdiClient control.
-                    ctlMDI.BackColor = this.BackColor;
-                }
-                catch (InvalidCastException exc)
-                {
-                    // Catch and ignore the error if casting failed.
-                }
-            }
         }
 
         private void AboutProgrammToolStripMenuItem_Click(object sender, EventArgs e)
@@ -378,18 +359,8 @@
         {
         }
 
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
         /// <summary>
-        ///  Метод закрытия приложения
+        ///  Метод закрытия прмложения
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -426,13 +397,13 @@
                 WString.RUS = false;
                 WString.ENG = true; // Выбор языка английский
             }
-            if (WString.ENG)
+            else
             {
                 WString.ENG = false;
                 WString.RUS = true; // Выбор языка русский
             }
             ChangeTextLanguage();
-        } /////////////////////////// Необходимо изменить
+        }
                
     }
 }

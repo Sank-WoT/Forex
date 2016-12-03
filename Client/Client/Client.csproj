@@ -11,21 +11,6 @@
     <AssemblyName>Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -63,35 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bd.cs" />
-    <Compile Include="BdReqest.cs" />
-    <Compile Include="Calendar.cs" />
     <Compile Include="CloseDeal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CloseDeal.Designer.cs">
       <DependentUpon>CloseDeal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data.cs" />
-    <Compile Include="deal.cs" />
-    <Compile Include="Display.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="ExtendButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ExtendCheckbox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ExtendLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ExtendToolStripMenuItem.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="FileInspection.cs" />
-    <Compile Include="Interface.cs" />
-    <Compile Include="Quotes.cs" />
-    <Compile Include="Splice.cs" />
+    <Compile Include="Draw.cs" />
     <Compile Include="EURUSD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,8 +62,6 @@
       <DependentUpon>EURUSD.cs</DependentUpon>
     </Compile>
     <Compile Include="Exel.cs" />
-    <Compile Include="DirectoryInsspection.cs" />
-    <Compile Include="InternetRequest.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,10 +79,6 @@
     <Compile Include="Methods.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkFile.cs" />
@@ -144,6 +101,12 @@
     <Compile Include="SWindow.Designer.cs">
       <DependentUpon>SWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Val2cs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Val2cs.Designer.cs">
+      <DependentUpon>Val2cs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Windowd.cs">
       <SubType>Form</SubType>
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
@@ -157,20 +120,11 @@
     <EmbeddedResource Include="EURUSD.resx">
       <DependentUpon>EURUSD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.en.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.ne.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Help.resx">
       <DependentUpon>Help.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.ru.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -190,10 +144,12 @@
     <EmbeddedResource Include="SWindow.resx">
       <DependentUpon>SWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Val2cs.resx">
+      <DependentUpon>Val2cs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Windowd.resx">
       <DependentUpon>Windowd.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -205,27 +161,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5 %28x86 и x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="windows_xp_-_uvedomlenie.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Release\" />
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -45,7 +45,7 @@
             BufferS.Add(4);
             BufferS.Add(5);
             BufferS.Add(6);
-            Value = c.Trade(true, BufferS, 2);
+            Value = c.TradeBuy(true, BufferS, 2);
             Assert.AreEqual(4, Value);
         } // Ткст  на правильность работы точек изменения тренда
 

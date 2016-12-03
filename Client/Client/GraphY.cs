@@ -21,15 +21,10 @@
 
     class GraphY
     {
-        /// <summary>
-        /// Проверка существования директории с уведомлением
-        /// </summary>
-        /// <param name="char1">График</param>
-        /// <param name="Nowcurency">текущее значение котировки</param>
-        public void Y(Chart chart1, double Nowcurency)
+        public void Y(Chart chart1, double r)
         {
-            chart1.ChartAreas[0].AxisY.Maximum = Nowcurency + Math.Round(Nowcurency * 0.001, 3);
-            chart1.ChartAreas[0].AxisY.Minimum = Nowcurency - Math.Round(Nowcurency * 0.001, 3);
+            chart1.ChartAreas[0].AxisY.Maximum = r + Math.Round(r * 0.001, 3);
+            chart1.ChartAreas[0].AxisY.Minimum = r - Math.Round(r * 0.001, 3);
         }       
     }
 }

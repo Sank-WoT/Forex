@@ -21,10 +21,7 @@ namespace Client
 {
     public class WorkFile
     {
-        /// <summary>
-        /// Метод  для создания файла
-        /// </summary>
-        /// <param name="pathFile">Путь к файлу </param>
+
         public bool CreateFile(string pathFile)
         {
             bool a = true;
@@ -39,13 +36,7 @@ namespace Client
             return a;
         }
 
-        /// <summary>
-        /// Метод  для поиска последнего времени в файле
-        /// </summary>
-        /// <param name="poslTime">Текущее последнее значение времени</param>
-        /// <param name="pathFile">Путь к файлу </param>
-        /// <returns>Возвращение последнее значение времени</returns>
-        public int GetPoslTime(int poslTime, string pathFile)
+        public double GetPoslTime(double poslTime, string pathFile)
         {
             // преобразовение типа доубле к американскому стандарту
             #region Получение данных по котировкам из файла "eurusd.txt"  запись их в переменную text
@@ -58,16 +49,35 @@ namespace Client
 
             if (m1.Count != 0)
             {
-                poslTime = Convert.ToInt32(m1[m1.Count - 1].Value);
+                poslTime = Convert.ToDouble(m1[m1.Count - 1].Value);
             } // недопускает присвоение при значении прочтенного в файле меньше 1.  
 
             return poslTime;
-        }
+        } //// Получение данных 
 
-        /// <summary>
-        /// Функция для прочтения файла
-        /// </summary>
-        /// <returns>Текст прочтенного из файла</returns>
+        public int  read(string text1, List<double> massYInetA, List<double> massYInetB, List<double> Times)
+        {
+            int colvo = 0;
+            Regex regex = new Regex(@"(\d{10,20})");//регулярное выражение 
+            MatchCollection m = regex.Matches(text1);
+            Regex regex1 = new Regex(@"((\d{0,5})\.(\d{1,4}))");//регулярное выражение 
+            MatchCollection m1 = regex1.Matches(text1);
+            while (colvo < m.Count)
+            {                
+                Times.Add(Convert.ToDouble(m[colvo].Value));//Время в UNIX
+                colvo++;//порядковый номер даты в списке  
+            }
+            colvo = 0;
+            while (colvo + 1 < m1.Count)
+            {
+                massYInetA.Add(Convert.ToDouble(m1[colvo].Value));//число покупка
+                colvo++;//порядковый номер  
+                massYInetB.Add(Convert.ToDouble(m1[colvo].Value)); //значение  продажа
+                colvo++;//порядковый номер 
+            }                                                            
+            return colvo;
+        }// функция для прочтения файла и добавление значеений в массив
+
         public string ReadFile(string pathFile)
         {
             WorkFile FilePair = new WorkFile(); // Создание объекта работы с файлами
@@ -76,45 +86,6 @@ namespace Client
             string text = r.ReadToEnd(); // при прочтенной записи
             r.Close(); // закрыть чтение 
             return text;
-        }
-        /// <summary>
-        /// Метод  для  парсинга данных и добавление значеений в массив
-        /// </summary>
-        /// <param name="textDataQuote">Строка с триадами</param>
-        /// <param name="massYInetBuy">Массив значений покупок</param>
-        /// <param name="massYInetSell">Массив значений продажи</param>
-        /// <param name="Times">Массив звремени</param>
-        /// <returns>Возвращение кол-ва записей из стринга</returns>
-        /// 
-        public int read(string textDataQuote, List<double> massYInetBuy, List<double> massYInetSell, List<int> Times)
-        {
-            int colvo = 0;
-            Regex regex = new Regex(@"(\d{10,20})");//регулярное выражение 
-            MatchCollection m = regex.Matches(textDataQuote);
-            Regex regex1 = new Regex(@"((\d{0,5})\.(\d{1,4}))");//регулярное выражение 
-            MatchCollection m1 = regex1.Matches(textDataQuote);
-            while (colvo < m.Count)
-            {
-                try
-                {
-                    Times.Add(Convert.ToInt32(m[colvo].Value));//Время в UNIX
-                }
-                catch
-                {
-                    Console.WriteLine(m[colvo].Value);
-                    Times.Add(Convert.ToInt32(m[colvo].Value));//Время в UNIX
-                }
-                colvo++;//порядковый номер даты в списке  
-            }
-            colvo = 0;
-            while (colvo + 1 < m1.Count)
-            {
-                massYInetBuy.Add(Convert.ToDouble(m1[colvo].Value));//число покупка
-                colvo++;//порядковый номер  
-                massYInetSell.Add(Convert.ToDouble(m1[colvo].Value)); //значение  продажа
-                colvo++;//порядковый номер 
-            }
-            return colvo;
         }
     }
 }

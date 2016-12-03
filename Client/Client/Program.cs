@@ -14,13 +14,9 @@ namespace Client
         [STAThread]
         static void Main()
         {
-            WString.ENG = true; // Задание базового языка
-            WString.RUS = false;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            int y = SystemInformation.PrimaryMonitorSize.Height; // высота экрана
-            int x = SystemInformation.PrimaryMonitorSize.Width; // ширина экрана 
-            Application.Run(new MainForm(x,y));
+            Application.Run(new MainForm());
         }
     }
     static class WString
@@ -58,4 +54,6 @@ namespace Client
     {
         public static int Speed;
     }// передача данных между формами
+
+    public delegate void MyDelegate();
 }

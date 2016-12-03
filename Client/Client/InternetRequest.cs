@@ -26,6 +26,7 @@
         public InternetRequest(int NowTime, int limit, string sign)
             {
             path = "http://myfirstphpapp-skro.rhcloud.com/get_currency.php?time=" + NowTime + "&limit=" + limit + "&sign=" + sign;
+            Console.WriteLine(path);
             }
 
         /// <summary>
