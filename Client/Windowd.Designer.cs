@@ -79,6 +79,7 @@
             // lab_Cur
             // 
             resources.ApplyResources(this.lab_Cur, "lab_Cur");
+            this.lab_Cur.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.lab_Cur.Name = "lab_Cur";
             this.lab_Cur.Click += new System.EventHandler(this.lab_Cur_Click);
             // 
@@ -289,11 +290,11 @@
             this.buttonBuy.UseVisualStyleBackColor = true;
             this.buttonBuy.Click += new System.EventHandler(this.Buy_Click);
             // 
-            // button9
+            // buttonSell
             // 
             this.buttonSell.ForeColor = System.Drawing.SystemColors.ControlText;
-            resources.ApplyResources(this.buttonSell, "button9");
-            this.buttonSell.Name = "button9";
+            resources.ApplyResources(this.buttonSell, "buttonSell");
+            this.buttonSell.Name = "buttonSell";
             this.buttonSell.UseVisualStyleBackColor = true;
             this.buttonSell.Click += new System.EventHandler(this.Sell_Click);
             // 

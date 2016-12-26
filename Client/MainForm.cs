@@ -47,7 +47,7 @@
             string pathFile = pathDirectory + "\\" + "eurusd" + ".txt"; // Путь к файлу c котировками eurusd
 
             Methods Time = new Methods();
-             // проверка интерент соединения ассинхронно
+             // проверка интернет соединения ассинхронно
             tConnect = Task.Run(() =>
             {
                 Internet inCon = new Internet();
@@ -62,33 +62,13 @@
 
             this.InitializeComponent();
             // размеры контейнера
-            startContainer.Size = new Size(x, y);
+            startContainer.Size = new Size(x, y - WSettings.Size.Height);
             startContainer.Location = new Point(0, 0);
            
-            // Массив кнопок интерфейса
-            Button[] LButton = {buttonEurUsd, buttonUsdJpy}; 
-
-            foreach (Button index in LButton)
-            {
-                startContainer.Panel2.Controls.Add(index);
-            }
-
-            // Массив меток интерфейса
-            Label[] LLabel = { labelSelectPair };
-
-            foreach (Label index in LLabel)
-            {
-                startContainer.Panel2.Controls.Add(index);
-            }
-
-            DirectoryInsspection.Set(pathDirectory); // проверка существования директории
+            DirectoryWork.Set(pathDirectory); // проверка существования директории
 
             FileInspection.Set(pathFile); // проверка существования файла
 
-            this.FormClosing += new FormClosingEventHandler(OnClosing);
-            LButton[0].Location = new Point( x / 2 - 400, y / 2 - 100); // Первая кнопка EurUsd
-            LLabel[0].Location = new Point(x / 2 - 100, y / 2 - 200); //  Метка
-            LButton[1].Location = new Point(x / 2  + 200, y / 2 - 100); // Вторая кнопка UsdJpy
             xS = x / 1920.0; // настройка под все  экраны
             yS = y / 1080.0; // настройка под все  экраны
             this.Size = new Size(x, y); // задание размеров экрана
@@ -106,67 +86,21 @@
                 helpToolStripMenuItem.CheckState = CheckState.Unchecked;
             }
 
-            Internet IPair = new Internet();
-            Cursor.Current = Cursors.WaitCursor; // Грузящий курсор
-            tConnect.Wait(); 
-            Cursor.Current = Cursors.Default; // Возвращение к нормальному состоянию
-            LoadData(IPair); // загрузка данных 2х потоков с данными №1
+            // Грузящийся курсор
+            Cursor.Current = Cursors.WaitCursor;
+            tConnect.Wait();
+            // Возвращение к нормальному состоянию
+            Cursor.Current = Cursors.Default;
+            // загрузка данных 2х потоков с данными №1
+            Bd BasaDan = new Bd("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='" + Application.StartupPath + "\\Forex.mdf'; Integrated Security = True; Connect Timeout = 30");
+            tEurusd = BasaDan.LoadData("eurusd");
+            tUsdjpy = BasaDan.LoadData("usdjpy");
         }
 
         /// <summary>
-        /// Метод загрузки данных
+        /// Конструктор стартового состояния окна
         /// </summary>
-        /// <param name="IPair">Объект интернет</param>
-        public void LoadData(Internet IPair)
-        {
-            // поток подключения eurusd
-            tEurusd = Task.Run(() =>
-            {
-                TaskConnect(IPair, "eurusd");
-            });
-
-            bdLoad(IPair, "eurusd", 1000000 );
-
-            // поток подключения usdjpy
-            tUsdjpy = Task.Run(() =>
-            {
-                TaskConnect(IPair, "usdjpy");
-            });
-
-            bdLoad(IPair, "usdjpy", 1000000);
-        }
-
-        public void bdLoad(Internet IPair, string bdValue, int number)
-        {
-            string pathFile = Application.StartupPath + "\\" + bdValue + ".txt";
-            string patch = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='" + Application.StartupPath + "\\Forex.mdf'; Integrated Security = True; Connect Timeout = 30";// данные конфигурации
-            // Создание объекта БД                                                                                                                                                                     // Создание объекта БД
-            BdReqest reqestBdEURUSD = new BdReqest(patch);
-            string response = IPair.FirstConnectBD(bdValue, pathFile, number);
-            List<int> BListTBuf = new List<int>();
-            List<double> BListBBuf = new List<double>();
-            List<double> BListSBuf = new List<double>();
-            Parser BdParser = new Parser(response);
-            // Присвоили данные к листам
-            BdParser.BDREqest(ref BListTBuf, ref BListBBuf, ref BListSBuf);
-            Console.WriteLine("" + bdValue);
-            // Важный запрос добавления осталось это проверить
-            reqestBdEURUSD.Insert(bdValue, BListTBuf, BListBBuf, BListSBuf);
-            Console.WriteLine("" + bdValue);
-        }
-
-        /// <summary>
-        /// Метод загрузки данных +
-        /// </summary>
-        /// <param name="IPair">Объект интернет</param>
-        /// <param name="value">Котировка</param>
-        public string TaskConnect(Internet IPair, string value)
-        {
-            string pathFile = Application.StartupPath + "\\" + value + ".txt"; // Путь к файлу c котировками usdjpy
-            IPair.FirstConnect(value, pathFile); // первое подключении
-            return pathFile;
-        }
-     
+        /// <param name="pathFile">Путь в файл</param>
         public void writeFile(string pathFile)
         {
             string text = "EURUSD   " + 1366 + "      " + 757;
@@ -181,32 +115,34 @@
         /// <param name="e">EventArgs</param>
         public void EURUSDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // ViewWindowd vUSDJPY = new ViewWindowd();
-            // vUSDJPY.Create(tConnect, tUsdjpy, WindowClosingUSDJPY, "eurusd");
-            createWindow(tConnect, tUsdjpy, WindowClosingUSDJPY, "eurusd");
-        }
-
-
-        public void USDJPYToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            createWindow(tConnect, tUsdjpy, WindowClosingUSDJPY, "usdjpy");
+            // ожидание загрузки
+            Tasks(tConnect, tEurusd);
+            // создание окна
+            createWindow(WindowClosingUSDJPY, "eurusd");
         }
 
         /// <summary>
-        /// Метод для создания окна котировк
+        /// Cоздание  окна
+        /// </summary>
+        /// <param name="sender">object</param>
+        /// <param name="e">EventArgs</param>
+        public void USDJPYToolStripMenuItem_Click(object sender, EventArgs e)
+        {   
+            // ожидание загрузки
+            Tasks(tConnect, tUsdjpy);
+            // создание окна
+            createWindow( WindowClosingUSDJPY, "usdjpy");
+        }
+
+        /// <summary>
+        /// Метод для создания окна котировок
         /// </summary>
         /// <param name="tConnect">Таск подключения</param>
         /// <param name="tLoadquotes">Таск погрузки данных</param>
         /// <param name="closeWindow"></param>
         ///<param name="value">наименование котировки</param>
-        public void createWindow(Task tConnect, Task tLoadquotes, bool closeWindow, string value)
+        public bool createWindow(bool closeWindow, string value)
         {
-            // ожидание
-            Cursor.Current = Cursors.WaitCursor;
-            // ожидать коннект
-            tConnect.Wait();
-            // ожидать загрузку
-            tLoadquotes.Wait();
             int x = 0, y = 0;
 
             if (closeWindow == true)
@@ -220,7 +156,25 @@
                 WString.Y = y;
                 Windowd Quote = new Windowd(value);
                 WindowSizeLocation(Quote, WString.X, WString.Y);
+                return Quote == null ? false : true;
             }
+            return false;
+        }
+
+        /// <summary>
+        /// Ожидание загрузки данных
+        /// </summary>
+        /// <param name="tConnect">Таск подключения</param>
+        /// <param name="tLoadquotes">Таск погрузки данных</param>
+        public bool Tasks(Task tConnect, Task tLoadquotes)
+        {
+            // ожидание
+            Cursor.Current = Cursors.WaitCursor;
+            // ожидать коннект
+            tConnect.Wait();
+            // ожидать загрузку
+            tLoadquotes.Wait();
+            return true;
         }
 
         /// <summary>
@@ -309,7 +263,6 @@
             eURUSDToolStripMenuItem.Text = eURUSDToolStripMenu;
             USDJPYToolStripMenuItem.Text = USDJPYToolStripMenu;
             langToolStripMenuItem.Text = langToolStripMenu;
-            labelSelectPair.Text = labelSelect;
         } 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -371,6 +324,22 @@
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
                 quotesList.Items.Add(windows[0].poslchisloBuy); 
+        }
+
+        private void radImageItem1_Click(object sender, EventArgs e)
+        {
+            Tasks(tConnect, tEurusd);
+            createWindow(WindowClosingUSDJPY, "eurusd");
+        }
+        private void radImageIteь2_Click(object sender, EventArgs e)
+        {
+            Tasks(tConnect, tUsdjpy);
+            createWindow(WindowClosingUSDJPY, "usdjpy");
+        }
+
+        private void radCarousel1_SelectedItemChanged(object sender, EventArgs e)
+        {
+
         }
 
         /// <summary>

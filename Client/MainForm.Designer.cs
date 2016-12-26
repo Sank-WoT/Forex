@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            Telerik.WinControls.UI.CarouselEllipsePath carouselEllipsePath1 = new Telerik.WinControls.UI.CarouselEllipsePath();
             this.startContainer = new System.Windows.Forms.SplitContainer();
             this.quotesList = new System.Windows.Forms.ListBox();
-            this.buttonEurUsd = new System.Windows.Forms.Button();
-            this.buttonUsdJpy = new System.Windows.Forms.Button();
-            this.labelSelectPair = new System.Windows.Forms.Label();
+            this.radCarousel1 = new Telerik.WinControls.UI.RadCarousel();
+            this.radImageItem1 = new Telerik.WinControls.UI.RadImageItem();
+            this.radImageItem2 = new Telerik.WinControls.UI.RadImageItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,10 +46,13 @@
             this.eURUSDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.USDJPYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WSettings = new System.Windows.Forms.MenuStrip();
+            this.radThemeManager1 = new Telerik.WinControls.RadThemeManager();
+            this.object_5264c970_8296_4db5_a8ca_d09417e2a110 = new Telerik.WinControls.RootRadElement();
             ((System.ComponentModel.ISupportInitialize)(this.startContainer)).BeginInit();
             this.startContainer.Panel1.SuspendLayout();
             this.startContainer.Panel2.SuspendLayout();
             this.startContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radCarousel1)).BeginInit();
             this.WSettings.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,9 +68,7 @@
             // 
             // startContainer.Panel2
             // 
-            this.startContainer.Panel2.Controls.Add(this.buttonEurUsd);
-            this.startContainer.Panel2.Controls.Add(this.buttonUsdJpy);
-            this.startContainer.Panel2.Controls.Add(this.labelSelectPair);
+            this.startContainer.Panel2.Controls.Add(this.radCarousel1);
             this.startContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint_1);
             // 
             // quotesList
@@ -76,28 +78,37 @@
             this.quotesList.Name = "quotesList";
             this.quotesList.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // buttonEurUsd
+            // radCarousel1
             // 
-            this.buttonEurUsd.Cursor = System.Windows.Forms.Cursors.Default;
-            this.buttonEurUsd.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            resources.ApplyResources(this.buttonEurUsd, "buttonEurUsd");
-            this.buttonEurUsd.Name = "buttonEurUsd";
-            this.buttonEurUsd.UseVisualStyleBackColor = true;
-            this.buttonEurUsd.Click += new System.EventHandler(this.EURUSDToolStripMenuItem_Click);
+            carouselEllipsePath1.Center = new Telerik.WinControls.UI.Point3D(52.462121212121211D, 51.620947630922693D, 0D);
+            carouselEllipsePath1.FinalAngle = -100D;
+            carouselEllipsePath1.InitialAngle = -90D;
+            carouselEllipsePath1.U = new Telerik.WinControls.UI.Point3D(-20D, -17D, -50D);
+            carouselEllipsePath1.V = new Telerik.WinControls.UI.Point3D(32.007575757575758D, -26.932668329177059D, -60D);
+            carouselEllipsePath1.ZScale = 500D;
+            this.radCarousel1.CarouselPath = carouselEllipsePath1;
+            resources.ApplyResources(this.radCarousel1, "radCarousel1");
+            this.radCarousel1.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.radImageItem1,
+            this.radImageItem2});
+            this.radCarousel1.Name = "radCarousel1";
+            this.radCarousel1.ThemeName = "ControlDefault";
+            this.radCarousel1.VisibleItemCount = 4;
+            this.radCarousel1.SelectedItemChanged += new System.EventHandler(this.radCarousel1_SelectedItemChanged);
             // 
-            // buttonUsdJpy
+            // radImageItem1
             // 
-            this.buttonUsdJpy.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            resources.ApplyResources(this.buttonUsdJpy, "buttonUsdJpy");
-            this.buttonUsdJpy.Name = "buttonUsdJpy";
-            this.buttonUsdJpy.UseVisualStyleBackColor = true;
-            this.buttonUsdJpy.Click += new System.EventHandler(this.USDJPYToolStripMenuItem_Click);
+            this.radImageItem1.Image = ((System.Drawing.Image)(resources.GetObject("radImageItem1.Image")));
+            this.radImageItem1.Name = "radImageItem1";
+            resources.ApplyResources(this.radImageItem1, "radImageItem1");
+            this.radImageItem1.Click += new System.EventHandler(this.radImageItem1_Click);
             // 
-            // labelSelectPair
+            // radImageItem2
             // 
-            resources.ApplyResources(this.labelSelectPair, "labelSelectPair");
-            this.labelSelectPair.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.labelSelectPair.Name = "labelSelectPair";
+            this.radImageItem2.Image = ((System.Drawing.Image)(resources.GetObject("radImageItem2.Image")));
+            this.radImageItem2.Name = "radImageItem2";
+            resources.ApplyResources(this.radImageItem2, "radImageItem2");
+            this.radImageItem2.Click += new System.EventHandler(this.radImageItem1_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -116,6 +127,11 @@
             this.windowToolStripMenuItem.Name = "windowToolStripMenuItem";
             resources.ApplyResources(this.windowToolStripMenuItem, "windowToolStripMenuItem");
             this.windowToolStripMenuItem.Click += new System.EventHandler(this.WindowToolStripMenuItem_Click);
+            // 
+            // chartToolStripMenuItem
+            // 
+            this.chartToolStripMenuItem.Name = "chartToolStripMenuItem";
+            resources.ApplyResources(this.chartToolStripMenuItem, "chartToolStripMenuItem");
             // 
             // langToolStripMenuItem
             // 
@@ -179,6 +195,12 @@
             resources.ApplyResources(this.WSettings, "WSettings");
             this.WSettings.Name = "WSettings";
             // 
+            // object_5264c970_8296_4db5_a8ca_d09417e2a110
+            // 
+            this.object_5264c970_8296_4db5_a8ca_d09417e2a110.Name = "object_5264c970_8296_4db5_a8ca_d09417e2a110";
+            this.object_5264c970_8296_4db5_a8ca_d09417e2a110.StretchHorizontally = true;
+            this.object_5264c970_8296_4db5_a8ca_d09417e2a110.StretchVertically = true;
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -195,9 +217,9 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.startContainer.Panel1.ResumeLayout(false);
             this.startContainer.Panel2.ResumeLayout(false);
-            this.startContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startContainer)).EndInit();
             this.startContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radCarousel1)).EndInit();
             this.WSettings.ResumeLayout(false);
             this.WSettings.PerformLayout();
             this.ResumeLayout(false);
@@ -218,11 +240,13 @@
         private System.Windows.Forms.ToolStripMenuItem eURUSDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem USDJPYToolStripMenuItem;
         private System.Windows.Forms.MenuStrip WSettings;
-        private System.Windows.Forms.Label labelSelectPair;
-        private System.Windows.Forms.Button buttonEurUsd;
-        private System.Windows.Forms.Button buttonUsdJpy;
         private System.Windows.Forms.SplitContainer startContainer;
         private System.Windows.Forms.ListBox quotesList;
+        private Telerik.WinControls.RadThemeManager radThemeManager1;
+        private Telerik.WinControls.UI.RadCarousel radCarousel1;
+        private Telerik.WinControls.RootRadElement object_5264c970_8296_4db5_a8ca_d09417e2a110;
+        private Telerik.WinControls.UI.RadImageItem radImageItem1;
+        private Telerik.WinControls.UI.RadImageItem radImageItem2;
     }
 }
 

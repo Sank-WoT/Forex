@@ -11,7 +11,6 @@ namespace Client
     /// </summary>
     /// <param name="Sglag">Текущее приближени</param>
     /// <param name="point">Котировки</param>
-    /// 
    public class ClassSMA
     {
         private bool _activ;
@@ -36,6 +35,9 @@ namespace Client
             }
         }
 
+        /// <summary>
+        ///  Выдача точек SMA +
+        /// </summary>
         public List<double> GetSred()
         {
             return _Point;

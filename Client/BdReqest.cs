@@ -12,19 +12,14 @@
     /// </summary>
     public class BdReqest : Bd
     {
-        // Путь к БД
-        private string path;
-
         /// <summary>
-        /// Конструктор для объекта БД
+        /// Конструктор запросов для объекта БД
         /// </summary>
-        /// <param name="_path">Путь к БД</param>
-        public BdReqest(string _path)
+        /// <param name="_patch">Путь к БД</param>
+
+        public BdReqest(string _patch) : base(_patch)
         {
-            // устанавливаем английскую клавиатуру
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            // принять путь к файлу
-            path = _path;
         }
 
         /// <summary>
@@ -34,10 +29,8 @@
         /// <param name="ListB">Лист покупок</param>
         /// <param name="ListS">Лист продаж</param>
         /// <param name="Value">Наименование котировки</param>
-        public void CommandSelect(ref List<int> ListT, ref List<double> ListB, ref List<double> ListS, string Value)
+        public void CommandSelect(ref List<int> ListT, ref List<double> ListB, ref List<double> ListS, string Value, SqlConnection con)
         {
-            SqlConnection con = new SqlConnection(path);
-            con.Open();
             SqlCommand command = new SqlCommand(Select(Value), con);
             SqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows)
@@ -57,7 +50,6 @@
             {
 
             }
-            con.Close();
         }
 
         /// <summary>
@@ -65,10 +57,8 @@
         /// </summary>
         /// <param name="ListT">Наименование котировки</param>
         /// <param name="Value">Наименование котировки</param>
-        public void CommandSelect(ref List<int> ListT,string Value)
+        public void CommandSelect(ref List<int> ListT,string Value, SqlConnection con)
         {
-            SqlConnection con = new SqlConnection(path);
-            con.Open();
             SqlCommand command = new SqlCommand(Select(Value), con);
             SqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows)
@@ -86,18 +76,15 @@
             {
 
             }
-            con.Close();
         }
 
         /// <summary>
         /// Запрос последнего времени из бд
         /// </summary>
         /// <param name="Value">Наименование котировки</param>
-        public int lastTime(string  Value)
+        public int lastTime(string  Value, SqlConnection con)
         {
-            SqlConnection con = new SqlConnection(path);
             string commands = "SELECT time FROM " + Value;
-            con.Open();
             SqlCommand command = new SqlCommand(commands, con);
             SqlDataReader reader = command.ExecuteReader();
             return reader.GetInt32(0);
@@ -110,7 +97,7 @@
         /// <param name="Time">Время</param>
         /// <param name="Buy">Покупка</param>
         /// <param name="Sell">Продажа</param>
-        public void Insert(string Value, List<int> Time, List<double> Buy, List<double> Sell)
+        public void Insert(string Value, List<int> Time, List<double> Buy, List<double> Sell, SqlConnection con)
         {
             int Index = 0;
             int m = 0;
@@ -120,7 +107,7 @@
                 Console.WriteLine("Вошел");
                 Console.WriteLine("Вошел" + (Time.Count() - 1));
                 // запрос на добавление
-                Insert800(Value, Time, Buy, Sell, ref Index);
+                Insert800(Value, Time, Buy, Sell, ref Index, con);
                 //  присвоение 
                m = Index;
             }
@@ -134,11 +121,9 @@
         /// <param name="Buy">Покупка</param>
         /// <param name="Sell">Продажа</param>
         /// <param name="Index">Номер триады</param>
-        private void Insert800(string Value, List<int> Time, List<double> Buy, List<double> Sell, ref int Index)
+        private void Insert800(string Value, List<int> Time, List<double> Buy, List<double> Sell, ref int Index, SqlConnection con)
         {
             Console.WriteLine("Sell.Count() " + (Sell.Count() - 1));
-            SqlConnection con = new SqlConnection(path);
-            con.Open();
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             string comI = " VALUES";
             int i = 0;
@@ -177,7 +162,6 @@
             {
                 Console.WriteLine("Ошибка");
             }
-            con.Close();
         }
 
         /// <summary>
@@ -187,12 +171,10 @@
         /// <param name="Time">Время</param>
         /// <param name="Buy">Покупка</param>
         /// <param name="Sell">Продажа</param>
-        public void formInsert(int Time, double Bid, double Ask, string Value)
+        public void formInsert(int Time, double Bid, double Ask, string Value, SqlConnection con)
         {
             string comI = "INSERT INTO [dbo].[" + Value + "] ([time],[bid],[ask]) ";
             comI += "VALUES(" + Time + ", " + Bid + ", " + Ask + "); ";
-            SqlConnection con = new SqlConnection(path);
-            con.Open();
             SqlCommand command = new SqlCommand(comI, con);
             try
             {
@@ -202,7 +184,6 @@
             {
                 Console.WriteLine("Ошибка   " + ex);
             }
-            con.Close();
         }
 
         /// <summary>

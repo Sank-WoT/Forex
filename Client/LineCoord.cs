@@ -19,29 +19,169 @@
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
-    class LineCoord
+   public class LineCoord
     {
-        private  double xS;
-        private double yS;
+        private double xS;
+        private double  yS;
         private double _fX;
         private double _fY;
+        public double Svoistvo_xS
+        {
+            get
+            {
+                return xS;
+            }
+
+            set
+            {
+                xS = value;
+            }
+        }
+
+        public double Svoistvo_yS
+        {
+            get
+            {
+                return yS;
+            }
+
+            set
+            {
+                yS = value;
+            }
+        }
+
+        public double Svoistvo_fX
+        {
+            get
+            {
+                return _fX;
+            }
+
+            set
+            {
+                _fX = value;
+            }
+        }
+
+        public double Svoistvo_fY
+        {
+            get
+            {
+                return _fY;
+            }
+
+            set
+            {
+                _fY = value;
+            }
+        }
+
         Label _label_X;
+        public Label Svoistvo_label_X
+        {
+            get
+            {
+                return _label_X;
+            }
+
+            set
+            {
+                _label_X = value;
+            }
+        }
         Label _label_Y;
+        public Label Svoistvo_label_Y
+        {
+            get
+            {
+                return _label_Y;
+            }
+
+            set
+            {
+                _label_Y = value;
+            }
+        }
         Label _lab_Cur;
+        public Label Svoistvo_lab_Cur
+        {
+            get
+            {
+                return _lab_Cur;
+            }
+
+            set
+            {
+                _lab_Cur = value;
+            }
+        }
         Chart _graphic;
+        public Chart Svoistvo_graphic
+        {
+            get
+            {
+                return _graphic;
+            }
+
+            set
+            {
+                _graphic = value;
+            }
+        }
+
+        /// <summary>
+        /// Конструктор для линий и лабел +
+        /// </summary>
+        /// <param name="x">размеры экрана по икс</param> 
+        /// <param name="y">размеры экрана по игрик</param>
+        /// <param name="fy"></param>
+        /// <param name="fx"></param>
+        /// <param name="lab_Cur">Курс в точке</param>
+        /// <param name="label_Y">Линия по Y</param>
+        /// <param name="label_X">Линия по X</param>
+        /// <param name="graphic">Chart</param>
         public LineCoord(int x, int y, double fX, double fy,Label lab_Cur, Label label_Y, Label label_X, ref Chart graphic)
         {
             // настройка под все  экраны
-            xS = x / 1920.0;
-            yS = y / 1080.0;
-            _fX = fX;
-            _fY = fy;
+            sizeLineCoord(x, y, fX, fy);
+            ObLinecoord(lab_Cur, label_Y, label_X, ref graphic);
+        }
+
+        /// <summary>
+        /// Присвоение лабел и чарт +
+        /// </summary>
+        /// <param name="lab_Cur">Курс в точке</param>
+        /// <param name="label_Y">Линия по Y</param>
+        /// <param name="label_X">Линия по X</param>
+        /// <param name="graphic">Chart</param>
+        public void ObLinecoord(Label lab_Cur, Label label_Y, Label label_X, ref Chart graphic) 
+        {
             _label_X = label_X;
             _label_Y = label_Y;
             _lab_Cur = lab_Cur;
             _graphic = graphic;
         }
 
+        /// <summary>
+        /// Подстраивание размеров под экран +
+        /// </summary>
+        /// <param name="x">размеры экрана по икс</param> 
+        /// <param name="y">размеры экрана по игрик</param>
+        /// <param name="fy"></param>
+        /// <param name="fx"></param>
+        public void sizeLineCoord(int x, int y, double fX, double fy)
+        {
+            xS = x / 1920.0;
+            yS = y / 1080.0;
+            _fX = fX;
+            _fY = fy;
+        }
+
+        /// <summary>
+        /// Проверка активации чек бокса и отображение линий +
+        /// </summary>
+        /// <param name="checkBoxLineCoord">чек бокс отвечающий за активацию линий</param> 
         public void Show(CheckBox checkBoxLineCoord)
         {
             if (true == checkBoxLineCoord.Checked)
@@ -69,11 +209,20 @@
             }
         }
 
+        /// <summary>
+        /// Событие отвечающие за наведение мыши с помощью линий
+        /// </summary>
+        /// <param name="e">чек бокс отвечающий за активацию линий</param> 
+        /// <param name="sender">чек бокс отвечающий за активацию линий</param> 
         public void chart1_MouseMove(object sender, MouseEventArgs e)
         {
             Set(e);
         }
 
+        /// <summary>
+        /// Приватная функция отвечающая за непосредственное наведение курсора мыши
+        /// </summary>
+        /// <param name="e">СОбытие мыши</param> 
         private void  Set(MouseEventArgs e)
         {
             if (e.Y > Convert.ToInt32(27 * yS * (WString.Y / _fY)) && e.Y < Convert.ToInt32(629 * yS * (WString.Y / _fY)) && e.X > Convert.ToInt32(110 * xS * (WString.X / _fX)))

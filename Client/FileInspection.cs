@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    class FileInspection
+   public class FileInspection
     {
         /// <summary>
         /// Приветствие нового пользователя

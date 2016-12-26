@@ -25,7 +25,7 @@
     public class Methods
     {
         /// <summary>
-        /// Convert UnixTime in DateTime
+        /// Convert UnixTime in DateTime +
         /// </summary>
         /// <param name="a">List seconds</param>
         /// <param name="dinet">List date</param>
@@ -46,7 +46,7 @@
         }
 
         /// <summary>
-        /// Convert DateTime in UnixTime
+        /// Convert DateTime in UnixTime +
         /// </summary>
         /// <param name="a">List Date</param>
         /// <param name="dinet">List seconds</param>
@@ -62,41 +62,6 @@
             }
 
             return dinet;
-        }
-
-        /// <summary>
-        /// Проверка соединения с интернетом и уведомление пользователя
-        /// </summary>
-        /// <param name="value">List seconds</param>
-        /// <param name="inet">List date</param>
-        /// <param name="internetActionFinished">List date</param>
-        /// <param name="sync">List date</param>
-        public bool TryCon(bool inet, string value, bool internetActionFinished, object sync)
-        {
-            try
-            {
-                var webReq = WebRequest.Create("http://currency-dred95.rhcloud.com/get_currency.php?time=" + "0" + "&limit=" + "1" + "&sign=" + value); // запрос на сайт 
-                WebResponse webRes = webReq.GetResponse(); // получение ответа
-                webRes.Close();
-                inet = true;
-            }
-            catch (Exception ex)
-            {
-                if (WString.Langue["RUS"] == true)
-                {
-                    MessageBox.Show("Отсутсвие интернета или недоступен сайт переход в автономный режим");
-                }
-                if (WString.Langue["ENG"] == true)
-                {
-                    MessageBox.Show("Lack of or inaccessible internet site go offline");
-                }
-                inet = false;
-            }
-            lock (sync)
-            {
-                internetActionFinished = true;
-            }
-            return inet;
         }
 
         /// <summary>
@@ -122,7 +87,7 @@
             }
 
             return number;
-     } // локализация уровней сопротивления и поддержки под временные уровни
+     } 
 
        
 
@@ -136,10 +101,13 @@
             string time;
             time = nowDate.ToString("R");
             Console.WriteLine(time);
-            Regex regex1 = new Regex(@"[a-zA-Z]+"); // регулярное выражение для поиска последнего времени в файле
+            Regex regex1 = new Regex(@"[a-zA-Z]+"); 
+            // регулярное выражение для поиска последнего времени в файле
             MatchCollection m1 = regex1.Matches(time);
             string dayOffTheWeek = m1[0].Value;
             return dayOffTheWeek;
         }
+
+
     }
 }

@@ -22,25 +22,23 @@
     /// </summary>
    public class Splice
     {
-       /// <summary>
-       /// Метод склейки буферных данных и файловых 
-       /// </summary>
-       /// <param name="Buffer">double значения 1 листа.</param>
+        /// <summary>
+        /// Метод склейки буферных данных и файловых +
+        /// </summary>
+        /// <param name="Buffer">double значения 1 листа.</param>
         /// <param name="File">double значения 2 листа.</param>
         /// <param name="tic">int время которое прошло с запуска формы.</param>
-       /// <returns>Объединенный лист</returns>
-       public List<double> MainValue(List<double> Buffer, List<double> File, int tic, int ChisloZagruz)
+        /// <param name="ChisloZagruz">число загрузок из файла.</param>
+        /// <returns>Объединенный лист</returns>
+        public List<double> glue( List<double> File, List<double> Buffer, int tic, int ChisloZagruz)
        {
            List<double> Value = new List<double>();
-            int atic;
-            atic = tic;
-            tic *= ChisloZagruz;
-            for (int h = 0 ; tic >= h; h++)
+            for (int h = 0 ; ChisloZagruz > h; h++)
            {
-               Value.Add(File[File.Count - 1 - tic + h]);
+               Value.Add(File[File.Count  - ChisloZagruz + h]);
            }
 
-           for (int h = 0; atic >= h; h++)
+           for (int h = 0; tic > h; h++)
            {
                Value.Add(Buffer[h]);
            }
@@ -48,7 +46,13 @@
            return Value;
        }
 
-        public List<double> MainValue(List<double> Buffer, List<double> File)
+        /// <summary>
+        /// Метод склейки и последнего числа буфера и файла  +
+        /// </summary>
+        /// <param name="Buffer">double значения 1 листа.</param>
+        /// <param name="File">double значения 2 листа.</param>
+        /// <returns>Объединенный лист</returns>
+        public List<double> glue(List<double> Buffer, List<double> File)
         {
             List<double> Value = new List<double>();
             Value = File;
@@ -56,32 +60,38 @@
             return Value;
         }
 
-       /// <summary>
-       ///  Метод склейки буферных данных и файловых 
-       /// </summary>
-       /// <param name="Ftime">DateTime значения 1 листа.</param>
-       /// <param name="ITime">DateTime значения 2 листа.</param>
-       /// <param name="tic">int время которое прошло с запуска формы.</param>
-       /// <returns>Объединенный лист</returns>
-        public List<DateTime> MainTime(List<DateTime> Ftime, List<DateTime> ITime, int tic, int ChisloZagruz)
+        /// <summary>
+        ///  Метод склейки буферного времени и файлового  +
+        /// </summary>
+        /// <param name="Ftime">DateTime значения 1 листа  файловых.</param>
+        /// <param name="ITime">DateTime значения 2 листа буферных.</param>
+        /// <param name="tic">int время которое прошло с запуска формы.</param>
+        /// <param name="ChisloZagruz">число загрузок из файла.</param>
+        /// <returns>Объединенный лист</returns>
+        public List<DateTime> glue(List<DateTime> Ftime, List<DateTime> ITime, int tic, int ChisloZagruz)
        {
            List<DateTime> Value = new List<DateTime>();
             int atic;
-            atic = tic;
-            tic *= ChisloZagruz;
-            for (int h = 0; tic >= h; h++)
+            for (int h = 0; ChisloZagruz > h; h++)
            {
-               Value.Add(Ftime[Ftime.Count - 1 - tic + h].AddHours(17));
+               Value.Add(Ftime[Ftime.Count  - ChisloZagruz + h]);
            }
 
-           for (int h = 0; atic >= h; h++)
+           for (int h = 0; tic >= h; h++)
            {
                Value.Add(ITime[h]);
            }
 
            return Value;
        }
-        public List<DateTime> MainTime(List<DateTime> Ftime, List<DateTime> ITime)
+
+        /// <summary>
+        /// Метод склейки и последнего числа буфера и файла  +
+        /// </summary>
+        /// <param name="Buffer">double значения 1 листа.</param>
+        /// <param name="File">double значения 2 листа.</param>
+        /// <returns>Объединенный лист</returns>
+        public List<DateTime> glue(List<DateTime> Ftime, List<DateTime> ITime)
         {
             List<DateTime> Value = new List<DateTime>();
             Value = Ftime;
@@ -90,4 +100,4 @@
         }
 
     }
-} // Додумать по поводу выхода индекса за пределы листа
+}

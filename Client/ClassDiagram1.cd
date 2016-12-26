@@ -1,277 +1,286 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Class Name="Client.CloseDeal" Collapsed="true">
-    <Position X="1" Y="3.5" Width="1.5" />
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Client.Bd" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAGEAAAAMAACAAAACgCAAAAACAAAQAAAAQQQ=</HashCode>
-      <FileName>CloseDeal.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.EURUSD" Collapsed="true">
-    <Position X="4.5" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAYQAACBCAAAAQAAEA=</HashCode>
-      <FileName>EURUSD.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Help" Collapsed="true">
-    <Position X="6.25" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAgAACAAAAAAAAAAEAAAAAAAA=</HashCode>
-      <FileName>Help.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.MainForm" Collapsed="true">
-    <Position X="10.25" Y="3.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>wEgYCQAEAqAQCASAAGCAgQEPCkKgQSORAgwAAAAMIAA=</HashCode>
-      <FileName>MainForm.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Report" Collapsed="true">
-    <Position X="3.5" Y="1.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>BSIQAAAAACAgAAACQAKAgBACCAgAAgAAAkGAQAAAAYA=</HashCode>
-      <FileName>Report.cs</FileName>
+      <HashCode>AAAAAAAAAAAQAAAABAAAAABAAAEAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Bd.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Client.BdReqest" Collapsed="true">
-    <Position X="3.25" Y="6.25" Width="1.5" />
+    <Position X="3" Y="2.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEQAAAAAAAABAAAiAgAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <HashCode>AAAAAEQAAAAAAAABAAAAAgAAAAAAAAAAAAAAQAAAAAA=</HashCode>
       <FileName>BdReqest.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Client.Calendar" Collapsed="true">
-    <Position X="8.75" Y="5" Width="1.5" />
+  <Class Name="Client.ChartQ" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Calendar.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="Client.Data" Collapsed="true">
-    <Position X="8.5" Y="7.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Data.cs</FileName>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ChatQ.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Client.DirectoryInsspection" Collapsed="true">
-    <Position X="3.25" Y="11.5" Width="1.5" />
+  <Class Name="Client.CloseDeal" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAQAARAAGEAABAMAACAAAACgCAAAAACAAAQAACAAQQ=</HashCode>
+      <FileName>CloseDeal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.Deal" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAQAABAAAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAA=</HashCode>
+      <FileName>deal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.DirectoryWork" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DirectoryInsspection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Client.Display" Collapsed="true">
-    <Position X="3.25" Y="9.5" Width="1.5" />
+    <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Display.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Client.EURUSD" Collapsed="true">
+    <Position X="4.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAYQAACBCAAAAQAAEA=</HashCode>
+      <FileName>EURUSD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Client.Exel" Collapsed="true">
-    <Position X="6.75" Y="5.75" Width="1.5" />
+    <Position X="7.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIAAAAAAAAAAIAQAAAAAgAAgAAAAAAQAAAAAA=</HashCode>
       <FileName>Exel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Client.FileInspection" Collapsed="true">
-    <Position X="4.75" Y="8.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>FileInspection.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.GraphY" Collapsed="true">
-    <Position X="6.5" Y="8.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
-      <FileName>GraphY.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Internet" Collapsed="true">
-    <Position X="5" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAABAAEAAAAAAAAAABAIAAAAAAAAAAAACAAAAAAAAE=</HashCode>
-      <FileName>Internet.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.InternetRequest" Collapsed="true">
-    <Position X="5.25" Y="6" Width="1.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>InternetRequest.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Methods" Collapsed="true">
-    <Position X="10.5" Y="7.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAQAAAAABAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
-      <FileName>Methods.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Parser" Collapsed="true">
-    <Position X="13" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
-      <FileName>Parser.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Program" Collapsed="true">
-    <Position X="1" Y="9" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.WString" Collapsed="true">
-    <Position X="1" Y="7.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgACAAAAAAAAAAAAAYAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Activ" Collapsed="true">
-    <Position X="1" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIAAAACAAgAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.ReportTransit" Collapsed="true">
-    <Position X="1" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAgAAAAAAAAAAQAAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.InetConnect" Collapsed="true">
-    <Position X="1" Y="8.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.SpeedDraw" Collapsed="true">
-    <Position X="1" Y="6" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Program.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.SChartcs" Collapsed="true">
-    <Position X="8" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAACAkAACAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>SChartcs.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.SWindow" Collapsed="true">
-    <Position X="13.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAEAAAAAACAAABAAAACAgAACAAAIQQACDAAAAAAAAAA=</HashCode>
-      <FileName>SWindow.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Windowd" Collapsed="true">
-    <Position X="12" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>oUbhsIUxsaEEJhHkUD6BQIEGiAt6uqptoEVnCWNpRQk=</HashCode>
-      <FileName>Windowd.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Splice" Collapsed="true">
-    <Position X="11.25" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Splice.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Bd" Collapsed="true">
-    <Position X="3.25" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Bd.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="System.Object" Collapsed="true">
-    <Position X="5.75" Y="7" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="System.Windows.Forms.Form" Collapsed="true">
-    <Position X="13.25" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
-  <Class Name="Client.WorkFile" Collapsed="true">
-    <Position X="6.75" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAQAAAACQAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
-      <FileName>WorkFile.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Event" Collapsed="true">
-    <Position X="8.75" Y="6.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Event.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Client.Quotes">
-    <Position X="6.25" Y="12" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAMQAAAAAAAAAAABUAAAAAAAAAQAAAAAAAAAACAAAQA=</HashCode>
-      <FileName>Quotes.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
   <Class Name="Client.ExtendButton" Collapsed="true">
-    <Position X="5.25" Y="1" Width="1.5" />
+    <Position X="5.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAFAAAAAAA=</HashCode>
       <FileName>ExtendButton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Client.ExtendCheckbox" Collapsed="true">
-    <Position X="7.75" Y="1" Width="1.5" />
+    <Position X="0.5" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAFAAAAAAA=</HashCode>
       <FileName>ExtendCheckbox.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Client.ExtendLabel" Collapsed="true">
-    <Position X="10" Y="1" Width="1.5" />
+    <Position X="0.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAFAAAAAAA=</HashCode>
       <FileName>ExtendLabel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Client.ExtendToolStripMenuItem" Collapsed="true">
-    <Position X="3.75" Y="4.5" Width="1.5" />
+    <Position X="0.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAA=</HashCode>
       <FileName>ExtendToolStripMenuItem.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Client.Properties.Resources" Collapsed="true">
-    <Position X="1.25" Y="1.25" Width="1.5" />
+  <Class Name="Client.FileInspection" Collapsed="true">
+    <Position X="7" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FileInspection.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Client.Properties.Settings" Collapsed="true">
-    <Position X="5.5" Y="4.5" Width="1.5" />
+  <Class Name="Client.GraphY" Collapsed="true">
+    <Position X="5.25" Y="6" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAACAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>GraphY.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.Help" Collapsed="true">
+    <Position X="10" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAACAgAACAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Help.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.Internet" Collapsed="true">
+    <Position X="7.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAEAAAAAAAAAABAIAAAAAEAAAAAASAAAAAAAAE=</HashCode>
+      <FileName>Internet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.InternetRequest" Collapsed="true">
+    <Position X="4" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAACAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InternetRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.IntervalResistance" Collapsed="true">
+    <Position X="11" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>IntervalResistence.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.LineCoord">
+    <Position X="9.75" Y="7" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AACAUBgAAAAABABAAAAAAAgAAQEEAAACAgAgAAAMAAA=</HashCode>
+      <FileName>LineCoord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.MainForm" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>yEgYAAAEAqAQCATAADKAgQAODkKiQSuRAwxIAAAcIAg=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.Methods" Collapsed="true">
+    <Position X="7.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAACAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Methods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.MinMax" Collapsed="true">
+    <Position X="11.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAgQ=</HashCode>
+      <FileName>MinMax.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.Parser" Collapsed="true">
+    <Position X="10.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Parser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.Program" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.WString" Collapsed="true">
+    <Position X="2.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAYAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.Activ" Collapsed="true">
+    <Position X="9.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAACAAgAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.ReportTransit" Collapsed="true">
+    <Position X="3.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAgAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.InetConnect" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.SpeedDraw" Collapsed="true">
+    <Position X="2.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.Quotes" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMQAAAAAAAAAAABUAAAAAAAAAQAgAAAAAAAACAAAAA=</HashCode>
+      <FileName>Quotes.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Client.Report" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BSIQAAAAACAgAAACQAKAgBACCAgAAgAAAkGAQAAAAYA=</HashCode>
+      <FileName>Report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.ClassSMA" Collapsed="true">
+    <Position X="2.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAACAAAAAAAAEAAAAAAAAAAAAAAAAAACAAAAAAgA=</HashCode>
+      <FileName>SMA.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.Splice" Collapsed="true">
+    <Position X="7" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Splice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.SWindow" Collapsed="true">
+    <Position X="9" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAACAAABAAAACAgAACAAAIQQACDAAAAAAAAAA=</HashCode>
+      <FileName>SWindow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.Windowd" Collapsed="true">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oUaRsIWxsaEEJhGkULyAAYEGyAM68qotoBVnKUMhZRE=</HashCode>
+      <FileName>Windowd.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.windowQuotes" Collapsed="true">
+    <Position X="2.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>windowQuotes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.WorkFile" Collapsed="true">
+    <Position X="4.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAACQAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>WorkFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client.ZoomS" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAgkAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>ZoomS.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Client.Interface" Collapsed="true">
-    <Position X="8.5" Y="9.5" Width="1.5" />
+    <Position X="9.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interface.cs</FileName>

@@ -48,24 +48,28 @@ namespace Client
         public List<Deal> BUY = new List<Deal>();
         public List<Deal> SELL = new List<Deal>();
         List<double> massY = new List<double>();
-        List<double> massYInetBuy = new List<double>(); // лист значений отношения валюты по покупке из файла
-        List<double> massYInetSell = new List<double>(); // лист значений отношения валюты по продаже из файла
-        List<int> Times = new List<int>(); // лист времени
+        // лист значений отношения валюты по покупке из файла
+        List<double> massYFileBuy = new List<double>();
+        // лист значений отношения валюты по продаже из файла
+        List<double> massYFileSell = new List<double>(); 
+        List<int> Times = new List<int>(); 
+        // лист времени
         public List<double> BufferB = new List<double>();
         public List<double> BufferS = new List<double>();
-
         // буфферное время
         public List<DateTime> DBUF = new List<DateTime>();
         // время из интернета
         public List<DateTime> DINET = new List<DateTime>();
 
         public List<double> sred = new List<double>(); // Точки по X SMA
-        public int tic = 0; // Переменная отслеживающая кол-во прошедших секунд с запуска формы
+        // Переменная отслеживающая кол-во прошедших секунд с запуска формы
+        public int tic = 0; 
         private object sync = new object();
         private bool internetActionFinished = false;
         private bool internetInitialized = false;
         Internet IPair = new Internet();
-        Methods cEURUSD = new Methods(); // Класс методов
+        // Класс методов
+        Methods cEURUSD = new Methods();
         #region Параметры текущей формы
         // высота экрана
         int y = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height;
@@ -76,12 +80,12 @@ namespace Client
         // высота чарта
         int chatSizeY = 684;
         // создание объекта обработки текста.
-        WorkFile rEURUSD = new WorkFile(); 
+        WorkFile rEURUSD = new WorkFile();
 
         #endregion
-        double fX = 1366; // форма
-        double fY = 757; // форма
-        List<int> PoinX = new List<int>(); // данные точки
+        // размеры формы
+        double fX = 1366;
+        double fY = 757; 
 
         /// <summary>
         /// Cоздание окна валюты
@@ -120,11 +124,11 @@ namespace Client
             graphic.ChartAreas.Add(area);
             // замена присвоение точек через переопределение дисплея.
             #region Задание параметров кнопкам button9, button8, button10, button1, button7  
-            buttonBuy.Location = Display.customizedPoint(1100, 27); // клавиша buy
-            buttonPriceSell.Location = Display.customizedPoint(1157, 27); // клавиша value
-            buttonSell.Location = Display.customizedPoint(1274, 27); // клавиша  sell        
-            price.Location = Display.customizedPoint(1216, 72); // клавиша price               
-            buttonPriceBuy.Location = Display.customizedPoint(1100, 72); // клавиша value
+            buttonBuy.Location = Display.customizedPoint(1100, 27); // кнопка buy
+            buttonSell.Location = Display.customizedPoint(1274, 27); // кнопак  sell        
+            price.Location = Display.customizedPoint(1216, 72); // кнопка price               
+            buttonPriceBuy.Location = Display.customizedPoint(1100, 72); // кнопка value
+            buttonPriceSell.Location = Display.customizedPoint(1157, 27); // кнопка value
 
             buttonBuy.rusLan = "Покупка";
             buttonBuy.engLan = "Buy";
@@ -223,8 +227,7 @@ namespace Client
                 toolTip2.SetToolTip(checkBoxSMA, "Нажмите чтобы активировать отображение уровней скользящей прямой");
                 toolTip3.SetToolTip(checkBoxLineCoord, "Нажмите чтобы активировать отображение линий значение в точке.");                
             }
-
-           
+        
         }
 
         /// <summary>
@@ -307,11 +310,12 @@ namespace Client
             Button(); // переводчик  кнопок
             Menu(); // переводчик меню 
             #endregion
-
-            graphic.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel); // событие вращения колесика
-            List<List<double>> poinl = new List<List<double>>(); // Точки изменения тренда
-            LineCoord L = new LineCoord(x, y, fX, fY, lab_Cur, label_Y, label_X, ref graphic);
-            L.Show(checkBoxLineCoord);
+            // событие вращения колесика
+            // graphic.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel);
+            // Точки изменения тренда
+            List<List<double>> poinl = new List<List<double>>();
+            LineCoord LCoord = new LineCoord(x, y, fX, fY, lab_Cur, label_Y, label_X, ref graphic);
+            LCoord.Show(checkBoxLineCoord);
 
             if (checkBoxLevelSupandResis.Checked == false)
             {
@@ -323,26 +327,29 @@ namespace Client
             #region Склейка даннях из файла с буфером
             // все изменения с временными интервалами и тому подобным должны производиться через БД!!!
             // Загрузка времени из файла
-            if(1 == tic || 0 == tic)
+            if(0 == tic)
             {
-                Splice mReqest = new Splice();
+                // обработка данных
+                Splice mReqestT = new Splice();
+                Splice mReqestV = new Splice();
                 graphic.Series[0].Points.Clear();
-                quotations.TimeD = mReqest.MainTime(DINET, DateT, tic, 10000);
-                // Загрузка значения из файла 
-                quotations.Sell = mReqest.MainValue(BufferB, massYInetSell, tic, 10000);
-                for (int hl = 0; quotations.TimeD.Count - 1 >= hl; hl++)
+                // Получить лист времени 10000
+                quotations.TimeD = mReqestT.glue(DINET, DateT, tic, 10000);
+                // Загрузка значения из файла  10000
+                quotations.Sell = mReqestV.glue(massYFileSell,BufferS, tic, 10000);
+                for (int hl = 0; quotations.TimeD.Count - 1 > hl; hl++)
                 {
                         graphic.Series[0].Points.AddXY(quotations.TimeD[hl].ToOADate() , quotations.Sell[hl]);
                 }
-
             }
             else
             {
                 quotations.TimeD.Add(DateT[DateT.Count - 1]);
-                quotations.Sell.Add(massYInetSell[massYInetSell.Count - 1]);
+                quotations.Sell.Add(BufferS[BufferS.Count - 1]);
+                Console.WriteLine(quotations.Sell[quotations.Sell.Count - 1]);
+                graphic.Series[0].Points.AddXY(DateT[DateT.Count - 1].ToOADate(), BufferS[BufferS.Count - 1]);
             }
-
-            graphic.Series[0].Points.AddXY(DateT[DateT.Count - 1].ToOADate(), massYInetSell[massYInetSell.Count - 1]);
+          
 
             // запускаем в другом потоке вычисление нового графика zoom
             /* zooming = Task.Run(() =>
@@ -362,7 +369,8 @@ namespace Client
             // Получение точек смены тренда
             tInterval = Task.Run(() =>
             {
-                poinl = IntervalResistance(tic, BufferB, NowTime);  
+                IntervalResistance IRes = new IntervalResistance(tic, BufferB, NowTime); ;
+                poinl = IRes.poin;  
             });
             // рисуем уровни
             if (true == checkBoxLevelSupandResis.Checked)
@@ -370,7 +378,7 @@ namespace Client
                 Resis(poinl, tic, 0.0001, DateT); 
             }
 
-            // проблема с 100к необходимо оптимизировать
+
             if (true == checkBoxSMA.Checked)
             {
                 // Определяем объеrnf 
@@ -392,15 +400,19 @@ namespace Client
                 // Точки миниму и максимума
                 Task.WaitAll(tMinMax, tInterval);
                 // рисовать минимум максимум
-                DrawMinMax(LineMinMax.GetMinMax());
+                DrawMinMax(LineMinMax.Svoistvo_poin);
             }
            
-
-            price.Text = Convert.ToString(BufferS[tic]); // вывод значений на кнопку  по времени
-            buttonPriceSell.Text = Convert.ToString(BufferS[tic]); // вывод значений на кнопку  по времени
-            buttonPriceBuy.Text = Convert.ToString(BufferB[tic]); // вывод значений на кнопку  по времени
-            ZoomT(Zoom, tic); // Вызов метода  регулирования уровней времени
-            tic++; // Подсчет тикового времени
+            // вывод значений на кнопку  по времени
+            price.Text = Convert.ToString(BufferS[tic]);
+            // вывод значений на кнопку  по времени
+            buttonPriceSell.Text = Convert.ToString(BufferS[tic]);
+            // вывод значений на кнопку  по времени
+            buttonPriceBuy.Text = Convert.ToString(BufferB[tic]); 
+            // Вызов метода  регулирования уровней времени
+            ZoomT(Zoom, tic); 
+            // Подсчет тикового времени
+            tic++; 
             return tic;
         }
 
@@ -486,66 +498,6 @@ namespace Client
         }
 
 
-        /// <summary>
-        ///  Подавать интервал
-        /// </summary>
-        /// <param name="tic">время прошедшее с запуска</param>
-        /// <param name="Buff">???</param>
-        /// <param name="NowTime">Текущее время</param>
-        public List<List<double>> IntervalResistance(int tic, List<double> Buffer, double NowTime)
-        {
-            int Pervoe = 0;
-            // переменная тренда
-            int trend = 0;
-            // данные точки
-            List<List<double>> poin = new List<List<double>>();
-            List<double> koordPoint = new List<double>();
-
-            for (int i = 1; tic > i; i++)
-            {
-                if (trend != 1 && (Buffer[i - 1] - Buffer[i]) > 0)
-                {
-                    // Координата точки
-                    koordPoint = new List<double>();
-                    // положительный тренд
-                    trend = 1;
-                    // заполнение точек по икс  
-                    koordPoint.Add(i - 1);
-                    // заполнение точек по игрик
-                    koordPoint.Add(Buffer[i - 1]);
-                    // узнаем первое значение минимум оно или максимум
-                    if (Pervoe == 0)
-                    {
-                        danoe = -1;
-                        Pervoe++;
-                    }
-                    // добавление координаты точки
-                    poin.Add(koordPoint);
-                }
-
-                if (trend != -1 && (Buffer[i - 1] - Buffer[i]) < 0)
-                {
-                    // Координата точки
-                    koordPoint = new List<double>();
-                    // положительный тренд
-                    trend = -1;
-                    // заполнение точек по икс
-                    koordPoint.Add(i - 1);  
-                    PoinX.Add(i - 1);
-                    // заполнение точек по игрик 
-                    koordPoint.Add(Buffer[i] - 1);
-                    // узнаем первое значение минимум оно или максимум
-                    if (Pervoe == 0)
-                    {
-                        danoe = 1;
-                        Pervoe++;
-                    }
-                    // добавление координаты точки
-                    poin.Add(koordPoint);
-                }
-            }
-            return poin;
-        }
 
         /// <summary>
         /// Формирование линий сопротивлений
@@ -574,11 +526,13 @@ namespace Client
                     prisvoenie(h, MINY, poin, MINX, MinH);
                 }
                 // Нахождение точки максимума удовлетворяющему условию разброса и повторения более 2 раз
-                MAXY = Resistance(poin, tic, pogr, Date, h, MAXY, MAXX, MaxH);
+                Resistance GraphR = new Resistance(poin, tic, pogr, Date, h, MAXY, MAXX, MaxH, massYFileBuy, graphic);
+                MAXY = GraphR.MAXY;
                 // Нахождение точки минимума удовлетворяющему условию разброса и повторения более 2 раз
-                MINY = Support(poin, tic, pogr, Date, h, MINY, MINX, MinH);
+                Support GraphS = new Support(poin, tic, pogr, Date, h, MINY, MINX, MinH, massYFileBuy, graphic);
+                MINY = GraphS.MINY;
             }
-        } // Вызов 2х методов для рисования и получения значений MAXY, MINY по которым происходит построение линий
+        }
 
         /// <summary>
         /// Получение точек путем сравнивания предыдущих точек
@@ -594,90 +548,8 @@ namespace Client
                 Mh = h;
         }
 
-        /// <summary>
-        /// Формирование линий поддержки
-        /// </summary>
-        /// <param name="poin">Точки минимумов и максимов</param>
-        /// <param name="tic">Прошедшее время с начала запуска</param>
-        /// <param name="pogr">Некоторая погрешность в пределах которой формируется линия</param>
-        /// <param name="h">???</param>
-        /// <param name="MINY">???</param>
-        /// <param name="MINX">???</param>
-        /// <param name="MinH">???</param>
-        public double Support(List<List<double>> poin, int tic, double pogr, List<DateTime> Date, int h, double MINY, double MINX, double MinH) ////Метод уровня поддержки
-        {
-            int line2X;
-            double line2Y;
-
-            for (int g = 0; g < poin.Count; g++)
-            {
-                //// g != MinH Не просматривать точку, которая уже входит в уровень поддержки
-                if (((MINY - poin[g][1]) >= -pogr) && g != MinH)
-                {
-                    graphic.Series[2].Points.Clear(); // Очистка линии
-                    line2Y = poin[g][1]; // 2 точка по игрик
-                    line2X = Convert.ToInt32(poin[g][0]); // 2 точка по икс                    
-                    graphic.Series[2].XValueType = ChartValueType.Time; // Указывание типа координат по X
-                    graphic.Series[2].Points.AddXY(Date[0].ToOADate(), line2Y); // 1 точка // можно использовать для начала line1X
-                    graphic.Series[2].Points.AddXY(Date[tic].ToOADate(), line2Y); // 2 точка
-                    graphic.Series[2].Color = Color.FromArgb(55, 0, 55); // задание цвета 
-                }
-            }
-            //// сравнение точки в пределах данной погрешности
-            if (MINY > (massYInetBuy[tic] + pogr)) 
-            {
-                graphic.Series[2].Points.Clear();
-            }
-
-            return MINY;
-        }
-
-        /// <summary>
-        /// Формирование линий поддержки
-        /// </summary>
-        /// <param name="poin">Точки минимумов и максимов</param>
-        /// <param name="tic">Прошедшее время с начала запуска</param>
-        /// <param name="pogr">Некоторая погрешность в пределах которой формируется линия</param>
-        /// <param name="h">???</param>
-        /// <param name="MINY">???</param>
-        /// <param name="MINX">???</param>
-        /// <param name="MinH">???</param>
-        public double Resistance(List<List<double>> poin, int tic, double pogr, List<DateTime> Date, int h, double MAXY, double MAXX, double MaxH) ////Метод уровня сопротивления
-        {
-            int line2X;
-            double line2Y;
-            if (MAXY < poin[h][1]) 
-            {
-                MAXY = poin[h][1];
-                MAXX = poin[h][0];
-                MaxH = h;
-            }
-
-            for (int g = 0; g < poin.Count; g++)
-            {
-                if (((MAXY - poin[g][1]) <= pogr) && g != MaxH)
-                {
-                    graphic.Series[1].Points.Clear(); // Очистка линии
-                    line2Y = poin[g][1]; // 2 точка по игрик
-                    line2X = Convert.ToInt32(poin[g][0]); // 2 точка по икс
-
-                    graphic.Series[1].XValueType = ChartValueType.Time; // Указывание типа координат по X
-                    graphic.Series[1].Points.AddXY(Date[0].ToOADate(), line2Y); // 1 точка // можно использовать для начала line1X
-                    graphic.Series[1].Points.AddXY(Date[tic].ToOADate(), line2Y); // 2 точка
-                    graphic.Series[1].Color = Color.FromArgb(255, 0, 0); // задание цвета 
-                }
-            }
-
-            if (MAXY < (massYInetBuy[tic] - pogr))
-            {
-                graphic.Series[1].Points.Clear();
-            } // если за рамками погрешности
-            return MAXY;
-        }
-
-
-        /// <summary>
-        /// 
+         /// <summary>
+        /// Посекундное прибавление времени
         /// </summary>
         /// <param name="sender">???</param>
         public void Window_Load(object sender, EventArgs e)
@@ -693,13 +565,15 @@ namespace Client
 
             new Thread(new ThreadStart(internetConnectAction)).Start();
             t.Start();
-            t.Interval = 1000; // время секунды
-            t.Tick += new EventHandler(timer1_Tick); // прибавление времени       
+            // время секунды
+            t.Interval = 1000;
+            // прибавление времени   
+            t.Tick += new EventHandler(timer1_Tick);    
         }
 
 
        
-
+        /*
         /// <summary>
         /// Вращение колесика
         /// </summary>
@@ -729,6 +603,7 @@ namespace Client
                 }
             } // прокрутка вниз
         }
+        */
 
         /// <summary>
         /// Вращение колесика
@@ -744,7 +619,7 @@ namespace Client
                 }
             }
             // метод по секундного обновления. Узнаем сколько необходимо добавить секунд для преобразования в DTIME   
-            double NowTime = SecondConect() + 16 * 3600;  
+            double NowTime = SecondConect();  
             GraphY EURUSD = new GraphY();
             EURUSD.Y(graphic, BufferB[BufferB.Count - 1]);
             // рнуть к дефолтному состоянию
@@ -777,17 +652,17 @@ namespace Client
                     // закрыть чтение
                     r2.Close();
                     // функция обработки текста присвоение глобальным переменным
-                    Times = rEURUSD.read(textRead, massYInetBuy, massYInetSell);
-                     // Конвертируем время из  формата UNIX в DataTime
+                    Times = rEURUSD.read(textRead, massYFileSell,massYFileBuy );
+                    // Конвертируем время из  формата UNIX в DataTime
                     DINET = cEURUSD.ConvertD(Times);
                 } 
             }
 
-            double dTime = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds - 15; // Текущее время
+            int dTime = Convert.ToInt32((DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds - 15) - 4 * 3600; // Текущее время
             int NowTime;
             // текущее время
-            NowTime = Convert.ToInt32(dTime);
-
+            NowTime = dTime;
+            Console.WriteLine(dTime);
             //  посекундные запросы к сайту
             if (InetConnect.Inet == true)
             { 
@@ -801,15 +676,15 @@ namespace Client
                 // Присвоение к последнему числу в записи для обработки данных.
                 if (tic == 0)
                 {
-                    poslchisloSell = massYInetSell[massYInetSell.Count - 1]; 
-                    poslchisloBuy = massYInetBuy[massYInetBuy.Count - 1]; 
+                    poslchisloSell = massYFileSell[massYFileSell.Count - 1]; 
+                    poslchisloBuy = massYFileBuy[massYFileBuy.Count - 1]; 
                 }
 
-
+                // Добавление в массив последнего числа (Так как на сервере новых записей не найдено)
                 if (M.Count > 0)
                 {
-                    BufferB.Add(Convert.ToDouble(M[1].Value)); // добавить в лист значения покупки     
-                    BufferS.Add(Convert.ToDouble(M[2].Value)); // добавить в лист значения продажи   
+                    BufferS.Add(Convert.ToDouble(M[1].Value)); // добавить в лист значения покупки     
+                    BufferB.Add(Convert.ToDouble(M[2].Value)); // добавить в лист значения продажи   
                     poslchisloSell = Convert.ToDouble(M[1].Value); // последнее число в покупке 
                     poslchisloBuy = Convert.ToDouble(M[2].Value); // последнее число в продаже
                 }
@@ -817,16 +692,17 @@ namespace Client
                 // Добавление в массив последнего числа (Так как на сервере новых записей не найдено)
                 else
                 {
-                    BufferB.Add(poslchisloSell);
-                    BufferS.Add(poslchisloBuy); 
+                 
+                    BufferS.Add(poslchisloSell);
+                    BufferB.Add(poslchisloBuy);
                 }
 
             }
             // Добавление в массив последнего числа из файла (Так как нет связи с сервером )
             else
             {
-                BufferB.Add(massYInetSell[massYInetSell.Count - 1]); 
-                BufferS.Add(massYInetBuy[massYInetBuy.Count - 1]);
+                BufferB.Add(massYFileSell[massYFileSell.Count - 1]); 
+                BufferS.Add(massYFileBuy[massYFileBuy.Count - 1]);
             }
             return NowTime;
         }

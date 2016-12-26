@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    class DirectoryInsspection
+    class DirectoryWork
     {
         /// <summary>
         /// Проверка существования директории с уведомлением

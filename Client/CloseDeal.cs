@@ -23,12 +23,13 @@
     /// </summary>
     public partial class CloseDeal : Form
     {      
-            Windowd main; 
-            List<Deal> BUY = new List<Deal>();
-            List<Deal> SELL = new List<Deal>();
-            List<double> BufferB = new List<double>();
-            List<double> BufferS = new List<double>();
-            List<List<double>> data = new List<List<double>>();
+        Windowd main; 
+        List<Deal> BUY = new List<Deal>();
+        List<Deal> SELL = new List<Deal>();
+        List<double> BufferB = new List<double>();
+        List<double> BufferS = new List<double>();
+        List<List<double>> data = new List<List<double>>();
+        public double Spred;
 
         /// <summary>
         /// Инициализация компонентов
@@ -48,12 +49,14 @@
             main = this.Owner as Windowd;     
             if (main != null)
             {
-                BUY = main.BUY; // Получение данных из родительской формы BUY (класса)
-                SELL = main.SELL; // Получение данных из родительской формы SELL (класса)
+                // Получение данных из родительской формы BUY (класса)
+                BUY = main.BUY;
+                // Получение данных из родительской формы SELL (класса)
+                SELL = main.SELL;
                 BufferB = main.BufferB;
                 BufferS = main.BufferS;
             }
-
+            Spred = BufferB[BufferB.Count - 1] - BufferS[BufferS.Count - 1];
             ListForm("  покупка", "      sell", SELL);
             ListForm("  продано", "       buy", BUY);
         }
@@ -88,14 +91,13 @@
         private void ListDeal(object sender, EventArgs e)
         {
             double profit = 0;
-            double Spred = BufferB[BufferB.Count - 1] - BufferS[BufferS.Count - 1];
             try
             {
                 string chislo = ListD.Items[ListD.SelectedIndex].ToString();
                 if (chislo.Contains("  покупка") == true || chislo.Contains("       buy") == true)
                 {
                     double p = Convert.ToDouble(chislo.Remove(chislo.Length - 9, 9));
-                    profit = Math.Round((p - BufferB[BufferB.Count - 1] - Spred), 4);
+                    profit = Math.Round(( - Spred - p + BufferB[BufferB.Count - 1]), 4);
                 }
 
                 if (chislo.Contains("  продано") == true || chislo.Contains("      sell") == true)

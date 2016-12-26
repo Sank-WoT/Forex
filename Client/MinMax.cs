@@ -6,10 +6,43 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    class MinMax
+    /// <summary>
+    ///  Класс минимум максимум
+    /// </summary>
+
+    public class MinMax
     {
+        /// <summary>
+        ///  Свойство для выдачи точек минимума и максимума +
+        /// </summary>
         List<List<double>> _poin = new List<List<double>>();
+        public List<List<double>> Svoistvo_poin
+        {
+            get
+            {
+                return _poin;
+            }
+        }
+
         List<double> _koordPoint = new List<double>();
+
+        /// <summary>
+        ///  Свойство для выдачи одной точки +
+        /// </summary>
+        public List<double> Svoistvo_koordPoint
+        {
+            get
+            {
+                return _koordPoint;
+            }
+        }
+
+        /// <summary>
+        ///  Метод для добавления новых значений котировок +
+        /// </summary>
+        /// <param name="MainV">лист значений</param>
+        /// <param name="_koordPoint">лист времени</param>
+        /// <param name="_koordPoint">начальное значение</param>
         public void AddMinMax(List<double> MainV, List<DateTime> MainT, int danoe)
         {
             int Pervoe = 0;
@@ -27,21 +60,26 @@ namespace Client
                     // заполнение точек по икс
                     _koordPoint.Add(i - 1);
                     _koordPoint.Add(MainV[i - 1]); // заполнение точек по игрик  
-
+                    // узнаем первое значение минимум оно или максимум
                     if (Pervoe == 0)
                     {
                         danoe = -1;
                         Pervoe++;
-                    } // узнаем первое значение минимум оно или максимум
-                    _poin.Add(_koordPoint); // добавление координаты точки
+                    } 
+                    // добавление координаты точки
+                    _poin.Add(_koordPoint); 
                 }
 
                 if (trend != -1 && (MainV[i - 1] - MainV[i]) < 0)
                 {
-                    _koordPoint = new List<double>();  // Координата точки
-                    trend = -1; // положительный тренд
-                    _koordPoint.Add(i - 1); // заполнение точек по икс    
-                    _koordPoint.Add(MainV[i - 1]); // заполнение точек по игрик  
+                    // Координата точки
+                    _koordPoint = new List<double>();
+                    // положительный тренд
+                    trend = -1;
+                    // заполнение точек по икс 
+                    _koordPoint.Add(i - 1);
+                    // заполнение точек по игрик  
+                    _koordPoint.Add(MainV[i - 1]);
                     // узнаем первое значение минимум оно или максимум
                     if (Pervoe == 0)
                     {
@@ -52,10 +90,6 @@ namespace Client
                     _poin.Add(_koordPoint);
                 }
             }
-        }
-        public List<List<double>> GetMinMax()
-        {
-            return _poin;
         }
     }
 }

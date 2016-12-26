@@ -19,10 +19,10 @@ using System.Media;
 
 namespace Client
 {
-    public class WorkFile
+    public class WorkFile : FileInspection
     {
         /// <summary>
-        /// Метод  для создания файла
+        /// Метод  для создания файла +
         /// </summary>
         /// <param name="pathFile">Путь к файлу </param>
         public bool CreateFile(string pathFile)
@@ -38,13 +38,12 @@ namespace Client
                 // закрыть запиcь
                 l.Close();
                 a = false;
-                // развертывание файла в дебаге
             }        
             return a;
         }
 
         /// <summary>
-        /// Метод  для создания файла
+        /// Метод  для создания файла +
         /// </summary>
         /// <param name="pathFile">Путь к файлу </param>
         public void CreateFile(string pathFile, string text)
@@ -59,7 +58,6 @@ namespace Client
                 // закрыть запиcь
                 l.WriteLine(text);
                 l.Close();
-                // развертывание файла в дебаге
             }
         }
 
@@ -80,16 +78,17 @@ namespace Client
             Regex regex1 = new Regex(@"(\d{10,20})"); // регулярное выражение для поиска последнего времени в файле
             MatchCollection m1 = regex1.Matches(text);
 
+            // недопускает присвоение при значении прочтенного в файле меньше 1. 
             if (m1.Count != 0)
             {
                 poslTime = Convert.ToInt32(m1[m1.Count - 1].Value);
-            } // недопускает присвоение при значении прочтенного в файле меньше 1.  
+            } 
 
             return poslTime;
         }
 
         /// <summary>
-        /// Функция для прочтения файла
+        /// Функция для прочтения файла +
         /// </summary>
         /// <returns>Текст прочтенного из файла</returns>
         public string ReadFile(string pathFile)
@@ -103,7 +102,7 @@ namespace Client
         }
 
         /// <summary>
-        /// Метод  для  парсинга данных и добавление значений в массив
+        /// Метод  для  парсинга данных и добавление значений в массив из файла
         /// </summary>
         /// <param name="textDataQuote">Строка с триадами</param>
         /// <param name="massYInetBuy">Массив значений покупок</param>
@@ -115,21 +114,23 @@ namespace Client
         {
             int colvo = 0;
             List<int> Times = new List<int>();
-            Regex regex = new Regex(@"(\d{10,20})");//регулярное выражение 
+            //регулярное выражение 
+            Regex regex = new Regex(@"(\d{10,20})");
             MatchCollection m = regex.Matches(textDataQuote);
-            Regex regex1 = new Regex(@"((\d{0,5})\.(\d{1,4}))");//регулярное выражение 
+            //регулярное выражение
+            Regex regex1 = new Regex(@"((\d{0,5})\.(\d{1,4}))"); 
             MatchCollection m1 = regex1.Matches(textDataQuote);
             while (colvo < m.Count)
             {
                 try
                 {
                     //Время в UNIXTime
-                    Times.Add(Convert.ToInt32(m[colvo].Value) - 3600);
+                    Times.Add(Convert.ToInt32(m[colvo].Value));
                 }
                 catch
                 {
                     //Время в UNIXTime
-                    Times.Add(Convert.ToInt32(m[colvo].Value) - 3600);
+                    Times.Add(Convert.ToInt32(m[colvo].Value));
                 }
                 //порядковый номер даты в списке
                 colvo++;

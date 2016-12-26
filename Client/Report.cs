@@ -29,6 +29,9 @@ namespace Client
         private Excel.Workbook ObjWorkBook;
         private Excel.Worksheet ObjWorkSheet;
         private string fileName;
+        /// <summary>
+        /// Конструктор класс отчет
+        /// </summary>
         public Report()
         {
             int Size;
@@ -62,13 +65,16 @@ namespace Client
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fileName = System.Windows.Forms.Application.StartupPath + "\\" + "FirstExel" + ".xls"; // Путь Exporta файла          
-            EReport.ESave(dataGridView1); // Использование метода загрузки данных
+            // Путь Exporta файла
+            fileName = System.Windows.Forms.Application.StartupPath + "\\" + "FirstExel" + ".xls";  
+            // Использование метода загрузки данных        
+            EReport.ESave(dataGridView1);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EReport.ELoad(dataGridView1); // Использование метода сохранения данных
+            // Использование метода сохранения данных
+            EReport.ELoad(dataGridView1);
         }
 
         }

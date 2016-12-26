@@ -61,6 +61,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2016.3.1024.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Aqua, Version=2016.3.1024.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Desert, Version=2016.3.1024.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.UI, Version=2016.3.1024.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="TelerikCommon, Version=2016.3.1024.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bd.cs" />
@@ -74,6 +79,7 @@
     </Compile>
     <Compile Include="deal.cs" />
     <Compile Include="Display.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="ExtendButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -88,9 +94,11 @@
     </Compile>
     <Compile Include="FileInspection.cs" />
     <Compile Include="Interface.cs" />
+    <Compile Include="IntervalResistence.cs" />
     <Compile Include="LineCoord.cs" />
     <Compile Include="MinMax.cs" />
     <Compile Include="Quotes.cs" />
+    <Compile Include="Resistance.cs" />
     <Compile Include="SMA.cs" />
     <Compile Include="Splice.cs" />
     <Compile Include="EURUSD.cs">
@@ -125,6 +133,7 @@
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support.cs" />
     <Compile Include="windowQuotes.cs" />
     <Compile Include="WorkFile.cs" />
     <Compile Include="Report.cs">
@@ -170,6 +179,7 @@
     <EmbeddedResource Include="MainForm.ru.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -188,9 +198,7 @@
     <EmbeddedResource Include="Windowd.resx">
       <DependentUpon>Windowd.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

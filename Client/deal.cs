@@ -63,9 +63,11 @@ namespace Client
             string text;
             SoundPlayer player = new SoundPlayer();
             try
-            {
-                player.SoundLocation = Application.StartupPath + "/Music/Test.wav"; // путь адреса музыки
-                player.Play(); // Проигрывание звука
+            { 
+                // путь адреса музыки 
+                player.SoundLocation = Application.StartupPath + "/Music/Test.wav";
+                // Проигрывание звука
+                player.Play();
             }
             catch
             {
@@ -89,7 +91,8 @@ namespace Client
             }
             else
             {
-                valueT = _value; // Запомнить значение продажи
+                // Запомнить значение продажи
+                valueT = _value; 
                 if (WString.Langue["RUS"] == true)
                 {
                     text = "продажа";

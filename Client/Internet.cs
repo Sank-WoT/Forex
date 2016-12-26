@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Data;
+    using System.Data.SqlClient;
     using System.Drawing;
     using System.Globalization;
     using System.IO; // для класса 
@@ -21,13 +22,29 @@
     public class Internet
     {
         /// <summary>
-        /// Этот метод проверяет интернет соединение и переводит программу в автономный режим в случае его отсутсвия
+        /// Этот метод проверяет интернет соединение и переводит программу в автономный режим в случае его отсутсвия +
         /// </summary>
         ///
         /// <param name="value">Название котировки</param>
         /// <param name="object"></param>
         /// <param name="internetActionFinished">оповещении о Окончание запроса </param>
         public bool TryCon(string value, object sync, bool internetActionFinished)
+        {
+            bool inet;
+            inet = ReqestInet(value, internetActionFinished);
+            lock (sync)
+            {
+                internetActionFinished = true;
+            }
+            return inet;
+        }
+
+        /// <summary>
+        /// Этот метод проверяет интернет соединение и переводит программу в автономный режим в случае его отсутсвия +
+        /// </summary> 
+        /// <param name="value">Название котировки</param>
+        /// <param name="internetActionFinished">оповещении о Окончание запроса </param>
+        public bool ReqestInet(string value, bool internetActionFinished)
         {
             bool inet;
             try
@@ -49,10 +66,6 @@
                 }
                 inet = false;
             }
-            lock (sync)
-            {
-                internetActionFinished = true;
-            }
             return inet;
         }
 
@@ -63,17 +76,20 @@
         /// <param name="value">Выбранная котировка</param>
         /// <param name="number">кол-во чисел</param>
         /// 
-        public string FirstConnectBD(string value,string pathFile, int number)
+        public string FirstConnectBD(string value,string pathFile, int number, string patch)
         {
             string response = "";
             WorkFile a = new WorkFile();
-            string patch = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='|DataDirectory|\\Forex.mdf'; Integrated Security = True; Connect Timeout = 30";// данные конфигурации
             List<int> BListT = new List<int>();
             List<double> BListB = new List<double>();
             List<double> BListS = new List<double>();
             // Создание объекта БД 
             BdReqest reqestBdEURUSD = new BdReqest(patch);
-            reqestBdEURUSD.CommandSelect(ref BListT, ref BListB, ref BListS, value);
+            // Выбор записей
+            SqlConnection con = new SqlConnection(patch);
+            con.Open();
+            reqestBdEURUSD.CommandSelect(ref BListT, ref BListB, ref BListS, value, con);
+            con.Close();
             // загрузить записей
             response = ConnectIBD(BListT[BListT.Count - 1], number, value);
             return response;
@@ -164,23 +180,36 @@
         }
 
         /// <summary>
-        /// Функция отвечающая за запрос за данными +
+        /// Метод отвечающий за запрос за данными +
         /// </summary>
         /// <param name="limit">Предел кол-ва записей с сервера</param>
         /// <param name="value">Выбранная котировка</param>
         /// <param name="poslT">Последнее время</param>
         /// <returns>Возвращает полученные записи из интернета</returns>
         public StreamReader Conection(int limit, double poslT, string value)
-    {
-        var webReq = WebRequest.Create("http://myfirstphpapp-skro.rhcloud.com/get_currency.php?time=" + poslT + "&limit=" + limit + "&sign=" + value); // запрос на сайт 
-        // получение ответа
-        WebResponse webRes = webReq.GetResponse();
-        // поток по которому получаем инфу
-        Stream st = webRes.GetResponseStream();
-        // прочитать поток
-        StreamReader DataReader = new StreamReader(st);
-        return DataReader;
-    }
+        {
+            var webReq = WebRequest.Create("http://myfirstphpapp-skro.rhcloud.com/get_currency.php?time=" + poslT + "&limit=" + limit + "&sign=" + value); // запрос на сайт 
+            // получение ответа
+            WebResponse webRes = webReq.GetResponse();
+            // поток по которому получаем инфу
+            Stream st = webRes.GetResponseStream();
+            // прочитать поток
+            StreamReader DataReader = new StreamReader(st);
+            return DataReader;
+        }
+        /// <summary>
+        /// Метод загрузки данных +
+        /// </summary>
+        /// <param name="value">Котировка</param>
+        public string TaskConnect(string value)
+        {
+            Internet IPair = new Internet();
+            // Путь к файлу c котировками usdjpy
+            string pathFile = Application.StartupPath + "\\" + value + ".txt";
+            // первое подключении
+            IPair.FirstConnect(value, pathFile);
+            return pathFile;
+        }
     }
     #endregion
 }
