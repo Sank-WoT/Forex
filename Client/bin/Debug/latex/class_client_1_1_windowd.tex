@@ -1,0 +1,484 @@
+\hypertarget{class_client_1_1_windowd}{}\section{Client.\+Windowd Class Reference}
+\label{class_client_1_1_windowd}\index{Client.\+Windowd@{Client.\+Windowd}}
+
+
+Форма для взаиможействия с графиками котировок и создания сделок  
+
+
+Inheritance diagram for Client.\+Windowd\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_client_1_1_windowd}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_client_1_1_windowd_a8eaca5bbdf54bb33864c1b433ccb63cd}{Windowd} (string Vvalue)
+\begin{DoxyCompactList}\small\item\em Cоздание окна валюты \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_a318f722574a5396b688223fcec6e080c}{Activ} (object sender)
+\begin{DoxyCompactList}\small\item\em Method create file \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_aa308a6bcf8931b033272affc8076e96a}{t\+Tip} ()
+\begin{DoxyCompactList}\small\item\em Метод перевода тултипов \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_a081f7fdb62ef1cefe2ce4dacc45eb41b}{Button} ()
+\begin{DoxyCompactList}\small\item\em Метод перевода кнопок \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_a3b7eabc5c91768d6442af8fc585edb87}{Menu} ()
+\begin{DoxyCompactList}\small\item\em Метод перевода меню \end{DoxyCompactList}\item 
+int \hyperlink{class_client_1_1_windowd_ab924a9e1fb51713d4e42a0dc60301625}{Update} (int \hyperlink{class_client_1_1_windowd_af0c658d1138b70eeafdbc105ec2d7a81}{tic}, List$<$ Date\+Time $>$ DateT, double Now\+Time, List$<$ Date\+Time $>$ \hyperlink{class_client_1_1_windowd_a98b5779ed4abf0571a16deb0c985a7a4}{D\+I\+N\+ET})
+\begin{DoxyCompactList}\small\item\em Метод задания параметров линии и обновления данных \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_aac30e6623a96e0bc508e9f4e82d4bb65}{ZoomT} (int zoom\+Chart, int \hyperlink{class_client_1_1_windowd_af0c658d1138b70eeafdbc105ec2d7a81}{tic})
+\begin{DoxyCompactList}\small\item\em Изменение маштаба \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_ad43dbe14134a90f8cd6acf4da36e485c}{Draw\+S\+MA} (List$<$ Date\+Time $>$ Dat, int Sglag, List$<$ double $>$ Buff, List$<$ double $>$ sreds)
+\begin{DoxyCompactList}\small\item\em Строит линию на графике \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_a84177c165ee297b49e25c6b5da053c12}{Draw\+Min\+Max} (List$<$ List$<$ double $>$$>$ poin)
+\begin{DoxyCompactList}\small\item\em Построение линий минимумов и максимумов \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_a7c775dee3ca111b2a04d2821b3daf35f}{ini\+Line\+Min\+Max} (Chart graphic, int index)
+\begin{DoxyCompactList}\small\item\em Задание цвета линии \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_ae28446da17026602dc8e9146af4c542d}{Resis} (List$<$ List$<$ double $>$$>$ poin, int \hyperlink{class_client_1_1_windowd_af0c658d1138b70eeafdbc105ec2d7a81}{tic}, double pogr, List$<$ Date\+Time $>$ Date)
+\begin{DoxyCompactList}\small\item\em Формирование линий сопротивлений \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_a8b8c230d223b1ba05dd936ff7cbc6e60}{prisvoenie} (int h, double Y, List$<$ List$<$ double $>$$>$ poin, double X, double Mh)
+\begin{DoxyCompactList}\small\item\em Получение точек путем сравнивания предыдущих точек \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_windowd_a8e1e4f8f41d93b2961b1a4733c1c2ebc}{Window\+\_\+\+Load} (object sender, Event\+Args e)
+\item 
+double \hyperlink{class_client_1_1_windowd_acf6504da17d839fd206b3fe0710db4ec}{Second\+Conect} ()
+\begin{DoxyCompactList}\small\item\em Метод посекундного конекта \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Chart\+Area \hyperlink{class_client_1_1_windowd_aed40d5c999bd377a5e6a11b6f09e3f9c}{area} = new Chart\+Area()
+\begin{DoxyCompactList}\small\item\em область \end{DoxyCompactList}\item 
+int \hyperlink{class_client_1_1_windowd_aa41017ef66a809df6898262c5a425303}{Zoom} = 100
+\begin{DoxyCompactList}\small\item\em Количетво рассматривомого времени в Unixtime \end{DoxyCompactList}\item 
+int \hyperlink{class_client_1_1_windowd_a960143b9372a3a7dc576b4578aa40bd8}{danoe} = 0
+\begin{DoxyCompactList}\small\item\em Количетво рассматривомого времени в Unixtime \end{DoxyCompactList}\item 
+string \hyperlink{class_client_1_1_windowd_a7d221cc5d9347a6064b09db206894342}{value}
+\begin{DoxyCompactList}\small\item\em Содержит наименование валюты \end{DoxyCompactList}\item 
+double \hyperlink{class_client_1_1_windowd_a0f5b6aebf0f3c23cd708480bfc87d1bb}{poslchislo\+Sell}
+\begin{DoxyCompactList}\small\item\em Последнее число продажи \end{DoxyCompactList}\item 
+double \hyperlink{class_client_1_1_windowd_a18e884676837904afa8857d7abd6fc7b}{poslchislo\+Buy}
+\begin{DoxyCompactList}\small\item\em Последнее число покупкки \end{DoxyCompactList}\item 
+bool \hyperlink{class_client_1_1_windowd_a89f97a16687dad532281e065e70bd490}{inet}
+\begin{DoxyCompactList}\small\item\em Поле хранящее конект \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_client_1_1_deal}{Deal} $>$ \hyperlink{class_client_1_1_windowd_aec1343722b0bde8b263e8258fc8f806c}{B\+UY} = new List$<$\hyperlink{class_client_1_1_deal}{Deal}$>$()
+\begin{DoxyCompactList}\small\item\em Поле хранящее конект \end{DoxyCompactList}\item 
+List$<$ \hyperlink{class_client_1_1_deal}{Deal} $>$ \hyperlink{class_client_1_1_windowd_a1616dcfb8b780f2ff45f74a76cb7d997}{S\+E\+LL} = new List$<$\hyperlink{class_client_1_1_deal}{Deal}$>$()
+\begin{DoxyCompactList}\small\item\em лист объектов хранящий продажи \end{DoxyCompactList}\item 
+List$<$ double $>$ \hyperlink{class_client_1_1_windowd_a63515d43501540d22908b3e75b0446e6}{BufferB} = new List$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Буфферное значение покупки \end{DoxyCompactList}\item 
+List$<$ double $>$ \hyperlink{class_client_1_1_windowd_a923a51f80de2de0db93114454f23e6cb}{BufferS} = new List$<$double$>$()
+\begin{DoxyCompactList}\small\item\em Буфферное значение продажи \end{DoxyCompactList}\item 
+List$<$ Date\+Time $>$ \hyperlink{class_client_1_1_windowd_ae56192c0587527c76b5878d3239768e4}{D\+B\+UF} = new List$<$Date\+Time$>$()
+\begin{DoxyCompactList}\small\item\em Буфферное значение времени \end{DoxyCompactList}\item 
+List$<$ Date\+Time $>$ \hyperlink{class_client_1_1_windowd_a98b5779ed4abf0571a16deb0c985a7a4}{D\+I\+N\+ET} = new List$<$Date\+Time$>$()
+\begin{DoxyCompactList}\small\item\em значение времени с интернета \end{DoxyCompactList}\item 
+int \hyperlink{class_client_1_1_windowd_af0c658d1138b70eeafdbc105ec2d7a81}{tic} = 0
+\begin{DoxyCompactList}\small\item\em Поле отслеживающие кол-\/во прошедших секунд с запуска формы \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_client_1_1_windowd_ae3b81759148b68ad5f55e959567b5aab}{Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Clean up any resources being used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Форма для взаиможействия с графиками котировок и создания сделок 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quotations} & объект сделка\\
+\hline
+{\em bufferS} & Массив покупки\\
+\hline
+{\em tic} & текущее время отначала торгов\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_client_1_1_windowd_a8eaca5bbdf54bb33864c1b433ccb63cd}{}\label{class_client_1_1_windowd_a8eaca5bbdf54bb33864c1b433ccb63cd} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Windowd@{Windowd}}
+\index{Windowd@{Windowd}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Windowd()}{Windowd()}}
+{\footnotesize\ttfamily Client.\+Windowd.\+Windowd (\begin{DoxyParamCaption}\item[{string}]{Vvalue }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cоздание окна валюты 
+
+
+\begin{DoxyParams}{Parameters}
+{\em  Vvalue} & Наименование валюты\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_client_1_1_windowd_a318f722574a5396b688223fcec6e080c}{}\label{class_client_1_1_windowd_a318f722574a5396b688223fcec6e080c} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Activ@{Activ}}
+\index{Activ@{Activ}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Activ()}{Activ()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+Activ (\begin{DoxyParamCaption}\item[{object}]{sender }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Method create file 
+
+\hypertarget{class_client_1_1_windowd_a081f7fdb62ef1cefe2ce4dacc45eb41b}{}\label{class_client_1_1_windowd_a081f7fdb62ef1cefe2ce4dacc45eb41b} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Button@{Button}}
+\index{Button@{Button}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Button()}{Button()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+Button (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод перевода кнопок 
+
+\hypertarget{class_client_1_1_windowd_ae3b81759148b68ad5f55e959567b5aab}{}\label{class_client_1_1_windowd_ae3b81759148b68ad5f55e959567b5aab} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void Client.\+Windowd.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Clean up any resources being used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & true if managed resources should be disposed; otherwise, false.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_windowd_a84177c165ee297b49e25c6b5da053c12}{}\label{class_client_1_1_windowd_a84177c165ee297b49e25c6b5da053c12} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Draw\+Min\+Max@{Draw\+Min\+Max}}
+\index{Draw\+Min\+Max@{Draw\+Min\+Max}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Draw\+Min\+Max()}{DrawMinMax()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+Draw\+Min\+Max (\begin{DoxyParamCaption}\item[{List$<$ List$<$ double $>$$>$}]{poin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Построение линий минимумов и максимумов 
+
+
+\begin{DoxyParams}{Parameters}
+{\em poin} & Точки минимумов и максимов\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_windowd_ad43dbe14134a90f8cd6acf4da36e485c}{}\label{class_client_1_1_windowd_ad43dbe14134a90f8cd6acf4da36e485c} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Draw\+S\+MA@{Draw\+S\+MA}}
+\index{Draw\+S\+MA@{Draw\+S\+MA}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Draw\+S\+M\+A()}{DrawSMA()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+Draw\+S\+MA (\begin{DoxyParamCaption}\item[{List$<$ Date\+Time $>$}]{Dat,  }\item[{int}]{Sglag,  }\item[{List$<$ double $>$}]{Buff,  }\item[{List$<$ double $>$}]{sreds }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Строит линию на графике 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Dat} & время прошедшее с запуска\\
+\hline
+{\em Sglag} & Текущее приближени\\
+\hline
+{\em Buff} & Текущее приближени\\
+\hline
+{\em sreds} & Текущее приближени\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_windowd_a7c775dee3ca111b2a04d2821b3daf35f}{}\label{class_client_1_1_windowd_a7c775dee3ca111b2a04d2821b3daf35f} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!ini\+Line\+Min\+Max@{ini\+Line\+Min\+Max}}
+\index{ini\+Line\+Min\+Max@{ini\+Line\+Min\+Max}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{ini\+Line\+Min\+Max()}{iniLineMinMax()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+ini\+Line\+Min\+Max (\begin{DoxyParamCaption}\item[{Chart}]{graphic,  }\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Задание цвета линии 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graphic} & Точки минимумов и максимов\\
+\hline
+{\em index} & Прошедшее время с начала запуска\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_windowd_a3b7eabc5c91768d6442af8fc585edb87}{}\label{class_client_1_1_windowd_a3b7eabc5c91768d6442af8fc585edb87} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Menu@{Menu}}
+\index{Menu@{Menu}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Menu()}{Menu()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод перевода меню 
+
+\hypertarget{class_client_1_1_windowd_a8b8c230d223b1ba05dd936ff7cbc6e60}{}\label{class_client_1_1_windowd_a8b8c230d223b1ba05dd936ff7cbc6e60} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!prisvoenie@{prisvoenie}}
+\index{prisvoenie@{prisvoenie}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{prisvoenie()}{prisvoenie()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+prisvoenie (\begin{DoxyParamCaption}\item[{int}]{h,  }\item[{double}]{Y,  }\item[{List$<$ List$<$ double $>$$>$}]{poin,  }\item[{double}]{X,  }\item[{double}]{Mh }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Получение точек путем сравнивания предыдущих точек 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & Точки минимумов и максимов\\
+\hline
+{\em Y} & Прошедшее время с начала запуска\\
+\hline
+{\em poin} & Некоторая погрешность в пределах которой формируется линия\\
+\hline
+{\em X} & Время в формате Date\+Time\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_windowd_ae28446da17026602dc8e9146af4c542d}{}\label{class_client_1_1_windowd_ae28446da17026602dc8e9146af4c542d} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Resis@{Resis}}
+\index{Resis@{Resis}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Resis()}{Resis()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+Resis (\begin{DoxyParamCaption}\item[{List$<$ List$<$ double $>$$>$}]{poin,  }\item[{int}]{tic,  }\item[{double}]{pogr,  }\item[{List$<$ Date\+Time $>$}]{Date }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Формирование линий сопротивлений 
+
+
+\begin{DoxyParams}{Parameters}
+{\em poin} & Точки минимумов и максимов\\
+\hline
+{\em tic} & Прошедшее время с начала запуска\\
+\hline
+{\em pogr} & Некоторая погрешность в пределах которой формируется линия\\
+\hline
+{\em Date} & Время в формате Date\+Time\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_windowd_acf6504da17d839fd206b3fe0710db4ec}{}\label{class_client_1_1_windowd_acf6504da17d839fd206b3fe0710db4ec} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Second\+Conect@{Second\+Conect}}
+\index{Second\+Conect@{Second\+Conect}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Second\+Conect()}{SecondConect()}}
+{\footnotesize\ttfamily double Client.\+Windowd.\+Second\+Conect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод посекундного конекта 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & объект колесико\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_windowd_aa308a6bcf8931b033272affc8076e96a}{}\label{class_client_1_1_windowd_aa308a6bcf8931b033272affc8076e96a} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!t\+Tip@{t\+Tip}}
+\index{t\+Tip@{t\+Tip}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{t\+Tip()}{tTip()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+t\+Tip (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод перевода тултипов 
+
+\hypertarget{class_client_1_1_windowd_ab924a9e1fb51713d4e42a0dc60301625}{}\label{class_client_1_1_windowd_ab924a9e1fb51713d4e42a0dc60301625} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Update@{Update}}
+\index{Update@{Update}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily int Client.\+Windowd.\+Update (\begin{DoxyParamCaption}\item[{int}]{tic,  }\item[{List$<$ Date\+Time $>$}]{DateT,  }\item[{double}]{Now\+Time,  }\item[{List$<$ Date\+Time $>$}]{D\+I\+N\+ET }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод задания параметров линии и обновления данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tic} & время прошедшее с запуска\\
+\hline
+{\em DateT} & Время формате Date\\
+\hline
+{\em Now\+Time} & Текущее время\\
+\hline
+{\em  D\+I\+N\+ET} & Время в результате запуска\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_windowd_a8e1e4f8f41d93b2961b1a4733c1c2ebc}{}\label{class_client_1_1_windowd_a8e1e4f8f41d93b2961b1a4733c1c2ebc} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Window\+\_\+\+Load@{Window\+\_\+\+Load}}
+\index{Window\+\_\+\+Load@{Window\+\_\+\+Load}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Window\+\_\+\+Load()}{Window\_Load()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+Window\+\_\+\+Load (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Посекундное прибавление времени 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & ???\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_windowd_aac30e6623a96e0bc508e9f4e82d4bb65}{}\label{class_client_1_1_windowd_aac30e6623a96e0bc508e9f4e82d4bb65} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!ZoomT@{ZoomT}}
+\index{ZoomT@{ZoomT}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Zoom\+T()}{ZoomT()}}
+{\footnotesize\ttfamily void Client.\+Windowd.\+ZoomT (\begin{DoxyParamCaption}\item[{int}]{zoom\+Chart,  }\item[{int}]{tic }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Изменение маштаба 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tic} & время прошедшее с запуска\\
+\hline
+{\em zoom\+Chart} & Текущее приближени\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_client_1_1_windowd_aed40d5c999bd377a5e6a11b6f09e3f9c}{}\label{class_client_1_1_windowd_aed40d5c999bd377a5e6a11b6f09e3f9c} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!area@{area}}
+\index{area@{area}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{area}{area}}
+{\footnotesize\ttfamily Chart\+Area Client.\+Windowd.\+area = new Chart\+Area()}
+
+
+
+область 
+
+\hypertarget{class_client_1_1_windowd_a63515d43501540d22908b3e75b0446e6}{}\label{class_client_1_1_windowd_a63515d43501540d22908b3e75b0446e6} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!BufferB@{BufferB}}
+\index{BufferB@{BufferB}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{BufferB}{BufferB}}
+{\footnotesize\ttfamily List$<$double$>$ Client.\+Windowd.\+BufferB = new List$<$double$>$()}
+
+
+
+Буфферное значение покупки 
+
+\hypertarget{class_client_1_1_windowd_a923a51f80de2de0db93114454f23e6cb}{}\label{class_client_1_1_windowd_a923a51f80de2de0db93114454f23e6cb} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!BufferS@{BufferS}}
+\index{BufferS@{BufferS}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{BufferS}{BufferS}}
+{\footnotesize\ttfamily List$<$double$>$ Client.\+Windowd.\+BufferS = new List$<$double$>$()}
+
+
+
+Буфферное значение продажи 
+
+\hypertarget{class_client_1_1_windowd_aec1343722b0bde8b263e8258fc8f806c}{}\label{class_client_1_1_windowd_aec1343722b0bde8b263e8258fc8f806c} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!B\+UY@{B\+UY}}
+\index{B\+UY@{B\+UY}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{B\+UY}{BUY}}
+{\footnotesize\ttfamily List$<$\hyperlink{class_client_1_1_deal}{Deal}$>$ Client.\+Windowd.\+B\+UY = new List$<$\hyperlink{class_client_1_1_deal}{Deal}$>$()}
+
+
+
+Поле хранящее конект 
+
+лист объектов хранящий покупки \hypertarget{class_client_1_1_windowd_a960143b9372a3a7dc576b4578aa40bd8}{}\label{class_client_1_1_windowd_a960143b9372a3a7dc576b4578aa40bd8} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!danoe@{danoe}}
+\index{danoe@{danoe}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{danoe}{danoe}}
+{\footnotesize\ttfamily int Client.\+Windowd.\+danoe = 0}
+
+
+
+Количетво рассматривомого времени в Unixtime 
+
+Поле хранящие значение минимума и макс \hypertarget{class_client_1_1_windowd_ae56192c0587527c76b5878d3239768e4}{}\label{class_client_1_1_windowd_ae56192c0587527c76b5878d3239768e4} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!D\+B\+UF@{D\+B\+UF}}
+\index{D\+B\+UF@{D\+B\+UF}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{D\+B\+UF}{DBUF}}
+{\footnotesize\ttfamily List$<$Date\+Time$>$ Client.\+Windowd.\+D\+B\+UF = new List$<$Date\+Time$>$()}
+
+
+
+Буфферное значение времени 
+
+\hypertarget{class_client_1_1_windowd_a98b5779ed4abf0571a16deb0c985a7a4}{}\label{class_client_1_1_windowd_a98b5779ed4abf0571a16deb0c985a7a4} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!D\+I\+N\+ET@{D\+I\+N\+ET}}
+\index{D\+I\+N\+ET@{D\+I\+N\+ET}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{D\+I\+N\+ET}{DINET}}
+{\footnotesize\ttfamily List$<$Date\+Time$>$ Client.\+Windowd.\+D\+I\+N\+ET = new List$<$Date\+Time$>$()}
+
+
+
+значение времени с интернета 
+
+\hypertarget{class_client_1_1_windowd_a89f97a16687dad532281e065e70bd490}{}\label{class_client_1_1_windowd_a89f97a16687dad532281e065e70bd490} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!inet@{inet}}
+\index{inet@{inet}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{inet}{inet}}
+{\footnotesize\ttfamily bool Client.\+Windowd.\+inet}
+
+
+
+Поле хранящее конект 
+
+\hypertarget{class_client_1_1_windowd_a18e884676837904afa8857d7abd6fc7b}{}\label{class_client_1_1_windowd_a18e884676837904afa8857d7abd6fc7b} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!poslchislo\+Buy@{poslchislo\+Buy}}
+\index{poslchislo\+Buy@{poslchislo\+Buy}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{poslchislo\+Buy}{poslchisloBuy}}
+{\footnotesize\ttfamily double Client.\+Windowd.\+poslchislo\+Buy}
+
+
+
+Последнее число покупкки 
+
+\hypertarget{class_client_1_1_windowd_a0f5b6aebf0f3c23cd708480bfc87d1bb}{}\label{class_client_1_1_windowd_a0f5b6aebf0f3c23cd708480bfc87d1bb} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!poslchislo\+Sell@{poslchislo\+Sell}}
+\index{poslchislo\+Sell@{poslchislo\+Sell}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{poslchislo\+Sell}{poslchisloSell}}
+{\footnotesize\ttfamily double Client.\+Windowd.\+poslchislo\+Sell}
+
+
+
+Последнее число продажи 
+
+\hypertarget{class_client_1_1_windowd_a1616dcfb8b780f2ff45f74a76cb7d997}{}\label{class_client_1_1_windowd_a1616dcfb8b780f2ff45f74a76cb7d997} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!S\+E\+LL@{S\+E\+LL}}
+\index{S\+E\+LL@{S\+E\+LL}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{S\+E\+LL}{SELL}}
+{\footnotesize\ttfamily List$<$\hyperlink{class_client_1_1_deal}{Deal}$>$ Client.\+Windowd.\+S\+E\+LL = new List$<$\hyperlink{class_client_1_1_deal}{Deal}$>$()}
+
+
+
+лист объектов хранящий продажи 
+
+\hypertarget{class_client_1_1_windowd_af0c658d1138b70eeafdbc105ec2d7a81}{}\label{class_client_1_1_windowd_af0c658d1138b70eeafdbc105ec2d7a81} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!tic@{tic}}
+\index{tic@{tic}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{tic}{tic}}
+{\footnotesize\ttfamily int Client.\+Windowd.\+tic = 0}
+
+
+
+Поле отслеживающие кол-\/во прошедших секунд с запуска формы 
+
+\hypertarget{class_client_1_1_windowd_a7d221cc5d9347a6064b09db206894342}{}\label{class_client_1_1_windowd_a7d221cc5d9347a6064b09db206894342} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!value@{value}}
+\index{value@{value}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily string Client.\+Windowd.\+value}
+
+
+
+Содержит наименование валюты 
+
+\hypertarget{class_client_1_1_windowd_aa41017ef66a809df6898262c5a425303}{}\label{class_client_1_1_windowd_aa41017ef66a809df6898262c5a425303} 
+\index{Client\+::\+Windowd@{Client\+::\+Windowd}!Zoom@{Zoom}}
+\index{Zoom@{Zoom}!Client\+::\+Windowd@{Client\+::\+Windowd}}
+\subsubsection{\texorpdfstring{Zoom}{Zoom}}
+{\footnotesize\ttfamily int Client.\+Windowd.\+Zoom = 100}
+
+
+
+Количетво рассматривомого времени в Unixtime 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/саша/\+Documents/\+Visual Studio 2015/\+Projects/\+Forex2.\+0/\+Client/Windowd.\+cs\item 
+C\+:/\+Users/саша/\+Documents/\+Visual Studio 2015/\+Projects/\+Forex2.\+0/\+Client/Windowd.\+Designer.\+cs\end{DoxyCompactItemize}

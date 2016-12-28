@@ -1,0 +1,172 @@
+\hypertarget{class_client_1_1_close_deal}{}\section{Client.\+Close\+Deal Class Reference}
+\label{class_client_1_1_close_deal}\index{Client.\+Close\+Deal@{Client.\+Close\+Deal}}
+
+
+Класс по закрытию сделки  
+
+
+Inheritance diagram for Client.\+Close\+Deal\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_client_1_1_close_deal}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_client_1_1_close_deal_a405298882ae55f600ca25b00898159f3}{Close\+Deal} ()
+\begin{DoxyCompactList}\small\item\em Инициализация компонентов \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_close_deal_a2693cd775d06cfc1a31b68523eac5b86}{Close\+Deal\+\_\+\+Load} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Закрытие сделки 
+\begin{DoxyParams}{Parameters}
+{\em sender} & Объект события\\
+\hline
+{\em e} & ТСобытие\\
+\hline
+\end{DoxyParams}
+\end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_close_deal_a540ae3b166b32a9957fc86d27f39dbd1}{List\+Form} (string Rus, string Eng, List$<$ \hyperlink{class_client_1_1_deal}{Deal} $>$ S\+E\+LL)
+\begin{DoxyCompactList}\small\item\em Добавление сделок в лист формы 
+\begin{DoxyParams}{Parameters}
+{\em Rus} & русский язык\\
+\hline
+{\em Eng} & английский\\
+\hline
+{\em S\+E\+LL} & Продажа\\
+\hline
+\end{DoxyParams}
+\end{DoxyCompactList}\item 
+\hypertarget{class_client_1_1_close_deal_a1a032066cdeea7795714a3dea0271805}{}\label{class_client_1_1_close_deal_a1a032066cdeea7795714a3dea0271805} 
+double {\bfseries Profit} (double chislo, double profit, string Value)
+\item 
+void \hyperlink{class_client_1_1_close_deal_a99ff7b19b66fefbcc3ea5b45bf02a88d}{Close} (double chislo, double profit, string Value, Date\+Time Date, List$<$ double $>$ iter\+Data, int d\+Time)
+\begin{DoxyCompactList}\small\item\em Выбор и закрытие ордера 
+\begin{DoxyParams}{Parameters}
+{\em chislo} & Значение выбранной сделки\\
+\hline
+{\em profit} & Прибыль\\
+\hline
+{\em Value} & Значение + операция над ней\\
+\hline
+{\em Date} & Время сделки\\
+\hline
+{\em iter\+Data} & Контейнер\\
+\hline
+{\em d\+Time} & Время в формате Unix\+Time\\
+\hline
+\end{DoxyParams}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_client_1_1_close_deal_ad68485ab502db5b884eff7a204a32c1b}{}\label{class_client_1_1_close_deal_ad68485ab502db5b884eff7a204a32c1b} 
+double {\bfseries Spred}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_client_1_1_close_deal_ac72c1f7f73882a1af7d84ec19ad56bc8}{Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Clean up any resources being used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Класс по закрытию сделки 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_client_1_1_close_deal_a405298882ae55f600ca25b00898159f3}{}\label{class_client_1_1_close_deal_a405298882ae55f600ca25b00898159f3} 
+\index{Client\+::\+Close\+Deal@{Client\+::\+Close\+Deal}!Close\+Deal@{Close\+Deal}}
+\index{Close\+Deal@{Close\+Deal}!Client\+::\+Close\+Deal@{Client\+::\+Close\+Deal}}
+\subsubsection{\texorpdfstring{Close\+Deal()}{CloseDeal()}}
+{\footnotesize\ttfamily Client.\+Close\+Deal.\+Close\+Deal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Инициализация компонентов 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_client_1_1_close_deal_a99ff7b19b66fefbcc3ea5b45bf02a88d}{}\label{class_client_1_1_close_deal_a99ff7b19b66fefbcc3ea5b45bf02a88d} 
+\index{Client\+::\+Close\+Deal@{Client\+::\+Close\+Deal}!Close@{Close}}
+\index{Close@{Close}!Client\+::\+Close\+Deal@{Client\+::\+Close\+Deal}}
+\subsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily void Client.\+Close\+Deal.\+Close (\begin{DoxyParamCaption}\item[{double}]{chislo,  }\item[{double}]{profit,  }\item[{string}]{Value,  }\item[{Date\+Time}]{Date,  }\item[{List$<$ double $>$}]{iter\+Data,  }\item[{int}]{d\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Выбор и закрытие ордера 
+\begin{DoxyParams}{Parameters}
+{\em chislo} & Значение выбранной сделки\\
+\hline
+{\em profit} & Прибыль\\
+\hline
+{\em Value} & Значение + операция над ней\\
+\hline
+{\em Date} & Время сделки\\
+\hline
+{\em iter\+Data} & Контейнер\\
+\hline
+{\em d\+Time} & Время в формате Unix\+Time\\
+\hline
+\end{DoxyParams}
+
+
+\hypertarget{class_client_1_1_close_deal_a2693cd775d06cfc1a31b68523eac5b86}{}\label{class_client_1_1_close_deal_a2693cd775d06cfc1a31b68523eac5b86} 
+\index{Client\+::\+Close\+Deal@{Client\+::\+Close\+Deal}!Close\+Deal\+\_\+\+Load@{Close\+Deal\+\_\+\+Load}}
+\index{Close\+Deal\+\_\+\+Load@{Close\+Deal\+\_\+\+Load}!Client\+::\+Close\+Deal@{Client\+::\+Close\+Deal}}
+\subsubsection{\texorpdfstring{Close\+Deal\+\_\+\+Load()}{CloseDeal\_Load()}}
+{\footnotesize\ttfamily void Client.\+Close\+Deal.\+Close\+Deal\+\_\+\+Load (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Закрытие сделки 
+\begin{DoxyParams}{Parameters}
+{\em sender} & Объект события\\
+\hline
+{\em e} & ТСобытие\\
+\hline
+\end{DoxyParams}
+
+
+\hypertarget{class_client_1_1_close_deal_ac72c1f7f73882a1af7d84ec19ad56bc8}{}\label{class_client_1_1_close_deal_ac72c1f7f73882a1af7d84ec19ad56bc8} 
+\index{Client\+::\+Close\+Deal@{Client\+::\+Close\+Deal}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Client\+::\+Close\+Deal@{Client\+::\+Close\+Deal}}
+\subsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void Client.\+Close\+Deal.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Clean up any resources being used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & true if managed resources should be disposed; otherwise, false.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_close_deal_a540ae3b166b32a9957fc86d27f39dbd1}{}\label{class_client_1_1_close_deal_a540ae3b166b32a9957fc86d27f39dbd1} 
+\index{Client\+::\+Close\+Deal@{Client\+::\+Close\+Deal}!List\+Form@{List\+Form}}
+\index{List\+Form@{List\+Form}!Client\+::\+Close\+Deal@{Client\+::\+Close\+Deal}}
+\subsubsection{\texorpdfstring{List\+Form()}{ListForm()}}
+{\footnotesize\ttfamily void Client.\+Close\+Deal.\+List\+Form (\begin{DoxyParamCaption}\item[{string}]{Rus,  }\item[{string}]{Eng,  }\item[{List$<$ \hyperlink{class_client_1_1_deal}{Deal} $>$}]{S\+E\+LL }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Добавление сделок в лист формы 
+\begin{DoxyParams}{Parameters}
+{\em Rus} & русский язык\\
+\hline
+{\em Eng} & английский\\
+\hline
+{\em S\+E\+LL} & Продажа\\
+\hline
+\end{DoxyParams}
+
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/саша/\+Documents/\+Visual Studio 2015/\+Projects/\+Forex2.\+0/\+Client/Close\+Deal.\+cs\item 
+C\+:/\+Users/саша/\+Documents/\+Visual Studio 2015/\+Projects/\+Forex2.\+0/\+Client/Close\+Deal.\+Designer.\+cs\end{DoxyCompactItemize}

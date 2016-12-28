@@ -1,0 +1,127 @@
+\hypertarget{class_client_1_1_work_file}{}\section{Client.\+Work\+File Class Reference}
+\label{class_client_1_1_work_file}\index{Client.\+Work\+File@{Client.\+Work\+File}}
+
+
+Класс отвечающий за работу с файлами  
+
+
+Inheritance diagram for Client.\+Work\+File\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_client_1_1_work_file}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_client_1_1_work_file_a2133a018059220ccb5eca90ea39f0f72}{Create\+File} (string path\+File)
+\begin{DoxyCompactList}\small\item\em Метод для создания файла + \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_work_file_a1a78c0750e5d9e3f6e47f2a18d73ad14}{Create\+File} (string path\+File, string text)
+\begin{DoxyCompactList}\small\item\em Метод для создания файла + \end{DoxyCompactList}\item 
+int \hyperlink{class_client_1_1_work_file_aa6be3320b601af43b26ad4ad964cdc4f}{Get\+Posl\+Time} (int posl\+Time, string path\+File)
+\begin{DoxyCompactList}\small\item\em Метод для поиска последнего времени в файле \end{DoxyCompactList}\item 
+string \hyperlink{class_client_1_1_work_file_ac8d171e560e68dc71132752679d3387e}{Read\+File} (string path\+File)
+\begin{DoxyCompactList}\small\item\em Функция для прочтения файла + \end{DoxyCompactList}\item 
+List$<$ int $>$ \hyperlink{class_client_1_1_work_file_a98c27a5faa8b82ec7f64c9368d54c19a}{read} (string text\+Data\+Quote, List$<$ double $>$ mass\+Y\+Inet\+Buy, List$<$ double $>$ mass\+Y\+Inet\+Sell)
+\begin{DoxyCompactList}\small\item\em Метод для парсинга данных и добавление значений в массив из файла \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Класс отвечающий за работу с файлами 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_client_1_1_work_file_a2133a018059220ccb5eca90ea39f0f72}{}\label{class_client_1_1_work_file_a2133a018059220ccb5eca90ea39f0f72} 
+\index{Client\+::\+Work\+File@{Client\+::\+Work\+File}!Create\+File@{Create\+File}}
+\index{Create\+File@{Create\+File}!Client\+::\+Work\+File@{Client\+::\+Work\+File}}
+\subsubsection{\texorpdfstring{Create\+File()}{CreateFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Client.\+Work\+File.\+Create\+File (\begin{DoxyParamCaption}\item[{string}]{path\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод для создания файла + 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+File} & Путь к файлу \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_work_file_a1a78c0750e5d9e3f6e47f2a18d73ad14}{}\label{class_client_1_1_work_file_a1a78c0750e5d9e3f6e47f2a18d73ad14} 
+\index{Client\+::\+Work\+File@{Client\+::\+Work\+File}!Create\+File@{Create\+File}}
+\index{Create\+File@{Create\+File}!Client\+::\+Work\+File@{Client\+::\+Work\+File}}
+\subsubsection{\texorpdfstring{Create\+File()}{CreateFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Client.\+Work\+File.\+Create\+File (\begin{DoxyParamCaption}\item[{string}]{path\+File,  }\item[{string}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод для создания файла + 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+File} & Путь к файлу \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_work_file_aa6be3320b601af43b26ad4ad964cdc4f}{}\label{class_client_1_1_work_file_aa6be3320b601af43b26ad4ad964cdc4f} 
+\index{Client\+::\+Work\+File@{Client\+::\+Work\+File}!Get\+Posl\+Time@{Get\+Posl\+Time}}
+\index{Get\+Posl\+Time@{Get\+Posl\+Time}!Client\+::\+Work\+File@{Client\+::\+Work\+File}}
+\subsubsection{\texorpdfstring{Get\+Posl\+Time()}{GetPoslTime()}}
+{\footnotesize\ttfamily int Client.\+Work\+File.\+Get\+Posl\+Time (\begin{DoxyParamCaption}\item[{int}]{posl\+Time,  }\item[{string}]{path\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод для поиска последнего времени в файле 
+
+
+\begin{DoxyParams}{Parameters}
+{\em posl\+Time} & Текущее последнее значение времени\\
+\hline
+{\em path\+File} & Путь к файлу \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Возвращение последнее значение времени
+\end{DoxyReturn}
+\hypertarget{class_client_1_1_work_file_a98c27a5faa8b82ec7f64c9368d54c19a}{}\label{class_client_1_1_work_file_a98c27a5faa8b82ec7f64c9368d54c19a} 
+\index{Client\+::\+Work\+File@{Client\+::\+Work\+File}!read@{read}}
+\index{read@{read}!Client\+::\+Work\+File@{Client\+::\+Work\+File}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily List$<$int$>$ Client.\+Work\+File.\+read (\begin{DoxyParamCaption}\item[{string}]{text\+Data\+Quote,  }\item[{List$<$ double $>$}]{mass\+Y\+Inet\+Buy,  }\item[{List$<$ double $>$}]{mass\+Y\+Inet\+Sell }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод для парсинга данных и добавление значений в массив из файла 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text\+Data\+Quote} & Строка с триадами\\
+\hline
+{\em mass\+Y\+Inet\+Buy} & Массив значений покупок\\
+\hline
+{\em mass\+Y\+Inet\+Sell} & Массив значений продажи\\
+\hline
+{\em Times} & Массив звремени\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Возвращение кол-\/ва записей из стринга
+\end{DoxyReturn}
+\hypertarget{class_client_1_1_work_file_ac8d171e560e68dc71132752679d3387e}{}\label{class_client_1_1_work_file_ac8d171e560e68dc71132752679d3387e} 
+\index{Client\+::\+Work\+File@{Client\+::\+Work\+File}!Read\+File@{Read\+File}}
+\index{Read\+File@{Read\+File}!Client\+::\+Work\+File@{Client\+::\+Work\+File}}
+\subsubsection{\texorpdfstring{Read\+File()}{ReadFile()}}
+{\footnotesize\ttfamily string Client.\+Work\+File.\+Read\+File (\begin{DoxyParamCaption}\item[{string}]{path\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Функция для прочтения файла + 
+
+\begin{DoxyReturn}{Returns}
+Текст прочтенного из файла
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/саша/\+Documents/\+Visual Studio 2015/\+Projects/\+Forex2.\+0/\+Client/Work\+File.\+cs\end{DoxyCompactItemize}

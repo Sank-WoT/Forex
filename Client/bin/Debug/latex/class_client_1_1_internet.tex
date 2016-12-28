@@ -1,0 +1,196 @@
+\hypertarget{class_client_1_1_internet}{}\section{Client.\+Internet Class Reference}
+\label{class_client_1_1_internet}\index{Client.\+Internet@{Client.\+Internet}}
+
+
+Класс отечающий за работу с интернетом  
+
+
+Inheritance diagram for Client.\+Internet\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_client_1_1_internet}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_client_1_1_internet_a9dd75df149ccd3f37a7808371734df6e}{Try\+Con} (string value, object sync, bool internet\+Action\+Finished)
+\begin{DoxyCompactList}\small\item\em Этот метод проверяет интернет соединение и переводит программу в автономный режим в случае его отсутсвия + \end{DoxyCompactList}\item 
+bool \hyperlink{class_client_1_1_internet_ac5dffd376bcb63c31d30e676c42ea16b}{Reqest\+Inet} (string value, bool internet\+Action\+Finished)
+\begin{DoxyCompactList}\small\item\em Этот метод проверяет интернет соединение и переводит программу в автономный режим в случае его отсутсвия + \end{DoxyCompactList}\item 
+string \hyperlink{class_client_1_1_internet_acb1ebd5d0e24109a5bf17ffc40d3b4d9}{First\+Connect\+BD} (string value, string path\+File, int number, string patch)
+\begin{DoxyCompactList}\small\item\em Этот метод находит из базы данных последнее время котировки и делает запрос на сайт и сохраняет в БД \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_internet_a7264aa476ec385c1cb78e21e6c011f18}{First\+Connect} (string value, string path\+File)
+\begin{DoxyCompactList}\small\item\em Этот метод находит из файла последнее время котировки и делает запрос на сайт сохраняя в тот же файл \end{DoxyCompactList}\item 
+string \hyperlink{class_client_1_1_internet_afeff19924124e7ca32b7509d4b055610}{Connect\+I\+BD} (int posl\+Time, int limit, string value)
+\item 
+void \hyperlink{class_client_1_1_internet_a1cd19828884f2508d44f8af4a2975ace}{ConnectI} (int posl\+Time, int limit, string path\+File, string value)
+\begin{DoxyCompactList}\small\item\em Этот метод получает последнее время сохраненное в файле, путь и валюту для запроса на сервер за данными и их сохранение в локальный файл \end{DoxyCompactList}\item 
+Stream\+Reader \hyperlink{class_client_1_1_internet_a670f0e1e3b71b1c88f6895adf7eefe97}{Conection} (int limit, double poslT, string value)
+\begin{DoxyCompactList}\small\item\em Метод отвечающий за запрос за данными + \end{DoxyCompactList}\item 
+string \hyperlink{class_client_1_1_internet_a17349606c7aad5494e14ec2f216b6b3b}{Task\+Connect} (string value)
+\begin{DoxyCompactList}\small\item\em Метод загрузки данных + \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Класс отечающий за работу с интернетом 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_client_1_1_internet_a670f0e1e3b71b1c88f6895adf7eefe97}{}\label{class_client_1_1_internet_a670f0e1e3b71b1c88f6895adf7eefe97} 
+\index{Client\+::\+Internet@{Client\+::\+Internet}!Conection@{Conection}}
+\index{Conection@{Conection}!Client\+::\+Internet@{Client\+::\+Internet}}
+\subsubsection{\texorpdfstring{Conection()}{Conection()}}
+{\footnotesize\ttfamily Stream\+Reader Client.\+Internet.\+Conection (\begin{DoxyParamCaption}\item[{int}]{limit,  }\item[{double}]{poslT,  }\item[{string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод отвечающий за запрос за данными + 
+
+
+\begin{DoxyParams}{Parameters}
+{\em limit} & Предел кол-\/ва записей с сервера\\
+\hline
+{\em value} & Выбранная котировка\\
+\hline
+{\em poslT} & Последнее время\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Возвращает полученные записи из интернета
+\end{DoxyReturn}
+\hypertarget{class_client_1_1_internet_a1cd19828884f2508d44f8af4a2975ace}{}\label{class_client_1_1_internet_a1cd19828884f2508d44f8af4a2975ace} 
+\index{Client\+::\+Internet@{Client\+::\+Internet}!ConnectI@{ConnectI}}
+\index{ConnectI@{ConnectI}!Client\+::\+Internet@{Client\+::\+Internet}}
+\subsubsection{\texorpdfstring{Connect\+I()}{ConnectI()}}
+{\footnotesize\ttfamily void Client.\+Internet.\+ConnectI (\begin{DoxyParamCaption}\item[{int}]{posl\+Time,  }\item[{int}]{limit,  }\item[{string}]{path\+File,  }\item[{string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Этот метод получает последнее время сохраненное в файле, путь и валюту для запроса на сервер за данными и их сохранение в локальный файл 
+
+
+\begin{DoxyParams}{Parameters}
+{\em posl\+Time} & Последнее сохранившиеся время\\
+\hline
+{\em limit} & Предел кол-\/ва записей с сервера\\
+\hline
+{\em path\+File} & Путь к файлу\\
+\hline
+{\em value} & Выбранная котировка\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_internet_afeff19924124e7ca32b7509d4b055610}{}\label{class_client_1_1_internet_afeff19924124e7ca32b7509d4b055610} 
+\index{Client\+::\+Internet@{Client\+::\+Internet}!Connect\+I\+BD@{Connect\+I\+BD}}
+\index{Connect\+I\+BD@{Connect\+I\+BD}!Client\+::\+Internet@{Client\+::\+Internet}}
+\subsubsection{\texorpdfstring{Connect\+I\+B\+D()}{ConnectIBD()}}
+{\footnotesize\ttfamily string Client.\+Internet.\+Connect\+I\+BD (\begin{DoxyParamCaption}\item[{int}]{posl\+Time,  }\item[{int}]{limit,  }\item[{string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+Этот метод получает последнее время сохраненное в файле, путь и валюту для запроса на сервер за данными и их сохранение в локальный файл 
+
+
+\begin{DoxyParams}{Parameters}
+{\em posl\+Time} & Последнее сохранившиеся время\\
+\hline
+{\em limit} & Предел кол-\/ва записей с сервера\\
+\hline
+{\em value} & Выбранная котировка\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_internet_a7264aa476ec385c1cb78e21e6c011f18}{}\label{class_client_1_1_internet_a7264aa476ec385c1cb78e21e6c011f18} 
+\index{Client\+::\+Internet@{Client\+::\+Internet}!First\+Connect@{First\+Connect}}
+\index{First\+Connect@{First\+Connect}!Client\+::\+Internet@{Client\+::\+Internet}}
+\subsubsection{\texorpdfstring{First\+Connect()}{FirstConnect()}}
+{\footnotesize\ttfamily void Client.\+Internet.\+First\+Connect (\begin{DoxyParamCaption}\item[{string}]{value,  }\item[{string}]{path\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Этот метод находит из файла последнее время котировки и делает запрос на сайт сохраняя в тот же файл 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+File} & Путь к файлу\\
+\hline
+{\em value} & Выбранная котировка\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_internet_acb1ebd5d0e24109a5bf17ffc40d3b4d9}{}\label{class_client_1_1_internet_acb1ebd5d0e24109a5bf17ffc40d3b4d9} 
+\index{Client\+::\+Internet@{Client\+::\+Internet}!First\+Connect\+BD@{First\+Connect\+BD}}
+\index{First\+Connect\+BD@{First\+Connect\+BD}!Client\+::\+Internet@{Client\+::\+Internet}}
+\subsubsection{\texorpdfstring{First\+Connect\+B\+D()}{FirstConnectBD()}}
+{\footnotesize\ttfamily string Client.\+Internet.\+First\+Connect\+BD (\begin{DoxyParamCaption}\item[{string}]{value,  }\item[{string}]{path\+File,  }\item[{int}]{number,  }\item[{string}]{patch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Этот метод находит из базы данных последнее время котировки и делает запрос на сайт и сохраняет в БД 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+File} & Путь к файлу\\
+\hline
+{\em value} & Выбранная котировка\\
+\hline
+{\em number} & кол-\/во чисел\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_internet_ac5dffd376bcb63c31d30e676c42ea16b}{}\label{class_client_1_1_internet_ac5dffd376bcb63c31d30e676c42ea16b} 
+\index{Client\+::\+Internet@{Client\+::\+Internet}!Reqest\+Inet@{Reqest\+Inet}}
+\index{Reqest\+Inet@{Reqest\+Inet}!Client\+::\+Internet@{Client\+::\+Internet}}
+\subsubsection{\texorpdfstring{Reqest\+Inet()}{ReqestInet()}}
+{\footnotesize\ttfamily bool Client.\+Internet.\+Reqest\+Inet (\begin{DoxyParamCaption}\item[{string}]{value,  }\item[{bool}]{internet\+Action\+Finished }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Этот метод проверяет интернет соединение и переводит программу в автономный режим в случае его отсутсвия + 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Название котировки\\
+\hline
+{\em internet\+Action\+Finished} & оповещении о Окончание запроса \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_internet_a17349606c7aad5494e14ec2f216b6b3b}{}\label{class_client_1_1_internet_a17349606c7aad5494e14ec2f216b6b3b} 
+\index{Client\+::\+Internet@{Client\+::\+Internet}!Task\+Connect@{Task\+Connect}}
+\index{Task\+Connect@{Task\+Connect}!Client\+::\+Internet@{Client\+::\+Internet}}
+\subsubsection{\texorpdfstring{Task\+Connect()}{TaskConnect()}}
+{\footnotesize\ttfamily string Client.\+Internet.\+Task\+Connect (\begin{DoxyParamCaption}\item[{string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод загрузки данных + 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Котировка\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_internet_a9dd75df149ccd3f37a7808371734df6e}{}\label{class_client_1_1_internet_a9dd75df149ccd3f37a7808371734df6e} 
+\index{Client\+::\+Internet@{Client\+::\+Internet}!Try\+Con@{Try\+Con}}
+\index{Try\+Con@{Try\+Con}!Client\+::\+Internet@{Client\+::\+Internet}}
+\subsubsection{\texorpdfstring{Try\+Con()}{TryCon()}}
+{\footnotesize\ttfamily bool Client.\+Internet.\+Try\+Con (\begin{DoxyParamCaption}\item[{string}]{value,  }\item[{object}]{sync,  }\item[{bool}]{internet\+Action\+Finished }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Этот метод проверяет интернет соединение и переводит программу в автономный режим в случае его отсутсвия + 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Название котировки\\
+\hline
+{\em object} & \\
+\hline
+{\em internet\+Action\+Finished} & оповещении о Окончание запроса \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/саша/\+Documents/\+Visual Studio 2015/\+Projects/\+Forex2.\+0/\+Client/Internet.\+cs\end{DoxyCompactItemize}

@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['schartclosing',['SChartClosing',['../class_client_1_1_main_form.html#aa9598c4369dac295d4c45455ca7133f4',1,'Client::MainForm']]],
+  ['scopey',['scopeY',['../class_client_1_1_graph_y.html#ad6d507d05b33972eeeda5c3fe8f4354a',1,'Client::GraphY']]],
+  ['secondconect',['SecondConect',['../class_client_1_1_windowd.html#acf6504da17d839fd206b3fe0710db4ec',1,'Client::Windowd']]],
+  ['sell',['SELL',['../class_client_1_1_windowd.html#a1616dcfb8b780f2ff45f74a76cb7d997',1,'Client.Windowd.SELL()'],['../class_client_1_1_quotes.html#a1698632e2256c00f24b93f2522873543',1,'Client.Quotes.Sell()']]],
+  ['set',['Set',['../class_client_1_1_directory_work.html#a42fbcc188b41ea61bdb1cc67397b2c69',1,'Client.DirectoryWork.Set()'],['../class_client_1_1_file_inspection.html#a10b45d302a1a339e008f14b66f071889',1,'Client.FileInspection.Set()']]],
+  ['setting',['Setting',['../class_client_1_1_setting.html',1,'Client']]],
+  ['setting',['Setting',['../class_client_1_1_setting.html#a733582576c54cf20fd2437cd1240a97c',1,'Client::Setting']]],
+  ['show',['Show',['../class_client_1_1_line_coord.html#a8092ccedc304ed8cecfb386016efe877',1,'Client::LineCoord']]],
+  ['sizelinecoord',['sizeLineCoord',['../class_client_1_1_line_coord.html#a5fdd32f8f5936850de0e1a0836914468',1,'Client::LineCoord']]],
+  ['splice',['Splice',['../class_client_1_1_splice.html',1,'Client']]],
+  ['start',['start',['../class_client_1_1_zoom_s.html#aa616e068719d96465c5807c6c1b50eac',1,'Client::ZoomS']]],
+  ['support',['Support',['../class_client_1_1_support.html',1,'Client']]],
+  ['support',['Support',['../class_client_1_1_support.html#a804e4ee7bda6034926efbb589a81b25c',1,'Client::Support']]],
+  ['svoistvo_5fgraphic',['Svoistvo_graphic',['../class_client_1_1_line_coord.html#ade37bc49a7a9e2daaec818e4dd3a275f',1,'Client::LineCoord']]],
+  ['svoistvo_5fkoordpoint',['Svoistvo_koordPoint',['../class_client_1_1_min_max.html#a4e646297b322a42a8ccf70187a6ed257',1,'Client::MinMax']]],
+  ['svoistvo_5flab_5fcur',['Svoistvo_lab_Cur',['../class_client_1_1_line_coord.html#a419f0d51c6a6ab8755f5313acf10edd7',1,'Client::LineCoord']]],
+  ['svoistvo_5flabel_5fx',['Svoistvo_label_X',['../class_client_1_1_line_coord.html#ab896e31d73c3bd32bbec4c389b075f19',1,'Client::LineCoord']]],
+  ['svoistvo_5flabel_5fy',['Svoistvo_label_Y',['../class_client_1_1_line_coord.html#a78a8315868d88677c9780a1025bfc604',1,'Client::LineCoord']]],
+  ['svoistvo_5fxs',['Svoistvo_xS',['../class_client_1_1_line_coord.html#a8008869c1c2c60c6d1236f80200c383e',1,'Client::LineCoord']]],
+  ['svoistvo_5fys',['Svoistvo_yS',['../class_client_1_1_line_coord.html#a71bf6f4176e9f7becd572f44f1d4948f',1,'Client::LineCoord']]],
+  ['swindow',['SWindow',['../class_client_1_1_s_window.html#a7688faaaf1b0ea097066142fc9d90326',1,'Client::SWindow']]],
+  ['swindow',['SWindow',['../class_client_1_1_s_window.html',1,'Client']]],
+  ['swindowclosing',['SWindowClosing',['../class_client_1_1_main_form.html#a623ae96ca11ba63ec5ecb191edf2fab0',1,'Client::MainForm']]]
+];

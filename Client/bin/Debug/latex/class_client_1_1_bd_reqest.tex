@@ -1,0 +1,155 @@
+\hypertarget{class_client_1_1_bd_reqest}{}\section{Client.\+Bd\+Reqest Class Reference}
+\label{class_client_1_1_bd_reqest}\index{Client.\+Bd\+Reqest@{Client.\+Bd\+Reqest}}
+
+
+Класс для работы с объектом база данных  
+
+
+Inheritance diagram for Client.\+Bd\+Reqest\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_client_1_1_bd_reqest}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_client_1_1_bd_reqest_a782e678c91671039896a90ac999b8966}{Bd\+Reqest} (string \+\_\+patch)
+\begin{DoxyCompactList}\small\item\em Конструктор запросов для объекта БД \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_bd_reqest_ab782415f646f42b5c4e64b74d68d0bcf}{Command\+Select} (ref List$<$ int $>$ ListT, ref List$<$ double $>$ ListB, ref List$<$ double $>$ ListS, string Value, Sql\+Connection con)
+\begin{DoxyCompactList}\small\item\em Запрос на извлечение данных \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_bd_reqest_ad9b512bdcefe04563e937ab9edb0864d}{Command\+Select} (ref List$<$ int $>$ ListT, string Value, Sql\+Connection con)
+\begin{DoxyCompactList}\small\item\em Запрос последнего времени из бд \end{DoxyCompactList}\item 
+int \hyperlink{class_client_1_1_bd_reqest_ac978622ddc77c5198af52e5fccefdcc2}{last\+Time} (string Value, Sql\+Connection con)
+\begin{DoxyCompactList}\small\item\em Запрос последнего времени из бд \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_bd_reqest_ae9e0d4839d82d8e9573d867d9dfd8755}{Insert} (string Value, List$<$ int $>$ Time, List$<$ double $>$ Buy, List$<$ double $>$ Sell, Sql\+Connection con)
+\begin{DoxyCompactList}\small\item\em Запрос на добавлени данных \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_bd_reqest_aa429c52005707d06a7df660f3dc6eb62}{form\+Insert} (int Time, double Bid, double Ask, string Value, Sql\+Connection con)
+\begin{DoxyCompactList}\small\item\em Запрос на добавлени данных \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Класс для работы с объектом база данных 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_client_1_1_bd_reqest_a782e678c91671039896a90ac999b8966}{}\label{class_client_1_1_bd_reqest_a782e678c91671039896a90ac999b8966} 
+\index{Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}!Bd\+Reqest@{Bd\+Reqest}}
+\index{Bd\+Reqest@{Bd\+Reqest}!Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}}
+\subsubsection{\texorpdfstring{Bd\+Reqest()}{BdReqest()}}
+{\footnotesize\ttfamily Client.\+Bd\+Reqest.\+Bd\+Reqest (\begin{DoxyParamCaption}\item[{string}]{\+\_\+patch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Конструктор запросов для объекта БД 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+patch} & Путь к БД\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_client_1_1_bd_reqest_ab782415f646f42b5c4e64b74d68d0bcf}{}\label{class_client_1_1_bd_reqest_ab782415f646f42b5c4e64b74d68d0bcf} 
+\index{Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}!Command\+Select@{Command\+Select}}
+\index{Command\+Select@{Command\+Select}!Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}}
+\subsubsection{\texorpdfstring{Command\+Select()}{CommandSelect()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Client.\+Bd\+Reqest.\+Command\+Select (\begin{DoxyParamCaption}\item[{ref List$<$ int $>$}]{ListT,  }\item[{ref List$<$ double $>$}]{ListB,  }\item[{ref List$<$ double $>$}]{ListS,  }\item[{string}]{Value,  }\item[{Sql\+Connection}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Запрос на извлечение данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ListT} & Лист времени\\
+\hline
+{\em ListB} & Лист покупок\\
+\hline
+{\em ListS} & Лист продаж\\
+\hline
+{\em Value} & Наименование котировки\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_bd_reqest_ad9b512bdcefe04563e937ab9edb0864d}{}\label{class_client_1_1_bd_reqest_ad9b512bdcefe04563e937ab9edb0864d} 
+\index{Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}!Command\+Select@{Command\+Select}}
+\index{Command\+Select@{Command\+Select}!Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}}
+\subsubsection{\texorpdfstring{Command\+Select()}{CommandSelect()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Client.\+Bd\+Reqest.\+Command\+Select (\begin{DoxyParamCaption}\item[{ref List$<$ int $>$}]{ListT,  }\item[{string}]{Value,  }\item[{Sql\+Connection}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Запрос последнего времени из бд 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ListT} & Наименование котировки\\
+\hline
+{\em Value} & Наименование котировки\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_bd_reqest_aa429c52005707d06a7df660f3dc6eb62}{}\label{class_client_1_1_bd_reqest_aa429c52005707d06a7df660f3dc6eb62} 
+\index{Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}!form\+Insert@{form\+Insert}}
+\index{form\+Insert@{form\+Insert}!Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}}
+\subsubsection{\texorpdfstring{form\+Insert()}{formInsert()}}
+{\footnotesize\ttfamily void Client.\+Bd\+Reqest.\+form\+Insert (\begin{DoxyParamCaption}\item[{int}]{Time,  }\item[{double}]{Bid,  }\item[{double}]{Ask,  }\item[{string}]{Value,  }\item[{Sql\+Connection}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Запрос на добавлени данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Value} & Наименование котировки\\
+\hline
+{\em Time} & Время\\
+\hline
+{\em Buy} & Покупка\\
+\hline
+{\em Sell} & Продажа\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_bd_reqest_ae9e0d4839d82d8e9573d867d9dfd8755}{}\label{class_client_1_1_bd_reqest_ae9e0d4839d82d8e9573d867d9dfd8755} 
+\index{Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}!Insert@{Insert}}
+\index{Insert@{Insert}!Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}}
+\subsubsection{\texorpdfstring{Insert()}{Insert()}}
+{\footnotesize\ttfamily void Client.\+Bd\+Reqest.\+Insert (\begin{DoxyParamCaption}\item[{string}]{Value,  }\item[{List$<$ int $>$}]{Time,  }\item[{List$<$ double $>$}]{Buy,  }\item[{List$<$ double $>$}]{Sell,  }\item[{Sql\+Connection}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Запрос на добавлени данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Value} & Наименование котировки\\
+\hline
+{\em Time} & Время\\
+\hline
+{\em Buy} & Покупка\\
+\hline
+{\em Sell} & Продажа\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_bd_reqest_ac978622ddc77c5198af52e5fccefdcc2}{}\label{class_client_1_1_bd_reqest_ac978622ddc77c5198af52e5fccefdcc2} 
+\index{Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}!last\+Time@{last\+Time}}
+\index{last\+Time@{last\+Time}!Client\+::\+Bd\+Reqest@{Client\+::\+Bd\+Reqest}}
+\subsubsection{\texorpdfstring{last\+Time()}{lastTime()}}
+{\footnotesize\ttfamily int Client.\+Bd\+Reqest.\+last\+Time (\begin{DoxyParamCaption}\item[{string}]{Value,  }\item[{Sql\+Connection}]{con }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Запрос последнего времени из бд 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Value} & Наименование котировки\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/саша/\+Documents/\+Visual Studio 2015/\+Projects/\+Forex2.\+0/\+Client/Bd\+Reqest.\+cs\end{DoxyCompactItemize}
