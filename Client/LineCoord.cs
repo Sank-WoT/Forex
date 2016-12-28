@@ -19,12 +19,25 @@
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
-   public class LineCoord
+
+    /// <summary>
+    /// Класс отвечающий за координатные линии
+    /// </summary>
+    public class LineCoord
     {
+        /// <summary>
+        ///размеры экрана по икс
+        /// </summary>
         private double xS;
+        /// <summary>
+        ///размеры экрана по y
+        /// </summary>
         private double  yS;
         private double _fX;
         private double _fY;
+        /// <summary>
+        /// свойство размеры экрана по икс x
+        /// </summary>
         public double Svoistvo_xS
         {
             get
@@ -37,7 +50,9 @@
                 xS = value;
             }
         }
-
+        /// <summary>
+        ///свойство размеры экрана по икс y
+        /// </summary>
         public double Svoistvo_yS
         {
             get
@@ -76,8 +91,13 @@
                 _fY = value;
             }
         }
-
+        /// <summary>
+        /// линия по x
+        /// </summary>
         Label _label_X;
+        /// <summary>
+        /// свойство линии по x
+        /// </summary>
         public Label Svoistvo_label_X
         {
             get
@@ -90,7 +110,13 @@
                 _label_X = value;
             }
         }
+        /// <summary>
+        /// линия по y
+        /// </summary>
         Label _label_Y;
+        /// <summary>
+        /// свойство линии по y
+        /// </summary>
         public Label Svoistvo_label_Y
         {
             get
@@ -103,7 +129,13 @@
                 _label_Y = value;
             }
         }
+        /// <summary>
+        /// линия отображающая данные
+        /// </summary>
         Label _lab_Cur;
+        /// <summary>
+        /// свойство линии отображающей данные
+        /// </summary>
         public Label Svoistvo_lab_Cur
         {
             get
@@ -116,7 +148,13 @@
                 _lab_Cur = value;
             }
         }
+        /// <summary>
+        /// график
+        /// </summary>
         Chart _graphic;
+        /// <summary>
+        /// свойство график
+        /// </summary>
         public Chart Svoistvo_graphic
         {
             get

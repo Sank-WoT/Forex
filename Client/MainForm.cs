@@ -15,23 +15,52 @@
     /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Реализация объекта работы с файлами
+        /// </summary>
         WorkFile workFile = new WorkFile();
+        /// <summary>
+        /// высота экрана 
+        /// </summary>
         double xS;
+        /// <summary>
+        /// ширина экрана 
+        /// </summary>
         double yS;
+        /// <summary>
+        /// Объект синх 
+        /// </summary>
         private object sync = new object();
         private bool internetActionFinished = false;
+        /// <summary>
+        /// Таски для работы с валютами 
+        /// </summary>
         Task tConnect, tEurusd, tUsdjpy;
         #region Переменные закрытия окон
-        // Переменная отвечающая за закрытое окной HelpClosing
+        /// <summary>
+        /// поле отвечающая за закрытое окной Help
+        /// </summary>
         public static bool HelpClosing = true;
-        // Переменная отвечающая за закрытое окной SWindowClosing
+        /// <summary>
+        /// поле отвечающая за закрытое окной SWindow
+        /// </summary>
         public static bool SWindowClosing = true;
-        // Переменная отвечающая за закрытое окной WindowClosing
-        public static bool WindowClosingEURUSD = true; 
+        /// <summary>
+        /// поле отвечающая за закрытое окной Window
+        /// </summary>
+        public static bool WindowClosingEURUSD = true;
+        /// <summary>
+        /// поле отвечающая за закрытое окной USDJPY
+        /// </summary>
         public static bool WindowClosingUSDJPY = true;
-        // Переменная отвечающая за закрытое окной SChartClosing 
+        /// <summary>
+        /// поле отвечающая за закрытое окной SChar 
+        /// </summary>
         public static bool SChartClosing = true;
         public List<string> valueP = new List<string>();
+        /// <summary>
+        /// реализация окна валюты
+        /// </summary>
         public List<Windowd> windows = new List<Windowd>();
         #endregion
 
@@ -115,10 +144,8 @@
         /// <param name="e">EventArgs</param>
         public void EURUSDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // ожидание загрузки
-            Tasks(tConnect, tEurusd);
             // создание окна
-            createWindow(WindowClosingUSDJPY, "eurusd");
+            createWindow(tEurusd, WindowClosingUSDJPY, "eurusd");
         }
 
         /// <summary>
@@ -128,10 +155,8 @@
         /// <param name="e">EventArgs</param>
         public void USDJPYToolStripMenuItem_Click(object sender, EventArgs e)
         {   
-            // ожидание загрузки
-            Tasks(tConnect, tUsdjpy);
             // создание окна
-            createWindow( WindowClosingUSDJPY, "usdjpy");
+            createWindow(tUsdjpy, WindowClosingUSDJPY, "usdjpy");
         }
 
         /// <summary>
@@ -141,10 +166,10 @@
         /// <param name="tLoadquotes">Таск погрузки данных</param>
         /// <param name="closeWindow"></param>
         ///<param name="value">наименование котировки</param>
-        public bool createWindow(bool closeWindow, string value)
+        public bool createWindow(Task TQoute, bool closeWindow, string value)
         {
             int x = 0, y = 0;
-
+            Tasks(tConnect, TQoute);
             if (closeWindow == true)
             {
                 // чтение из файла и присвоение размеров X,Y
@@ -303,24 +328,6 @@
             MessageBox.Show("                             Creators \n\nSerobabov Alexandr - executive Director \nBondarev Alexandr -  executive Director\nTamarenko Andrey - specialist in web technologies\n\n ©Product Project Mordor"); // сообщение о создании директории
         }
 
-        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void CurrencyPairsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
                 quotesList.Items.Add(windows[0].poslchisloBuy); 
@@ -328,18 +335,11 @@
 
         private void radImageItem1_Click(object sender, EventArgs e)
         {
-            Tasks(tConnect, tEurusd);
-            createWindow(WindowClosingUSDJPY, "eurusd");
+            createWindow(tEurusd, WindowClosingUSDJPY, "eurusd");
         }
         private void radImageIteь2_Click(object sender, EventArgs e)
         {
-            Tasks(tConnect, tUsdjpy);
-            createWindow(WindowClosingUSDJPY, "usdjpy");
-        }
-
-        private void radCarousel1_SelectedItemChanged(object sender, EventArgs e)
-        {
-
+            createWindow(tUsdjpy, WindowClosingUSDJPY, "usdjpy");
         }
 
         /// <summary>

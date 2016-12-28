@@ -1,0 +1,223 @@
+\hypertarget{class_client_1_1_line_coord}{}\section{Client.\+Line\+Coord Class Reference}
+\label{class_client_1_1_line_coord}\index{Client.\+Line\+Coord@{Client.\+Line\+Coord}}
+
+
+Класс отвечающий за координатные линии  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_client_1_1_line_coord_a0cbce126477bfbcd61f7f717bdc0f5fd}{Line\+Coord} (int x, int y, double fX, double fy, Label lab\+\_\+\+Cur, Label label\+\_\+Y, Label label\+\_\+X, ref Chart graphic)
+\begin{DoxyCompactList}\small\item\em Конструктор для линий и лабел + \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_line_coord_a4009afb548e23a911cae4238935d8f07}{Ob\+Linecoord} (Label lab\+\_\+\+Cur, Label label\+\_\+Y, Label label\+\_\+X, ref Chart graphic)
+\begin{DoxyCompactList}\small\item\em Присвоение лабел и чарт + \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_line_coord_a5fdd32f8f5936850de0e1a0836914468}{size\+Line\+Coord} (int x, int y, double fX, double fy)
+\begin{DoxyCompactList}\small\item\em Подстраивание размеров под экран + \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_line_coord_a8092ccedc304ed8cecfb386016efe877}{Show} (Check\+Box check\+Box\+Line\+Coord)
+\begin{DoxyCompactList}\small\item\em Проверка активации чек бокса и отображение линий + \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_line_coord_a525dfa0064c415a6317312e7fcfae88f}{chart1\+\_\+\+Mouse\+Move} (object sender, Mouse\+Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Событие отвечающие за наведение мыши с помощью линий \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_client_1_1_line_coord_a8008869c1c2c60c6d1236f80200c383e}{Svoistvo\+\_\+xS}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em свойство размеры экрана по икс x \end{DoxyCompactList}\item 
+double \hyperlink{class_client_1_1_line_coord_a71bf6f4176e9f7becd572f44f1d4948f}{Svoistvo\+\_\+yS}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em свойство размеры экрана по икс y \end{DoxyCompactList}\item 
+\hypertarget{class_client_1_1_line_coord_a3c39c4ced2b59ddbe0ab9960a456bf72}{}\label{class_client_1_1_line_coord_a3c39c4ced2b59ddbe0ab9960a456bf72} 
+double {\bfseries Svoistvo\+\_\+fX}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\hypertarget{class_client_1_1_line_coord_a830f017bd6a6606bc5efd1515cf3fc97}{}\label{class_client_1_1_line_coord_a830f017bd6a6606bc5efd1515cf3fc97} 
+double {\bfseries Svoistvo\+\_\+fY}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Label \hyperlink{class_client_1_1_line_coord_ab896e31d73c3bd32bbec4c389b075f19}{Svoistvo\+\_\+label\+\_\+X}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em свойство линии по x \end{DoxyCompactList}\item 
+Label \hyperlink{class_client_1_1_line_coord_a78a8315868d88677c9780a1025bfc604}{Svoistvo\+\_\+label\+\_\+Y}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em свойство линии по y \end{DoxyCompactList}\item 
+Label \hyperlink{class_client_1_1_line_coord_a419f0d51c6a6ab8755f5313acf10edd7}{Svoistvo\+\_\+lab\+\_\+\+Cur}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em свойство линии отображающей данные \end{DoxyCompactList}\item 
+Chart \hyperlink{class_client_1_1_line_coord_ade37bc49a7a9e2daaec818e4dd3a275f}{Svoistvo\+\_\+graphic}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em свойство график \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Класс отвечающий за координатные линии 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_client_1_1_line_coord_a0cbce126477bfbcd61f7f717bdc0f5fd}{}\label{class_client_1_1_line_coord_a0cbce126477bfbcd61f7f717bdc0f5fd} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!Line\+Coord@{Line\+Coord}}
+\index{Line\+Coord@{Line\+Coord}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{Line\+Coord()}{LineCoord()}}
+{\footnotesize\ttfamily Client.\+Line\+Coord.\+Line\+Coord (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{double}]{fX,  }\item[{double}]{fy,  }\item[{Label}]{lab\+\_\+\+Cur,  }\item[{Label}]{label\+\_\+Y,  }\item[{Label}]{label\+\_\+X,  }\item[{ref Chart}]{graphic }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Конструктор для линий и лабел + 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & размеры экрана по икс\\
+\hline
+{\em y} & размеры экрана по игрик\\
+\hline
+{\em fy} & \\
+\hline
+{\em fx} & \\
+\hline
+{\em lab\+\_\+\+Cur} & Курс в точке\\
+\hline
+{\em label\+\_\+Y} & Линия по Y\\
+\hline
+{\em label\+\_\+X} & Линия по X\\
+\hline
+{\em graphic} & Chart\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_client_1_1_line_coord_a525dfa0064c415a6317312e7fcfae88f}{}\label{class_client_1_1_line_coord_a525dfa0064c415a6317312e7fcfae88f} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!chart1\+\_\+\+Mouse\+Move@{chart1\+\_\+\+Mouse\+Move}}
+\index{chart1\+\_\+\+Mouse\+Move@{chart1\+\_\+\+Mouse\+Move}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{chart1\+\_\+\+Mouse\+Move()}{chart1\_MouseMove()}}
+{\footnotesize\ttfamily void Client.\+Line\+Coord.\+chart1\+\_\+\+Mouse\+Move (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Mouse\+Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Событие отвечающие за наведение мыши с помощью линий 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & чек бокс отвечающий за активацию линий\\
+\hline
+{\em sender} & чек бокс отвечающий за активацию линий\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_line_coord_a4009afb548e23a911cae4238935d8f07}{}\label{class_client_1_1_line_coord_a4009afb548e23a911cae4238935d8f07} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!Ob\+Linecoord@{Ob\+Linecoord}}
+\index{Ob\+Linecoord@{Ob\+Linecoord}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{Ob\+Linecoord()}{ObLinecoord()}}
+{\footnotesize\ttfamily void Client.\+Line\+Coord.\+Ob\+Linecoord (\begin{DoxyParamCaption}\item[{Label}]{lab\+\_\+\+Cur,  }\item[{Label}]{label\+\_\+Y,  }\item[{Label}]{label\+\_\+X,  }\item[{ref Chart}]{graphic }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Присвоение лабел и чарт + 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lab\+\_\+\+Cur} & Курс в точке\\
+\hline
+{\em label\+\_\+Y} & Линия по Y\\
+\hline
+{\em label\+\_\+X} & Линия по X\\
+\hline
+{\em graphic} & Chart\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_line_coord_a8092ccedc304ed8cecfb386016efe877}{}\label{class_client_1_1_line_coord_a8092ccedc304ed8cecfb386016efe877} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!Show@{Show}}
+\index{Show@{Show}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{Show()}{Show()}}
+{\footnotesize\ttfamily void Client.\+Line\+Coord.\+Show (\begin{DoxyParamCaption}\item[{Check\+Box}]{check\+Box\+Line\+Coord }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Проверка активации чек бокса и отображение линий + 
+
+
+\begin{DoxyParams}{Parameters}
+{\em check\+Box\+Line\+Coord} & чек бокс отвечающий за активацию линий\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_line_coord_a5fdd32f8f5936850de0e1a0836914468}{}\label{class_client_1_1_line_coord_a5fdd32f8f5936850de0e1a0836914468} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!size\+Line\+Coord@{size\+Line\+Coord}}
+\index{size\+Line\+Coord@{size\+Line\+Coord}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{size\+Line\+Coord()}{sizeLineCoord()}}
+{\footnotesize\ttfamily void Client.\+Line\+Coord.\+size\+Line\+Coord (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{double}]{fX,  }\item[{double}]{fy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Подстраивание размеров под экран + 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & размеры экрана по икс\\
+\hline
+{\em y} & размеры экрана по игрик\\
+\hline
+{\em fy} & \\
+\hline
+{\em fx} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Property Documentation}
+\hypertarget{class_client_1_1_line_coord_ade37bc49a7a9e2daaec818e4dd3a275f}{}\label{class_client_1_1_line_coord_ade37bc49a7a9e2daaec818e4dd3a275f} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!Svoistvo\+\_\+graphic@{Svoistvo\+\_\+graphic}}
+\index{Svoistvo\+\_\+graphic@{Svoistvo\+\_\+graphic}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{Svoistvo\+\_\+graphic}{Svoistvo\_graphic}}
+{\footnotesize\ttfamily Chart Client.\+Line\+Coord.\+Svoistvo\+\_\+graphic\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+свойство график 
+
+\hypertarget{class_client_1_1_line_coord_a419f0d51c6a6ab8755f5313acf10edd7}{}\label{class_client_1_1_line_coord_a419f0d51c6a6ab8755f5313acf10edd7} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!Svoistvo\+\_\+lab\+\_\+\+Cur@{Svoistvo\+\_\+lab\+\_\+\+Cur}}
+\index{Svoistvo\+\_\+lab\+\_\+\+Cur@{Svoistvo\+\_\+lab\+\_\+\+Cur}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{Svoistvo\+\_\+lab\+\_\+\+Cur}{Svoistvo\_lab\_Cur}}
+{\footnotesize\ttfamily Label Client.\+Line\+Coord.\+Svoistvo\+\_\+lab\+\_\+\+Cur\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+свойство линии отображающей данные 
+
+\hypertarget{class_client_1_1_line_coord_ab896e31d73c3bd32bbec4c389b075f19}{}\label{class_client_1_1_line_coord_ab896e31d73c3bd32bbec4c389b075f19} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!Svoistvo\+\_\+label\+\_\+X@{Svoistvo\+\_\+label\+\_\+X}}
+\index{Svoistvo\+\_\+label\+\_\+X@{Svoistvo\+\_\+label\+\_\+X}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{Svoistvo\+\_\+label\+\_\+X}{Svoistvo\_label\_X}}
+{\footnotesize\ttfamily Label Client.\+Line\+Coord.\+Svoistvo\+\_\+label\+\_\+X\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+свойство линии по x 
+
+\hypertarget{class_client_1_1_line_coord_a78a8315868d88677c9780a1025bfc604}{}\label{class_client_1_1_line_coord_a78a8315868d88677c9780a1025bfc604} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!Svoistvo\+\_\+label\+\_\+Y@{Svoistvo\+\_\+label\+\_\+Y}}
+\index{Svoistvo\+\_\+label\+\_\+Y@{Svoistvo\+\_\+label\+\_\+Y}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{Svoistvo\+\_\+label\+\_\+Y}{Svoistvo\_label\_Y}}
+{\footnotesize\ttfamily Label Client.\+Line\+Coord.\+Svoistvo\+\_\+label\+\_\+Y\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+свойство линии по y 
+
+\hypertarget{class_client_1_1_line_coord_a8008869c1c2c60c6d1236f80200c383e}{}\label{class_client_1_1_line_coord_a8008869c1c2c60c6d1236f80200c383e} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!Svoistvo\+\_\+xS@{Svoistvo\+\_\+xS}}
+\index{Svoistvo\+\_\+xS@{Svoistvo\+\_\+xS}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{Svoistvo\+\_\+xS}{Svoistvo\_xS}}
+{\footnotesize\ttfamily double Client.\+Line\+Coord.\+Svoistvo\+\_\+xS\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+свойство размеры экрана по икс x 
+
+\hypertarget{class_client_1_1_line_coord_a71bf6f4176e9f7becd572f44f1d4948f}{}\label{class_client_1_1_line_coord_a71bf6f4176e9f7becd572f44f1d4948f} 
+\index{Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}!Svoistvo\+\_\+yS@{Svoistvo\+\_\+yS}}
+\index{Svoistvo\+\_\+yS@{Svoistvo\+\_\+yS}!Client\+::\+Line\+Coord@{Client\+::\+Line\+Coord}}
+\subsubsection{\texorpdfstring{Svoistvo\+\_\+yS}{Svoistvo\_yS}}
+{\footnotesize\ttfamily double Client.\+Line\+Coord.\+Svoistvo\+\_\+yS\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+свойство размеры экрана по икс y 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/саша/\+Documents/\+Visual Studio 2015/\+Projects/\+Forex2.\+0/\+Client/Line\+Coord.\+cs\end{DoxyCompactItemize}

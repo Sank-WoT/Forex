@@ -23,3 +23,4 @@ C:\Users\саша\Documents\Visual Studio 2015\Projects\Forex2.0\Client\obj\Debu
 C:\Users\саша\Documents\Visual Studio 2015\Projects\Forex2.0\Client\obj\Debug\Client.pdb
 C:\Users\саша\Documents\Visual Studio 2015\Projects\Forex2.0\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
 C:\Users\саша\Documents\Visual Studio 2015\Projects\Forex2.0\Client\obj\Debug\Client.exe.licenses
+C:\Users\саша\Documents\Visual Studio 2015\Projects\Forex2.0\Client\bin\Debug\Client.XML

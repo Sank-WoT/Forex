@@ -20,11 +20,22 @@
     using Microsoft.Office.Interop.Excel;
     using System.Runtime.InteropServices;
     using Excel = Microsoft.Office.Interop.Excel;
-
-   public class Exel
+    /// <summary>
+    /// Класс отвечающий за работу с Exel
+    /// </summary>
+    public class Exel
     {
+        /// <summary>
+        /// Преобразование окон под различные экраны компьютера
+        /// </summary>
         private Excel.Application ObjExcel;
+        /// <summary>
+        /// Преобразование окон под различные экраны компьютера
+        /// </summary>
         private Excel.Workbook ObjWorkBook;
+        /// <summary>
+        /// Преобразование окон под различные экраны компьютера
+        /// </summary>
         private Excel.Worksheet ObjWorkSheet;
 
         public void ESave(DataGridView dataGridView1)
@@ -32,15 +43,20 @@
              try
             {
                 SaveFileDialog save = new SaveFileDialog();
-                save.Filter = "Файл Excel|*.xls"; 
-                save.ShowDialog(); // Показать диалог сохранения
+                save.Filter = "Файл Excel|*.xls";
+                // Показать диалог сохранения
+                save.ShowDialog(); 
                 string fileName = save.FileName;
-                this.ObjExcel = new Excel.Application(); // Книга.
-                this.ObjWorkBook = this.ObjExcel.Workbooks.Add(System.Reflection.Missing.Value); // Таблица.
-                this.ObjWorkSheet = (Excel.Worksheet)this.ObjWorkBook.Sheets[1]; // цикл cтрока
+                // Книга.
+                this.ObjExcel = new Excel.Application(); 
+                // Таблица.
+                this.ObjWorkBook = this.ObjExcel.Workbooks.Add(System.Reflection.Missing.Value); 
+                // цикл cтрока
+                this.ObjWorkSheet = (Excel.Worksheet)this.ObjWorkBook.Sheets[1]; 
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    DataGridViewRow row = dataGridView1.Rows[i]; // создаем строку
+                { 
+                    // создаем строку
+                    DataGridViewRow row = dataGridView1.Rows[i];
                     // цикл стоблец
                     for (int j = 0; j < row.Cells.Count; j++) 
                     {

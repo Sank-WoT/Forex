@@ -19,6 +19,9 @@ using System.Media;
 
 namespace Client
 {
+    /// <summary>
+    /// Класс отвечающий за работу с файлами
+    /// </summary>
     public class WorkFile : FileInspection
     {
         /// <summary>

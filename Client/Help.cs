@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Client
 {
+    /// <summary>
+    /// Класс отвечающий за  окно Help
+    /// </summary>
     public partial class Help : Form
     {
         public Help()
@@ -22,6 +25,9 @@ namespace Client
         {
 
         }
+        /// <summary>
+        /// событие срабатываемое при нажатии закрытия формы
+        /// </summary>
         private void OnClosing(object sender, FormClosingEventArgs e)
         {
             MainForm.HelpClosing = true;

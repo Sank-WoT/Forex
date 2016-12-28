@@ -20,6 +20,9 @@ using EnumDialogResult = System.Windows.Forms.DialogResult;
 
 namespace Client
 {
+    /// <summary>
+    /// Класс для изменения чарта и задание линий
+    /// </summary>
     class ChartQ
     {
         public ChartQ()

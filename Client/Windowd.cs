@@ -22,48 +22,107 @@ namespace Client
     using EnumDialogResult = System.Windows.Forms.DialogResult;
 
     /// <summary>
-    /// main class EURUSD.
+    /// Форма для взаиможействия с графиками котировок и создания сделок
     /// </summary>
+    /// <param name="quotations"> объект сделка</param>
+    /// <param name="bufferS">Массив покупки</param>
+    /// <param name="tic">текущее время отначала торгов</param>
     public partial class Windowd : Form
     {
-        delegate void MouseMo(object sender, MouseEventArgs e);
-        public int loadPoint = 0;
-        // создать объект сделка
+        /// <summary>
+        ///хранит объект сделка
+        ///</summary>
         Quotes quotations = new Quotes();
-        Task  tMinMax, tInterval;
-
-        public ChartArea area = new ChartArea(); // Создание области
-        System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
-        public int Leaves = 0, Zoom = 100;
-        public double shag = 1; // интервал для координаты X
+        /// <summary>
+        /// таск запуска минимум и максимума 
+        /// </summary>
+        Task tMinMax;
+        /// <summary>
+        /// таск получение точек смены тренда
+        /// </summary>
+        Task tInterval;
+        /// <summary>
+        /// область
+        /// </summary>
+        public ChartArea area = new ChartArea();
+        /// <summary>
+        /// Таймер 
+        /// </summary>
+        System.Windows.Forms.Timer ObjectTimer = new System.Windows.Forms.Timer();
+        /// <summary>
+        /// Количетво рассматривомого времени в Unixtime
+        /// </summary>
+        public int Zoom = 100;
+        /// <summary>
+        /// Количетво рассматривомого времени в Unixtime
+        /// </summary>
+        /// <summary>
+        /// Поле хранящие значение минимума и макс
+        /// </summary>
         public int danoe = 0;
-        public int colvo = 0;
+        /// <summary>
+        /// Содержит наименование валюты
+        /// </summary>
         public string value;
-
+        /// <summary>
+        /// Последнее число продажи
+        /// </summary>
         public double poslchisloSell;
+        /// <summary>
+        /// Последнее число покупкки
+        /// </summary>
         public double poslchisloBuy;
+        /// <summary>
+        /// Поле хранящее конект 
+        /// </summary>
         public bool inet;
-        public bool poluch = false;
-
+        /// <summary>
+        /// Поле хранящее конект 
+        /// </summary>
+        /// <summary>
+        /// лист объектов хранящий покупки
+        /// </summary>
         public List<Deal> BUY = new List<Deal>();
+        /// <summary>
+        /// лист объектов хранящий продажи
+        /// </summary>
         public List<Deal> SELL = new List<Deal>();
         List<double> massY = new List<double>();
-        // лист значений отношения валюты по покупке из файла
+        /// <summary>
+        /// лист значений отношения валюты по покупке из файла
+        /// </summary>
         List<double> massYFileBuy = new List<double>();
-        // лист значений отношения валюты по продаже из файла
-        List<double> massYFileSell = new List<double>(); 
-        List<int> Times = new List<int>(); 
-        // лист времени
+        /// <summary>
+        /// лист значений отношения валюты по продаже из файла
+        /// </summary>
+        List<double> massYFileSell = new List<double>();
+        /// <summary>
+        /// время в UnixTime
+        /// </summary>
+        List<int> Times = new List<int>();
+        /// <summary>
+        /// Буфферное значение покупки
+        /// </summary>
         public List<double> BufferB = new List<double>();
+        /// <summary>
+        /// Буфферное значение продажи
+        /// </summary>
         public List<double> BufferS = new List<double>();
-        // буфферное время
+        /// <summary>
+        /// Буфферное значение времени
+        /// </summary>
         public List<DateTime> DBUF = new List<DateTime>();
-        // время из интернета
+        /// <summary>
+        ///  значение времени с интернета
+        /// </summary>
         public List<DateTime> DINET = new List<DateTime>();
-
-        public List<double> sred = new List<double>(); // Точки по X SMA
-        // Переменная отслеживающая кол-во прошедших секунд с запуска формы
-        public int tic = 0; 
+        /// <summary>
+        /// Поле отслеживающие кол-во прошедших секунд с запуска формы
+        /// </summary>
+        public int tic = 0;
+        /// <summary>
+        /// ПОбъект синх
+        /// </summary>
         private object sync = new object();
         private bool internetActionFinished = false;
         private bool internetInitialized = false;
@@ -71,13 +130,21 @@ namespace Client
         // Класс методов
         Methods cEURUSD = new Methods();
         #region Параметры текущей формы
-        // высота экрана
+        /// <summary>
+        /// высота экрана
+        /// </summary>
         int y = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Height;
-         // ширина экрана 
+        /// <summary>
+        /// ширина экрана 
+        /// </summary>
         int x = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width;
-        // ширина чарта
+        /// <summary>
+        /// ширина чарта
+        /// </summary>
         int chatSizeX = 1058;
-        // высота чарта
+        /// <summary>
+        /// высота чарта
+        /// </summary>
         int chatSizeY = 684;
         // создание объекта обработки текста.
         WorkFile rEURUSD = new WorkFile();
@@ -85,11 +152,12 @@ namespace Client
         #endregion
         // размеры формы
         double fX = 1366;
-        double fY = 757; 
+        double fY = 757;
 
         /// <summary>
         /// Cоздание окна валюты
         /// </summary>
+        /// <param name=" Vvalue">Наименование валюты</param>
         public Windowd(string Vvalue)
         {
             // получение строки через конструктор
@@ -116,7 +184,7 @@ namespace Client
 
             area.Name = "myGraph";
             // доработать интервал по координате X 1= 1 день
-            area.AxisX.MajorGrid.Interval = shag;
+            area.AxisX.MajorGrid.Interval = 1;
             // размещение чарта
             graphic.Location = new Point(0, 10);
             this.graphic.Size = new System.Drawing.Size(Convert.ToInt32(chatSizeX * xS * (WString.X / fX)), Convert.ToInt32(chatSizeY * yS * (WString.X / fX))); // размеры чарта
@@ -192,7 +260,6 @@ namespace Client
         /// <summary>
         /// Method create file 
         /// </summary>
-        /// <param name="pathFile">String</param>   
         //// Отображение галочек  в меню
         public void Activ(object sender)
         {
@@ -300,7 +367,7 @@ namespace Client
         /// Метод задания параметров линии и  обновления данных
         /// </summary>
         /// <param name="tic">время прошедшее с запуска</param>
-        /// <param name="DateT">????</param>
+        /// <param name="DateT">Время формате Date</param>
         /// <param name="NowTime">Текущее время</param>
         /// <param name=" DINET">Время в результате запуска</param>
         public int Update(int tic, List<DateTime> DateT, double NowTime, List<DateTime> DINET)
@@ -497,8 +564,6 @@ namespace Client
             graphic.Series[index].Points.Clear();
         }
 
-
-
         /// <summary>
         /// Формирование линий сопротивлений
         /// </summary>
@@ -564,11 +629,11 @@ namespace Client
             };
 
             new Thread(new ThreadStart(internetConnectAction)).Start();
-            t.Start();
+            ObjectTimer.Start();
             // время секунды
-            t.Interval = 1000;
+            ObjectTimer.Interval = 1000;
             // прибавление времени   
-            t.Tick += new EventHandler(timer1_Tick);    
+            ObjectTimer.Tick += new EventHandler(timer1_Tick);    
         }
 
 
@@ -621,7 +686,7 @@ namespace Client
             // метод по секундного обновления. Узнаем сколько необходимо добавить секунд для преобразования в DTIME   
             double NowTime = SecondConect();  
             GraphY EURUSD = new GraphY();
-            EURUSD.Y(graphic, BufferB[BufferB.Count - 1]);
+            EURUSD.scopeY(graphic, BufferB[BufferB.Count - 1]);
             // рнуть к дефолтному состоянию
             Cursor = Cursors.Default;
             // время в формате из DateTime в UnixTime ТЕКУЩЕЕЕ ВРЕМЯ
@@ -707,23 +772,6 @@ namespace Client
             return NowTime;
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-        }
-
         private void Sell_Click(object sender, EventArgs e)
         {
             Methods se = new Methods();
@@ -740,32 +788,12 @@ namespace Client
             BUY.Add(Sdelka);      
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void label_Y_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label_X_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void checkBox3_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
         private void Window_FormClosing(object sender, FormClosingEventArgs e)
         {
             // прибавление тикового времени
-            t.Tick -= new EventHandler(timer1_Tick);
+            ObjectTimer.Tick -= new EventHandler(timer1_Tick);
         }
         
-        private void lab_Cur_Click(object sender, EventArgs e)
-        {
-        }
-
 
         #region параметры уровней времени
         /// <summary>
@@ -774,7 +802,6 @@ namespace Client
         /// <param name="sender">объект меню</param>
         private void SecondToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Leaves = 1;
             area.AxisX.MajorGrid.Interval = 0.00001157407 * 5;
             Zoom = 60;
             // активировать заметку
@@ -902,10 +929,6 @@ namespace Client
         }
         #endregion
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
 
         private void checkBoxSMA_Checked(object sender, EventArgs e)
         {
@@ -914,10 +937,6 @@ namespace Client
             {
                 graphic.Series[3].Points.Clear();
             }
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {          
         }
 
         private void checkBox4_Check(object sender, EventArgs e)
@@ -929,26 +948,10 @@ namespace Client
             }
         }
 
-
-        private void timeLevelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-        private void checkBox5_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
         private void OnClos(object sender, FormClosingEventArgs e)
         {
             MainForm.WindowClosingEURUSD = true;
         }
-
-       private void reportToolStripMenuItem_Click(object sender, EventArgs e)
-       {
-       }
 
     private void CreateReportToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -960,16 +963,11 @@ namespace Client
 
     private void SettingToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        EURUSD fset = new EURUSD();
+        Setting fset = new Setting();
         fset.Show();
         // задание размера формы 
         fset.Size = new Size(580, 580); 
     }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         /// <summary>
         /// Форма для закрытия сделок

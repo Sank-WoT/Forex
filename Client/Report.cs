@@ -22,6 +22,9 @@ namespace Client
     using System.Runtime.InteropServices;
     using Excel = Microsoft.Office.Interop.Excel;
 
+    /// <summary>
+    /// Класс отвечающий за формирование отчета
+    /// </summary>
     public partial class Report : Form
     {
         Exel EReport = new Exel();

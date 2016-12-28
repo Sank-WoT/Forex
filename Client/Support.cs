@@ -19,6 +19,9 @@
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
+    /// <summary>
+    /// класс отвечает за создание сущности линии поддержки
+    /// </summary>
     class Support
     {
        public double MINY = 0;

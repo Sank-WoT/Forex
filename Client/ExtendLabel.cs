@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    class ExtendLabel: System.Windows.Forms.Label
+    /// <summary>
+    /// Класс расширяюший базовые возможности лабел
+    /// </summary>
+    class ExtendLabel : System.Windows.Forms.Label
     {
+        /// <summary>
+        /// Наименование на русском
+        /// </summary>
         public string rusLan;
-        private System.Windows.Forms.Button button1;
+        /// <summary>
+        /// Наименование на английском
+        /// </summary>
         public string engLan;
         public void Translate(string name1)
         {

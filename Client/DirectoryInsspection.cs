@@ -8,6 +8,9 @@
     using System.Threading;
     using System.Threading.Tasks;
     using System.Collections.Generic;
+    /// <summary>
+    /// Класс для работы с директорией
+    /// </summary>
     class DirectoryWork
     {
         /// <summary>

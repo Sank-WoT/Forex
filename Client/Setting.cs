@@ -17,23 +17,25 @@
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
-
-    public partial class EURUSD : Form
+    /// <summary>
+    /// Класс для задания размеров окнаы
+    /// </summary>
+    public partial class Setting : Form
     {
         /// <summary>
         /// Initialize
         /// </summary>
-        public EURUSD()
+        public Setting()
         {
             this.InitializeComponent();
             numericUpDown3.Value = 5;
         }
 
-/// <summary>
-/// Метод работающего окна 
-/// </summary>
-/// <param name="sender"></param>
-/// <param name="e"></param>
+    /// <summary>
+    /// Метод работающего окна 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
         private void EURUSD_Load(object sender, EventArgs e)
         {
             if (WString.Langue["ENG"] == true)

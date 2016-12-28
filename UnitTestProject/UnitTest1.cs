@@ -130,34 +130,6 @@
                 Assert.AreEqual(Test2[i], TestCheck[i]);
         }
 
-        /*
-                [TestMethod]
-                // Проверка пути первого запроса
-                public void Testbdload()
-                {
-                    Bd Test = new Bd("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='" + Application.StartupPath + "\\Forex.mdf'; Integrated Security = True; Connect Timeout = 30");
-                    Test.bdLoad("eurusd", 1000000);
-                    Assert.AreEqual("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='" + Application.StartupPath + "\\Forex.mdf'; Integrated Security = True; Connect Timeout = 30", Test.getPatch());
-                }
-
-                
-                // Проверка тасков
-                public void TestTask()
-                {
-                    Bd Test = new Bd("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='" + Application.StartupPath + "\\Forex.mdf'; Integrated Security = True; Connect Timeout = 30");
-                    Assert.AreNotEqual(null, Test.LoadData("eurusd"));
-                }
-
-                [TestMethod]
-                // Проверка тасков
-                public void MaiWind()
-                {
-                    MainForm Test = new MainForm(100, 100);
-                    Assert.AreEqual(100, Test.Width);
-                    Assert.AreEqual(100, Test.Height);
-                }
-            }
-            */
         [TestMethod]
         public void TestConInet()
         {

@@ -19,12 +19,21 @@ using System.Media;
 namespace Client
 {
     /// <summary>
-    /// Class save deal
+    /// Класс сохраняющий сделки
     /// </summary>
     public class Deal
     {
+        /// <summary>
+        /// тип сделки
+        /// </summary>
         private bool _typeDeal;
+        /// <summary>
+        /// значение
+        /// </summary>
         private double _value;
+        /// <summary>
+        /// тиковое время
+        /// </summary>
         private int _tic;
 
         /// <summary>

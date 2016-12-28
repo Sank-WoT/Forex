@@ -8,20 +8,30 @@ namespace Client
     /// <summary>
     ///  Класс котировка
     /// </summary>
-    /// <param name="_TimeU;">Лист UnixTime времени </param>
-    /// <param name="_TimeD;">Лист DateTime времени </param>
-    /// <param name="_Buy">Цена покупки</param>
-    /// <param name="_Sell">Цена продажи</param>
-    public class Quotes : Interface
+    public class Quotes
     {
+        /// <summary>
+        /// Лист UnixTime времени
+        /// </summary>
         private List<double> _Buy;
+        /// <summary>
+        /// Лист DateTime времени 
+        /// </summary>
         private List<DateTime> _TimeD;
+        /// <summary>
+        /// Цена покупки
+        /// </summary>
         private List<int> _TimeU;
+        /// <summary>
+        /// Цена продажи
+        /// </summary>
         private List<double> _Sell;
         public Quotes()
         {
         }
-
+        /// <summary>
+        /// Свойство UnixTime времени времени 
+        /// </summary>
         public List<int> TimeU
         {
             get
@@ -35,7 +45,9 @@ namespace Client
                 _TimeU = value;
             }
         }
-
+        /// <summary>
+        /// Свойство Цена покупки
+        /// </summary>
         public List<double> Buy
         {
             get
@@ -49,7 +61,9 @@ namespace Client
                 _Buy = value;
             }
         }
-
+        /// <summary>
+        /// Свойство DateTime времени 
+        /// </summary>
         public List<DateTime> TimeD
         {
             get
@@ -63,7 +77,9 @@ namespace Client
                _TimeD = value;
             }
         }
-
+        /// <summary>
+        /// Свойство Цена продажи
+        /// </summary>
         public List<double> Sell
         {
             get
@@ -76,18 +92,6 @@ namespace Client
             {
                 _Sell = value;
             }
-        }
-
-        public void getData()
-        {
-            Console.WriteLine("");
-            throw new System.NotImplementedException();
-        }
-
-        public void setData()
-        {
-            Console.WriteLine("");
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -18,7 +18,9 @@
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
-
+    /// <summary>
+    /// Класс для адаптации размеров окон под размеры экрана
+    /// </summary>
     class Display
     {
         /// <summary>

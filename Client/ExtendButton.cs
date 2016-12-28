@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace Client
 {
+      /// <summary>
+      /// Класс расширяюший базовые возможности кнопки
+      /// </summary>
     class ExtendButton : System.Windows.Forms.Button
     {
+        /// <summary>
+        /// Наименование на русском
+        /// </summary>
         public string rusLan;
-        private System.Windows.Forms.Button button1;
+        /// <summary>
+        /// Наименование на английском
+        /// </summary>
         public string engLan;
         public void Translate(string name1)
         {

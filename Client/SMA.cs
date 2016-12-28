@@ -9,12 +9,15 @@ namespace Client
     /// <summary>
     ///  Вычисление линии SMA +
     /// </summary>
-    /// <param name="Sglag">Текущее приближени</param>
-    /// <param name="point">Котировки</param>
    public class ClassSMA
     {
-        private bool _activ;
+        /// <summary>
+        ///  Шаг сглаживания линии SMA +
+        /// </summary>
         private int _Sglag;
+        /// <summary>
+        ///  Точки SMA
+        /// </summary>
         private List<double> _Point = new List<double>();
         public void Add(int Sglag, List<double> point)
         {

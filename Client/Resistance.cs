@@ -19,6 +19,9 @@
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
+    /// <summary>
+    /// Класс отвечающий за сущность линии сопротивления
+    /// </summary>
     class Resistance
     {
         public double MAXY = 0;

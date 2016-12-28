@@ -36,6 +36,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Client.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -101,11 +102,11 @@
     <Compile Include="Resistance.cs" />
     <Compile Include="SMA.cs" />
     <Compile Include="Splice.cs" />
-    <Compile Include="EURUSD.cs">
+    <Compile Include="Setting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EURUSD.Designer.cs">
-      <DependentUpon>EURUSD.cs</DependentUpon>
+    <Compile Include="Setting.Designer.cs">
+      <DependentUpon>Setting.cs</DependentUpon>
     </Compile>
     <Compile Include="Exel.cs" />
     <Compile Include="DirectoryInsspection.cs" />
@@ -160,8 +161,8 @@
     <EmbeddedResource Include="CloseDeal.resx">
       <DependentUpon>CloseDeal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EURUSD.resx">
-      <DependentUpon>EURUSD.cs</DependentUpon>
+    <EmbeddedResource Include="Setting.resx">
+      <DependentUpon>Setting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.en.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

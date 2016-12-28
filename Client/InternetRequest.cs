@@ -19,10 +19,21 @@
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
 
-    
+    /// <summary>
+    /// Класс интернет запрос
+    /// </summary>
     class InternetRequest : Internet
     {
+        /// <summary>
+        /// Путь к файлу
+        /// </summary>
         private string path;
+        /// <summary>
+        /// Строка запросов для получения котировок
+        /// </summary>
+        /// <param name="NowTime;">Текущее время</param>
+        /// <param name="limit;">Количество </param>
+        /// <param name="sign">Валюта</param>
         public InternetRequest(int NowTime, int limit, string sign)
         {
             path = "http://myfirstphpapp-skro.rhcloud.com/get_currency.php?time=" + NowTime + "&limit=" + limit + "&sign=" + sign;

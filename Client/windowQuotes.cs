@@ -9,6 +9,9 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using System.Globalization;
+    /// <summary>
+    /// Класс парсинга котировок
+    /// </summary>
     class windowQuotes
     {
         /// <summary>

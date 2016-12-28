@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Client
 {
+    /// <summary>
+    ///Интерфейс
+    /// </summary>
     public interface Interface
     {
         void getData();

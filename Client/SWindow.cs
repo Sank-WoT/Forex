@@ -19,7 +19,7 @@ using System.Windows.Forms.DataVisualization.Charting;
 using EnumDialogResult = System.Windows.Forms.DialogResult;
   
     /// <summary>
-    /// the main window class SWindow().
+    /// класс для задание размеров формы котировки
    /// </summary>
     public partial class SWindow : Form
     {

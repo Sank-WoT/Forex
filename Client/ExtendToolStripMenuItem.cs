@@ -6,9 +6,18 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    class ExtendToolStripMenuItem: System.Windows.Forms.ToolStripMenuItem
+    /// <summary>
+    /// Класс расширяюший базовые возможности меню
+    /// </summary>
+    class ExtendToolStripMenuItem : System.Windows.Forms.ToolStripMenuItem
     {
+        /// <summary>
+        /// Наименование на русском
+        /// </summary>
         public string rusLan;
+        /// <summary>
+        /// Наименование на английском
+        /// </summary>
         public string engLan;
         public void Translate(string name1)
         {

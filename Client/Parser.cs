@@ -9,8 +9,14 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using System.Globalization;
+    /// <summary>
+    /// Парсер данных
+    /// </summary>
     public class Parser
     {
+        /// <summary>
+        /// Строка для парсинга
+        /// </summary>
         private string response;
         public string response_property
         {

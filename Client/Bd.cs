@@ -10,9 +10,14 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Data.SqlClient;
-
+    /// <summary>
+    ///  Класс базы данных
+    /// </summary>
     public class Bd
-    {            
+    {
+        /// <summary>
+        ///  путь
+        /// </summary>         
         protected string patch;
 
         /// <summary>

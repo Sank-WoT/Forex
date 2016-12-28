@@ -6,17 +6,28 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-
+    /// <summary>
+    /// Класс для работы с масштабоом графика
+    /// </summary>
     class ZoomS
     {
-        // Стартовое время
+        /// <summary>
+        ///  Стартовое время
+        /// </summary>
         public int start;
-        // Конечное время
+        /// <summary>
+        ///  конечное время
+        /// </summary>
         public int end;
         int n = 1;
-        // Новый массив времени
+        /// <summary>
+        ///  Новый лист времени
+        /// </summary>
         public List<int> NewZoom = new List<int>();
         public List<int> Zoom = new List<int>();
+        /// <summary>
+        ///  Измененение маштаба
+        /// </summary>
         public ZoomS(List<int> a, int Period)
         {
             // получаем первое число периода

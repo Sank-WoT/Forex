@@ -19,6 +19,9 @@
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
+    /// <summary>
+    ///  Класс отечающий за работу с интернетом
+    /// </summary>
     public class Internet
     {
         /// <summary>

@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Client
 {
+    /// <summary>
+    /// Класс формирующий интервалы линии сопротивления
+    /// </summary>
     public class IntervalResistance
     {
         public int danoe = 0;

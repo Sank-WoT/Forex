@@ -69,7 +69,6 @@
             // startContainer.Panel2
             // 
             this.startContainer.Panel2.Controls.Add(this.radCarousel1);
-            this.startContainer.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint_1);
             // 
             // quotesList
             // 
@@ -94,7 +93,6 @@
             this.radCarousel1.Name = "radCarousel1";
             this.radCarousel1.ThemeName = "ControlDefault";
             this.radCarousel1.VisibleItemCount = 4;
-            this.radCarousel1.SelectedItemChanged += new System.EventHandler(this.radCarousel1_SelectedItemChanged);
             // 
             // radImageItem1
             // 
@@ -120,7 +118,6 @@
             this.settingsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
             // windowToolStripMenuItem
             // 
@@ -170,7 +167,6 @@
             this.USDJPYToolStripMenuItem});
             this.currencyPairsToolStripMenuItem.Name = "currencyPairsToolStripMenuItem";
             resources.ApplyResources(this.currencyPairsToolStripMenuItem, "currencyPairsToolStripMenuItem");
-            this.currencyPairsToolStripMenuItem.Click += new System.EventHandler(this.CurrencyPairsToolStripMenuItem_Click);
             // 
             // eURUSDToolStripMenuItem
             // 

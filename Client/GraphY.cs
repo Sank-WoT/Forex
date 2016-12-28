@@ -19,17 +19,20 @@
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
 
+    /// <summary>
+    /// класс отвечающий за диапазон графика
+    /// </summary>
     class GraphY
     {
         /// <summary>
-        /// Проверка существования директории с уведомлением
+        /// Метод отвечающий за диапазон графика
         /// </summary>
         /// <param name="char1">График</param>
         /// <param name="Nowcurency">текущее значение котировки</param>
-        public void Y(Chart chart1, double Nowcurency)
+        public void scopeY(Chart chart1, double Nowcurency)
         {
-            chart1.ChartAreas[0].AxisY.Maximum = Nowcurency + Math.Round(Nowcurency * 0.01, 3);
-            chart1.ChartAreas[0].AxisY.Minimum = Nowcurency - Math.Round(Nowcurency * 0.01, 3);
+            chart1.ChartAreas[0].AxisY.Maximum = Nowcurency + Math.Round(Nowcurency * 0.002, 3);
+            chart1.ChartAreas[0].AxisY.Minimum = Nowcurency - Math.Round(Nowcurency * 0.002, 3);
         }       
     }
 }

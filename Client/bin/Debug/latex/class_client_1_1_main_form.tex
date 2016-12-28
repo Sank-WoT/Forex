@@ -1,0 +1,325 @@
+\hypertarget{class_client_1_1_main_form}{}\section{Client.\+Main\+Form Class Reference}
+\label{class_client_1_1_main_form}\index{Client.\+Main\+Form@{Client.\+Main\+Form}}
+
+
+Стартовое окно  
+
+
+Inheritance diagram for Client.\+Main\+Form\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_client_1_1_main_form}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_client_1_1_main_form_a67c808fc65fba26e70e1e36dc083d131}{Main\+Form} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Конструктор стартового состояния окна \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_main_form_a3200a9b853b787c11bc1fa2e974e472b}{write\+File} (string path\+File)
+\begin{DoxyCompactList}\small\item\em Конструктор стартового состояния окна \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_main_form_a736b03fd5ca2af0171db525573891553}{E\+U\+R\+U\+S\+D\+Tool\+Strip\+Menu\+Item\+\_\+\+Click} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Cоздание окна \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_main_form_ae422739b1b0042a9b697ea2c446ac7c5}{U\+S\+D\+J\+P\+Y\+Tool\+Strip\+Menu\+Item\+\_\+\+Click} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Cоздание окна \end{DoxyCompactList}\item 
+bool \hyperlink{class_client_1_1_main_form_acdcf3f02f06d2f0256c0d93411c6d4b1}{create\+Window} (Task T\+Qoute, bool close\+Window, string value)
+\begin{DoxyCompactList}\small\item\em Метод для создания окна котировок \end{DoxyCompactList}\item 
+bool \hyperlink{class_client_1_1_main_form_a48f67f872cf157e9be746823e1cba8e8}{Tasks} (Task t\+Connect, Task t\+Loadquotes)
+\begin{DoxyCompactList}\small\item\em Ожидание загрузки данных \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_main_form_a9356e4f0bb6127a253382090bdca5707}{Window\+Size\+Location} (\hyperlink{class_client_1_1_windowd}{Windowd} quotes\+Window, int sizeX, int sizeY)
+\begin{DoxyCompactList}\small\item\em Метод для установки окну параметра Mdi\+Parent, скрытия контейнера, показ окна, и сохранение в хранилище окон \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_main_form_a1c104c0cc622e2a763915c5d7500a515}{Window\+Tool\+Strip\+Menu\+Item\+\_\+\+Click} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Создание окна \hyperlink{class_client_1_1_s_window}{S\+Window} \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_main_form_ae2d7d0d2a2ce5e8495d2e17e162e5506}{Help\+Tool\+Strip\+Menu\+Item\+\_\+\+Click} (object sender, Event\+Args e)
+\begin{DoxyCompactList}\small\item\em Создание окна Help\+Closing \end{DoxyCompactList}\item 
+void \hyperlink{class_client_1_1_main_form_a0d8831ab5fe970a2196b2ee35bf6508a}{Change\+Text\+Language} ()
+\begin{DoxyCompactList}\small\item\em Метод смены языка \end{DoxyCompactList}\item 
+\hypertarget{class_client_1_1_main_form_a5c23c1a74e8fc0090620434ee71ff10c}{}\label{class_client_1_1_main_form_a5c23c1a74e8fc0090620434ee71ff10c} 
+void {\bfseries Edit\+Interface} (string settings\+Tool\+Strip\+Menu, string window\+Tool\+Strip\+Menu, string chart\+Tool\+Strip\+Menu, string About\+Tool\+Strip\+Menu, string Tool\+Strip\+Menu, string help\+Tool\+Strip\+Menu, string currency\+Pairs\+Tool\+Strip\+Menu, string e\+U\+R\+U\+S\+D\+Tool\+Strip\+Menu, string U\+S\+D\+J\+P\+Y\+Tool\+Strip\+Menu, string lang\+Tool\+Strip\+Menu, string label\+Select)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_client_1_1_main_form_af9bb38bbfa2d759792f533061cf7d17a}{}\label{class_client_1_1_main_form_af9bb38bbfa2d759792f533061cf7d17a} 
+List$<$ string $>$ {\bfseries valueP} = new List$<$string$>$()
+\item 
+List$<$ \hyperlink{class_client_1_1_windowd}{Windowd} $>$ \hyperlink{class_client_1_1_main_form_a3e3dca9d63d0282147f521d7f209444f}{windows} = new List$<$\hyperlink{class_client_1_1_windowd}{Windowd}$>$()
+\begin{DoxyCompactList}\small\item\em реализация окна валюты \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{class_client_1_1_main_form_af46e70fe2775cc145de943ab8b152075}{Help\+Closing} = true
+\begin{DoxyCompactList}\small\item\em поле отвечающая за закрытое окной \hyperlink{class_client_1_1_help}{Help} \end{DoxyCompactList}\item 
+static bool \hyperlink{class_client_1_1_main_form_a623ae96ca11ba63ec5ecb191edf2fab0}{S\+Window\+Closing} = true
+\begin{DoxyCompactList}\small\item\em поле отвечающая за закрытое окной \hyperlink{class_client_1_1_s_window}{S\+Window} \end{DoxyCompactList}\item 
+static bool \hyperlink{class_client_1_1_main_form_af628f3dc899c945ef7347506f4c5612f}{Window\+Closing\+E\+U\+R\+U\+SD} = true
+\begin{DoxyCompactList}\small\item\em поле отвечающая за закрытое окной Window \end{DoxyCompactList}\item 
+static bool \hyperlink{class_client_1_1_main_form_a803bcf3080d58c8bcabb930e01193d09}{Window\+Closing\+U\+S\+D\+J\+PY} = true
+\begin{DoxyCompactList}\small\item\em поле отвечающая за закрытое окной U\+S\+D\+J\+PY \end{DoxyCompactList}\item 
+static bool \hyperlink{class_client_1_1_main_form_aa9598c4369dac295d4c45455ca7133f4}{S\+Chart\+Closing} = true
+\begin{DoxyCompactList}\small\item\em поле отвечающая за закрытое окной S\+Char \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \hyperlink{class_client_1_1_main_form_a50155117b57f40079e26d88695114488}{Dispose} (bool disposing)
+\begin{DoxyCompactList}\small\item\em Освободить все используемые ресурсы. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Стартовое окно 
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_client_1_1_main_form_a67c808fc65fba26e70e1e36dc083d131}{}\label{class_client_1_1_main_form_a67c808fc65fba26e70e1e36dc083d131} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!Main\+Form@{Main\+Form}}
+\index{Main\+Form@{Main\+Form}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{Main\+Form()}{MainForm()}}
+{\footnotesize\ttfamily Client.\+Main\+Form.\+Main\+Form (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Конструктор стартового состояния окна 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & размер по оси x\\
+\hline
+{\em y} & размер по оси y\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_client_1_1_main_form_a0d8831ab5fe970a2196b2ee35bf6508a}{}\label{class_client_1_1_main_form_a0d8831ab5fe970a2196b2ee35bf6508a} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!Change\+Text\+Language@{Change\+Text\+Language}}
+\index{Change\+Text\+Language@{Change\+Text\+Language}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{Change\+Text\+Language()}{ChangeTextLanguage()}}
+{\footnotesize\ttfamily void Client.\+Main\+Form.\+Change\+Text\+Language (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод смены языка 
+
+\hypertarget{class_client_1_1_main_form_acdcf3f02f06d2f0256c0d93411c6d4b1}{}\label{class_client_1_1_main_form_acdcf3f02f06d2f0256c0d93411c6d4b1} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!create\+Window@{create\+Window}}
+\index{create\+Window@{create\+Window}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{create\+Window()}{createWindow()}}
+{\footnotesize\ttfamily bool Client.\+Main\+Form.\+create\+Window (\begin{DoxyParamCaption}\item[{Task}]{T\+Qoute,  }\item[{bool}]{close\+Window,  }\item[{string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод для создания окна котировок 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Connect} & Таск подключения\\
+\hline
+{\em t\+Loadquotes} & Таск погрузки данных\\
+\hline
+{\em close\+Window} & \\
+\hline
+\end{DoxyParams}
+param name=\char`\"{}value\char`\"{}$>$наименование котировки\hypertarget{class_client_1_1_main_form_a50155117b57f40079e26d88695114488}{}\label{class_client_1_1_main_form_a50155117b57f40079e26d88695114488} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{Dispose()}{Dispose()}}
+{\footnotesize\ttfamily override void Client.\+Main\+Form.\+Dispose (\begin{DoxyParamCaption}\item[{bool}]{disposing }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Освободить все используемые ресурсы. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disposing} & истинно, если управляемый ресурс должен быть удален; иначе ложно.\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_main_form_a736b03fd5ca2af0171db525573891553}{}\label{class_client_1_1_main_form_a736b03fd5ca2af0171db525573891553} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!E\+U\+R\+U\+S\+D\+Tool\+Strip\+Menu\+Item\+\_\+\+Click@{E\+U\+R\+U\+S\+D\+Tool\+Strip\+Menu\+Item\+\_\+\+Click}}
+\index{E\+U\+R\+U\+S\+D\+Tool\+Strip\+Menu\+Item\+\_\+\+Click@{E\+U\+R\+U\+S\+D\+Tool\+Strip\+Menu\+Item\+\_\+\+Click}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{E\+U\+R\+U\+S\+D\+Tool\+Strip\+Menu\+Item\+\_\+\+Click()}{EURUSDToolStripMenuItem\_Click()}}
+{\footnotesize\ttfamily void Client.\+Main\+Form.\+E\+U\+R\+U\+S\+D\+Tool\+Strip\+Menu\+Item\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cоздание окна 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & object\\
+\hline
+{\em e} & Event\+Args\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_main_form_ae2d7d0d2a2ce5e8495d2e17e162e5506}{}\label{class_client_1_1_main_form_ae2d7d0d2a2ce5e8495d2e17e162e5506} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!Help\+Tool\+Strip\+Menu\+Item\+\_\+\+Click@{Help\+Tool\+Strip\+Menu\+Item\+\_\+\+Click}}
+\index{Help\+Tool\+Strip\+Menu\+Item\+\_\+\+Click@{Help\+Tool\+Strip\+Menu\+Item\+\_\+\+Click}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{Help\+Tool\+Strip\+Menu\+Item\+\_\+\+Click()}{HelpToolStripMenuItem\_Click()}}
+{\footnotesize\ttfamily void Client.\+Main\+Form.\+Help\+Tool\+Strip\+Menu\+Item\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Создание окна Help\+Closing 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & object\\
+\hline
+{\em e} & Event\+Args\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_main_form_a48f67f872cf157e9be746823e1cba8e8}{}\label{class_client_1_1_main_form_a48f67f872cf157e9be746823e1cba8e8} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!Tasks@{Tasks}}
+\index{Tasks@{Tasks}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{Tasks()}{Tasks()}}
+{\footnotesize\ttfamily bool Client.\+Main\+Form.\+Tasks (\begin{DoxyParamCaption}\item[{Task}]{t\+Connect,  }\item[{Task}]{t\+Loadquotes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ожидание загрузки данных 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Connect} & Таск подключения\\
+\hline
+{\em t\+Loadquotes} & Таск погрузки данных\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_main_form_ae422739b1b0042a9b697ea2c446ac7c5}{}\label{class_client_1_1_main_form_ae422739b1b0042a9b697ea2c446ac7c5} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!U\+S\+D\+J\+P\+Y\+Tool\+Strip\+Menu\+Item\+\_\+\+Click@{U\+S\+D\+J\+P\+Y\+Tool\+Strip\+Menu\+Item\+\_\+\+Click}}
+\index{U\+S\+D\+J\+P\+Y\+Tool\+Strip\+Menu\+Item\+\_\+\+Click@{U\+S\+D\+J\+P\+Y\+Tool\+Strip\+Menu\+Item\+\_\+\+Click}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{U\+S\+D\+J\+P\+Y\+Tool\+Strip\+Menu\+Item\+\_\+\+Click()}{USDJPYToolStripMenuItem\_Click()}}
+{\footnotesize\ttfamily void Client.\+Main\+Form.\+U\+S\+D\+J\+P\+Y\+Tool\+Strip\+Menu\+Item\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Cоздание окна 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & object\\
+\hline
+{\em e} & Event\+Args\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_main_form_a9356e4f0bb6127a253382090bdca5707}{}\label{class_client_1_1_main_form_a9356e4f0bb6127a253382090bdca5707} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!Window\+Size\+Location@{Window\+Size\+Location}}
+\index{Window\+Size\+Location@{Window\+Size\+Location}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{Window\+Size\+Location()}{WindowSizeLocation()}}
+{\footnotesize\ttfamily void Client.\+Main\+Form.\+Window\+Size\+Location (\begin{DoxyParamCaption}\item[{\hyperlink{class_client_1_1_windowd}{Windowd}}]{quotes\+Window,  }\item[{int}]{sizeX,  }\item[{int}]{sizeY }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Метод для установки окну параметра Mdi\+Parent, скрытия контейнера, показ окна, и сохранение в хранилище окон 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quotes\+Window} & окно котировок\\
+\hline
+{\em sizeX} & размеры по X\\
+\hline
+{\em sizeY} & размеры по Y\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_main_form_a1c104c0cc622e2a763915c5d7500a515}{}\label{class_client_1_1_main_form_a1c104c0cc622e2a763915c5d7500a515} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!Window\+Tool\+Strip\+Menu\+Item\+\_\+\+Click@{Window\+Tool\+Strip\+Menu\+Item\+\_\+\+Click}}
+\index{Window\+Tool\+Strip\+Menu\+Item\+\_\+\+Click@{Window\+Tool\+Strip\+Menu\+Item\+\_\+\+Click}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{Window\+Tool\+Strip\+Menu\+Item\+\_\+\+Click()}{WindowToolStripMenuItem\_Click()}}
+{\footnotesize\ttfamily void Client.\+Main\+Form.\+Window\+Tool\+Strip\+Menu\+Item\+\_\+\+Click (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Event\+Args}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Создание окна \hyperlink{class_client_1_1_s_window}{S\+Window} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & object\\
+\hline
+{\em e} & Event\+Args\\
+\hline
+\end{DoxyParams}
+\hypertarget{class_client_1_1_main_form_a3200a9b853b787c11bc1fa2e974e472b}{}\label{class_client_1_1_main_form_a3200a9b853b787c11bc1fa2e974e472b} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!write\+File@{write\+File}}
+\index{write\+File@{write\+File}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{write\+File()}{writeFile()}}
+{\footnotesize\ttfamily void Client.\+Main\+Form.\+write\+File (\begin{DoxyParamCaption}\item[{string}]{path\+File }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Конструктор стартового состояния окна 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+File} & Путь в файл\\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_client_1_1_main_form_af46e70fe2775cc145de943ab8b152075}{}\label{class_client_1_1_main_form_af46e70fe2775cc145de943ab8b152075} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!Help\+Closing@{Help\+Closing}}
+\index{Help\+Closing@{Help\+Closing}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{Help\+Closing}{HelpClosing}}
+{\footnotesize\ttfamily bool Client.\+Main\+Form.\+Help\+Closing = true\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+поле отвечающая за закрытое окной \hyperlink{class_client_1_1_help}{Help} 
+
+\hypertarget{class_client_1_1_main_form_aa9598c4369dac295d4c45455ca7133f4}{}\label{class_client_1_1_main_form_aa9598c4369dac295d4c45455ca7133f4} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!S\+Chart\+Closing@{S\+Chart\+Closing}}
+\index{S\+Chart\+Closing@{S\+Chart\+Closing}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{S\+Chart\+Closing}{SChartClosing}}
+{\footnotesize\ttfamily bool Client.\+Main\+Form.\+S\+Chart\+Closing = true\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+поле отвечающая за закрытое окной S\+Char 
+
+\hypertarget{class_client_1_1_main_form_a623ae96ca11ba63ec5ecb191edf2fab0}{}\label{class_client_1_1_main_form_a623ae96ca11ba63ec5ecb191edf2fab0} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!S\+Window\+Closing@{S\+Window\+Closing}}
+\index{S\+Window\+Closing@{S\+Window\+Closing}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{S\+Window\+Closing}{SWindowClosing}}
+{\footnotesize\ttfamily bool Client.\+Main\+Form.\+S\+Window\+Closing = true\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+поле отвечающая за закрытое окной \hyperlink{class_client_1_1_s_window}{S\+Window} 
+
+\hypertarget{class_client_1_1_main_form_af628f3dc899c945ef7347506f4c5612f}{}\label{class_client_1_1_main_form_af628f3dc899c945ef7347506f4c5612f} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!Window\+Closing\+E\+U\+R\+U\+SD@{Window\+Closing\+E\+U\+R\+U\+SD}}
+\index{Window\+Closing\+E\+U\+R\+U\+SD@{Window\+Closing\+E\+U\+R\+U\+SD}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{Window\+Closing\+E\+U\+R\+U\+SD}{WindowClosingEURUSD}}
+{\footnotesize\ttfamily bool Client.\+Main\+Form.\+Window\+Closing\+E\+U\+R\+U\+SD = true\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+поле отвечающая за закрытое окной Window 
+
+\hypertarget{class_client_1_1_main_form_a803bcf3080d58c8bcabb930e01193d09}{}\label{class_client_1_1_main_form_a803bcf3080d58c8bcabb930e01193d09} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!Window\+Closing\+U\+S\+D\+J\+PY@{Window\+Closing\+U\+S\+D\+J\+PY}}
+\index{Window\+Closing\+U\+S\+D\+J\+PY@{Window\+Closing\+U\+S\+D\+J\+PY}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{Window\+Closing\+U\+S\+D\+J\+PY}{WindowClosingUSDJPY}}
+{\footnotesize\ttfamily bool Client.\+Main\+Form.\+Window\+Closing\+U\+S\+D\+J\+PY = true\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+поле отвечающая за закрытое окной U\+S\+D\+J\+PY 
+
+\hypertarget{class_client_1_1_main_form_a3e3dca9d63d0282147f521d7f209444f}{}\label{class_client_1_1_main_form_a3e3dca9d63d0282147f521d7f209444f} 
+\index{Client\+::\+Main\+Form@{Client\+::\+Main\+Form}!windows@{windows}}
+\index{windows@{windows}!Client\+::\+Main\+Form@{Client\+::\+Main\+Form}}
+\subsubsection{\texorpdfstring{windows}{windows}}
+{\footnotesize\ttfamily List$<$\hyperlink{class_client_1_1_windowd}{Windowd}$>$ Client.\+Main\+Form.\+windows = new List$<$\hyperlink{class_client_1_1_windowd}{Windowd}$>$()}
+
+
+
+реализация окна валюты 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/саша/\+Documents/\+Visual Studio 2015/\+Projects/\+Forex2.\+0/\+Client/Main\+Form.\+cs\item 
+C\+:/\+Users/саша/\+Documents/\+Visual Studio 2015/\+Projects/\+Forex2.\+0/\+Client/Main\+Form.\+Designer.\+cs\end{DoxyCompactItemize}
