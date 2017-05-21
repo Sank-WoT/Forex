@@ -17,7 +17,7 @@
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
-    using Microsoft.Office.Interop.Excel;
+    // using Microsoft.Office.Interop.Excel;
     using System.Runtime.InteropServices;
     using Excel = Microsoft.Office.Interop.Excel;
     /// <summary>
@@ -60,12 +60,14 @@
                     // цикл стоблец
                     for (int j = 0; j < row.Cells.Count; j++) 
                     {
-                        this.ObjExcel.Cells[i + 1, j + 1] = row.Cells[j].Value;  // Поле
+                        // Поле
+                        this.ObjExcel.Cells[i + 1, j + 1] = row.Cells[j].Value;  
                     }
                 }
-
-                this.ObjWorkBook.SaveAs(fileName); // Заносим в файл
-                dataGridView1.Rows.Clear(); // Стираем значения
+                // Заносим в файл
+                this.ObjWorkBook.SaveAs(fileName);  
+                // Стираем значения
+                dataGridView1.Rows.Clear();
             }
             catch (Exception ex) 
             { 

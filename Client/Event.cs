@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Client
 {
-    /// <summary>
-    /// Событие 
-    /// </summary>
-    class Event
+    public class Event : Information
     {
-        //https://myfirstphpapp-skro.rhcloud.com/get_calendar.php/?quote=eususd&time=10000000000&limit=1
+        public int IdEvent_Group;
+        public int Time;
+        public double FactNumber;
+        public double ExpectNumber;
+        public int idEvent;
+        public string Pot;
+        public string unitNumberst;
+        public int idCountry;
+        public EventGroup EventG;
+        public Event() : base()
+        {
+        }
     }
 }

@@ -37,24 +37,23 @@ namespace Client
         /// </summary>
         public Report()
         {
-            int Size;
-            String Prognoz  = "1";
+            string Prognoz  = "";
             InitializeComponent();
-            Size = ReportTransit.data.Count();
+            int Size = ReportTransit.data.Count();
             DateTime DateReport = new DateTime();
             for(int i = 0; i < Size; i ++)
             {
                 if(ReportTransit.data[i][4] == 0)
                 {
-                    Prognoz = "Повышение";  
+                    Prognoz = "Понижение";  
                 }
                 if (ReportTransit.data[i][4] == 1)
                 {
-                    Prognoz = "Понижение";
+                    Prognoz = "Повышение";
                 }    
                 DateReport = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(ReportTransit.data[i][3]);
                 
-                dataGridView1.Rows.Add(ReportTransit.data[i][0], ReportTransit.data[i][1], ReportTransit.data[i][2],DateReport,Prognoz);
+                dataGridView1.Rows.Add(ReportTransit.data[i][0], ReportTransit.data[i][1], ReportTransit.data[i][2],DateReport, Prognoz);
             }          
         }
 

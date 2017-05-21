@@ -10,3 +10,24 @@ C:\Users\саша\Documents\Visual Studio 2015\Projects\Forex2.0\UnitTestProject
 C:\Users\саша\Documents\Visual Studio 2015\Projects\Forex2.0\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
 C:\Users\саша\Documents\Visual Studio 2015\Projects\Forex2.0\UnitTestProject\obj\Debug\UnitTestProject.dll
 C:\Users\саша\Documents\Visual Studio 2015\Projects\Forex2.0\UnitTestProject\obj\Debug\UnitTestProject.pdb
+F:\Forex2.0\UnitTestProject\bin\Debug\UnitTestProject.dll
+F:\Forex2.0\UnitTestProject\bin\Debug\UnitTestProject.pdb
+F:\Forex2.0\UnitTestProject\bin\Debug\Client.exe
+F:\Forex2.0\UnitTestProject\bin\Debug\Client.pdb
+F:\Forex2.0\UnitTestProject\bin\Debug\Client.xml
+F:\Forex2.0\UnitTestProject\bin\Debug\en\Client.resources.dll
+F:\Forex2.0\UnitTestProject\bin\Debug\ne\Client.resources.dll
+F:\Forex2.0\UnitTestProject\bin\Debug\ru\Client.resources.dll
+F:\Forex2.0\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+F:\Forex2.0\UnitTestProject\obj\Debug\UnitTestProject.dll
+F:\Forex2.0\UnitTestProject\obj\Debug\UnitTestProject.pdb
+E:\Forex2.0\UnitTestProject\bin\Debug\UnitTestProject.dll
+E:\Forex2.0\UnitTestProject\bin\Debug\UnitTestProject.pdb
+E:\Forex2.0\UnitTestProject\bin\Debug\Client.exe
+E:\Forex2.0\UnitTestProject\bin\Debug\Client.pdb
+E:\Forex2.0\UnitTestProject\bin\Debug\en\Client.resources.dll
+E:\Forex2.0\UnitTestProject\bin\Debug\ne\Client.resources.dll
+E:\Forex2.0\UnitTestProject\bin\Debug\ru\Client.resources.dll
+E:\Forex2.0\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+E:\Forex2.0\UnitTestProject\obj\Debug\UnitTestProject.dll
+E:\Forex2.0\UnitTestProject\obj\Debug\UnitTestProject.pdb

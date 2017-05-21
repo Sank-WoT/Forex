@@ -32,6 +32,5 @@ namespace Client
         {
             MainForm.HelpClosing = true;
         }
-
     }
 }

@@ -29,13 +29,16 @@ namespace Client
     /// <param name="tic">текущее время отначала торгов</param>
     public partial class Windowd : Form
     {
+        private List<int> timeL = new List<int>();
+        private List<double> sellL = new List<double>();
+        private List<double> buyL = new List<double>();
         /// <summary>
         ///хранит объект сделка
         ///</summary>
         Quotes quotations = new Quotes();
         /// <summary>
         /// таск запуска минимум и максимума 
-        /// </summary>
+        List<Task> tTask = new List<Task>();
         Task tMinMax;
         /// <summary>
         /// таск получение точек смены тренда
@@ -69,7 +72,7 @@ namespace Client
         /// </summary>
         public double poslchisloSell;
         /// <summary>
-        /// Последнее число покупкки
+        /// Последнее число покупки
         /// </summary>
         public double poslchisloBuy;
         /// <summary>
@@ -88,15 +91,6 @@ namespace Client
         /// </summary>
         public List<Deal> SELL = new List<Deal>();
         List<double> massY = new List<double>();
-        /// <summary>
-        /// лист значений отношения валюты по покупке из файла
-        /// </summary>
-        List<double> massYFileBuy = new List<double>();
-        /// <summary>
-        /// лист значений отношения валюты по продаже из файла
-        /// </summary>
-        List<double> massYFileSell = new List<double>();
-        /// <summary>
         /// время в UnixTime
         /// </summary>
         List<int> Times = new List<int>();
@@ -115,7 +109,7 @@ namespace Client
         /// <summary>
         ///  значение времени с интернета
         /// </summary>
-        public List<DateTime> DINET = new List<DateTime>();
+        public List<DateTime> DBd = new List<DateTime>();
         /// <summary>
         /// Поле отслеживающие кол-во прошедших секунд с запуска формы
         /// </summary>
@@ -129,7 +123,6 @@ namespace Client
         Internet IPair = new Internet();
         // Класс методов
         Methods cEURUSD = new Methods();
-        #region Параметры текущей формы
         /// <summary>
         /// высота экрана
         /// </summary>
@@ -148,8 +141,6 @@ namespace Client
         int chatSizeY = 684;
         // создание объекта обработки текста.
         WorkFile rEURUSD = new WorkFile();
-
-        #endregion
         // размеры формы
         double fX = 1366;
         double fY = 757;
@@ -162,12 +153,17 @@ namespace Client
         {
             // получение строки через конструктор
             value = Vvalue;
+            Bd BasaDan = new Bd("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='" + Application.StartupPath + "\\Forex.mdf'; Integrated Security = True; Connect Timeout = 30");
+            // запрос последнего времени из БД
+            BasaDan.SelectLastIdEvent();
+            // запрос данных из БД
+            BasaDan.Select(value, ref timeL, ref sellL, ref buyL);
+            // ненужные местоположения
             int ButtLocX = 1101;
             int ButtLocY = 35;
             int ButtonSize = 59;
             int shift = 12;
             SpeedDraw.Speed = 1;
-
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             // настройка под все  экраны
             double xS = x / 1920.0;
@@ -252,7 +248,6 @@ namespace Client
             // переводчик  кнопок
             Button();
             // переводчик меню  
-            Menu();       
             #endregion
         }
 
@@ -327,42 +322,7 @@ namespace Client
         /// <summary>
         /// Метод перевода меню
         /// </summary>
-        public void Menu()
-        {
-
-            if ( true == WString.Langue["ENG"])
-            {
-               timeLevelToolStripMenuItem.Text = "Time intervals";
-               reportToolStripMenuItem.Text = "Report";              
-               createReportToolStripMenuItem.Text = "Create a report";
-               settingToolStripMenuItem.Text = "Settings";
-               secondToolStripMenuItem.Text = "Second";
-               minutesToolStripMenuItem.Text = "5 Minutes";
-               minutesToolStripMenuItem1.Text = "30 Minutes";
-               hourToolStripMenuItem.Text = "Hour";
-               dayToolStripMenuItem.Text = "Day";
-               weekToolStripMenuItem.Text = "Week";
-               monthToolStripMenuItem.Text = "Month";
-               toCloseTheDealToolStripMenuItem.Text = "Close a deal"; 
-            }
-
-            if (true == WString.Langue["RUS"])
-            {
-               timeLevelToolStripMenuItem.Text = "Временные интервалы";
-               reportToolStripMenuItem.Text = "Отчет";
-               createReportToolStripMenuItem.Text = "Создать отчет";
-               settingToolStripMenuItem.Text = "Настройки";
-               secondToolStripMenuItem.Text = "Секундный";
-               minutesToolStripMenuItem.Text = "5 Минут";
-               minutesToolStripMenuItem1.Text = "30 Минут";
-               hourToolStripMenuItem.Text = "Час";
-               dayToolStripMenuItem.Text = "День";
-               weekToolStripMenuItem.Text = "Неделя";
-               monthToolStripMenuItem.Text = "Месяц";
-               toCloseTheDealToolStripMenuItem.Text = "Закрыть сделку"; 
-            }
-        }
-
+ 
         /// <summary>
         /// Метод задания параметров линии и  обновления данных
         /// </summary>
@@ -375,7 +335,6 @@ namespace Client
             #region вызов Методов локализации формы
             tTip(); // локализация всплывающих подсказок
             Button(); // переводчик  кнопок
-            Menu(); // переводчик меню 
             #endregion
             // событие вращения колесика
             // graphic.MouseWheel += new MouseEventHandler(this.chart1_MouseWheel);
@@ -403,10 +362,10 @@ namespace Client
                 // Получить лист времени 10000
                 quotations.TimeD = mReqestT.glue(DINET, DateT, tic, 10000);
                 // Загрузка значения из файла  10000
-                quotations.Sell = mReqestV.glue(massYFileSell,BufferS, tic, 10000);
-                for (int hl = 0; quotations.TimeD.Count - 1 > hl; hl++)
+                quotations.Sell = mReqestV.glue(sellL, BufferS, tic, 10000);
+                for (int index = 0; quotations.TimeD.Count - 1 > index; index++)
                 {
-                        graphic.Series[0].Points.AddXY(quotations.TimeD[hl].ToOADate() , quotations.Sell[hl]);
+                        graphic.Series[0].Points.AddXY(quotations.TimeD[index].ToOADate() , quotations.Sell[index]);
                 }
             }
             else
@@ -591,10 +550,10 @@ namespace Client
                     prisvoenie(h, MINY, poin, MINX, MinH);
                 }
                 // Нахождение точки максимума удовлетворяющему условию разброса и повторения более 2 раз
-                Resistance GraphR = new Resistance(poin, tic, pogr, Date, h, MAXY, MAXX, MaxH, massYFileBuy, graphic);
+                Resistance GraphR = new Resistance(poin, tic, pogr, Date, h, MAXY, MAXX, MaxH, buyL, graphic);
                 MAXY = GraphR.MAXY;
                 // Нахождение точки минимума удовлетворяющему условию разброса и повторения более 2 раз
-                Support GraphS = new Support(poin, tic, pogr, Date, h, MINY, MINX, MinH, massYFileBuy, graphic);
+                Support GraphS = new Support(poin, tic, pogr, Date, h, MINY, MINX, MinH, buyL, graphic);
                 MINY = GraphS.MINY;
             }
         }
@@ -636,40 +595,6 @@ namespace Client
             ObjectTimer.Tick += new EventHandler(timer1_Tick);    
         }
 
-
-       
-        /*
-        /// <summary>
-        /// Вращение колесика
-        /// </summary>
-        /// <param name="sender">???</param>
-        public void chart1_MouseWheel(object sender, MouseEventArgs e) //// метод недоработан
-        {
-            if (e.Delta / 120 > 0)
-            {
-                switch (Leaves)
-                {
-                    case 1: Zoom -= 5;
-                    if (Zoom > 60) 
-                    { 
-                        ZoomT(Zoom, tic); 
-                    }
-                        break;
-                }
-            }
-
-            if (e.Delta / 120 < 0)
-            {
-                switch (Leaves)
-                {
-                    case 1: Zoom += 5; 
-                    ZoomT(Zoom, tic); 
-                    break;
-                }
-            } // прокрутка вниз
-        }
-        */
-
         /// <summary>
         /// Вращение колесика
         /// </summary>
@@ -691,10 +616,11 @@ namespace Client
             Cursor = Cursors.Default;
             // время в формате из DateTime в UnixTime ТЕКУЩЕЕЕ ВРЕМЯ
             DateTime Date = (new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(NowTime);
-            // часовой пояс
-            DBUF.Add(Date); // добавление времени в лист  
-            //         
-                tic = Update(tic, DBUF, NowTime, DINET); // функция по секунде
+            // часовой пояс 
+            // добавление времени в лист
+            DBUF.Add(Date);  
+            // функция по секунде       
+            tic = Update(tic, DBUF, NowTime, DBd);
         }
 
         /// <summary>
@@ -717,17 +643,14 @@ namespace Client
                     // закрыть чтение
                     r2.Close();
                     // функция обработки текста присвоение глобальным переменным
-                    Times = rEURUSD.read(textRead, massYFileSell,massYFileBuy );
+                    Times = rEURUSD.read(textRead, sellL,buyL );
                     // Конвертируем время из  формата UNIX в DataTime
-                    DINET = cEURUSD.ConvertD(Times);
+                    DBd = cEURUSD.ConvertD(timeL);
                 } 
             }
-
-            int dTime = Convert.ToInt32((DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds - 15) - 4 * 3600; // Текущее время
             int NowTime;
-            // текущее время
-            NowTime = dTime;
-            Console.WriteLine(dTime);
+            // текущее время необходимо решить проблему  с временем
+            NowTime = Convert.ToInt32((DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds - 15) - 3600 * 1;
             //  посекундные запросы к сайту
             if (InetConnect.Inet == true)
             { 
@@ -741,17 +664,20 @@ namespace Client
                 // Присвоение к последнему числу в записи для обработки данных.
                 if (tic == 0)
                 {
-                    poslchisloSell = massYFileSell[massYFileSell.Count - 1]; 
-                    poslchisloBuy = massYFileBuy[massYFileBuy.Count - 1]; 
+                    poslchisloSell = sellL[sellL.Count - 1]; 
+                    poslchisloBuy = buyL[buyL.Count - 1]; 
                 }
 
-                // Добавление в массив последнего числа (Так как на сервере новых записей не найдено)
                 if (M.Count > 0)
                 {
-                    BufferS.Add(Convert.ToDouble(M[1].Value)); // добавить в лист значения покупки     
-                    BufferB.Add(Convert.ToDouble(M[2].Value)); // добавить в лист значения продажи   
-                    poslchisloSell = Convert.ToDouble(M[1].Value); // последнее число в покупке 
-                    poslchisloBuy = Convert.ToDouble(M[2].Value); // последнее число в продаже
+                    // добавить в лист значения покупки 
+                    BufferS.Add(Convert.ToDouble(M[1].Value));   
+                    // добавить в лист значения продажи    
+                    BufferB.Add(Convert.ToDouble(M[2].Value)); 
+                    // последнее число в покупке 
+                    poslchisloSell = Convert.ToDouble(M[1].Value); 
+                    // последнее число в продаже
+                    poslchisloBuy = Convert.ToDouble(M[2].Value); 
                 }
 
                 // Добавление в массив последнего числа (Так как на сервере новых записей не найдено)
@@ -766,8 +692,8 @@ namespace Client
             // Добавление в массив последнего числа из файла (Так как нет связи с сервером )
             else
             {
-                BufferB.Add(massYFileSell[massYFileSell.Count - 1]); 
-                BufferS.Add(massYFileBuy[massYFileBuy.Count - 1]);
+                BufferB.Add(sellL[sellL.Count - 1]); 
+                BufferS.Add(buyL[buyL.Count - 1]);
             }
             return NowTime;
         }
@@ -975,12 +901,16 @@ namespace Client
         /// <param name="sender">объект меню</param>
         private void ToCloseTheDealToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        CloseDeal DealClose = new CloseDeal();
+        CloseDealWindow DealClose = new CloseDealWindow();
         DealClose.Owner = this;
         // Показать форму
         DealClose.Show();
     }
 
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 #endregion

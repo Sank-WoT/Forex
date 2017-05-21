@@ -28,7 +28,7 @@ namespace Client
         /// </summary>
         private bool _typeDeal;
         /// <summary>
-        /// значение
+        /// значение открытия торга
         /// </summary>
         private double _value;
         /// <summary>

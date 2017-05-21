@@ -26,11 +26,22 @@ namespace Client.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\Forex.ldf;Integrated" +
-            " Security=True;Connect Timeout=30")]
-        public string ConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\s.mdf;Integra" +
+            "ted Security=True;Connect Timeout=30")]
+        public string sConnectionString1 {
             get {
-                return ((string)(this["ConnectionString"]));
+                return ((string)(this["sConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\bin\\Debug\\For" +
+            "ex.mdf;Integrated Security=True;Connect Timeout=30")]
+        public string ForexConnectionString {
+            get {
+                return ((string)(this["ForexConnectionString"]));
             }
         }
     }

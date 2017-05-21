@@ -9,12 +9,23 @@
     using System.Threading.Tasks;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Configuration;
+    using Gettext;
 
     /// <summary>
     /// Стартовое окно
     /// </summary>
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Хранит все группу событий
+        /// </summary>
+        List<EventGroup> Groups;
+        /// <summary>
+        /// Хранит все  события
+        /// </summary>
+        List<Event> Events;
+        List<Event> FutureEvent;
         /// <summary>
         /// Реализация объекта работы с файлами
         /// </summary>
@@ -35,7 +46,8 @@
         /// <summary>
         /// Таски для работы с валютами 
         /// </summary>
-        Task tConnect, tEurusd, tUsdjpy;
+        Task tConnect;
+        List<Task> tTask = new List<Task>();
         #region Переменные закрытия окон
         /// <summary>
         /// поле отвечающая за закрытое окной Help
@@ -72,6 +84,7 @@
 
         public MainForm(int x, int y)
         {
+            Gettext.LanguageCode = "ru";
             string pathDirectory = Application.StartupPath; // Путь к директории
             string pathFile = pathDirectory + "\\" + "eurusd" + ".txt"; // Путь к файлу c котировками eurusd
 
@@ -85,45 +98,91 @@
 
             switch (Time.TradeStop(DateTime.Now))
             {
-                case "Sat": MessageBox.Show("Forex day off"); break;
-                case "Sun": MessageBox.Show("Forex day off"); break;
+                case "Sat": MessageBox.Show(Gettext._("Forex day off")); break;
+                case "Sun": MessageBox.Show(Gettext._("Forex day off")); break;
             }
 
             this.InitializeComponent();
             // размеры контейнера
             startContainer.Size = new Size(x, y - WSettings.Size.Height);
             startContainer.Location = new Point(0, 0);
-           
-            DirectoryWork.Set(pathDirectory); // проверка существования директории
-
-            FileInspection.Set(pathFile); // проверка существования файла
-
-            xS = x / 1920.0; // настройка под все  экраны
-            yS = y / 1080.0; // настройка под все  экраны
-            this.Size = new Size(x, y); // задание размеров экрана
+            // проверка существования директории
+            DirectoryWork.Set(pathDirectory); 
+            // проверка существования файла
+            FileInspection.Set(pathFile); 
+            // настройка под все  экраны
+            xS = x / 1920.0; 
+            // настройка под все  экраны
+            yS = y / 1080.0;  
+            // задание размеров экрана
+            this.Size = new Size(x, y);
            
             #region Переменные командной комбинации к Меню текущей форме
-            windowToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.W; // командная комбинация клавиш для откытия настроек окна
-            chartToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.C; // командная комбинация клавиш для откытия настроек графика
-            eURUSDToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.U; // командная комбинация клавиш для откытия графика USDEUR
-            helpToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.H; // командная комбинация клавиш для откытия помощи
-            USDJPYToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Y; // командная комбинация клавиш для откытия графика EURYPJ
+            // командная комбинация клавиш для откытия настроек окна
+            windowToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.W;
+            // командная комбинация клавиш для откытия настроек графика
+            chartToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.C; 
+            // командная комбинация клавиш для откытия графика USDEUR
+            eURUSDToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.U; 
+            // командная комбинация клавиш для откытия графика EURYPJ
+            USDJPYToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Y; 
             #endregion
-
-            if (HelpClosing == true)
-            {
-                helpToolStripMenuItem.CheckState = CheckState.Unchecked;
-            }
 
             // Грузящийся курсор
             Cursor.Current = Cursors.WaitCursor;
             tConnect.Wait();
             // Возвращение к нормальному состоянию
             Cursor.Current = Cursors.Default;
-            // загрузка данных 2х потоков с данными №1
-            Bd BasaDan = new Bd("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='" + Application.StartupPath + "\\Forex.mdf'; Integrated Security = True; Connect Timeout = 30");
-            tEurusd = BasaDan.LoadData("eurusd");
-            tUsdjpy = BasaDan.LoadData("usdjpy");
+             
+            // передача строки подключения
+             Bd BasaDan = new Bd("Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename='" + Application.StartupPath + "\\Forex.mdf'; Integrated Security = True; Connect Timeout = 30");
+            // проверка интернет соединения 
+            if ( true == InetConnect.Inet)
+            {
+             
+                tTask = LoadBdQuote(BasaDan);
+                List<int> timeL = new List<int>();
+                List<double> sellL = new List<double>();
+                List<double> buyL = new List<double>();
+                // получение событий парралельно
+                ParserEventFabric Parse = new ParserEventFabric();
+                BasaDan.LoadInBdEvent("https://myfirstphpapp-skro.rhcloud.com/get_Event.php", BasaDan.SelectLastIdEvent(), Parse);
+
+                ParserEventGroupFabric Parse1 = new ParserEventGroupFabric();
+                BasaDan.LoadInBdEventGroup("https://myfirstphpapp-skro.rhcloud.com/get_EventGroup.php", BasaDan.SelectLastIdEventGroup(), Parse1);
+
+                BasaDan.Select("eurusd", ref timeL, ref sellL, ref buyL);
+            }
+            // выбор событий из БД по id
+            //Events = BasaDan.SelectEvent(5000);
+            // выбор событий по Id_Group
+            // Events = BasaDan.SelectSameEvent(20);
+            // выбор грядущих событий
+            // выбор из группы события по id
+            // Groups = BasaDan.SelectEventGroup(500);
+            // выбор группы по name
+            // Groups = BasaDan.SelectEventGroup("'Выступление представителя ФРС США Джеффри Лэкера'");
+            int  NowTime = Convert.ToInt32((DateTime.Now - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds - 15) - 3600 * 1;
+            Console.WriteLine(NowTime);
+            FutureEvent = BasaDan.SelectEventTime(1495209600);
+        }
+
+        /// <summary>
+        /// загрузка данных
+        /// </summary>
+        /// <param name="BasaDan"></param>
+        /// <returns></returns>
+        public List<Task> LoadBdQuote(Bd BasaDan)
+        {
+            // загрузка данных eurusd
+            Task tEurusd = BasaDan.LoadDataQuote("eurusd");
+            // загрузка данных usdjpy
+            Task tUsdjpy = BasaDan.LoadDataQuote("usdjpy");
+            // ассинхронная загрузка
+            List<Task> tQuotes = new List<Task>();
+            tQuotes.Add(tEurusd);
+            tQuotes.Add(tUsdjpy);
+            return tQuotes;
         }
 
         /// <summary>
@@ -144,8 +203,9 @@
         /// <param name="e">EventArgs</param>
         public void EURUSDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // создание окна
-            createWindow(tEurusd, WindowClosingUSDJPY, "eurusd");
+            // создание окна c проверкой на загрузку данных
+            createWindow(tTask[0], WindowClosingUSDJPY, "eurusd");
+           
         }
 
         /// <summary>
@@ -154,9 +214,9 @@
         /// <param name="sender">object</param>
         /// <param name="e">EventArgs</param>
         public void USDJPYToolStripMenuItem_Click(object sender, EventArgs e)
-        {   
-            // создание окна
-            createWindow(tUsdjpy, WindowClosingUSDJPY, "usdjpy");
+        {
+            // создание окна c проверкой на загрузку данных
+            createWindow(tTask[1], WindowClosingUSDJPY, "usdjpy");
         }
 
         /// <summary>
@@ -166,10 +226,10 @@
         /// <param name="tLoadquotes">Таск погрузки данных</param>
         /// <param name="closeWindow"></param>
         ///<param name="value">наименование котировки</param>
+        ///<param name="TQoute">таски</param>
         public bool createWindow(Task TQoute, bool closeWindow, string value)
         {
             int x = 0, y = 0;
-            Tasks(tConnect, TQoute);
             if (closeWindow == true)
             {
                 // чтение из файла и присвоение размеров X,Y
@@ -179,10 +239,13 @@
                 WString.X = x;
                 // Присвоение глобальной переменной для всего проекта для передачи значений между формами (размеры окна по Y)
                 WString.Y = y;
+                progressBar g = new progressBar();
+                g.Show();
+                Tasks(tConnect, TQoute, g);
                 Windowd Quote = new Windowd(value);
                 WindowSizeLocation(Quote, WString.X, WString.Y);
                 return Quote == null ? false : true;
-            }
+            }         
             return false;
         }
 
@@ -191,15 +254,27 @@
         /// </summary>
         /// <param name="tConnect">Таск подключения</param>
         /// <param name="tLoadquotes">Таск погрузки данных</param>
-        public bool Tasks(Task tConnect, Task tLoadquotes)
+        public bool Tasks(Task tConnect, Task tLoadquotes, progressBar g)
         {
             // ожидание
             Cursor.Current = Cursors.WaitCursor;
             // ожидать коннект
             tConnect.Wait();
-            // ожидать загрузку
+            // ожидать загрузку 
+            g.set(50);
             tLoadquotes.Wait();
+            g.set(100);
+            g.Close();
             return true;
+        }
+
+        /// <summary>
+        ///  метод для отображения прогресс бара
+        /// </summary>
+        private void requestBd(progressBar progress, int procentComplete)
+        {
+            // процент выполнения
+            progress.set(procentComplete);
         }
 
         /// <summary>
@@ -263,31 +338,32 @@
             if (true == WString.Langue["RUS"])
             {
                 #region перевод на русский язык меню текущей формы
-                EditInterface("Стандартные настройки", "Окно", "График", "О программе", "Создатели", "Справка", "Валютные пары", "Евро/Доллар", "Доллар/Йена", "English", "Выберите валютную пару для начала торгов");
+                EditInterface("ru");
                 #endregion
             }
 
             if (true == WString.Langue["ENG"])
             {
                 #region перевод на английский язык меню текущей формы
-                EditInterface("Settings", "Window", "Chart", "About", "Autors", "Help", "Currency pairs", "EUR / USD", "USD/JPY", "Русский", "Select a currency pair to start trading");
+                EditInterface("en");
                 #endregion
             }
         }
 
         // Создание изменение интерфейса
-        public void EditInterface(string settingsToolStripMenu, string windowToolStripMenu, string chartToolStripMenu, string AboutToolStripMenu, string ToolStripMenu, string helpToolStripMenu, string currencyPairsToolStripMenu, string eURUSDToolStripMenu, string USDJPYToolStripMenu, string langToolStripMenu, string labelSelect)
+        public void EditInterface(string lang)
         {
-            settingsToolStripMenuItem.Text = settingsToolStripMenu;
-            windowToolStripMenuItem.Text = windowToolStripMenu;
-            chartToolStripMenuItem.Text = chartToolStripMenu;
-            AboutToolStripMenuItem.Text = AboutToolStripMenu;
-            создателиToolStripMenuItem.Text = ToolStripMenu;
-            helpToolStripMenuItem.Text = helpToolStripMenu;
-            currencyPairsToolStripMenuItem.Text = currencyPairsToolStripMenu;
-            eURUSDToolStripMenuItem.Text = eURUSDToolStripMenu;
-            USDJPYToolStripMenuItem.Text = USDJPYToolStripMenu;
-            langToolStripMenuItem.Text = langToolStripMenu;
+            Gettext.LanguageCode = lang;
+            settingsToolStripMenuItem.Text = Gettext._("Settings");
+            windowToolStripMenuItem.Text = Gettext._("Window");
+            chartToolStripMenuItem.Text = Gettext._("Chart");
+            AboutToolStripMenuItem.Text = Gettext._("About");
+            создателиToolStripMenuItem.Text = Gettext._("Autors");
+            helpToolStripMenuItem1.Text = Gettext._("Help");
+            currencyPairsToolStripMenuItem.Text = Gettext._("Currency pairs");
+            eURUSDToolStripMenuItem.Text = Gettext._("EUR/USD");
+            USDJPYToolStripMenuItem.Text = Gettext._("USD/JPY");
+            langToolStripMenuItem.Text = Gettext._("Russian");
         } 
 
         private void Form1_Load(object sender, EventArgs e)
@@ -325,21 +401,41 @@
         /// <param name="e">EventArgs</param>
         private void CreatoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("                             Creators \n\nSerobabov Alexandr - executive Director \nBondarev Alexandr -  executive Director\nTamarenko Andrey - specialist in web technologies\n\n ©Product Project Mordor"); // сообщение о создании директории
+            // сообщение о создателях
+            MessageBox.Show(Gettext._("Creators \n\nSerobabov Alexandr - executive Director \nBondarev Alexandr -  executive Director\nTamarenko Andrey - specialist in web technologies\n\n ©Product Project Mordor")); 
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
                 quotesList.Items.Add(windows[0].poslchisloBuy); 
         }
-
+        /// <summary>
+        /// Первая валюта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void radImageItem1_Click(object sender, EventArgs e)
         {
-            createWindow(tEurusd, WindowClosingUSDJPY, "eurusd");
+            createWindow(tTask[0], WindowClosingUSDJPY, "eurusd");
         }
-        private void radImageIteь2_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Вторая валюта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void radImageItem2_Click(object sender, EventArgs e)
         {
-            createWindow(tUsdjpy, WindowClosingUSDJPY, "usdjpy");
+            createWindow(tTask[1], WindowClosingUSDJPY, "usdjpy");
+        }
+
+        private void startContainer_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void radCarousel1_SelectedItemChanged(object sender, EventArgs e)
+        {
+
         }
 
         /// <summary>
@@ -351,15 +447,7 @@
         {
             string mess = "";
 
-            if (WString.Langue["RUS"] == true)
-            {
-                mess = "Вы уверены?";
-            }
-
-            if (WString.Langue["ENG"] == true)
-            {
-                mess = "Are You Sure?";
-            }
+            mess = Gettext._("Are You Sure?");
 
             if (MessageBox.Show(mess, "", MessageBoxButtons.YesNo) == DialogResult.No)
             {
@@ -382,6 +470,7 @@
             {
                 WString.Langue["RUS"] = false;
                 WString.Langue["ENG"] = true;
+                EditInterface("en");
             }
 
             // Выбор языка русский
@@ -389,9 +478,14 @@
             {
                 WString.Langue["ENG"] = false;
                 WString.Langue["RUS"] = true;
+                EditInterface("ru");
             }
             ChangeTextLanguage();
         }
-               
+        // Событие запуска помощи
+        private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Help.ShowHelp(this, "Help.chm");
+        }
     }
 }

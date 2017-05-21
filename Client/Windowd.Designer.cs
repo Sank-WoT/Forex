@@ -55,21 +55,23 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.checkBoxLevelSupandResis = new Client.ExtendCheckbox();
-            this.checkBoxSMA = new Client.ExtendCheckbox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.checkBoxLineCoord = new Client.ExtendCheckbox();
-            this.checkBoxBinding = new Client.ExtendCheckbox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonBuy = new Client.ExtendButton();
-            this.buttonSell = new Client.ExtendButton();
             this.price = new Client.ExtendButton();
+            this.buttonSell = new Client.ExtendButton();
             this.buttonPriceBuy = new Client.ExtendButton();
             this.buttonPriceSell = new Client.ExtendButton();
+            this.checkBoxLevelSupandResis = new Client.ExtendCheckbox();
+            this.checkBoxSMA = new Client.ExtendCheckbox();
+            this.checkBoxLineCoord = new Client.ExtendCheckbox();
+            this.checkBoxBinding = new Client.ExtendCheckbox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -96,7 +98,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Window;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.timeLevelToolStripMenuItem,
             this.reportToolStripMenuItem,
@@ -217,36 +219,22 @@
             // 
             // tabControl
             // 
+            resources.ApplyResources(this.tabControl, "tabControl");
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
-            resources.ApplyResources(this.tabControl, "tabControl");
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tabPage1.Controls.Add(this.checkBoxLevelSupandResis);
             this.tabPage1.Controls.Add(this.numericUpDown1);
             this.tabPage1.Controls.Add(this.checkBoxSMA);
             this.tabPage1.Controls.Add(this.checkBox4);
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxLevelSupandResis
-            // 
-            resources.ApplyResources(this.checkBoxLevelSupandResis, "checkBoxLevelSupandResis");
-            this.checkBoxLevelSupandResis.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkBoxLevelSupandResis.Name = "checkBoxLevelSupandResis";
-            this.checkBoxLevelSupandResis.UseVisualStyleBackColor = true;           // 
-            // checkBoxSMA
-            // 
-            resources.ApplyResources(this.checkBoxSMA, "checkBoxSMA");
-            this.checkBoxSMA.BackColor = System.Drawing.Color.Transparent;
-            this.checkBoxSMA.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkBoxSMA.Name = "checkBoxSMA";
-            this.checkBoxSMA.UseVisualStyleBackColor = false;
-            this.checkBoxSMA.Click += new System.EventHandler(this.checkBoxSMA_Checked);
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // tabPage2
             // 
@@ -256,18 +244,15 @@
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // checkBoxLineCoord
+            // flowLayoutPanel1
             // 
-            resources.ApplyResources(this.checkBoxLineCoord, "checkBoxLineCoord");
-            this.checkBoxLineCoord.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.checkBoxLineCoord.Name = "checkBoxLineCoord";
-            this.checkBoxLineCoord.UseVisualStyleBackColor = true;          // 
-            // checkBoxBinding
-            // 
-            resources.ApplyResources(this.checkBoxBinding, "checkBoxBinding");
-            this.checkBoxBinding.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkBoxBinding.Name = "checkBoxBinding";
-            this.checkBoxBinding.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Controls.Add(this.buttonBuy);
+            this.flowLayoutPanel1.Controls.Add(this.price);
+            this.flowLayoutPanel1.Controls.Add(this.buttonSell);
+            this.flowLayoutPanel1.Controls.Add(this.buttonPriceBuy);
+            this.flowLayoutPanel1.Controls.Add(this.buttonPriceSell);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             // 
             // buttonBuy
             // 
@@ -277,20 +262,21 @@
             this.buttonBuy.UseVisualStyleBackColor = true;
             this.buttonBuy.Click += new System.EventHandler(this.Buy_Click);
             // 
-            // buttonSell
-            // 
-            this.buttonSell.ForeColor = System.Drawing.SystemColors.ControlText;
-            resources.ApplyResources(this.buttonSell, "buttonSell");
-            this.buttonSell.Name = "buttonSell";
-            this.buttonSell.UseVisualStyleBackColor = true;
-            this.buttonSell.Click += new System.EventHandler(this.Sell_Click);
-            // 
             // price
             // 
             this.price.ForeColor = System.Drawing.SystemColors.ControlText;
             resources.ApplyResources(this.price, "price");
             this.price.Name = "price";
             this.price.UseVisualStyleBackColor = true;
+            // 
+            // buttonSell
+            // 
+            this.buttonSell.BackColor = System.Drawing.SystemColors.Window;
+            this.buttonSell.ForeColor = System.Drawing.SystemColors.ControlText;
+            resources.ApplyResources(this.buttonSell, "buttonSell");
+            this.buttonSell.Name = "buttonSell";
+            this.buttonSell.UseVisualStyleBackColor = false;
+            this.buttonSell.Click += new System.EventHandler(this.Sell_Click);
             // 
             // buttonPriceBuy
             // 
@@ -306,20 +292,46 @@
             this.buttonPriceSell.Name = "buttonPriceSell";
             this.buttonPriceSell.UseVisualStyleBackColor = true;
             // 
+            // checkBoxLevelSupandResis
+            // 
+            resources.ApplyResources(this.checkBoxLevelSupandResis, "checkBoxLevelSupandResis");
+            this.checkBoxLevelSupandResis.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBoxLevelSupandResis.Name = "checkBoxLevelSupandResis";
+            this.checkBoxLevelSupandResis.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSMA
+            // 
+            resources.ApplyResources(this.checkBoxSMA, "checkBoxSMA");
+            this.checkBoxSMA.BackColor = System.Drawing.Color.Transparent;
+            this.checkBoxSMA.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBoxSMA.Name = "checkBoxSMA";
+            this.checkBoxSMA.UseVisualStyleBackColor = false;
+            this.checkBoxSMA.Click += new System.EventHandler(this.checkBoxSMA_Checked);
+            // 
+            // checkBoxLineCoord
+            // 
+            resources.ApplyResources(this.checkBoxLineCoord, "checkBoxLineCoord");
+            this.checkBoxLineCoord.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.checkBoxLineCoord.Name = "checkBoxLineCoord";
+            this.checkBoxLineCoord.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxBinding
+            // 
+            resources.ApplyResources(this.checkBoxBinding, "checkBoxBinding");
+            this.checkBoxBinding.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBoxBinding.Name = "checkBoxBinding";
+            this.checkBoxBinding.UseVisualStyleBackColor = true;
+            // 
             // Windowd
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.lab_Cur);
             this.Controls.Add(this.label_Y);
             this.Controls.Add(this.label_X);
-            this.Controls.Add(this.buttonBuy);
-            this.Controls.Add(this.buttonSell);
-            this.Controls.Add(this.price);
-            this.Controls.Add(this.buttonPriceBuy);
-            this.Controls.Add(this.buttonPriceSell);
             this.Controls.Add(this.menuStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.MainMenuStrip = this.menuStrip1;
@@ -334,6 +346,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,5 +390,6 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

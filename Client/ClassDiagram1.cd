@@ -2,15 +2,22 @@
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Client.Bd">
     <Position X="2.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Client.Bd.progressBar" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Bd.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAABAAAAABAAAEAAAABAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAQAAAABAAAAABAAAEAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Bd.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Client.BdReqest">
     <Position X="2.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEQAAAAAAAABAAAAAgAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <HashCode>AAAAAEQAAAIAAAABQAAEAgAAAAAAAAAAAAAAQAAAAAA=</HashCode>
       <FileName>BdReqest.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -24,7 +31,7 @@
   <Class Name="Client.CloseDeal">
     <Position X="14.75" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>IAAQAARAAGEAABAMAACAAAADgCAAAAACAAAQAACAAQQ=</HashCode>
+      <HashCode>AIAAAAAAAAAAAAAAAAQAAAAAAAAAAgAAAAAAACAAAAA=</HashCode>
       <FileName>CloseDeal.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -52,7 +59,7 @@
   <Class Name="Client.Setting">
     <Position X="2" Y="7.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAYAAACAAAAAAQAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAYQAACBCAAAAQAAEA=</HashCode>
       <FileName>Setting.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -146,7 +153,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>SEgYAAAAAqAQCATAADKAgQAODkKiQSuBAwxIAAAcAAg=</HashCode>
+      <HashCode>SEgYACAAAqAQCATAADKAgQAODkKiQSuBAwxIAAAcAAg=</HashCode>
       <FileName>MainForm.cs</FileName>
     </TypeIdentifier>
   </Class>

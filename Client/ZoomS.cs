@@ -23,12 +23,12 @@ namespace Client
         /// <summary>
         ///  Новый лист времени
         /// </summary>
-        public List<int> NewZoom = new List<int>();
-        public List<int> Zoom = new List<int>();
+        private List<int> NewZoom = new List<int>();
+        private List<int> Zoom = new List<int>();
         /// <summary>
         ///  Измененение маштаба
         /// </summary>
-        public ZoomS(List<int> a, int Period)
+        public  ZoomS(List<int> a, int Period)
         {
             // получаем первое число периода
             start = a[0] - (a[0] % Period);
@@ -37,15 +37,16 @@ namespace Client
             // где n номер цикла 
             while(start + Period * (n - 1) < a[a.Count - 1])
             {
+                // Найти такой пертод который удовлетворяет данной лямда функции
                 Zoom = a.FindAll(x => x >= start + Period * (n - 1) && x <= start + Period * n);
                 if(0 != Zoom.Count )
                 {
                     NewZoom.Add(Zoom.Max());
+                    //  добавление к циклу
                     n++;
                     Console.WriteLine("Max Period = " + Zoom.Max());
                 }
             }
-           
         }
     }
 }

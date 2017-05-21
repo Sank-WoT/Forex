@@ -57,11 +57,14 @@
                     // 2 точка по игрик
                     line2X = Convert.ToInt32(poin[g][0]); 
                     // 2 точка по икс
-
-                    graphic.Series[1].XValueType = ChartValueType.Time; // Указывание типа координат по X
-                    graphic.Series[1].Points.AddXY(Date[0].ToOADate(), line2Y); // 1 точка
-                    graphic.Series[1].Points.AddXY(Date[tic].ToOADate(), line2Y); // 2 точка
-                    graphic.Series[1].Color = Color.FromArgb(255, 0, 0); // задание цвета 
+                    // Указывание типа координат по X
+                    graphic.Series[1].XValueType = ChartValueType.Time; 
+                    // 1 точка
+                    graphic.Series[1].Points.AddXY(Date[0].ToOADate(), line2Y); 
+                    // 2 точка
+                    graphic.Series[1].Points.AddXY(Date[tic].ToOADate(), line2Y); 
+                    // задание цвета 
+                    graphic.Series[1].Color = Color.FromArgb(255, 0, 0); 
                 }
             }
 

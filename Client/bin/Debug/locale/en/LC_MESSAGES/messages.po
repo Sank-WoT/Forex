@@ -1,0 +1,36 @@
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Default.aspx:4
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\Default.aspx:4
+msgid "This should get translated correctly into English or Spanish."
+msgstr ""
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Default.aspx:6
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\Default.aspx:6
+msgid ""
+"To switch languages, either change the settings in your browser or click one "
+"of the icons below:"
+msgstr ""
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Default.aspx:9
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\Default.aspx:9
+msgid "English"
+msgstr ""
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Default.aspx.cs:17
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\Default.aspx.cs:17
+msgid "Spanish"
+msgstr ""
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\SiteMaster.Master:5
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\SiteMaster.Master:5
+msgid "FairlyLocal Test"
+msgstr ""
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\SiteMaster.Master:19
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\SiteMaster.Master:19
+msgid "(warning: translations provided by Google Translate)"
+msgstr ""
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\SiteMaster.Master:19
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\SiteMaster.Master:19
+msgid "Hi"
+msgstr ""

@@ -157,7 +157,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lab_Cur.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label_X.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -187,7 +187,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label_X.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label_Y.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -217,7 +217,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label_Y.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <metadata name="toolTip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>201, 17</value>
@@ -229,73 +229,73 @@
     <value>395, 17</value>
   </metadata>
   <data name="secondToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>126, 22</value>
   </data>
   <data name="secondToolStripMenuItem.Text" xml:space="preserve">
     <value>second</value>
   </data>
   <data name="minutesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>126, 22</value>
   </data>
   <data name="minutesToolStripMenuItem.Text" xml:space="preserve">
     <value>5 minutes</value>
   </data>
   <data name="minutesToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>126, 22</value>
   </data>
   <data name="minutesToolStripMenuItem1.Text" xml:space="preserve">
     <value>30 minutes</value>
   </data>
   <data name="hourToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>126, 22</value>
   </data>
   <data name="hourToolStripMenuItem.Text" xml:space="preserve">
     <value>Hour</value>
   </data>
   <data name="dayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>126, 22</value>
   </data>
   <data name="dayToolStripMenuItem.Text" xml:space="preserve">
     <value>Day</value>
   </data>
   <data name="weekToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>126, 22</value>
   </data>
   <data name="weekToolStripMenuItem.Text" xml:space="preserve">
     <value>Week</value>
   </data>
   <data name="monthToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 22</value>
+    <value>126, 22</value>
   </data>
   <data name="monthToolStripMenuItem.Text" xml:space="preserve">
     <value>Month</value>
   </data>
   <data name="timeLevelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 20</value>
+    <value>82, 20</value>
   </data>
   <data name="timeLevelToolStripMenuItem.Text" xml:space="preserve">
     <value>Time intervall</value>
   </data>
   <data name="createReportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 22</value>
+    <value>140, 22</value>
   </data>
   <data name="createReportToolStripMenuItem.Text" xml:space="preserve">
     <value>Create report</value>
   </data>
   <data name="reportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 20</value>
+    <value>52, 20</value>
   </data>
   <data name="reportToolStripMenuItem.Text" xml:space="preserve">
     <value>Report</value>
   </data>
   <data name="settingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
+    <value>58, 20</value>
   </data>
   <data name="settingToolStripMenuItem.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="toCloseTheDealToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 20</value>
+    <value>100, 20</value>
   </data>
   <data name="toCloseTheDealToolStripMenuItem.Text" xml:space="preserve">
     <value>To close the deal</value>
@@ -304,7 +304,7 @@
     <value>0, 0</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1352, 24</value>
+    <value>1350, 24</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -322,7 +322,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>5</value>
   </data>
   <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>510, 17</value>
@@ -332,7 +332,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAAAq
-        BwAAAk1TRnQBSQFMAwEBAAEwAQEBMAEBARABAAEQAQAE/wEJAQAI/wFCAU0BNgEEBgABNgEEAgABKAMA
+        BwAAAk1TRnQBSQFMAwEBAAHYAQEB2AEBARABAAEQAQAE/wEJAQAI/wFCAU0BNgEEBgABNgEEAgABKAMA
         AUADAAEQAwABAQEAAQgGAAEEGAABgAIAAYADAAKAAQABgAMAAYABAAGAAQACgAIAA8ABAAHAAdwBwAEA
         AfABygGmAQABMwUAATMBAAEzAQABMwEAAjMCAAMWAQADHAEAAyIBAAMpAQADVQEAA00BAANCAQADOQEA
         AYABfAH/AQACUAH/AQABkwEAAdYBAAH/AewBzAEAAcYB1gHvAQAB1gLnAQABkAGpAa0CAAH/ATMDAAFm
@@ -416,6 +416,9 @@
   <data name="&gt;&gt;numericUpDown1.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="tabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <data name="checkBoxLevelSupandResis.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -483,7 +486,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 474</value>
+    <value>309, 474</value>
   </data>
   <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -570,7 +573,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 474</value>
+    <value>309, 474</value>
   </data>
   <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -591,10 +594,10 @@
     <value>1</value>
   </data>
   <data name="tabControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1102, 151</value>
+    <value>1033, 208</value>
   </data>
   <data name="tabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 500</value>
+    <value>317, 500</value>
   </data>
   <data name="tabControl.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -609,13 +612,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tabControl.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
+  </data>
+  <data name="flowLayoutPanel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="buttonBuy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonBuy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1101, 27</value>
+    <value>3, 3</value>
   </data>
   <data name="buttonBuy.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 46</value>
@@ -633,43 +639,16 @@
     <value>Client.ExtendButton, Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;buttonBuy.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;buttonBuy.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="buttonSell.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonSell.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1275, 27</value>
-  </data>
-  <data name="buttonSell.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 46</value>
-  </data>
-  <data name="buttonSell.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="buttonSell.Text" xml:space="preserve">
-    <value>Sell</value>
-  </data>
-  <data name="&gt;&gt;buttonSell.Name" xml:space="preserve">
-    <value>buttonSell</value>
-  </data>
-  <data name="&gt;&gt;buttonSell.Type" xml:space="preserve">
-    <value>Client.ExtendButton, Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;buttonSell.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;buttonSell.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>0</value>
   </data>
   <data name="price.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="price.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1158, 27</value>
+    <value>67, 3</value>
   </data>
   <data name="price.Size" type="System.Drawing.Size, System.Drawing">
     <value>118, 46</value>
@@ -687,16 +666,43 @@
     <value>Client.ExtendButton, Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;price.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;price.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>1</value>
+  </data>
+  <data name="buttonSell.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonSell.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 3</value>
+  </data>
+  <data name="buttonSell.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 46</value>
+  </data>
+  <data name="buttonSell.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="buttonSell.Text" xml:space="preserve">
+    <value>Sell</value>
+  </data>
+  <data name="&gt;&gt;buttonSell.Name" xml:space="preserve">
+    <value>buttonSell</value>
+  </data>
+  <data name="&gt;&gt;buttonSell.Type" xml:space="preserve">
+    <value>Client.ExtendButton, Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;buttonSell.Parent" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;buttonSell.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="buttonPriceBuy.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonPriceBuy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1101, 72</value>
+    <value>3, 55</value>
   </data>
   <data name="buttonPriceBuy.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 46</value>
@@ -714,19 +720,19 @@
     <value>Client.ExtendButton, Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;buttonPriceBuy.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;buttonPriceBuy.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>3</value>
   </data>
   <data name="buttonPriceSell.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="buttonPriceSell.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1216, 72</value>
+    <value>125, 55</value>
   </data>
   <data name="buttonPriceSell.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 46</value>
+    <value>124, 46</value>
   </data>
   <data name="buttonPriceSell.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -741,10 +747,31 @@
     <value>Client.ExtendButton, Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;buttonPriceSell.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>flowLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;buttonPriceSell.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>4</value>
+  </data>
+  <data name="flowLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1034, 12</value>
+  </data>
+  <data name="flowLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 139</value>
+  </data>
+  <data name="flowLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Name" xml:space="preserve">
+    <value>flowLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;flowLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -759,7 +786,7 @@
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1350, 957</value>
+    <value>1350, 973</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1016,6 +1043,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>

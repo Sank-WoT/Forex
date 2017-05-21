@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using System.Windows.Forms;
 
     /// <summary>
     /// Класс для работы с объектом база данных
@@ -17,13 +18,16 @@
         /// </summary>
         /// <param name="_patch">Путь к БД</param>
 
+        public int LenghtInsert;
+        public int CompleteInsert;
+
         public BdReqest(string _patch) : base(_patch)
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         }
 
         /// <summary>
-        /// Запрос на извлечение данных
+        /// Запрос на извлечение данных из БД
         /// </summary>
         /// <param name="ListT">Лист времени</param>
         /// <param name="ListB">Лист покупок</param>
@@ -44,11 +48,14 @@
             }
             try
             {
-                command.ExecuteNonQuery();
+                reader.Close();
+                // command.ExecuteNonQuery();
             }
+
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -87,81 +94,8 @@
             string commands = "SELECT time FROM " + Value;
             SqlCommand command = new SqlCommand(commands, con);
             SqlDataReader reader = command.ExecuteReader();
+            Console.WriteLine("Last   " + reader.GetInt32(0));
             return reader.GetInt32(0);
-        }
-
-        /// <summary>
-        /// Запрос на добавлени данных
-        /// </summary>
-        /// <param name="Value">Наименование котировки</param>
-        /// <param name="Time">Время</param>
-        /// <param name="Buy">Покупка</param>
-        /// <param name="Sell">Продажа</param>
-        public void Insert(string Value, List<int> Time, List<double> Buy, List<double> Sell, SqlConnection con)
-        {
-            int Index = 0;
-            int m = 0;
-            // дополнительный сдвиг из за 1 повторяющегося числа
-            while (m < (Sell.Count() - 1)) 
-            {
-                Console.WriteLine("Вошел");
-                Console.WriteLine("Вошел" + (Time.Count() - 1));
-                // запрос на добавление
-                Insert800(Value, Time, Buy, Sell, ref Index, con);
-                //  присвоение 
-               m = Index;
-            }
-        }
-
-        /// <summary>
-        /// Сборка запроса в блоки по 800 добавлений
-        /// </summary>
-        /// <param name="Value">Наименование котировки</param>
-        /// <param name="Time">Время</param>
-        /// <param name="Buy">Покупка</param>
-        /// <param name="Sell">Продажа</param>
-        /// <param name="Index">Номер триады</param>
-        private void Insert800(string Value, List<int> Time, List<double> Buy, List<double> Sell, ref int Index, SqlConnection con)
-        {
-            Console.WriteLine("Sell.Count() " + (Sell.Count() - 1));
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            string comI = " VALUES";
-            int i = 0;
-            for (i = 0; i < 801; i++)
-            {
-                if((Index + i) != Sell.Count() - 1)
-                {
-                    // если не равно 800 работает
-                    if (800 != i)
-                    {
-                        comI += "(" + Time[Index + i] + ", " + Buy[Index + i].ToString() + ", " + Sell[Index + i].ToString() + "), ";
-                    }
-
-                    if(800 == i)
-                    {
-                        comI += "(" + Time[Index + i] + ", " + Buy[Index + i].ToString() + ", " + Sell[Index + i ].ToString() + ");";
-                    }
-                }
-                else
-                {
-                    comI += "(" + Time[Index + i] + ", " + Buy[Index + i].ToString() + ", " + Sell[Index + i].ToString() + ");"; break;
-                }
-            }
-            // После окончания прибавить 800 
-            Index+= i;
-            Console.WriteLine("Index" + Index);
-            // составление запроса
-            string commands = "INSERT INTO [dbo].[" + Value + "] ([time],[bid],[ask]) " + comI ;
-            SqlCommand command = new SqlCommand(commands, con);
-            try
-            {
-                // выполняет sql-выражение и возвращает количество измененных записей
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ошибка");
-            }
         }
 
         /// <summary>
@@ -178,6 +112,7 @@
             SqlCommand command = new SqlCommand(comI, con);
             try
             {
+                Console.WriteLine("запрос "  + comI);
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -195,6 +130,5 @@
             string command = "SELECT *  FROM dbo.[" + Value + "];";
             return command;
         }
-
     }
 }

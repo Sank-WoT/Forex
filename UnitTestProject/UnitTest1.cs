@@ -25,17 +25,6 @@
     [TestClass]
     public class UnitTest
     {
-        [TestMethod]
-        // Проверка пути первого запроса
-        public void TestMethodTaskConnect()
-        {
-            Internet Test = new Internet();
-            string pathFileEURUSD = Application.StartupPath + "\\" + "eurusd" + ".txt";
-            string pathFileUSDJPY = Application.StartupPath + "\\" + "usdjpy" + ".txt";
-            Internet IPair = new Internet();
-            Assert.AreEqual(Test.TaskConnect("eurusd"), pathFileEURUSD);
-            Assert.AreEqual(Test.TaskConnect("usdjpy"), pathFileUSDJPY);
-        }
 
         [TestMethod]
         // Проверка пути первого запроса
@@ -277,14 +266,17 @@
             TestV.Add(2);
             TestV.Add(3);
             TestV.Add(1);
+            TestV.Add(0);
             TestV.Add(8);
             TestT.Add((new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(101));
             TestT.Add((new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(102));
             TestT.Add((new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(104));
             TestT.Add((new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(106));
+            TestT.Add((new DateTime(1970, 1, 1, 0, 0, 0, 0)).AddSeconds(107));
             int danoe = 0;
             Test.AddMinMax(TestV, TestT, danoe);
-            Assert.AreEqual(1, Test.Svoistvo_poin);
+            Assert.AreEqual(2, Test.Svoistvo_poin[0][1]);
+            Assert.AreEqual(3, Test.Svoistvo_poin[1][1]);
         }
 
         [TestMethod]
@@ -379,12 +371,5 @@
             Assert.AreEqual(Testin1[3], Testi[2]);
         }
 
-        [TestMethod]
-        public void TestWorkFile()
-        {
-            WorkFile Test = new WorkFile();
-            Assert.AreEqual(true, Test.CreateFile(Application.StartupPath + "\\" + "eurusd" + ".txt"));
-            Assert.IsNotNull(Test.ReadFile(Application.StartupPath + "\\" + "eurusd" + ".txt"));
-        }
     }
 }

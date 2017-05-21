@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Jason Kester <jasonkester@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Default.aspx:4
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\Default.aspx:4
+msgid "This should get translated correctly into English or Spanish."
+msgstr "Esto debería llegar traducido correctamente al Inglés o Español."
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Default.aspx:6
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\Default.aspx:6
+#, fuzzy
+msgid ""
+"To switch languages, either change the settings in your browser or click one "
+"of the icons below:"
+msgstr ""
+"Para cambiar de idioma, ya sea cambiar la configuración en su navegador o "
+"haga clic en uno de los siguientes iconos:"
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Default.aspx:9
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\Default.aspx:9
+msgid "English"
+msgstr "Inglés"
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Default.aspx.cs:17
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\Default.aspx.cs:17
+msgid "Spanish"
+msgstr "Español"
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\SiteMaster.Master:5
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\SiteMaster.Master:5
+msgid "FairlyLocal Test"
+msgstr "FairlyLocal Test"
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\SiteMaster.Master:19
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\SiteMaster.Master:19
+msgid "(warning: translations provided by Google Translate)"
+msgstr "(Advertencia: las traducciones proporcionadas por Google Translate)"
+
+
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\SiteMaster.Master:19
+#: C:\Users\sank\Downloads\FairlyLocal_release_01\SampleProject\Backup\SiteMaster.Master:19
+msgid "Hi"
+msgstr "Hallo"

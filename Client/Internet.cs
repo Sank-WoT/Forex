@@ -19,6 +19,7 @@
     using System.Windows.Forms;
     using System.Windows.Forms.DataVisualization.Charting;
     using EnumDialogResult = System.Windows.Forms.DialogResult;
+    using Gettext;
     /// <summary>
     ///  Класс отечающий за работу с интернетом
     /// </summary>
@@ -52,21 +53,16 @@
             bool inet;
             try
             {
-                var webReq = WebRequest.Create("http://myfirstphpapp-skro.rhcloud.com/get_currency.php?time=" + "0" + "&limit=" + "1" + "&sign=" + value); // запрос на сайт 
-                WebResponse webRes = webReq.GetResponse(); // получение ответа
+                // запрос на сайт 
+                var webReq = WebRequest.Create("http://myfirstphpapp-skro.rhcloud.com/get_currency.php?time=" + "0" + "&limit=" + "1" + "&sign=" + value); 
+                // получение ответа
+                WebResponse webRes = webReq.GetResponse(); 
                 webRes.Close();
                 inet = true;
             }
             catch (Exception ex)
             {
-                if (WString.Langue["RUS"] == true)
-                {
-                    MessageBox.Show("Отсутсвие интернета или недоступен сайт переход в автономный режим");
-                }
-                if (WString.Langue["ENG"] == true)
-                {
-                    MessageBox.Show("Lack of or inaccessible internet site go offline");
-                }
+                MessageBox.Show(Gettext._("Lack of or inaccessible internet site go offline"));
                 inet = false;
             }
             return inet;
@@ -78,8 +74,7 @@
         /// <param name="pathFile">Путь к файлу</param>
         /// <param name="value">Выбранная котировка</param>
         /// <param name="number">кол-во чисел</param>
-        /// 
-        public string FirstConnectBD(string value,string pathFile, int number, string patch)
+        public string FirstConnectBD(string value, string pathFile, int number, string patch)
         {
             string response = "";
             WorkFile a = new WorkFile();
@@ -91,9 +86,12 @@
             // Выбор записей
             SqlConnection con = new SqlConnection(patch);
             con.Open();
+            // выбор данных из бд
             reqestBdEURUSD.CommandSelect(ref BListT, ref BListB, ref BListS, value, con);
             con.Close();
-            // загрузить записей
+            con.Dispose();
+            Console.WriteLine("Last   Time in BD " + BListT[BListT.Count - 1]);
+            // (правильно)
             response = ConnectIBD(BListT[BListT.Count - 1], number, value);
             return response;
         }
@@ -128,19 +126,23 @@
             string response = "";
             if (InetConnect.Inet == true)
             {
-                #region Добавление данных в файл из буфера 
                 StreamReader DataReader;
                 // Получение данных при коннекте
                 DataReader = Conection(limit, poslTime, value);
                 // присвоение прочтенного к стринг
-                response = DataReader.ReadToEnd();
+                try
+                {
+                     response = DataReader.ReadToEnd();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }               
             }
             return response;
         }
 
 
-
-        /// <summary>
         /// Этот метод получает последнее время сохраненное в файле, путь и  валюту для запроса на сервер за данными и 
         /// их сохранение в локальный файл
         /// </summary>
@@ -148,7 +150,6 @@
         /// <param name="limit">Предел кол-ва записей с сервера</param>
         /// <param name="pathFile">Путь к файлу</param>
         /// <param name="value">Выбранная котировка</param>
-        /// 
         public void ConnectI(int poslTime, int limit, string pathFile, string value)
         {
             // Первый коннект
@@ -191,7 +192,8 @@
         /// <returns>Возвращает полученные записи из интернета</returns>
         public StreamReader Conection(int limit, double poslT, string value)
         {
-            var webReq = WebRequest.Create("http://myfirstphpapp-skro.rhcloud.com/get_currency.php?time=" + poslT + "&limit=" + limit + "&sign=" + value); // запрос на сайт 
+            Addres ConnectQuotes = new Addres("http://myfirstphpapp-skro.rhcloud.com/get_currency.php?time=", limit, poslT, value);
+            var webReq = WebRequest.Create(ConnectQuotes.addresSite); // запрос на сайт 
             // получение ответа
             WebResponse webRes = webReq.GetResponse();
             // поток по которому получаем инфу
@@ -214,5 +216,4 @@
             return pathFile;
         }
     }
-    #endregion
 }
